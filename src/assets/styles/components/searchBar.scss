@@ -1,0 +1,41 @@
+.header-search-bar-wrapper{
+  .ant-menu-item{
+    display: flex;
+    align-items:center;
+    margin-bottom: 0;
+    height: 25px  !important;;
+    margin-top: 0px  !important;;
+    padding: 0 10px  !important;;
+    overflow: hidden;
+    line-height: 25px !important;
+    .svg-icon {
+      width: 18px;
+      height: 18px;
+      vertical-align: middle;
+    }
+    .svg-icon{
+      [fill]:not([fill="none"])  {
+        fill:  $gray-color;
+      }
+    }
+    &:hover{
+      .ant-menu-submenu-title{
+        .ant-menu-item-icon, .ant-menu-submenu-arrow, .ant-menu-submenu-expand-icon {
+          color: $primary-color ;
+        }
+        .svg-icon{
+          [fill]:not([fill="none"])  {
+            fill:  $primary-color;
+          }
+        }
+      }
+    }
+  }
+  .ant-menu-item-group-title{
+    font-size: 11px;
+    padding: 0;
+  }
+  .ant-list-item{
+    overflow: hidden;
+  }
+}

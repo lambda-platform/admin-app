@@ -1,0 +1,52 @@
+$primary-color: #3471f6;
+.dark{
+
+    --ag-border-color:rgba(255, 255, 255, 0.3) !important;
+    --ag-header-background-color:transparent !important;
+    --ag-row-border-color:rgba(255, 255, 255, 0.3) !important;
+    --ag-odd-row-background-color:rgba(0, 0, 0, 0.0) !important;
+    --ag-background-color:transparent !important;
+    --ag-control-panel-background-color:#2E323F !important;
+    --ag-header-foreground-color:#f5f5f5 !important;
+    --ag-secondary-foreground-color:#f5f5f5 !important;
+    --ag-foreground-color:#f5f5f5 !important;
+    --ag-disabled-foreground-color:#888888 !important;
+    --ag-data-color:#f5f5f5 !important;
+    --ag-toggle-button-off-border-color:#f5f5f5;
+    --ag-row-hover-color:rgba(0, 0, 0, 0.3) !important;
+    //.ag-row-hover {
+    //    background: rgba(0, 0, 0, 1) !important;
+    //}
+    .ag-checkbox-input-wrapper.ag-checked::after {
+        color: $primary-color !important;;
+    }
+
+    .ag-toggle-button-input-wrapper.ag-checked::before {
+        border-color: #fff !important;
+        background: #fff !important;
+    }
+
+    .ag-toggle-button-input-wrapper.ag-checked {
+        background-color: $primary-color !important;
+        border-color: $primary-color !important;
+    }
+    .ag-selected .ag-side-button-button, .ag-tool-panel-wrapper {
+        background-color: rgba(0, 0, 0, 0.3) !important;
+    }
+    .ag-theme-material button.ag-side-button-button{
+        color:var(--ag-secondary-foreground-color) !important;
+    }
+    .ag-header-active {
+        background-color: rgba(0, 0, 0, 0.3) !important;
+        color:#f5f5f5;
+    }
+    .ag-header-cell-moving {
+        background-color: rgba(0, 0, 0, 0.4) !important;
+        color:#f5f5f5;
+    }
+
+
+    .ant-dropdown-menu-item:hover, .ant-dropdown-menu-submenu-title:hover {
+        background-color: rgba(0, 0, 0, 0.4) !important;
+    }
+}

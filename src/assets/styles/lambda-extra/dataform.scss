@@ -1,0 +1,14 @@
+.data-form-side{
+  border-radius: 0 !important;
+  background: var(--surface-0) !important;
+  width:600px;
+  .p-sidebar-header{
+    justify-content: space-between;
+  }
+}
+.open-drawer{
+
+  .ag-side-bar{
+    display:none;
+  }
+}

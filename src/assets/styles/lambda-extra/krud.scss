@@ -1,0 +1,13 @@
+.resizer {
+
+  background-color: transparent;
+  position: absolute;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  cursor: ew-resize;
+
+  &:hover, &:focus{
+    background-color:  $primary-color !important;
+  }
+}

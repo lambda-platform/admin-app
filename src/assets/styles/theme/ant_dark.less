@@ -1,0 +1,35 @@
+.dark {
+  //@import 'ant-design-vue/dist/antd.dark.less';
+  @primary-color: #3471f6;
+  @blue-base: #3471f6;
+  @dark-bg:#001529;
+  @body-background: @dark-bg;
+  @component-background: @dark-bg;
+  @popover-background: @dark-bg;
+  @component-background: @dark-bg;
+  @body-background: @dark-bg;
+  @popover-background: @dark-bg;
+  @layout-header-background: @dark-bg;
+  @drawer-bg: @dark-bg;
+  @popover-customize-border-color: #fff;
+  @border-color-base: #fff;
+  @border-color-split: #fff;
+  @white: #ffffff;
+  @text-color: fade(@white, 85%);
+  @heading-color: fade(@white, 85%);
+  .setting-drawer-index-item .setting-drawer-index-title{
+    color:fade(@white, 85%);
+  }
+  .ant-menu-item-selected{
+    background-color: @primary-color !important;
+  }
+  .layout {
+    .ant-layout {
+      .header-animat {
+        .header {
+          background-color: @dark-bg;
+        }
+      }
+    }
+  }
+}

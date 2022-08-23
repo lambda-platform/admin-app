@@ -1,0 +1,166 @@
+
+// Icons
+.btn {
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+
+  //box-shadow: 0px 0px 10px rgba(113, 121, 136, 0.1);;
+  // Font icon
+  i {
+    display: inline-flex;
+    font-size: 13px;
+    padding-right: 0.35rem;
+    vertical-align: middle;
+    line-height: 0;
+  }
+
+  // Svg icon
+  .svg-icon {
+    flex-shrink: 0;
+    line-height: 0;
+    margin-right: 0.5rem;
+  }
+
+  // Icon only button
+  &.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    height: 30px;
+    width: 30px;
+
+    // Remove border
+    &:not(.btn-outline):not(.btn-dashed):not(.border-hover):not(.border-active):not(.btn-flush) {
+      border: 0;
+    }
+
+    // Sizes
+    &.btn-sm {
+      height:  20px;
+      width: 20px;
+    }
+
+    &.btn-lg {
+      height: 40px;
+      width:40px;
+    }
+
+    &.btn-circle {
+      border-radius: 50%;
+    }
+
+    i,
+    .svg-icon {
+      padding: 0;
+      margin: 0;
+      line-height: 1;
+
+      svg{
+        height: 20px;
+        width: 20px;
+      }
+      [fill]:not([fill="none"])  {
+        fill:  #A1A5B7;
+      }
+
+    }
+  }
+  &:hover, &:active{
+    color:$primary-color;
+    background-color: #f5f8fa;
+    .svg-icon{
+      [fill]:not([fill="none"])  {
+        fill:  $primary-color;
+      }
+    }
+  }
+
+
+}
+
+.btn-active{
+  .svg-icon{
+    [fill]:not([fill="none"])  {
+      fill:  $primary-color !important;
+    }
+  }
+}
+// Icons
+.link {
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+
+  //box-shadow: 0px 0px 10px rgba(113, 121, 136, 0.1);;
+  // Font icon
+  i {
+    display: inline-flex;
+    font-size: 13px;
+    padding-right: 0.35rem;
+    vertical-align: middle;
+    line-height: 0;
+  }
+
+  // Svg icon
+  .svg-icon {
+    flex-shrink: 0;
+    line-height: 0;
+    margin-right: 0.5rem;
+  }
+
+  // Icon only button
+  &.link-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+
+
+    // Remove border
+    &:not(.btn-outline):not(.btn-dashed):not(.border-hover):not(.border-active):not(.btn-flush) {
+      border: 0;
+    }
+
+
+
+    i,
+    .svg-icon {
+      padding: 0;
+      margin: 0;
+      line-height: 1;
+
+      svg{
+        height: 20px;
+        width: 20px;
+      }
+
+      [fill]:not([fill="none"])  {
+        fill:  $gray-color;
+      }
+    }
+  }
+  &:hover, &:active{
+    color:$primary-color;
+    background-color: #f5f8fa;
+    .svg-icon{
+      path  {
+        fill: $primary-color;
+      }
+      [fill]:not([fill="none"])  {
+        fill:  $primary-color;
+      }
+    }
+  }
+}
+.settings-btn{
+  padding-top: 2px;
+  svg{
+    path{
+      fill:#fff;
+    }
+  }
+}

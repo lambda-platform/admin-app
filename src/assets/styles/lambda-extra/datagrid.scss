@@ -1,0 +1,7 @@
+.ag-root-wrapper{
+  border-radius:8px;
+  .ag-header-cell::after, .ag-header-group-cell::after, .ag-header-cell::after{
+    top: 0;
+  }
+}
+
