@@ -30,7 +30,10 @@ declare interface AppState {
 }
 import setupDefaultSetting from '~/utils/setupDefaultSetting'
 import {i18n, locale} from '~/locale'
+import Antd from 'ant-design-vue';
 
+import '~/assets/styles/theme/ant_light.less';
+import '~/assets/styles/theme/ant_dark.less';
 
 export default defineNuxtPlugin(async ({ vueApp: app }) => {
 
@@ -56,6 +59,7 @@ export default defineNuxtPlugin(async ({ vueApp: app }) => {
   installDataGrid(app)
   //
   //
+  app.use(Antd);
   app.use(store);
 
   app.use(apolloProvider);

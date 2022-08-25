@@ -2,7 +2,7 @@ import { resolve } from "path";
 import { defineNuxtConfig } from "nuxt";
 import { viteThemePlugin } from 'vite-plugin-theme';
 import Components from 'unplugin-vue-components/vite';
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+// import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 import { getThemeColors } from './src/utils/themeUtil'
 // import legacy from '@vitejs/plugin-legacy'
 
@@ -31,9 +31,9 @@ export default defineNuxtConfig({
   css: [
     '~/assets/styles/components/loading.css',
     '@/assets/styles/tailwind.css',
-    '~/assets/styles/theme/ant.less',
-    '~/assets/styles/theme/ant_light.less',
-    '~/assets/styles/theme/ant_dark.less',
+    // '~/assets/styles/theme/ant.less',
+    // '~/assets/styles/theme/ant_light.less',
+    // '~/assets/styles/theme/ant_dark.less',
     '@lambda-platform/lambda-vue/src/modules/datagrid/scss/style.scss',
     '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_material.scss',
     '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_light.scss',
@@ -60,13 +60,11 @@ export default defineNuxtConfig({
     },
     plugins: [
 
-      Components({
-        dts: true,
-        resolvers: [AntDesignVueResolver({
-          importStyle: "less",
-        })],
-        include: [/\.vue$/,/\.tsx$/],
-      }),
+      // Components({
+      //   dts: true,
+      //   resolvers: [AntDesignVueResolver()],
+      //   include: [/\.vue$/,/\.tsx$/],
+      // }),
       //
       // legacy({
       //   targets: ['defaults', 'not IE 11']
@@ -76,7 +74,7 @@ export default defineNuxtConfig({
         symbolId: 'icon-[dir]-[name]',
       }),
       viteThemePlugin({
-        colorVariables: [...getThemeColors("#3471f6")],
+        colorVariables: [...getThemeColors()],
       }),
       // legacyPlugin({
       //
@@ -114,9 +112,9 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         less: {
-          modifyVars: {
-            'primary-color': '#3471f6',
-          },
+          // modifyVars: {
+          //   'primary-color': '#3471f6',
+          // },
           javascriptEnabled: true,
         },
       },

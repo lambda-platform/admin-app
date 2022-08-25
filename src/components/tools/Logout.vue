@@ -1,12 +1,12 @@
 <template>
-  <a href="javascript:void(0);" @click="handleLogout" class="link link-icon " >
+  <button @click="handleLogout" class="link link-icon " >
                  <span class="svg-icon ">
                       <inline-svg
                         src="/assets/icons/duotone/Interface/Sign-Out.svg"
                       />
                   </span>&nbsp;&nbsp;
     <span v-if="showTitle" >{{ $t('userMenu.logout')}}</span>
-  </a>
+  </button>
 </template>
 
 <script lang="ts">
@@ -28,6 +28,7 @@ export default defineComponent({
     const { proxy } = getCurrentInstance();
     const router = useRouter()
     const handleLogout = () => {
+
       Modal.confirm({
         title: proxy.$t('userMenu.logout'),
         content: proxy.$t('userMenu.checkLogout'),

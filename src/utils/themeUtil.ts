@@ -27,7 +27,6 @@ export function getThemeColors(color?: string) {
   const lightColors = generateAntColors(tc);
   const primary = lightColors[5];
   const modeColors = generateAntColors(primary, 'dark');
-
   return [...lightColors, ...modeColors];
 }
 

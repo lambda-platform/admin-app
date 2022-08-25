@@ -38,10 +38,21 @@
         <template #rightExtra>
           <a-tooltip placement="topLeft">
             <template #title>
-              <span>Хадгалах</span>
+              <span>{{ $t('user.save') }}</span>
             </template>
 
-            <span :class="savedStatus === 'unsaved' ? 'btn btn-icon' : 'btn btn-icon btn-active'" @click="saveTab">
+            <span :class="savedStatus === 'unsaved' ? 'btn btn-icon rounded-sm shadow' : 'btn btn-icon rounded-sm shadow btn-active'" @click="saveTab">
+                <span class="svg-icon">
+                              <inline-svg src="/assets/icons/duotone/General/Bookmark.svg"/>
+                          </span>
+              </span>
+          </a-tooltip>
+          <a-tooltip placement="topLeft">
+            <template #title>
+              <span>{{ $t('user.save') }}</span>
+            </template>
+
+            <span :class="savedStatus === 'unsaved' ? 'btn btn-icon rounded-sm shadow' : 'btn btn-icon rounded-sm shadow btn-active'" @click="saveTab">
                 <span class="svg-icon">
                               <inline-svg src="/assets/icons/duotone/General/Bookmark.svg"/>
                           </span>

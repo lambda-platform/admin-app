@@ -31,7 +31,7 @@
     padding: 0;
     height: 30px;
     width: 30px;
-
+    background-color: #fff;
     // Remove border
     &:not(.btn-outline):not(.btn-dashed):not(.border-hover):not(.border-active):not(.btn-flush) {
       border: 0;

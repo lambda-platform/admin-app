@@ -49,8 +49,8 @@ export default {
     getLambdaConfig().then((res) => {
       ls.set(LAMBDA_CONFIG, res);
 
-      if (ls.get(ACCESS_TOKEN) && ls.get(PERMISSIONS)) {
-        axios.get('get-permissions').then(({ data }) => {
+      if (ls.get(ACCESS_TOKEN)) {
+        axios.get('/get-permissions').then(({ data }) => {
 
           if (data.status) {
 

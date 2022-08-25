@@ -84,48 +84,69 @@ export default {
       this.isError = false
       if (!this.loading) {
         this.loading = true
-        axios.post('/auth/login-with-permissions', this.credentials).then(({ data }) => {
-          setTimeout(() => {
+        axios.post('/auth/login', this.credentials).then(({ data }) => {
+
             this.loading = false
             if (data.status) {
               this.isSuccess = true
 
-              setTimeout(() => {
                 ls.set(USER_INFO, {
                   ...data.data,
                   jwt: undefined
                 })
-                ls.set(PERMISSIONS, data.permission.permissions)
-                ls.set(MENU, data.permission.menu)
-                ls.set(KRUDS, data.permission.kruds)
-                let menuList = createList(data.permission.menu, null, data.permission.kruds)
-
-
-
-                ls.set(MENU_LIST,menuList)
-
-
                 ls.set(ACCESS_TOKEN, data.token, 7 * 24 * 60 * 60 * 1000)
                 setToken(data.token)
-
-                let path = data.path.replaceAll('#', '');
-                if(path.includes("/p/")){
-                  let paths = path.split("/");
-
-                  let menu_id = paths[paths.length-1];
-
-                  this.$router.replace("/admin/p/"+menu_id);
+                if(data.data.role === 1){
+                  window.location.replace(path);
                 } else {
-                  this.$router.replace(path);
+
+                  axios.get('/get-permissions').then((res) => {
+
+
+                    if (res.data.status) {
+
+
+
+                      ls.set(PERMISSIONS, res.data.permission.permissions)
+                      ls.set(MENU, res.data.permission.menu)
+                      ls.set(KRUDS, res.data.permission.kruds)
+                      let menuList = createList(res.data.permission.menu, null, res.data.permission.kruds)
+                      ls.set(MENU_LIST,menuList);
+
+
+
+
+
+                      let path = data.path.replaceAll('#', '');
+                      if(path.includes("/p/")){
+                        let paths = path.split("/");
+
+                        let menu_id = paths[paths.length-1];
+
+                        this.$router.replace("/admin/p/"+menu_id);
+                      } else {
+                        this.$router.replace(path);
+                      }
+                      this.loading = false;
+                    } else {
+                      this.isError = true
+                    }
+                  }).catch(()=>{
+                    this.isError = true
+                  })
+
                 }
 
 
 
-              }, 100)
+
+
+
+
             } else {
               this.isError = true
             }
-          }, 1000)
+
         }).catch(e => {
           setTimeout(() => {
             this.loading = false
