@@ -15,9 +15,9 @@
                 <span class="divider"></span>
                 <a-button type="primary" @click="openSide" shape="round">
                     <template #icon>
-                        <span class="anticon align-top" style="vertical-align: top">
+                        <span class="anticon align-top ant-btn-svg-icon" style="vertical-align: top">
                             <inline-svg
-                              src="/icons/duotone/General/gen041.svg"
+                              src="/assets/icons/duotune/general/gen041.svg"
                             />
                         </span>
                     </template>

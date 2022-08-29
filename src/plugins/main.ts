@@ -34,6 +34,18 @@ import Antd from 'ant-design-vue';
 
 import '~/assets/styles/theme/ant_light.less';
 import '~/assets/styles/theme/ant_dark.less';
+// import '~/assets/styles/components/loading.css';
+// import   '@/assets/styles/tailwind.css'
+//   // '~/assets/styles/theme/ant.less',
+//   // '~/assets/styles/theme/ant_light.less',
+//   // '~/assets/styles/theme/ant_dark.less',
+// import   '@lambda-platform/lambda-vue/src/modules/datagrid/scss/style.scss';
+// import   '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_material.scss';
+// import   '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_light.scss';
+// import   '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_dark.scss';
+// import  '~/assets/styles/app.scss';
+//
+
 
 export default defineNuxtPlugin(async ({ vueApp: app }) => {
 

@@ -51,11 +51,7 @@ export default defineNuxtConfig({
   // modules: ['@nuxtjs/color-mode'],
 
   vite:{
-    // resolve:{
-    //   alias:{
-    //     '@lambda-platform/lambda-vue' : path.resolve(__dirname, './vue3')
-    //   },
-    // },
+
     server: {
       host: '0.0.0.0'
     },
@@ -108,6 +104,10 @@ export default defineNuxtConfig({
           find: '@',
           replacement: pathResolve('src') + '/',
         },
+
+      ],
+      dedupe: [
+        'vue'
       ]
     },
     css: {
