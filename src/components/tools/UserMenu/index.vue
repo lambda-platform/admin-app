@@ -65,9 +65,7 @@
           </a-menu>
         </template>
       </a-dropdown>
-      <span style="overflow: hidden;display: inline-block;">
-              <SelectLang :class="theme" class="action"/>
-      </span>
+      <SelectLang :class="theme" class="action"/>
 
       <div class="action" v-if="!isMobile">
          <span class="link link-icon " @click="showSystemSetting" >

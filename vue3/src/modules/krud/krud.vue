@@ -1,10 +1,17 @@
 <template>
-    <Canvas v-bind="property"></Canvas>
+    <component :is="renderTemplate(property.template)" v-bind="property"/>
 </template>
-
 <script lang="ts">
-import { defineComponent } from 'vue';
-import Canvas from "./template/Canvas.vue"
+import { defineComponent, defineAsyncComponent } from 'vue'
+
+const templates = {
+    'canvas': defineAsyncComponent(() => import('./templates/canvas.vue')),
+    'drawer': defineAsyncComponent(() => import('./templates/drawer.vue'))
+    // edit:"edit",
+    // create:"create",
+    // list:"list",
+}
+
 export default defineComponent({
     props: {
         template: {
@@ -15,22 +22,23 @@ export default defineComponent({
         property: {
             type: Object,
             required: true,
-            default: {
-
-            }
+            default: {}
         },
 
     },
-    components: {
-        Canvas
-    },
-    setup() {
-
+    setup () {
+        const renderTemplate = (template) => {
+            if (templates.hasOwnProperty(template)) {
+                return templates[template]
+            } else {
+                return templates.canvas
+            }
+        }
         return {
-
+            renderTemplate
         }
 
     }
 
-});
+})
 </script>

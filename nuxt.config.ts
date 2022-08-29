@@ -49,6 +49,7 @@ export default defineNuxtConfig({
   //   }
   // },
   // modules: ['@nuxtjs/color-mode'],
+
   vite:{
     // resolve:{
     //   alias:{

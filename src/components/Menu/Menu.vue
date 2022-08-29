@@ -75,6 +75,8 @@ export default defineComponent({
     watch(
       () => props.collapsed,
       (val) => {
+        console.log("collapsed");
+        console.log("collapsed");
         if (val) {
           cachedOpenKeys.value = openKeys.value.concat()
         } else {
@@ -113,9 +115,14 @@ export default defineComponent({
       emit('select', { item, key, selectedKeys })
     }
     const updateMenu = () => {
+
       if(menu_list){
         selectedKeys.value = [router.currentRoute.value.path];
-        let parentKeys = getMenu(menu_list, router.currentRoute.value.path);
+        let parentKeys = [];
+        if (props.mode !== 'horizontal') {
+          parentKeys = getMenu(menu_list, router.currentRoute.value.path);
+        }
+
         props.collapsed ? (cachedOpenKeys.value = parentKeys) : (openKeys.value = parentKeys);
       }
     }

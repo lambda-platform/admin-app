@@ -38,17 +38,17 @@
       <!-- layout header -->
       <global-header
         :mode="layoutMode"
-
         :theme="navTheme"
         :collapsed="collapsed"
         :device="device"
         @toggle="toggle"
-
       />
 
       <!-- layout content -->
       <a-layout-content>
-        <div class="bg-slate-50 dark:bg-slate-800"  :style="`height: 100%; padding: ${fixedHeader ? '87px' : '20px'} 24px 20px;`">
+        <div class="bg-slate-50 dark:bg-slate-800"
+             :style="`height: 100%; padding: ${fixedHeader ? '87px' : '20px'} 24px 20px;`"
+        >
           <multi-tab v-if="multiTab"></multi-tab>
           <transition name="page-transition">
             <section>
@@ -60,7 +60,7 @@
       </a-layout-content>
 
       <!-- layout footer -->
-      <a-layout-footer class="!bg-slate-50 dark:bg-slate-800">
+      <a-layout-footer class="">
         <global-footer/>
       </a-layout-footer>
 
@@ -81,7 +81,6 @@ import GlobalFooter from '~/components/GlobalFooter/index.vue'
 import SettingDrawer from '~/components/SettingDrawer/index.vue'
 import { SET_SIDEBAR_TYPE } from '~/store/mutation-types'
 
-
 import {
   fixSidebar,
   sidebarOpened,
@@ -95,24 +94,28 @@ import {
 } from '~/store/useSiteSettings'
 import { useStore } from 'vuex'
 
-const can = (menuItem, permissions)=> {
+const can = (menuItem, permissions) => {
   if (permissions[menuItem.id]) {
-    if (permissions[menuItem.id].show)
-      return true;
-    else
+    if (permissions[menuItem.id].show) {
+      return true
+    } else {
       return false
-  } else
-    return false;
+    }
+  } else {
+    return false
+  }
 }
-const getTitle = (item, cruds) =>{
+const getTitle = (item, cruds) => {
   if (item.link_to == 'crud') {
-    let crudIndex = cruds.findIndex(crud => crud.id == item.url);
-    if (crudIndex >= 0)
-      return cruds[crudIndex].title;
-    else
+    let crudIndex = cruds.findIndex(crud => crud.id == item.url)
+    if (crudIndex >= 0) {
+      return cruds[crudIndex].title
+    } else {
       return ''
-  } else
-    return item.title;
+    }
+  } else {
+    return item.title
+  }
 }
 
 export default defineComponent({

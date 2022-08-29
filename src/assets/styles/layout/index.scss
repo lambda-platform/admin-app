@@ -327,7 +327,6 @@
           line-height: 64px;
           transition: all 0.3s;
           overflow: hidden;
-
           img,
           svg {
             display: inline-block;
@@ -337,10 +336,10 @@
           }
 
           h1 {
-            color: #fff;
+            color: $primary-color !important;
             display: inline-block;
             vertical-align: top;
-            font-size: 16px;
+            font-size: 15px;
             margin: 0 0 0 12px;
             font-weight: 400;
           }
@@ -348,7 +347,7 @@
       }
 
       .header-index-right {
-        flex: 0 0 285px;
+        flex: 0 0 370px;
         align-self: flex-end;
         height: 64px;
         overflow: hidden;

@@ -11,9 +11,9 @@
   @popover-background: @dark-bg;
   @layout-header-background: @dark-bg;
   @drawer-bg: @dark-bg;
-  @popover-customize-border-color: #fff;
-  @border-color-base: #fff;
-  @border-color-split: #fff;
+  @popover-customize-border-color: #2d3d57;
+  @border-color-base: #2d3d57;
+  @border-color-split: #2d3d57;
   @white: #ffffff;
   @text-color: fade(@white, 85%);
   @heading-color: fade(@white, 85%);
@@ -32,4 +32,8 @@
       }
     }
   }
+  .ant-menu-inline, .dark .ant-menu-vertical, .dark .ant-menu-vertical-left {
+    border-right: none !important;
+  }
+
 }

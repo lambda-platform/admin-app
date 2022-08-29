@@ -40,31 +40,29 @@
             <template #title>
               <span>{{ $t('user.save') }}</span>
             </template>
-
             <span :class="savedStatus === 'unsaved' ? 'btn btn-icon rounded-sm shadow' : 'btn btn-icon rounded-sm shadow btn-active'" @click="saveTab">
                 <span class="svg-icon">
-                              <inline-svg src="/assets/icons/duotone/General/Bookmark.svg"/>
-                          </span>
+                     <inline-svg src="/assets/icons/duotone/General/Bookmark.svg"/>
+                </span>
               </span>
           </a-tooltip>
-          <a-tooltip placement="topLeft">
-            <template #title>
-              <span>{{ $t('user.save') }}</span>
-            </template>
 
-            <span :class="savedStatus === 'unsaved' ? 'btn btn-icon rounded-sm shadow' : 'btn btn-icon rounded-sm shadow btn-active'" @click="saveTab">
-                <span class="svg-icon">
-                              <inline-svg src="/assets/icons/duotone/General/Bookmark.svg"/>
-                          </span>
-              </span>
-          </a-tooltip>
+<!--          <a-tooltip placement="topLeft">-->
+<!--            <template #title>-->
+<!--              <span>{{ $t('user.save') }}</span>-->
+<!--            </template>-->
+<!--            <span :class="savedStatus === 'unsaved' ? 'btn btn-icon rounded-sm shadow' : 'btn btn-icon rounded-sm shadow btn-active'" >-->
+<!--                <span class="svg-icon">-->
+<!--                     <inline-svg src="/assets/icons/duotone/Design/Position.svg"/>-->
+<!--                </span>-->
+<!--              </span>-->
+<!--          </a-tooltip>-->
 <!--          <a-button  @click="saveTab" size="small">-->
 <!--            &lt;!&ndash;              <span class="svg-icon">&ndash;&gt;-->
 <!--            &lt;!&ndash;                  <inline-svg src="/assets/icons/duotone/General/Bookmark.svg"/>&ndash;&gt;-->
 <!--            &lt;!&ndash;              </span>&ndash;&gt;-->
 <!--            {{savedStatus}}-->
 <!--          </a-button>-->
-
         </template>
       </a-tabs>
     </div>
