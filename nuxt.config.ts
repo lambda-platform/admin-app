@@ -104,6 +104,10 @@ export default defineNuxtConfig({
           find: '@',
           replacement: pathResolve('src') + '/',
         },
+        {
+          find: '@lambda-platform/lambda-vue',
+          replacement: pathResolve('vue3') + '/' ,
+        },
 
       ],
       dedupe: [

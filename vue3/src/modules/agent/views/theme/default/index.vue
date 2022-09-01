@@ -26,11 +26,10 @@
                         {{ item.label }}
                     </a>
                 </div>
-                <router-view :selectedLang="selectedLang">
-                    <div class="copyright" style="width:70%; text-align:center;" slot="copyright">
-                        {{ copyright }}
-                    </div>
-                </router-view>
+                <slot>
+
+                </slot>
+
             </div>
         </div>
     </div>
@@ -39,6 +38,7 @@
 <script>
 
 export default {
+    props:["lambda", "subTitle", "languages", "copyright", "title", "selectedLang", "switchLanguage"],
     name: "default",
     data() {
         return {
@@ -49,10 +49,7 @@ export default {
                 login: null,
                 password: null
             },
-            selectedLang: localStorage.getItem("lang") == null ? window.lambda.default_language : localStorage.getItem("lang"),
-            languages: window.lambda.languages,
-            copyright: window.lambda.copyright,
-            lambda: window.lambda,
+
         }
     },
 

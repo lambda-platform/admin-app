@@ -1,17 +1,16 @@
 <template>
-    <div>
-        <component :is="renderTemplate(property.template)" v-bind="property"/>
-    </div>
+    <component :is="renderTemplate(property.template)" v-bind="property"/>
 </template>
 <script lang="ts">
 import { defineComponent, defineAsyncComponent } from 'vue'
 
 const templates = {
     'canvas': defineAsyncComponent(() => import('./templates/canvas.vue')),
-    'drawer': defineAsyncComponent(() => import('./templates/drawer.vue'))
-    // edit:"edit",
-    // create:"create",
-    // list:"list",
+    'drawer': defineAsyncComponent(() => import('./templates/drawer.vue')),
+    'window': defineAsyncComponent(() => import('./templates/window.vue')),
+    'popup': defineAsyncComponent(() => import('./templates/popup.vue')),
+    'edit': defineAsyncComponent(() => import('./templates/edit.vue')),
+    'create': defineAsyncComponent(() => import('./templates/create.vue')),
 }
 
 export default defineComponent({

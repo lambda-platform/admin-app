@@ -1,36 +1,25 @@
 <template>
-  <div class="login aside-theme" :style="{ backgroundImage: 'url(' + lambda.bg + ')' }">
-    <div class="content">
-      <div class="content-layer"></div>
-      <div class="title">
-        <h2 style="max-width: 600px;">{{ title }}</h2>
-        <p>{{ subTitle }}</p>
-      </div>
-    </div>
-    <div class="auth">
-      <div class="lang-switcher" v-if="lambda.has_language && languages.length >= 2">
-        <a v-for="item in languages" :key="item.index"
-           :class="selectedLang === item.code ? 'active' : ''" href="javascript:void(0)"
-           @click="switchLanguage(item.code)">
-          {{ item.label }}
-        </a>
-      </div>
-      <div class="form-wrap">
-<!--        <NuxtPage :key="$route.fullPath"/>-->
-        <NuxtPage :key="$route.fullPath" :selectedLang="selectedLang"/>
-        <div class="copyright" style="width:70%; text-align:center;" v-html="copyright"></div>
-      </div>
-    </div>
-  </div>
+  <component :is="renderTheme()"
+  :switchLanguage="switchLanguage"
+  :lambda="lambda"
+  :subTitle="subTitle"
+  :languages="languages"
+  :copyright="copyright"
+  :title="title"
+  :selectedLang="selectedLang"
+  >
+
+    <NuxtPage :key="$route.fullPath" />
+  </component>
 </template>
 
 <script>
-
+import { defineComponent, defineAsyncComponent } from 'vue'
 import { LAMBDA_CONFIG } from '~/store/mutation-types'
 import ls from '~/utils/Storage'
 import { loadLocaleMessages, setI18nLanguage} from '@lambda-platform/lambda-vue/src/locale'
 import { i18n} from '~/locale'
-export default {
+export default defineComponent({
 
   setup(props) {
     const { proxy } = getCurrentInstance();
@@ -45,8 +34,11 @@ export default {
         await loadLocaleMessages(i18n, key)
       }
       setI18nLanguage(i18n, key);
-      window.location.reload();
+      // window.location.reload();
 
+    }
+    const renderTheme = () => {
+      return defineAsyncComponent(() => import(`../../vue3/src/modules/agent/views/theme/${LambdaConfig.theme}/index.vue`))
     }
     return {
       loading: false,
@@ -65,15 +57,11 @@ export default {
       styleObj: {
         backgroundImage: LambdaConfig.bg + ' !important'
       },
-      switchLanguage
+      switchLanguage,
+      renderTheme
     }
   },
 
 
-}
+})
 </script>
-
-<style lang="scss">
-@import "../vue3/src/modules/agent/scss/theme/aside/style";
-</style>
-

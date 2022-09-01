@@ -9,7 +9,7 @@
             <img :src="lambda.logo" alt="">
         </div>
         <h2>{{ lang.loginTitle }}</h2>
-        <form v-on:submit.prevent="onSubmit" id="authForm" method="post" class="login-form">
+        <form id="authForm" method="post" class="login-form">
             <div class="form-element input">
                 <input type="text" v-model="credentials.login" :disabled="loading"
                        :placeholder="lang.username">
@@ -25,27 +25,9 @@
                 <label for="remember_me">{{ lang.remember }}</label>
             </div>
             <div class="form-element action">
-                <button id="submit" class="button" :disabled="loading">
-                    <span id="submitTxt">{{ lang.login }}</span>
-                    <span class="loader">
-                                        <div class="sk-fading-circle" v-if="loading">
-                                            <div class="sk-circle1 sk-circle"></div>
-                                            <div class="sk-circle2 sk-circle"></div>
-                                            <div class="sk-circle3 sk-circle"></div>
-                                            <div class="sk-circle4 sk-circle"></div>
-                                            <div class="sk-circle5 sk-circle"></div>
-                                            <div class="sk-circle6 sk-circle"></div>
-                                            <div class="sk-circle7 sk-circle"></div>
-                                            <div class="sk-circle8 sk-circle"></div>
-                                            <div class="sk-circle9 sk-circle"></div>
-                                            <div class="sk-circle10 sk-circle"></div>
-                                            <div class="sk-circle11 sk-circle"></div>
-                                            <div class="sk-circle12 sk-circle"></div>
-                                        </div>
-                                    </span>
-                </button>
+                <a-button type="primary" :loading="loading" @click="onSubmit">{{ lang.login }}</a-button>
                 <p>
-                    <router-link class="forgot" to="/forgot">{{ lang.forgot }}</router-link>
+                    <router-link class="forgot" to="/auth/forgot">{{ lang.forgot }}</router-link>
                 </p>
             </div>
         </form>
@@ -58,10 +40,10 @@
 </template>
 
 <script>
-
+import axios from 'axios'
 
 export default {
-    props: ['selectedLang'],
+    props: ['lambda', 'onSuccess'],
     name: "aside-login",
     data() {
         return {
@@ -72,7 +54,7 @@ export default {
                 login: null,
                 password: null
             },
-            lambda: window.lambda,
+
         }
     },
     computed: {
@@ -91,22 +73,15 @@ export default {
             if (!this.loading) {
                 this.loading = true;
                 axios.post('/auth/login', this.credentials).then(({data}) => {
-                    setTimeout(() => {
-                        this.loading = false;
-                        if (data.status) {
-                            this.isSuccess = true;
-                            setTimeout(() => {
-                                window.location = data.path;
-                            }, 600)
-                        } else {
-                            this.isError = true;
-                        }
-                    }, 1000);
-                }).catch(e => {
-                    setTimeout(() => {
-                        this.loading = false;
+                    this.loading = false;
+                    if (data.status) {
+                        this.onSuccess(data)
+                    } else {
                         this.isError = true;
-                    }, 1000);
+                    }
+                }).catch(e => {
+                    this.loading = false;
+                    this.isError = true;
                 })
             }
         },

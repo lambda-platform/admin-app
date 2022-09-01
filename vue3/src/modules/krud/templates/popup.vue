@@ -45,7 +45,7 @@
                 </div>
             </div>
         </section>
-        <a-drawer
+        <a-modal
             v-model:visible="openSlidePanel"
             class="custom-class"
             :maskClosable="false"
@@ -53,7 +53,9 @@
             placement="right"
         >
             <TepmForm/>
-        </a-drawer>
+            <template #footer>
+            </template>
+        </a-modal>
     </div>
 </template>
 <script>

@@ -1,15 +1,8 @@
 <template>
-  <div class="user-wrapper">
-    <div class="content-box">
-
-      <SearchBar class="action"/>
-
-
-      <notice-icon class="action"/>
-
-      <DarkLightMode class="action" v-if="!isMobile"/>
-
-      <a-dropdown>
+  <SearchBar class="action"/>
+  <notice-icon class="action"/>
+  <DarkLightMode class="action" v-if="!isMobile"/>
+  <a-dropdown>
         <span class="action ant-dropdown-link user-dropdown-menu">
           <span class="link link-icon ">
             <span class="svg-icon ">
@@ -20,54 +13,53 @@
           </span>
           <span class="nickname text-gray-700 dark:text-gray-200" v-if="!isMobile">&nbsp;&nbsp;{{ nickname }}</span>
         </span>
-        <template #overlay>
-          <a-menu class="user-dropdown-menu-wrapper">
-            <a-menu-item key="1"
-            >
-              <a
-                class="link link-icon "
-                href="https://lambda-platform.github.io/"
-                target="_blank"
-              >
+    <template #overlay>
+      <a-menu class="user-dropdown-menu-wrapper">
+        <a-menu-item key="1"
+        >
+          <a
+            class="link link-icon "
+            href="https://lambda-platform.github.io/"
+            target="_blank"
+          >
                 <span class="svg-icon">
 
                       <inline-svg
                         src="/assets/icons/duotone/Home/Book.svg"
                       />
                 </span>&nbsp;&nbsp;
-                <span>{{$t('appAdmin.manual')}}</span>
-              </a>
-            </a-menu-item>
-            <a-menu-item key="2" @click="showSystemSetting">
-              <a class="link link-icon ">
+            <span>{{$t('appAdmin.manual')}}</span>
+          </a>
+        </a-menu-item>
+        <a-menu-item key="2" @click="showSystemSetting">
+          <a class="link link-icon ">
                  <span class="svg-icon ">
                       <inline-svg
                         src="/assets/icons/duotune/general/gen019.svg"
                       />
                   </span>&nbsp;&nbsp;
-                <span>{{ $t('userMenu.systemConfig') }}</span>
-              </a>
-            </a-menu-item>
-            <a-menu-item key="3" @click="onLockScreen">
-              <a class="link link-icon ">
+            <span>{{ $t('userMenu.systemConfig') }}</span>
+          </a>
+        </a-menu-item>
+        <a-menu-item key="3" @click="onLockScreen">
+          <a class="link link-icon ">
                  <span class="svg-icon ">
                       <inline-svg
                         src="/assets/icons/duotone/Interface/Lock.svg"
                       />
                   </span>&nbsp;&nbsp;
-                <span>{{ $t('userMenu.lockScreen') }}</span>
-              </a>
-            </a-menu-item>
-            <a-menu-divider/>
-            <a-menu-item key="4">
-              <Logout/>
-            </a-menu-item>
-          </a-menu>
-        </template>
-      </a-dropdown>
-      <SelectLang :class="theme" class="action"/>
-
-      <div class="action" v-if="!isMobile">
+            <span>{{ $t('userMenu.lockScreen') }}</span>
+          </a>
+        </a-menu-item>
+        <a-menu-divider/>
+        <a-menu-item key="4">
+          <Logout/>
+        </a-menu-item>
+      </a-menu>
+    </template>
+  </a-dropdown>
+  <SelectLang :class="theme" class="action"/>
+  <div class="action" v-if="!isMobile">
          <span class="link link-icon " @click="showSystemSetting" >
             <span class="svg-icon ">
                       <inline-svg
@@ -75,20 +67,17 @@
                       />
             </span>
           </span>
-      </div>
-    </div>
-    <div class="fixed bottom-0 right-2" v-if="isMobile">
-      <a-button type="primary" shape="circle" @click="showSystemSetting" size="large">
-        <template #icon>
+  </div>
+  <div class="fixed bottom-0 right-2" v-if="isMobile">
+    <a-button type="primary" shape="circle" @click="showSystemSetting" size="large">
+      <template #icon>
           <span class="settings-btn">
             <inline-svg
               src="/assets/icons/duotune/general/gen019.svg"
             />
           </span>
-        </template>
-      </a-button>
-    </div>
-
+      </template>
+    </a-button>
   </div>
 </template>
 

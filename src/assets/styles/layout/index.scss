@@ -95,7 +95,7 @@
   .trigger {
     font-size: 20px;
     line-height: 64px;
-    padding: 0 24px;
+    margin: 0 15px;
     cursor: pointer;
     transition: color 0.3s;
 
@@ -130,9 +130,9 @@
         .header-index-left {
           flex: 1 1 1000px;
 
-          .logo {
-            margin-left: 25px;
-          }
+          //.logo {
+          //  margin-left: 25px;
+          //}
 
           .ant-menu.ant-menu-horizontal {
             max-width: calc(100vw - 190px - 285px - 25px);
@@ -186,16 +186,13 @@
 
       .action {
         overflow: hidden;
-        cursor: pointer;
+
         padding: 0 12px;
         display: inline-block;
         transition: all 0.3s;
         height: 100%;
         color: rgba(0, 0, 0, 0.65);
 
-        &:hover {
-          background: rgba(0, 0, 0, 0.025);
-        }
 
         .avatar {
           margin: 20px 8px 20px 0;
@@ -321,7 +318,7 @@
 
         .logo.top-nav-header {
           flex: 0 0 165px;
-          width: 165px;
+          //width: 165px;
           height: 64px;
           position: relative;
           line-height: 64px;

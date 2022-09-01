@@ -8,9 +8,9 @@
       >
         <div v-if="mode === 'sidemenu'" class="header md:pl-8 ">
           <span v-if="isMobile" class="float-left">
-              <span class="anticon trigger   btn btn-icon shadow-none" @click="toggle">
+              <span class="trigger   btn btn-icon shadow-none" @click="toggle">
                 <span class="svg-icon">
-                   <inline-svg src="/assets/icons/duotone/Navigation/MobileNav.svg" />
+                   <inline-svg src="/assets/icons/duotone/Text/Menu.svg" />
                 </span>
               </span>
           </span>
@@ -19,17 +19,27 @@
           </portal-target>
           <portal-target name="header-mobile" v-if="isMobile">
           </portal-target>
-          <user-menu :theme="theme"></user-menu>
+          <div class="user-wrapper">
+            <div class="content-box">
+                <portal-target name="header-right" v-if="!isMobile">
+                </portal-target>
+                <user-menu :theme="theme"></user-menu>
+            </div>
+          </div>
         </div>
         <div v-else :class="['top-nav-header-index', theme]">
+           <span v-if="isMobile" class="float-left">
+              <span class="trigger btn btn-icon shadow-none" @click="toggle">
+                <span class="svg-icon">
+                   <inline-svg src="/assets/icons/duotone/Text/Menu.svg" />
+                </span>
+              </span>
+          </span>
           <div class="header-index-wide">
             <div class="header-index-left">
-              <logo class="top-nav-header" :show-title="device !== 'mobile'"/>
+              <logo class="top-nav-header" :show-title="device !== 'mobile'" :style="`${!isMobile ? 'margin-left:25px' : ''}`"/>
               <s-menu v-if="device !== 'mobile'" mode="horizontal" :theme="theme"/>
-              <span v-else @click="toggle">
-                <MenuFoldOutlined v-if="collapsed" class="trigger"/>
-                <MenuUnfoldOutlined v-if="!collapsed" class="trigger"/>
-              </span>
+
             </div>
             <user-menu class="header-index-right" :theme="theme"></user-menu>
           </div>

@@ -3,21 +3,21 @@
       <Head>
         <Title>{{property.title}}</Title>
       </Head>
-    <div class="grid grid-nogutter">
+    <div class="grid grid-nogutter" v-if="pageType === 'crud'">
       <krud :template="property.template" :property="property"  class="material" v-if='property.page_id != null' :base_url="property.base_url" ></krud>
+    </div>
+    <div  v-if="pageType === 'iframe'" class="grid grid-nogutter">
+      <div  class="iframe-page">
+        <iframe :src="iframeUrl"></iframe>
+      </div>
     </div>
   </div>
 </template>
-
 <script>
-
 import { PERMISSIONS, KRUDS, MENU, MENU_LIST } from '~/store/mutation-types';
 import ls from '~/utils/Storage';
 import { base_url } from '~/consts/const'
 export default {
-  components:{
-
-  },
   computed: {
     menuMode(){
       let menuModeSaved = localStorage.getItem('menuMode');
@@ -180,7 +180,7 @@ export default {
               break;
             case 'iframe':
               this.iframeUrl = page.url;
-              this.iframeTitle = page.title;
+              this.property.title = page.title;
               break;
             default:
               break;

@@ -62,7 +62,7 @@ export const storage = {
         }
         const data = JSON.parse(item)
         const { value, expire } = data
-        // 在有效期内直接返回
+
         if (expire === null || expire >= Date.now()) {
           return value
         }

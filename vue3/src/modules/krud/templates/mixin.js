@@ -20,6 +20,8 @@ export default {
             isSave: false,
             rowId: null,
             visibleDataForm:false,
+            isExcelUpload: false,
+            excelUploadCustomUrl: null,
         };
     },
     computed: {
@@ -50,7 +52,17 @@ export default {
             //     }
             // }
             return this.base_url ? this.base_url : "";
-        }
+        },
+        lang() {
+            const labels = [
+                '_add',
+                'Information_viewing_history','excelUpload'
+            ];
+            return labels.reduce((obj, key, i) => {
+                obj[key] = this.$t('crud.' + labels[i]);
+                return obj;
+            }, {});
+        },
     },
     methods: {
         view(id) {
@@ -109,7 +121,9 @@ export default {
         print() {
             this.$refs.grid.print();
         },
-
+        excelUploadMethod(){
+            this.$refs.grid.importExcel();
+        },
         save() {
             this.$refs.grid.saveGridData();
         },

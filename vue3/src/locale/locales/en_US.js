@@ -1,6 +1,6 @@
 export default {
-    locale: "en-US",
-    user: {
+    "locale": "en-US",
+    "user": {
         "defaultMenu": "Default menu",
         "pleaseWait": "Please wait",
         "role": "role",
@@ -140,9 +140,9 @@ export default {
         "instructionsUse": "Instructions for use",
         "hayg": "Mongolia, Ulaanbaatar, Sukhbaatar district, 9th khoroo, Ikh toiruu 54, Computer Mall, 8th floor, room 8002",
         "plseResUrPassUsingUrRegisteredEmail": "Please reset your password using your registered email address?",
-        "downloadAppHere": "Download the app here",
+        "downloadAppHere": "Download the app here"
     },
-    agent_wizard: {
+    "agent_wizard": {
         "confirm_registration_information": "Confirm registration information",
         "step": "Step",
         "hello": "Hello ?",
@@ -185,9 +185,9 @@ export default {
         "UserInformationRestored": "User information restored.",
         "ErrorRetrievingData": "Error retrieving data!",
         "NoSearchResultsFound": "No search results found!",
-        "SpacesAreIncluded": "Spaces are included.",
+        "SpacesAreIncluded": "Spaces are included."
     },
-    adminModule: {
+    "adminModule": {
         "db": "Database",
         "usersAndUserGroups": "User, User group",
         "users": "Users",
@@ -209,9 +209,9 @@ export default {
         "Judgment_column ": "Filter column",
         "form_value": "Form (take value)",
         "InformationSuccessfullyDistributed": "Information successfully distributed!",
-        "InformationReturned": "Information returned!",
+        "InformationReturned": "Information returned!"
     },
-    graphql: {
+    "graphql": {
         "graphqlManagement": "Graphql management",
         "table": "Table",
         "selectTable": "Select a table",
@@ -235,9 +235,9 @@ export default {
         "real_time": "Real time subscription",
         "cancel": "Cancel",
         "tableParentId": "Table parent ID",
-        "action": "Action",
+        "action": "Action"
     },
-    components: {
+    "components": {
         "add": "Add",
         "pleaseEnterSearchValue": "Please enter a search value...",
         "pleaseWait": "Please wait for a moment!",
@@ -265,9 +265,9 @@ export default {
         "ui_builder": "UI builder",
         "_form": "Form",
         "someContents": "Some contents",
-        "_cancel": "Cancel",
+        "_cancel": "Cancel"
     },
-    chart: {
+    "chart": {
         "horizontal_value": "Horizontal value",
         "groupBy": "group by",
         "line": "Lines",
@@ -304,9 +304,9 @@ export default {
         "grouping": "Grouping",
         "_type": "Type",
         "fictitious_name": "Fictitious name",
-        "_color": "Color",
+        "_color": "Color"
     },
-    dataForm: {
+    "dataForm": {
         "save": "Save",
         "pleaseWait": "Please wait for a moment!",
         "fillInTheNewOne": "Fill in the new one",
@@ -460,12 +460,12 @@ export default {
         "other": "other",
         "download": "download",
         "view": "view",
-        "pleaseSelectFile	": "Please select a file",
+        "pleaseSelectFile": "Please select a file",
         "longitude": "longitude",
         "latitude": "latitude",
         "cancel": "cancel",
-        "enterCoordinatesPressEnter	": "Enter the coordinates and press \"Enter\"?",
-        "clickHereSelectPhoto	": "Click here to select a photo!",
+        "enterCoordinatesPressEnter": "Enter the coordinates and press Enter?",
+        "clickHereSelectPhoto": "Click here to select a photo!",
         "notFound": "not found",
         "confirmPassword": "Confirm password",
         "currentPassword": "Current password",
@@ -495,9 +495,9 @@ export default {
         "dataNotFound": "Data not selected",
         "pleaseCompleteFirstLine": "Please complete the first line",
         "search": "search",
-        "values": "values",
+        "values": "values"
     },
-    dataGrid: {
+    "dataGrid": {
         "infoCourt": "Information court",
         "filtering": "filtering",
         "ruSureYouDeleteInfo": "Are you sure you want to delete this information?",
@@ -589,7 +589,7 @@ export default {
         "tobePublished": "To be published",
         "updateSelectedLineData": "Update selected line data",
         "whenEnteringDataFromExcelFile": "When entering data from an excel file",
-        "Filtersettings	": "Filter settings",
+        "Filtersettings": "Filter settings",
         "excel": "Excel",
         "model": "Model",
         "updateSelectedLineDataSettings": "Update the selected line data settings",
@@ -688,9 +688,9 @@ export default {
         "pleaseSelectUpdateLine": " Please select an update line.",
         "errorOccWhileDeleting": "An error occurred while deleting",
         "errorMsg": "Sorry, an error occurred",
-        "noChangesHaveBeenReported": "No changes have been reported",
+        "noChangesHaveBeenReported": "No changes have been reported"
     },
-    dataSource: {
+    "dataSource": {
         "database": "Database",
         "add": "Add",
         "view": "View",
@@ -718,12 +718,12 @@ export default {
         "type": "Type",
         "alias": "Alias",
         "select": "Select",
-        "bolomjitTableAndView": "Available \"table\" and \"view\"",
+        "bolomjitTableAndView": "Available Table and view",
         "selectTable": "Select a table",
         "applications": "Applications",
-        "errorOccurredWhileSaving": "An error occurred while saving!",
+        "errorOccurredWhileSaving": "An error occurred while saving!"
     },
-    role: {
+    "role": {
         "administraationRightsManagment": "Administration rights management",
         "welcome": "Welcome!",
         "loggedIn": " Logged in",
@@ -752,9 +752,9 @@ export default {
         "defaultMenu": "Default menu",
         "chart": "Chart",
         "tableName": "table name",
-        "table_name": "Table name",
+        "table_name": "Table name"
     },
-    project: {
+    "project": {
         "project": "PROJECT",
         "settings": "Settings",
         "data_recording_environment": "DATA RECORDING ENVIRONMENT",
@@ -805,9 +805,9 @@ export default {
         "form_value": "Value (Form)",
         "alertSelectColumns": "Please select columns",
         "errorMsg": "An error occurred while saving!",
-        "please_wait": "Please wait",
+        "please_wait": "Please wait"
     },
-    puzzle: {
+    "puzzle": {
         "manage_access_rights": "Manage access rights",
         "data_recording_environment": "DATA RECORDING ENVIRONMENT",
         "_form": "Form",
@@ -851,14 +851,14 @@ export default {
         "menuSelection": "Menu selection",
         "not_found": "not found",
         "meaningTake": "Meaning to take",
-        "filter": "filter",
+        "filter": "filter"
     },
-    notify: {
+    "notify": {
         "notice": "Notices",
         "no_notice": "No announcements yet!",
-        "view_all_notifications": "View all notifications",
+        "view_all_notifications": "View all notifications"
     },
-    appAdmin: {
+    "appAdmin": {
         "manual": "Manual",
         "logOut": "Log out",
         "cancel": "Cancel",
@@ -883,9 +883,9 @@ export default {
         "original_preparation": "Original preparation",
         "dataProcessing": "Data processing",
         "graphics_generator": "Graphics generator",
-        "point": "Point",
+        "point": "Point"
     },
-    moqup: {
+    "moqup": {
         "elements": "elements",
         "chart": "Chart",
         "save": "save",
@@ -894,12 +894,12 @@ export default {
         "phone": "Phone",
         "tablet": "Tablet",
         "computer": "Computer",
-        "bigComputer": "Big computer",
+        "bigComputer": "Big computer"
     },
-    page: {
-        "pageNotFound": "The Page can\"t be found",
+    "page": {
+        "pageNotFound": "The Page can't be found"
     },
-    alertMessage: {
+    "alertMessage": {
         "anErrorOccurredWhileSaving": "An error occurred while saving!",
         "successfullyDeleted": "successfullyDeleted",
         "plseEnterValue": "please enter a value",
@@ -931,9 +931,9 @@ export default {
         "form_value": "Form (take value)",
         "alertSelectColumns": "Select the appropriate columns",
         "please_wait": "Please wait for a moment",
-        "pageNotFound": "The Page can\"t be found",
+        "pageNotFound": "The Page can't be found"
     },
-    crud: {
+    "crud": {
         "registration_history": "Registration history",
         "Information_viewing_history": "Information viewing history",
         "_add": "Add",
@@ -941,48 +941,48 @@ export default {
         "re_call": "Call again",
         "_print": "Print",
         "download_file": "Download as an Excel file",
-        "excelUpload": "Import data from Excel file",
+        "excelUpload": "Import data from Excel file"
     },
-    settingDrawer: {
-        fixation: "Fixation",
-        fluid: "Fluid",
-        globalStyleSetting: "Global style setting",
-        darkStyle: "Dark style",
-        lightStyle: "Light style",
-        theme: "Theme",
-        navigationMode: "Navigation mode",
-        sidebarNavigater: "Sidebar navigater",
-        topNavigater: "Top navigater",
-        onlyValid: "This setting is only valid for [top bar navigation]",
-        contentWidth: "Content area width",
-        fixHeader: "Fixed Header",
-        configurableWhenFixingHeaders: "Configurable when fixing headers",
-        hideHeaders: "Hide headers when sliding",
-        fixedSideMenu: "Fixed side menu",
-        otherSettings: "Other settings",
-        layoutSettings: "Layout settings",
-        colorBlindness: "Color blindness mode",
-        grayMode: "Gray mode",
-        multiTab: "Multi-tab mode",
-        copySettings: "Copy Settings",
-        testFun: "Test function",
-        darkMode: "Dark mode",
-        contentArea: "Content area"
+    "settingDrawer": {
+        "fixation": "Fixation",
+        "fluid": "Fluid",
+        "globalStyleSetting": "Global style setting",
+        "darkStyle": "Dark style",
+        "lightStyle": "Light style",
+        "theme": "Theme",
+        "navigationMode": "Navigation mode",
+        "sidebarNavigater": "Sidebar navigater",
+        "topNavigater": "Top navigater",
+        "onlyValid": "This setting is only valid for [top bar navigation]",
+        "contentWidth": "Content area width",
+        "fixHeader": "Fixed Header",
+        "configurableWhenFixingHeaders": "Configurable when fixing headers",
+        "hideHeaders": "Hide headers when sliding",
+        "fixedSideMenu": "Fixed side menu",
+        "otherSettings": "Other settings",
+        "layoutSettings": "Layout settings",
+        "colorBlindness": "Color blindness mode",
+        "grayMode": "Gray mode",
+        "multiTab": "Multi-tab mode",
+        "copySettings": "Copy Settings",
+        "testFun": "Test function",
+        "darkMode": "Dark mode",
+        "contentArea": "Content area"
     },
-    userMenu: {
-        test: "Test",
-        systemConfig: "System config",
-        logout: "Logout",
-        checkLogout: "Want to logout ?",
-        lockScreen: "Lock screen"
+    "userMenu": {
+        "test": "Test",
+        "systemConfig": "System config",
+        "logout": "Logout",
+        "checkLogout": "Want to logout ?",
+        "lockScreen": "Lock screen"
     },
-    multiTab: {
-        closeCurrent: "Close current",
-        closeRight: "Close right",
-        closeLeft: "Close left",
-        closeAll: "Close all",
-        cannotCloseLast: "Can not close the last label",
-        noLeft: "No left label",
-        noRight: "No right label"
+    "multiTab": {
+        "closeCurrent": "Close current",
+        "closeRight": "Close right",
+        "closeLeft": "Close left",
+        "closeAll": "Close all",
+        "cannotCloseLast": "Can not close the last label",
+        "noLeft": "No left label",
+        "noRight": "No right label"
     }
 }
