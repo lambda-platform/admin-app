@@ -8,8 +8,7 @@
   :title="title"
   :selectedLang="selectedLang"
   >
-
-    <NuxtPage :key="$route.fullPath" />
+    <NuxtPage :key="$route.fullPath" :selectedLang="selectedLang" />
   </component>
 </template>
 
@@ -24,7 +23,7 @@ export default defineComponent({
   setup(props) {
     const { proxy } = getCurrentInstance();
     const LambdaConfig = ls.get(LAMBDA_CONFIG)
-
+    const selectedLang = proxy.$i18n.locale
     const switchLanguage = async(key) =>{
 
       proxy.$i18n.locale = key;
@@ -41,22 +40,14 @@ export default defineComponent({
       return defineAsyncComponent(() => import(`../../vue3/src/modules/agent/views/theme/${LambdaConfig.theme}/index.vue`))
     }
     return {
-      loading: false,
-      isSuccess: false,
-      isError: false,
-      credentials: {
-        login: null,
-        password: null
-      },
-      selectedLang: proxy.$i18n.locale,
+
+      selectedLang,
       languages: LambdaConfig.languages,
       copyright: LambdaConfig.copyright,
       title:LambdaConfig.title,
       subTitle: LambdaConfig.subTitle,
       lambda: LambdaConfig,
-      styleObj: {
-        backgroundImage: LambdaConfig.bg + ' !important'
-      },
+
       switchLanguage,
       renderTheme
     }

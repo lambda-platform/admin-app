@@ -1,5 +1,5 @@
 <template>
-  <component :is="renderTheme()" :onSuccess="onSuccess"
+  <component :is="renderTheme()" :onSuccess="onSuccess" :selectedLang="selectedLang"
              :lambda="lambda"
 
   ></component>

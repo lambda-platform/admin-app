@@ -10,7 +10,7 @@
         <div class="auth">
             <div class="lang-switcher" v-if="lambda.has_language && languages.length >= 2">
                 <a v-for="item in languages" :key="item.index"
-                   :class="selectedLang == item.code ? 'active' : ''"
+                   :class="selectedLang === item.code ? 'active' : ''"
                    @click="switchLanguage(item.code)">
                     {{ item.label }}
                 </a>

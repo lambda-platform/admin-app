@@ -43,7 +43,7 @@
 import axios from 'axios'
 
 export default {
-    props: ['lambda', 'onSuccess'],
+    props: ['lambda', 'onSuccess', 'selectedLang'],
     name: "aside-login",
     data() {
         return {
