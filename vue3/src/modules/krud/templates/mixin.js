@@ -84,14 +84,14 @@ export default {
             this.$refs.form.editModel(id);
             //From template
             if (this.templateEdit) {
-                this.templateEdit();
+                this.templateEdit(id);
             }
         },
 
         clone(id) {
             this.$refs.form.cloneModel(id);
             if (this.templateEdit) {
-                this.templateEdit();
+                this.templateEdit(id);
             }
         },
 
@@ -133,6 +133,10 @@ export default {
                 this.form_width = formOption.width
             } else {
                 this.form_width = window.innerWidth;
+            }
+
+            if(this.editMode && this.rowId !== null && this.rowId !== undefined){
+                this.$refs.form.editModel(this.rowId);
             }
 
         },

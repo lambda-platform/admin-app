@@ -3,16 +3,20 @@
         <span v-for="item in params.actions" :key="item.index">
             <a-tooltip v-if="item === 'qe'">
                 <template #title>{{ lang.easyEdit }}</template>
-                <a-button shape="circle" size="small" @click="params.methods.quickEdit(params.value)">
+                <a-button shape="circle"  type="text" size="small" @click="params.methods.quickEdit(params.value)">
                     <template #icon>
-                        <EditTwoTone />
+                        <span class="svg-icon ">
+                                  <inline-svg
+                                      src="/assets/icons/duotone/Design/Edit.svg"
+                                  />
+                        </span>
                     </template>
                 </a-button>
             </a-tooltip>
 
             <a-tooltip v-if="item === 'cl'">
                 <template #title>{{ lang.copy }}</template>
-                <a-button shape="circle" size="small"
+                <a-button shape="circle"  type="text" size="small"
                         @click="params.methods.clone(params.value)">
                     <template #icon>
                         <CopyTwoTone />
@@ -23,7 +27,7 @@
 
             <a-tooltip v-if="item === 'v'">
                 <template #title>{{ lang.view }}</template>
-                <Button shape="circle"  size="small" @click="params.methods.view(params.value)">
+                <Button shape="circle"  type="text" size="small" @click="params.methods.view(params.value)">
                     <template #icon>
                         <EyeTwoTone />
                     </template>
@@ -38,10 +42,14 @@
             && params.data[params.actionsVisibility.e.field]!==params.actionsVisibility.e.value)) && isCanEdit()"
                 >
                 <template #title>{{ lang.edit }}</template>
-                <a-button shape="circle" size="small"
+                <a-button shape="circle"  type="text" size="small"
                         @click="edit">
                      <template #icon>
-                        <EditTwoTone />
+                        <span class="svg-icon ">
+                                  <inline-svg
+                                      src="/assets/icons/duotone/Design/Edit.svg"
+                                  />
+                        </span>
                     </template>
                 </a-button>
             </a-tooltip>
@@ -55,9 +63,13 @@
                  :title="lang.ruSureYouDeleteInfo" :transfer="true"
                 :ok-text="lang.yes" :cancel-text="lang.no"
                 @confirm="params.methods.remove(params.value, params.rowIndex)">
-                <a-button shape="circle" size="small">
+                <a-button shape="circle"  type="text" size="small">
                     <template #icon>
-                        <DeleteTwoTone />
+                      <span class="svg-icon ">
+                                  <inline-svg
+                                      src="/assets/icons/duotone/General/Trash.svg"
+                                  />
+                        </span>
                     </template>
                 </a-button>
             </a-popconfirm>
@@ -69,13 +81,13 @@
             || params.data[item.condition.field]!==item.condition.value)"
                       placement="left">
                 <template #title>{{ item.tooltip }}</template>
-                <a-button shape="circle" size="small" class="grid-action-btn"
+                <a-button shape="circle"  type="text" size="small" class="grid-action-btn"
                         @click="item.method(params.data)"><i :class="item.icon"></i>
                 </a-button>
             </a-tooltip>
             <a-button v-else-if="!('condition' in item)
             || params.data[item.condition.field]!==item.condition.value"
-                    shape="circle" size="small"
+                    shape="circle"  type="text" size="small"
                     class="grid-action-btn"
                     @click="item.method(params.data)">
                 <i :class="item.icon"></i>
@@ -85,12 +97,11 @@
 </template>
 <script>
 import {isCan} from "./utils/permission"
-import { EditTwoTone, DeleteTwoTone, EyeTwoTone, CopyTwoTone } from '@ant-design/icons-vue';
+import {  DeleteTwoTone, EyeTwoTone, CopyTwoTone } from '@ant-design/icons-vue';
 export default{
     components:{
         EyeTwoTone,
         CopyTwoTone,
-        EditTwoTone,
         DeleteTwoTone
     },
     computed: {

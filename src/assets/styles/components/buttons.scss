@@ -171,3 +171,29 @@
     }
 
 }
+.ant-btn{
+  .svg-icon {
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    vertical-align: top;
+    svg{
+      height: 18px;
+      width: 18px;
+
+    }
+    [fill]:not([fill="none"])  {
+      fill:  #A1A5B7;
+    }
+
+  }
+  &:hover, &:active{
+    color:$primary-color;
+
+    .svg-icon{
+      [fill]:not([fill="none"])  {
+        fill:  $primary-color;
+      }
+    }
+  }
+}

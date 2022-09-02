@@ -110,7 +110,8 @@ export default {
   },
   methods: {
     hideSide () {
-      this.openSlidePanel = false
+      this.openSlidePanel = false;
+        this.editMode = false;
       this.$refs.panel.style.width = '0px'
       this.$refs.panel.style.flex = `0 0 0px`
     },

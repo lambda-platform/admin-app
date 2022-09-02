@@ -53,6 +53,7 @@
             :title="title"
             :width="form_width"
             placement="right"
+            @close="hideSide"
         >
             <dataform
                 ref="form"
@@ -97,16 +98,13 @@ export default {
     },
     methods: {
         hideSide () {
-            this.openSlidePanel = false
-            // this.$refs.panel.style.width = '0px'
-            // this.$refs.panel.style.flex = `0 0 0px`
+            this.openSlidePanel = false;
+            this.editMode = false;
+
         },
         openSide () {
             this.openSlidePanel = true
-            // let unit = (window.innerWidth - 300) / 100
-            // let w = parseInt(unit * 40)
-            // this.$refs.panel.style.width = w + 'px'
-            // this.$refs.panel.style.flex = `0 0 ${w + 'px'}`
+
         },
 
         templateEdit () {

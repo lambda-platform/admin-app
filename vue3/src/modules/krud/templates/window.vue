@@ -21,7 +21,7 @@
         <section class="offcanvas-template">
             <div class="crud-page">
                 <div class="crud-page-body">
-                    <div class="" v-if="openSlidePanel">
+                    <div class="" v-show="openSlidePanel">
                         <div class="ant-drawer-content">
                             <div class="ant-drawer-wrapper-body">
                                 <div class="ant-drawer-header">
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                     </div>
-                    <div v-else id="drawer-container">
+                    <div  v-show="!openSlidePanel" id="drawer-container">
                         <div :class="openSlidePanel ? 'dg-flex open-drawer' : 'dg-flex'">
                             <datagrid v-if="permissions ? permissions.r : false" ref="grid"
                                       :url="url"
@@ -102,16 +102,18 @@ export default {
     methods: {
         hideSide () {
             this.openSlidePanel = false
-            this.$router.push({query: { }})
+            this.$router.push({query: { }});
+            this.editMode = false;
         },
         openSide () {
+            this.$router.push({query: { add: 'true' } });
             this.openSlidePanel = true;
-            this.$router.push({query: { add: 'true' }
-        })
         },
 
-        templateEdit () {
-            this.openSide()
+        templateEdit (id) {
+
+            this.$router.push({query: { edit: 'true', id:id } });
+            this.openSlidePanel = true;
         },
         templateOnSuccess () {
             this.hideSide()
@@ -119,7 +121,13 @@ export default {
     },
     beforeMount () {
        let add = this.$route.query.add;
+       let edit = this.$route.query.edit;
+       let id = this.$route.query.id;
        if(add === 'true' || add === true){
+           this.openSlidePanel = true;
+       } else if(edit === 'true' || edit === true){
+           this.rowId = id;
+           this.editMode = true;
            this.openSlidePanel = true;
        }
     },

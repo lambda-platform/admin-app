@@ -176,7 +176,7 @@
 
                 <span v-for='button in getFooterButtons()' class='extra-buttons'>
                     <a-button type='info' :loading='asyncMode' @click='setAndSend(button.model, option.value)'
-                            v-for='option in button.options' :key='button.inex'>
+                            v-for='option in button.options' :key='button.index'>
                      {{ option.label }}
                     </a-button>
                 </span>
