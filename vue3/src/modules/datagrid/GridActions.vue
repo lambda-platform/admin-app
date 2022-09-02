@@ -27,11 +27,11 @@
 
             <a-tooltip v-if="item === 'v'">
                 <template #title>{{ lang.view }}</template>
-                <Button shape="circle"  type="text" size="small" @click="params.methods.view(params.value)">
+                <a-button shape="circle"  type="text" size="small" @click="params.methods.view(params.value)">
                     <template #icon>
                         <EyeTwoTone />
                     </template>
-                </Button>
+                </a-button>
             </a-tooltip>
 
             <a-tooltip

@@ -67,6 +67,7 @@ export default defineNuxtConfig({
       // legacy({
       //   targets: ['defaults', 'not IE 11']
       // }),
+
       createSvgIconsPlugin({
         iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
         symbolId: 'icon-[dir]-[name]',
@@ -74,6 +75,7 @@ export default defineNuxtConfig({
       viteThemePlugin({
         colorVariables: [...getThemeColors()],
       }),
+
       // legacyPlugin({
       //
       //   targets: [

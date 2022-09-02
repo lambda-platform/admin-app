@@ -1,15 +1,15 @@
 <template>
-    <a-form-item :rules=rule :label=label>
-        <vue-json-editor v-model="json" :show-btns="false"  @json-change="onJsonChange"></vue-json-editor>
+    <a-form-item :rules=rule :label=label  :name="model.component">
+        <Vue3JsonEditor v-model="json" :show-btns="false"  @json-change="onJsonChange"></Vue3JsonEditor>
     </a-form-item>
 </template>
 
 <script>
-import vueJsonEditor from 'vue-json-editor'
+import { Vue3JsonEditor } from 'vue3-json-editor'
 export default {
     props: ["model", "rule", "label", "meta"],
     components: {
-        vueJsonEditor
+        Vue3JsonEditor
     },
     data () {
         return {

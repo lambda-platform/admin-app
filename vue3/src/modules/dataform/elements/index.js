@@ -10,6 +10,10 @@ export const elementList = [
         component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-Select" */'./Select.vue')),
     },
     {
+        element: 'ISelect',
+        component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-Select" */'./Select.vue')),
+    },
+    {
         element: 'TreeSelect',
         component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-TreeSelect" */'./TreeSelect.vue')),
     },
@@ -49,7 +53,6 @@ export const elementList = [
         element: 'ImageDrag',
         component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-ImageDrag" */'./ImageDrag.vue')),
     },
-
     {
         element: 'Checkbox',
         component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-Checkbox" */'./Checkbox.vue')),
@@ -59,20 +62,20 @@ export const elementList = [
         component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-CK" */'./CK.vue')),
     },
     {
-        element: 'CkOld',
+        element: "CkOld",
         component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-CK" */'./CK-old.vue')),
+    },
+    {
+        element: "CkOldPhp7",
+        component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-CK" */'./CK-old-php7.vue')),
     },
     {
         element: 'ColorPicker',
         component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-ColorPicker" */'./ColorPicker.vue')),
     },
-    // {
-    //     element: "DateRange",
-    //    component:defineAsyncComponent(()=> import(/* webpackChunkName: "form-field-DateRange" */'./DateRange.vue')),
-    // },
     {
-        element: 'Email',
-        component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-Email" */'./Email.vue')),
+        element: "Email",
+        component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-text" */'./Text.vue')),
     },
     {
         element: 'File',
@@ -135,17 +138,9 @@ export const elementList = [
         component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-Register" */'./Register.vue')),
     },
     {
-        element: 'ISelect',
-        component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-ISelect" */'./ISelect.vue')),
-    },
-    {
         element: 'Search',
         component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-Search" */'./Search.vue')),
     },
-    // {
-    //     element: "Slider",
-    //    component:defineAsyncComponent(()=> import(/* webpackChunkName: "form-field-Slider" */'./Slider.vue')),
-    // },
     {
         element: 'Switch',
         component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-Switch" */'./Switch.vue')),
@@ -154,17 +149,17 @@ export const elementList = [
         element: 'Time',
         component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-Time" */'./Time.vue')),
     },
-    // {
-    //     element: "UniqueGeneration",
-    //    component:defineAsyncComponent(()=> import(/* webpackChunkName: "form-field-UniqueGeneration" */'./UniqueGeneration.vue')),
-    // },
     {
         element: 'JsonEditor',
         component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-AdminMenu" */'./JsonEditor.vue')),
     },
     {
+        element: "QGis",
+        component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-QGis" */'./QGis.vue')),
+    },
+    {
         element: 'AdminMenu',
-        component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-AdminMenu" */'./AdminMenu.vue')),
+        component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-AdminMenu" */'./NotFound.vue')),
     },
     {
         element: 'GridSelector',

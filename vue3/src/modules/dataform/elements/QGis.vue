@@ -1,22 +1,22 @@
 <template>
-    <a-form-item :label=label :rules=rule>
+    <a-form-item :rules=rule :label=label  :name="model.component">
         <div class="qgis-map">
             <Spin fix v-if="isLoading"></Spin>
             <Spin fix v-if="isLoadingLayer"></Spin>
             <div id="qgis" style="height: 350px; border-radius: 10px;"></div>
             <div class="map-layer-switcher">
                 <a href="javascript:void(0)" @click="switchLayer('googleRoad')">
-                    <img src="/images/maps/google-road.jpg" alt="">
+                    <img src="/assets/images/baseMaps/googleStreets.jpg" alt="">
                     <span>Google road</span>
                 </a>
 
                 <a href="javascript:void(0)" @click="switchLayer('googleSatellite')">
-                    <img src="/images/maps/google-satellite.jpg" alt="">
+                    <img src="/assets/images/baseMaps/googleSatellite.jpg" alt="">
                     <span>Google satellite</span>
                 </a>
 
                 <a href="javascript:void(0)" @click="switchLayer('osm')">
-                    <img src="/images/maps/openstreet.jpg" alt="">
+                    <img src="/assets/images/baseMaps/openstreet.jpg" alt="">
                     <span>Open Street Map</span>
                 </a>
             </div>

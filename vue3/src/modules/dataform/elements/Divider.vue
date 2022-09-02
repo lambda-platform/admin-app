@@ -1,6 +1,6 @@
 <template>
-    <Divider class="form-divider" v-if="label=='['+model.component+']'"></Divider>
-    <Divider v-else orientation="left" class="form-divider">{{label}}</Divider>
+    <a-divider class="form-divider" v-if="label=='['+model.component+']'"></a-divider>
+    <a-divider v-else orientation="left" class="form-divider">{{label}}</a-divider>
 </template>
 
 <script>

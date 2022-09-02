@@ -1,5 +1,5 @@
 <template>
-    <a-form-item :label=label :rules=rule>
+    <a-form-item :rules=rule :label=label  :name="model.component">
         <div class="geographic">
             <div id="geographic" :class="openSide ? 'open-side' : ''" style="height: 100%; width: 100%">
 
@@ -106,9 +106,11 @@
 </template>
 <script>
 
-require('leaflet');
-require('esri-leaflet');
-require('leaflet-draw');
+import leaflet from "leaflet"
+window.leaflet = leaflet
+
+import "esri-leaflet";
+import "leaflet-draw";
 import * as turf from 'turf'
 
 export default {

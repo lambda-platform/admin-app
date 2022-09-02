@@ -116,11 +116,14 @@ export default {
       this.$refs.panel.style.flex = `0 0 0px`
     },
     openSide () {
-      this.openSlidePanel = true
-      let unit = (window.innerWidth - 300) / 100
-      let w = parseInt(unit * 40)
-      this.$refs.panel.style.width = w + 'px'
-      this.$refs.panel.style.flex = `0 0 ${w + 'px'}`
+      if(!this.openSlidePanel){
+          this.openSlidePanel = true
+          let unit = (window.innerWidth - 300) / 100
+          let w = parseInt(unit * 40)
+          this.$refs.panel.style.width = w + 'px'
+          this.$refs.panel.style.flex = `0 0 ${w + 'px'}`
+      }
+
     },
     resize (e) {
       window.getSelection().removeAllRanges()

@@ -2,22 +2,29 @@
     <div>
         <a-form-item :label="lang.currentPassword" prop='current_password'
                   v-if="meta.passwordOption.edit_with_old_password">
-            <Input type="password" v-model="model.form['current_password']"
+            <a-input-password v-model:value="model.form['current_password']" password
                    :placeholder="lang.currentPassword"/>
         </a-form-item>
-        <a-form-item :label="lang._pass" :rules=rule>
-            <Input :type="passwordGenerated ? 'text': 'password'" v-model="model.form[model.component]"
+        <a-form-item :rules=rule :label=label  :name="model.component">
+            <a-input-password v-model:value="model.form[model.component]" password
                    :placeholder="meta && meta.placeHolder !== null ? meta.placeHolder : label">
-                <Tooltip slot="append"
-                         :content="lang.Create_a_password"
-                         placement="left" v-if="meta.passwordOption.generate">
-                    <Button @click="generatePass()" icon="ios-key-outline"></Button>
-                </Tooltip>
-            </Input>
+                <template #addonAfter>
+                <a-tooltip slot="append" v-if="meta.passwordOption.generate">
+                    <template #title>{{ lang.Create_a_password }}</template>
+                    <span class="svg-icon " @click="generatePass()">
+                        <inline-svg
+                                      src="/assets/icons/duotone/Home/Key.svg"
+                                  />
+                    </span>
+
+                </a-tooltip>
+                </template>
+            </a-input-password>
+
         </a-form-item>
         <a-form-item :label="lang.confirmPassword" prop='password_confirm'
                   v-if="meta.passwordOption.confirm">
-            <Input :type="passwordGenerated ? 'text': 'password'" v-model="model.form['password_confirm']"
+            <a-input-password :type="passwordGenerated ? 'text': 'password'" v-model:value="model.form['password_confirm']"
                    :placeholder="lang.confirmPassword"/>
         </a-form-item>
     </div>
@@ -35,10 +42,6 @@ export default {
                 return obj;
             }, {});
         },
-    },
-    created() {
-        // console.log('PASSWORD', this.model.form[this.model.component]);
-        // console.log(this.rule)
     },
     data() {
 

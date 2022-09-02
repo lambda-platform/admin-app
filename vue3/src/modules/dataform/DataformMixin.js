@@ -442,14 +442,14 @@ export default {
             switch (type) {
                 case 'Switch':
                     let val = false
-                    if (value == 'true' || value == 1) {
+                    if (value === 'true' || value === 1) {
                         val = true
                     }
                     this.$data.model[name] = val;
                     break
                 case 'Checkbox':
                     let val_ = 0
-                    if (value == 'true' || value == 1) {
+                    if (value === 'true' || value === 1) {
                         val_ = 1
                     }
                     this.$data.model[name] = val_;

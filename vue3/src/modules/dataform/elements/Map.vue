@@ -1,9 +1,9 @@
 <template>
     <div class="lambda-map-wrapper">
-        <a-form-item :label=label :rules=rule>
+        <a-form-item :rules=rule :label=label  :name="model.component">
             <div class="lambda-lat-lng">
-                <Input v-model="center.lat" :placeholder="lang.latitude" @on-blur="updateLat" />
-                <Input v-model="center.lng" :placeholder="lang.longitude" />
+                <a-input v-model:value="center.lat" :placeholder="lang.latitude" @on-blur="updateLat" />
+                <Input v-model:value="center.lng" :placeholder="lang.longitude" />
 
             </div>
             <span>{{lang.fromCityCenter}}: {{fromCityCenter}} км</span>

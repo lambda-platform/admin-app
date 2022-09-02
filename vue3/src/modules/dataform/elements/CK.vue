@@ -1,6 +1,5 @@
 <template>
-    <a-form-item :rules=rule :label=label>
-        <!--        <vue-ckeditor ref="ckeditor" v-model="model.form[model.component]" :config="config" @blur="onBlur($event)" @focus="onFocus($event)" />-->
+    <a-form-item :rules=rule :label=label  :name="model.component">
         <ckeditor ref="ckeditor" :editor="editor" :disabled="editorDisabled" v-model="model.form[model.component]"
                   :config="editorConfig" :key="meta.editorType" placeholder=""
                   @ready="onReady" @blur="onBlur($event)" @focus="onFocus($event)"></ckeditor>
@@ -8,7 +7,7 @@
 </template>
 
 <script>
-import CKEditor from '@ckeditor/ckeditor5-vue2';
+import CKEditor from '@ckeditor/ckeditor5-vue';
 import Editor from 'ckeditor5-custom-build/build/ckeditor';
 
 export default {

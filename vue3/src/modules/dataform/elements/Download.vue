@@ -1,5 +1,5 @@
 <template>
-    <a-form-item>
+    <a-form-item :rules=rule :label=label  :name="model.component">
         <div class="multi-upload">
             <label>{{ label }}</label>
 

@@ -1,30 +1,11 @@
 <template>
-    <a-form-item :label=label :rules=rule>
-        <ColorPicker v-model="model.form[model.component]"  style="float: right" alpha />
+    <a-form-item :rules=rule :label=label  :name="model.component">
+        <input type="color"  :name="model.component" v-model="model.form[model.component]">
     </a-form-item>
 </template>
 
 <script>
 export default {
     props: ["model", "label", "rule", "meta"],
-    computed: {
-        value() {
-            return this.model.form[this.model.component];
-        }
-    },
-    beforeMount(){
-        if(this.value === null){
-            this.model.form[this.model.component] = '';
-        }
-    },
-    watch: {
-        value(value, oldValue) {
-
-            if(value === null){
-                this.model.form[this.model.component] = '';
-            }
-
-        }
-    }
 };
 </script>

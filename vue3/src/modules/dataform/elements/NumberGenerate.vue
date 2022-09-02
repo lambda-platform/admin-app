@@ -1,12 +1,19 @@
 <template>
 
-    <a-form-item :label=label :rules=rule>
-        <Input type="text" v-model="model.form[model.component]"
+    <a-form-item :rules=rule :label=label  :name="model.component">
+        <a-input-number type="number" v-model:value="model.form[model.component]"
                :placeholder="meta && meta.placeHolder !== null ? meta.placeHolder : label">
-            <Tooltip slot="append" :content="lang.createNumber" placement="left">
-                <Button @click="generateNumber()" icon="ios-key-outline"></Button>
-            </Tooltip>
-        </Input>
+            <template #addonAfter>
+                <a-tooltip slot="append">
+                    <template #title>{{ lang.createNumber }}</template>
+                    <span class="svg-icon " @click="generateNumber()">
+                        <inline-svg
+                            src="/assets/icons/duotone/Home/Key.svg"
+                        />
+                    </span>
+                </a-tooltip>
+            </template>
+        </a-input-number>
     </a-form-item>
 
 </template>
