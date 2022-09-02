@@ -1,11 +1,11 @@
 <template>
     <div>
-        <FormItem :label="lang.currentPassword" prop='current_password'
+        <a-form-item :label="lang.currentPassword" prop='current_password'
                   v-if="meta.passwordOption.edit_with_old_password">
             <Input type="password" v-model="model.form['current_password']"
                    :placeholder="lang.currentPassword"/>
-        </FormItem>
-        <FormItem :label="lang._pass" :prop=rule>
+        </a-form-item>
+        <a-form-item :label="lang._pass" :rules=rule>
             <Input :type="passwordGenerated ? 'text': 'password'" v-model="model.form[model.component]"
                    :placeholder="meta && meta.placeHolder !== null ? meta.placeHolder : label">
                 <Tooltip slot="append"
@@ -14,12 +14,12 @@
                     <Button @click="generatePass()" icon="ios-key-outline"></Button>
                 </Tooltip>
             </Input>
-        </FormItem>
-        <FormItem :label="lang.confirmPassword" prop='password_confirm'
+        </a-form-item>
+        <a-form-item :label="lang.confirmPassword" prop='password_confirm'
                   v-if="meta.passwordOption.confirm">
             <Input :type="passwordGenerated ? 'text': 'password'" v-model="model.form['password_confirm']"
                    :placeholder="lang.confirmPassword"/>
-        </FormItem>
+        </a-form-item>
     </div>
 </template>
 

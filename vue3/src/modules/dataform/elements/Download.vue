@@ -1,5 +1,5 @@
 <template>
-    <FormItem>
+    <a-form-item>
         <div class="multi-upload">
             <label>{{ label }}</label>
 
@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

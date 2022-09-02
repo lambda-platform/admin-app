@@ -1,7 +1,7 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <TimePicker :value="this.model.form[this.model.component] ? this.model.form[this.model.component] : undefined" type="time" v-model="model.form[model.component]" @on-change="getDateValue" placement="bottom-end" :placeholder="meta && meta.placeHolder !== null ? meta.placeHolder : label"></TimePicker>
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

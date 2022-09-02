@@ -4,7 +4,8 @@ import { dataFromTemplate } from './utils/formula.js'
 import { doFormula, doTrigger } from './utils/formula_and_trigger.js'
 import { evalstr, isValid } from './utils/methods.js'
 import { getRelationData } from './utils/helpers.js'
-
+import axios from 'axios'
+import { notification } from 'ant-design-vue';
 export default {
     name: 'dataform',
     props: [
@@ -23,7 +24,8 @@ export default {
         'page_id',
         'public',
         'title',
-        'close'
+        'close',
+        'hideTitle'
     ],
     data() {
         return {
@@ -52,7 +54,8 @@ export default {
             subFormValidations: [],
             extraButtons: [],
             disableReset: false,
-            withBackButton: false
+            withBackButton: false,
+            tabIndex:0
         }
     },
 
@@ -129,6 +132,7 @@ export default {
         },
 
         isVisibleSection(col) {
+
             let showAbleFields = this.showAbleFields(col.children)
             if (col.type == 'section' && showAbleFields) {
                 if (col.visibleUserRoles && showAbleFields) {
@@ -210,7 +214,7 @@ export default {
         },
 
         afterChange(model, val, oldValue) {
-            doTrigger(model, val, this.model, this.schema, this.$refs, this.$Notice, this.editMode)
+            doTrigger(model, val, this.model, this.schema, this.$refs, notification, this.editMode)
             if (this.do_render) {
                 if (val != oldValue) {
                     doFormula(this.formula, model, this.model, this.schema, this.rule, false)
@@ -254,6 +258,7 @@ export default {
             }
 
             let formSchema = {}
+
             if (window.init) {
                 if (window.init.formSchemas) {
                     if (window.init.formSchemas[this.$props.schemaID]) {
@@ -270,6 +275,7 @@ export default {
 
             this.identity = formSchema.identity
             this.schema = formSchema.schema
+
 
             this.ui = formSchema.ui
             if (formSchema.save_btn_text) {
@@ -333,7 +339,7 @@ export default {
                             if (item.param in this.$route.params) {
                                 let param = this.$route.params[item.param]
                                 if (param != 'null') {
-                                    Vue.set(this.$data.model, item.model, param)
+                                    this.$data.model[item.model] = param;
                                 }
                             }
                         }
@@ -439,46 +445,46 @@ export default {
                     if (value == 'true' || value == 1) {
                         val = true
                     }
-                    Vue.set(this.$data.model, name, val)
+                    this.$data.model[name] = val;
                     break
                 case 'Checkbox':
                     let val_ = 0
                     if (value == 'true' || value == 1) {
                         val_ = 1
                     }
-                    Vue.set(this.$data.model, name, val_)
+                    this.$data.model[name] = val_;
                     break
                 case 'CK':
                     let ck_value = ''
                     if (value != '' && value !== null) {
                         ck_value = value
                     }
-                    Vue.set(this.$data.model, name, ck_value)
+                    this.$data.model[name] = ck_value;
                     break
                 case 'SubForm':
-                    Vue.set(this.$data.model, name, [])
+                    this.$data.model[name] = [];
                     break
                 case 'Select':
                     if (value == '' || value === null) {
-                        Vue.set(this.$data.model, name, null)
+                        this.$data.model[name] = null;
                     } else if (!isNaN(value)) {
-                        Vue.set(this.$data.model, name, value * 1)
+                        this.$data.model[name] = value * 1;
                     } else {
-                        Vue.set(this.$data.model, name, value)
+                        this.$data.model[name] = value;
                     }
                     break
                 case 'Number':
                     if (value !== null) {
-                        Vue.set(this.$data.model, name, value * 1)
+                        this.$data.model[name] = value * 1;
                     }
                     break
                 case 'ISelect':
-                    Vue.set(this.$data.model, name, value)
+                    this.$data.model[name] = value;
                 case 'TreeSelect':
-                    Vue.set(this.$data.model, name, value)
+                    this.$data.model[name] = value;
                     break
                 default:
-                    Vue.set(this.$data.model, name, value)
+                    this.$data.model[name] = value;
             }
         },
 
@@ -520,9 +526,9 @@ export default {
         setSchemaByModel(model, prop, value, subModel) {
 
             if (prop == 'value') {
-                Vue.set(this.$data.model, model, value)
+                this.$data.model[model] = value;
             } else if (prop == 'sub-value') {
-                Vue.set(this.$data.model, model, value)
+                this.$data.model[model] = value;
                 this.subFormFillData(model)
             } else {
                 let index = this.schema.findIndex(item => item.model == model)
@@ -532,12 +538,12 @@ export default {
                         if (this.schema[index].formType == 'SubForm') {
                             let sindex = this.schema[index].schema.findIndex(sitem => sitem.model == subModel)
                             if (sindex >= 0) {
-                                Vue.set(this.schema[index].schema[sindex], prop, value)
+                                this.schema[index].schema[sindex][prop] = value;
                             }
                         }
 
                     } else {
-                        Vue.set(this.schema[index], prop, value)
+                        this.schema[index][prop] = value;
                     }
                 }
 
@@ -553,33 +559,12 @@ export default {
         },
 
 
-        handleSubmit(name) {
+        handleSubmit() {
             this.setIdentityManual()
-            if (_.isEmpty(this.$data.rule)) {
-                if (this.subFormValidations.length >= 1) {
-                    this.validateWithSubForm()
-                } else {
-                    this.postData()
-                }
-
+            if (this.subFormValidations.length >= 1) {
+                this.validateWithSubForm();
             } else {
-                this.$refs[name].validate(valid => {
-                    if (valid) {
-                        if (this.subFormValidations.length >= 1) {
-                            this.validateWithSubForm()
-                        } else {
-                            this.postData()
-                        }
-                    } else {
-                        //auh дээр хэрэглэгдэж байгаа шүү
-                        this.$Notice.error({
-                            title: this.lang.informationIsIncomplete,
-                            desc: this.formValidationCustomText != '' ? this.formValidationCustomText : this.lang.trRMandatoryFieldsFillInformationLookFormAFillRequiredFieldsWithRedBorder
-                            , duration: 0
-                        })
-
-                    }
-                })
+                this.postData()
             }
         },
         validateWithSubForm() {
@@ -590,17 +575,20 @@ export default {
 
                     if (isArray) {
                         if (this.model[sbValidation.model].length == 0) {
-                            this.$Notice.error({
-                                title: this.lang.informationIsIncomplete,
-                                desc: sbValidation.emptyErrorMsg, duration: 0
-                            })
+
+                            notification["error"]({
+                                message:this.lang.informationIsIncomplete,
+                                description: sbValidation.emptyErrorMsg,
+                            });
                             subValid = false
                         }
                     } else {
-                        this.$Notice.error({
-                            title: this.lang.informationIsIncomplete,
-                            desc: sbValidation.emptyErrorMsg, duration: 0
-                        })
+
+
+                        notification["error"]({
+                            message:this.lang.informationIsIncomplete,
+                            description: sbValidation.emptyErrorMsg,
+                    });
                         subValid = false
                     }
                 }
@@ -619,25 +607,31 @@ export default {
                     .then(({ data }) => {
 
                         if (data.status) {
-                            this.$Notice.success({
-                                title: this.lang.successfullySaved
-                            })
 
+                            notification["success"]({
+                                message:this.lang.successfullySaved,
+                                description: this.lang.successfullySaved
+                            });
                             if (!this.editMode) {
+
                                 this.$data.model[this.identity] = data[this.identity]
                                 if (this.$props.onSuccess) {
                                     this.$props.onSuccess(data.data)
                                 }
+
                                 this.handleReset(this.meta.model + '-' + this.schemaID)
+
                             } else {
                                 if (this.$props.onSuccess) {
                                     this.$props.onSuccess(data.data)
                                 }
                             }
                         } else {
-                            this.$Notice.error({
-                                title: this.lang.errorSaving
-                            })
+
+                            notification["error"]({
+                                message:this.lang.errorSaving,
+                                description: this.lang.errorSaving,
+                            });
                             if (this.$props.onError) {
                                 this.$props.onError()
                             }
@@ -666,18 +660,19 @@ export default {
                                 }
 
                             }
-                            this.$Notice.error({
-                                title: this.lang.errorSaving,
-                                duration: 3,
-                                desc: errorDesc
-                            })
+
+
+                            notification["error"]({
+                                message:this.lang.errorSaving,
+                                description:errorDesc
+                            });
 
                         } else {
-                            this.$Notice.error({
-                                title: this.lang.errorSaving,
-                                duration: 3,
-                                desc: e
-                            })
+
+                            notification["error"]({
+                                message:this.lang.errorSaving,
+                                description:e
+                            });
 
 
                         }
@@ -746,9 +741,9 @@ export default {
                 Object.keys(this.formCustomData).forEach(model => {
                     let index = this.schema.findIndex(item => item.model == model)
                     if (index >= 0) {
-                        Vue.set(this.schema[index], 'disabled', true)
-                        Vue.set(this.schema[index], 'default', this.formCustomData[model])
-                        Vue.set(this.$data.model, model, this.formCustomData[model])
+                        this.schema[index]['disabled'] = true;
+                        this.schema[index]['default'] = this.formCustomData[model];
+                        this.$data.model[model] = this.formCustomData[model];
                     }
                 })
             }
@@ -858,7 +853,7 @@ export default {
                     .then(({ data }) => {
                         Object.keys(data).map(relation => {
                             let r = { ...this.relations[relation], data: data[relation] }
-                            Vue.set(this.$data.relations, relation, r)
+                            this.$data.relations[relation] = r;
                         })
                     })
             }
@@ -866,7 +861,7 @@ export default {
 
         getOptionsData(schema) {
             this.relations = this.getSelects(schema, undefined)
-            if (window.init.microserviceSettings) {
+            if (window.init) {
                 if (window.init.microserviceSettings.length >= 1) {
 
                     window.init.microserviceSettings.forEach(microserviceSetting => {
@@ -1024,7 +1019,7 @@ export default {
                     this.validateWithSubForm()
                 } else {
                     this.asyncMode = true
-                    Vue.set(this.$data.model, model, value)
+                    this.$data.model[model] = value;
                     this.postData()
                 }
 
@@ -1035,16 +1030,17 @@ export default {
                             this.validateWithSubForm()
                         } else {
                             this.asyncMode = true
-                            Vue.set(this.$data.model, model, value)
+                            this.$data.model[model] = value;
                             this.postData()
                         }
                     } else {
                         //auh дээр хэрэглэгдэж байгаа шүү
-                        this.$Notice.error({
-                            title: this.lang.informationIsIncomplete,
-                            desc: this.formValidationCustomText != '' ? this.formValidationCustomText : this.lang.trRMandatoryFieldsFillInformationLookFormAFillRequiredFieldsWithRedBorder
-                            , duration: 0
-                        })
+
+
+                        notification["error"]({
+                            message:this.lang.informationIsIncomplete,
+                            description:this.formValidationCustomText != '' ? this.formValidationCustomText : this.lang.trRMandatoryFieldsFillInformationLookFormAFillRequiredFieldsWithRedBorder
+                        });
 
                     }
                 })

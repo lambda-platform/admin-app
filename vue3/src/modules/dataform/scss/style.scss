@@ -2,7 +2,6 @@
 //@import "~ant-design-vue/dist/antd.css";
 
 @import "override";
-@import "builder";
 @import "crud";
 @import "dataform";
 @import "expand";
@@ -21,6 +20,7 @@
 @import "infoModal";
 @import "viewMode";
 @import "./elements/file";
+@import "./elements/number";
 @import "./elements/map";
 @import "./elements/image_sub_form";
 @import "./elements/dragMap";

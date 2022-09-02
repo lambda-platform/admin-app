@@ -165,31 +165,31 @@
 
                         <div v-if="!item.isFkey" class="localSelectOptions">
                             <Form ref="option" :model="optionForm" :rules="optionRule" inline>
-                                <FormItem prop="value">
+                                <a-form-item prop="value">
                                     <Input type="text" v-model="optionForm.value" :placeholder="lang.value"
                                     />
-                                </FormItem>
-                                <FormItem prop="model">
-                                    <FormItem prop="label">
+                                </a-form-item>
+                                <a-form-item prop="model">
+                                    <a-form-item prop="label">
                                         <Input type="text" v-model="optionForm.label" :placeholder="lang.visible_word"
                                         />
-                                    </FormItem>
-                                </FormItem>
-                                <FormItem prop="model">
-                                    <FormItem prop="thumb">
+                                    </a-form-item>
+                                </a-form-item>
+                                <a-form-item prop="model">
+                                    <a-form-item prop="thumb">
                                         <Upload
                                             :on-success="img_upload_success"
                                             :show-upload-list="false"
                                             action="/lambda/krud/upload">
                                             <Button>{{ lang.visible_thumb }}</Button>
                                         </Upload>
-                                    </FormItem>
-                                </FormItem>
-                                <FormItem>
+                                    </a-form-item>
+                                </a-form-item>
+                                <a-form-item>
                                     <Button type="primary" @click="addOption">
                                         {{ lang.add }}
                                     </Button>
-                                </FormItem>
+                                </a-form-item>
                             </Form>
 
                             <Table v-if="item.options && item.options.length>0" border size="small" :columns="optionsColumns" :key="item.options.length"

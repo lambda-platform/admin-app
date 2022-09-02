@@ -1,5 +1,5 @@
 <template>
-    <FormItem :label=label :prop=rule >
+    <a-form-item :label=label :rules=rule >
         <multiselect v-if="!meta.relation.multiple"
                      v-model="value"
                      :disabled="meta.disabled"
@@ -88,7 +88,7 @@
                 </div>
             </section>
         </Modal>
-    </FormItem>
+    </a-form-item>
 
 </template>
 

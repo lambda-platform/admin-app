@@ -1,7 +1,7 @@
 <template>
-    <FormItem :prop=rule :label=label>
+    <a-form-item :rules=rule :label=label>
         <vue-json-editor v-model="json" :show-btns="false"  @json-change="onJsonChange"></vue-json-editor>
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

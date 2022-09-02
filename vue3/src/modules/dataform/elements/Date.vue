@@ -1,7 +1,7 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <DatePicker :value="model.form[this.model.component] ? model.form[this.model.component] : undefined" type="date" @on-change="getDateValue" placement="bottom-end" :placeholder="meta && meta.placeHolder !== null ? meta.placeHolder : label" :disabled="meta && meta.disabled ? meta.disabled : false"></DatePicker>
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

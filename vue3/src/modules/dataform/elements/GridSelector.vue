@@ -1,6 +1,6 @@
 <template>
     <div class="subform-grid">
-        <FormItem :label=label :prop=rule>
+        <a-form-item :label=label :rules=rule>
             <div class="subform-header" >
                 {{ meta.GSOption.sourceGridModalTitle }}
 
@@ -31,7 +31,7 @@
                 </tr>
                 </tbody>
             </table>
-        </FormItem>
+        </a-form-item>
 
         <paper-modal
             :name="`grid-modal-${meta.GSOption.sourceGridID}`"

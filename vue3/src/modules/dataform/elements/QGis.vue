@@ -1,5 +1,5 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <div class="qgis-map">
             <Spin fix v-if="isLoading"></Spin>
             <Spin fix v-if="isLoadingLayer"></Spin>
@@ -21,7 +21,7 @@
                 </a>
             </div>
         </div>
-    </FormItem>
+    </a-form-item>
 </template>
 <script>
 import * as wkx from "wkx";

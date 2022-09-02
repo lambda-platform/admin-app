@@ -48,7 +48,7 @@
                     @filter-changed='onFilterChanged'
                     @filter-modified='onFilterModified'
                     @row-double-clicked='onRowDblClick'
-                    @row-clicked='onRowDblClick'
+                    @row-clicked='onRowClick'
                     @row-selected='onRowSelected'
                     @rowEditingStarted='onRowEditingStarted'
                     @rowEditingStopped='onRowEditingStopped'
@@ -180,7 +180,7 @@ import SetFilterDate from './elements/SetFilterDate';
 import SetFilterAltered from './elements/SetFilterAltered';
 import './elements/ExcelFilter.js';
 // import GridRowUpdate from "./GridRowUpdate";
-
+import { notification } from 'ant-design-vue';
 export default {
     name: 'datagrid',
     props: [
@@ -1367,8 +1367,8 @@ export default {
             axios.delete(this.page_id ? `/lambda/krud/delete/${this.schemaID}/${id}?page_id=${this.page_id}` : `/lambda/krud/delete/${this.schemaID}/${id}`)
                 .then(o => {
                     if (o.status) {
-                        this.$Notice.success({
-                            title: this.lang.infoDeleted,
+                        notification["success"]({
+                            message: this.lang.infoDeleted,
                         });
                         this.data.splice(index, 1);
                         this.info.total--;
@@ -1377,8 +1377,8 @@ export default {
                             this.deleteModal = false;
                         }, 600);
                     } else {
-                        this.$Notice.error({
-                            title: this.lang.errorOccWhileDeleting + '!',
+                        notification["error"]({
+                            message: this.lang.errorOccWhileDeleting + '!',
                         });
                         setTimeout(() => {
                             this.delLoading = false;
@@ -1387,9 +1387,8 @@ export default {
                     }
                 })
                 .catch(err => {
-                    console.log(err);
-                    this.$Notice.error({
-                        title: this.lang.errorMsg + '!',
+                    notification["error"]({
+                        message: this.lang.errorMsg + '!',
                     });
                     setTimeout(() => {
                         this.delLoading = false;
@@ -1505,6 +1504,18 @@ export default {
                     if (this.gridActions.find(action => action == 'dbl') || this.gridActions.find(action => action == 'obl')) {
                         if (row.data[this.identity]) {
                             this.fnEdit(row.data[this.identity]);
+                        }
+                    }
+                }
+            }
+        },
+        onRowClick(row) {
+            if (this.permissions) {
+                if (this.permissions.u) {
+                    if (this.gridActions.find(action => action == 'obl')) {
+
+                        if (row.data[this.identity]) {
+                            this.fnEdit(row.data[this.identity], row.data)
                         }
                     }
                 }

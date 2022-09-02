@@ -1,6 +1,6 @@
 <template>
     <div>
-        <FormItem :prop=rule :label=label class="grid-search-input">
+        <a-form-item :rules=rule :label=label class="grid-search-input">
             <Select v-if="meta.gridSearch.multiple" v-model="model.form[model.component]"
                     :placeholder="meta && meta.placeHolder !== null ? meta.placeHolder : label" multiple
                     @on-open-change="showSearchGrid">
@@ -12,7 +12,7 @@
             <Input v-else type="text" :value="labels" icon="ios-search-strong"
                    :placeholder="meta && meta.placeHolder !== null ? meta.placeHolder : label"
                    @on-focus="showSearchGrid"/>
-        </FormItem>
+        </a-form-item>
 
         <Modal v-model="gridModal" class-name="grid-search-modal" :width="1000">
             <h3>{{ meta.label }}</h3>

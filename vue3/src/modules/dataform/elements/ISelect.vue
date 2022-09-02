@@ -1,5 +1,5 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <Select v-if="!meta.relation.multiple" :disabled="meta && meta.disabled ? meta.disabled : false" v-model="model.form[model.component]"
                 :placeholder="meta && meta.placeHolder ? meta.placeHolder : label" filterable>
             <Option v-for="item in options" :key=item.index :value="item.value" v-if="isShow(item)">{{ item.label }}
@@ -11,7 +11,7 @@
             <Option v-for="item in options" :key=item.index :value="item.value" v-if="isShow(item)">{{ item.label }}
             </Option>
         </Select>
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

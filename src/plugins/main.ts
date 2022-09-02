@@ -9,6 +9,7 @@ import PortalVue from 'portal-vue'
 // import {i18n} from '~@lambda-platform/lambda-vue/src/locale';
 
 import {installDataGrid} from '@lambda-platform/lambda-vue/src/modules/datagrid';
+import {installDataForm} from '@lambda-platform/lambda-vue/src/modules/dataform';
 import {installKrud} from '@lambda-platform/lambda-vue/src/modules/krud';
 import { loadLocaleMessages } from '@lambda-platform/lambda-vue/src/locale'
 
@@ -68,6 +69,7 @@ export default defineNuxtPlugin(async ({ vueApp: app }) => {
 
   /* LAMBDA */
   installKrud(app)
+  installDataForm(app)
   installDataGrid(app)
   //
   //

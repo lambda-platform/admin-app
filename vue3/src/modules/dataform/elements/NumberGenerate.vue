@@ -1,13 +1,13 @@
 <template>
 
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <Input type="text" v-model="model.form[model.component]"
                :placeholder="meta && meta.placeHolder !== null ? meta.placeHolder : label">
             <Tooltip slot="append" :content="lang.createNumber" placement="left">
                 <Button @click="generateNumber()" icon="ios-key-outline"></Button>
             </Tooltip>
         </Input>
-    </FormItem>
+    </a-form-item>
 
 </template>
 

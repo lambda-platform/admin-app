@@ -1,7 +1,7 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <div class="html-prev" v-html="model.form[model.component]" ></div>
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

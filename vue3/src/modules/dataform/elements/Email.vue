@@ -1,7 +1,7 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <Input type="email" v-model="model.form[model.component]" :placeholder="meta && meta.placeHolder !== null ? meta.placeHolder : label" />
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

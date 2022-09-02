@@ -1,12 +1,12 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <div class="tree-select">
             <tree :data="treeData" @on-select-change="selected" v-if="!loading"></tree>
 <!--            <Cascader :data="treeData" v-model="model.form[model.component]"></Cascader>-->
 
 <!--            {{treeData}}-->
         </div>
-    </FormItem>
+    </a-form-item>
 </template>
 <script>
 

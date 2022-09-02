@@ -9,7 +9,11 @@
 </template>
 
 <script>
-import accounting from "accounting-js";
+import {
+    unformat,
+    toFixed,
+    formatMoney
+} from "accounting-js";
 
 export default {
     name: "VueNumeric",
@@ -301,7 +305,7 @@ export default {
             if (this.valueNumber === 0) {
                 this.amount = null;
             } else {
-                this.amount = accounting.formatMoney(this.valueNumber, {
+                this.amount = formatMoney(this.valueNumber, {
                     symbol: "",
                     format: "%v",
                     thousand: "",
@@ -335,7 +339,7 @@ export default {
          * @param {Number} value
          */
         update(value) {
-            const fixedValue = accounting.toFixed(value, this.precision);
+            const fixedValue = toFixed(value, this.precision);
             const output =
                 this.outputType.toLowerCase() === "string"
                     ? fixedValue
@@ -349,7 +353,7 @@ export default {
          * @return {String}
          */
         format(value) {
-            return accounting.formatMoney(value, {
+            return formatMoney(value, {
                 symbol: this.currency,
                 format: this.symbolPosition,
                 precision: Number(this.precision),
@@ -368,7 +372,7 @@ export default {
                 typeof value === "string" && value === ""
                     ? this.emptyValue
                     : value;
-            return accounting.unformat(toUnformat, this.decimalSeparatorSymbol);
+            return unformat(toUnformat, this.decimalSeparatorSymbol);
         }
     }
 };

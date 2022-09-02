@@ -1,7 +1,7 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <div>{{ lang.notFound }}</div>
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <div class="geographic">
             <div id="geographic" :class="openSide ? 'open-side' : ''" style="height: 100%; width: 100%">
 
@@ -82,27 +82,27 @@
             <!--<hr>-->
             <!--<div v-if="checkByArea">-->
             <!--<Form ref="searchForm" :model="formInline" :rules="ruleInline" inline>-->
-            <!--<FormItem prop="search_value">-->
+            <!--<a-form-item prop="search_value">-->
             <!--<Input type="text" size="small" v-model="formInline.search_value"-->
             <!--@on-enter="handleSubmit"-->
             <!--:placeholder="searchFieldPlaceHolder"/>-->
 
 
-            <!--</FormItem>-->
+            <!--</a-form-item>-->
 
-            <!--<FormItem>-->
+            <!--<a-form-item>-->
             <!--<Button :disabled="searchLoading" :loading="searchLoading" @click="handleSubmit"-->
             <!--size="small" shape="circle" icon="ios-search-outline">-->
 
             <!--</Button>-->
-            <!--</FormItem>-->
+            <!--</a-form-item>-->
             <!--</Form>-->
             <!--</div>-->
 
 
             <!--</div>-->
         </div>
-    </FormItem>
+    </a-form-item>
 </template>
 <script>
 

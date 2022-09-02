@@ -17,7 +17,7 @@
                    :isSave="isSave"
         />
     </portal>
-    <div class="card drawer-wrappper">
+    <div class="krud-drawer">
     <section class="offcanvas-template">
       <div class="crud-page">
         <div class="crud-page-body">
@@ -56,7 +56,23 @@
                       </div>
                     </div>
                     <div class="ant-drawer-body">
-                      <TepmForm />
+                        <dataform
+                            ref="form"
+                            :hideTitle="true"
+                            :schemaID="form"
+                            :title="title"
+                            :url="url"
+                            :editMode="editMode"
+                            :onSuccess="onSuccess"
+                            :onReady="onReady"
+                            :do_render="openSlidePanel"
+                            :permissions="permissions"
+                            :page_id="page_id"
+                            :user_condition="user_condition ? user_condition.formCondition : null"
+                            :onError="onError"
+                            :close="hideSide"
+                        >
+                        </dataform>
                     </div>
                   </div>
                 </div>
@@ -72,9 +88,6 @@
 </template>
 
 <script>
-
-import TepmForm from './TepmForm'
-
 import mixins from './mixin'
 import common from '../components/common'
 import Krudtools from '../components/krudtools'
@@ -92,7 +105,6 @@ export default {
     }
   },
   components: {
-      TepmForm,
       common,
       Krudtools
   },

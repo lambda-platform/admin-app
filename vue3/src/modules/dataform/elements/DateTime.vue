@@ -1,5 +1,5 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <DatePicker v-if="model.form[model.component] === null && meta.disabled" :value="now"
                     type="datetime" v-model="now"
                     placement="bottom-end" :placeholder="meta && meta.placeHolder !== null ? meta.placeHolder : label"
@@ -12,7 +12,7 @@
                     :disabled="meta && meta.disabled ? meta.disabled : false"
         ></DatePicker>
 
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

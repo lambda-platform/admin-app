@@ -1,7 +1,7 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <ColorPicker v-model="model.form[model.component]"  style="float: right" alpha />
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

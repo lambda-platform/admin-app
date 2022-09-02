@@ -1,7 +1,7 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <Checkbox v-model="model.form[model.component]"></Checkbox>
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

@@ -11,3 +11,13 @@
     background-color:  $primary-color !important;
   }
 }
+.canvas-drawer, #right_panel{
+  .ant-drawer-body{
+    padding: 0 !important;
+  }
+}
+.krud-popup {
+  .ant-modal-body{
+    padding: 0 !important;
+  }
+}

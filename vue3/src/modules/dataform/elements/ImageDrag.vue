@@ -1,5 +1,5 @@
 <template>
-    <FormItem :prop=rule>
+    <a-form-item :rules=rule>
         <Upload type="drag"             :action="`${url ? url : ''}/lambda/krud/upload`" :on-success="success">
             <div class="upload-wrapper">
                 <div class="preview" v-if="this.model.form[this.model.component] != null">
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </Upload>
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

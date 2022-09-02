@@ -1,7 +1,7 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         Custom Element
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

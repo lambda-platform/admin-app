@@ -1,9 +1,9 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <input type="date" v-model="model.form[model.component]" class="birthday-picker"
                lang="mn-MN" :placeholder="meta && meta.placeHolder !== null ? meta.placeHolder : label"
                :disabled="meta && meta.disabled ? meta.disabled : false"/>
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

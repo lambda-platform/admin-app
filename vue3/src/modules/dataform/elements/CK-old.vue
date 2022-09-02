@@ -1,7 +1,7 @@
 <template>
-    <FormItem :prop=rule :label=label>
+    <a-form-item :rules=rule :label=label>
         <vue-ckeditor ref="ckeditor" v-model="model.form[model.component]" :config="config" @blur="onBlur($event)" @focus="onFocus($event)" />
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

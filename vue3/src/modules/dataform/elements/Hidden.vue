@@ -1,7 +1,7 @@
 <template>
-    <FormItem :prop=rule :label=label hidden>
+    <a-form-item :rules=rule :label=label hidden>
         <Input type="hidden" v-model="model.form[model.component]" :placeholder="meta && meta.placeHolder !== null ? meta.placeHolder : label" />
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

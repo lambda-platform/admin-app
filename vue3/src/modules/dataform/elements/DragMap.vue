@@ -1,9 +1,9 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <div class="drag-map">
 
         </div>
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

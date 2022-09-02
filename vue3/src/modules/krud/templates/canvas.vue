@@ -1,5 +1,5 @@
 <template>
-    <div class="card drawer-wrappper">
+    <div class="krud-canvas">
         <common :parent="parent" :title="title" :addAction="openSide"></common>
         <portal to="header-right" >
             <Krudtools :search="search"
@@ -47,17 +47,35 @@
         </section>
         <a-drawer
             v-model:visible="openSlidePanel"
-            class="custom-class"
+            class="canvas-drawer"
             :maskClosable="false"
+            :forceRender="true"
             :title="title"
+            :width="form_width"
             placement="right"
         >
-            <TepmForm/>
+            <dataform
+                ref="form"
+                :hideTitle="true"
+                :schemaID="form"
+                :title="title"
+                :url="url"
+                :editMode="editMode"
+                :onSuccess="onSuccess"
+                :onReady="onReady"
+                :do_render="openSlidePanel"
+                :permissions="permissions"
+                :page_id="page_id"
+                :user_condition="user_condition ? user_condition.formCondition : null"
+                :onError="onError"
+                :close="hideSide"
+            >
+            </dataform>
         </a-drawer>
     </div>
 </template>
 <script>
-import TepmForm from './TepmForm'
+
 import common from '../components/common'
 import Krudtools from '../components/krudtools'
 import mixins from './mixin'
@@ -68,13 +86,12 @@ export default {
     mixins: [mixins],
     data () {
         return {
-            form_width: 800,
+
             openSlidePanel: false,
             exportLoading: false,
         }
     },
     components: {
-        TepmForm,
         common,
         Krudtools
     },
@@ -98,8 +115,6 @@ export default {
         templateOnSuccess () {
             this.hideSide()
         },
-    },
-    mounted () {
 
     },
 }

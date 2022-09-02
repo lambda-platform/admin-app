@@ -47,19 +47,35 @@
         </section>
         <a-modal
             v-model:visible="openSlidePanel"
-            class="custom-class"
+            class="create"
             :maskClosable="false"
             :title="title"
             placement="right"
         >
-            <TepmForm/>
+            <dataform
+                ref="form"
+                :hideTitle="true"
+                :schemaID="form"
+                :title="title"
+                :url="url"
+                :editMode="editMode"
+                :onSuccess="onSuccess"
+                :onReady="onReady"
+                :do_render="openSlidePanel"
+                :permissions="permissions"
+                :page_id="page_id"
+                :user_condition="user_condition ? user_condition.formCondition : null"
+                :onError="onError"
+                :close="hideSide"
+            >
+            </dataform>
             <template #footer>
             </template>
         </a-modal>
     </div>
 </template>
 <script>
-import TepmForm from './TepmForm'
+
 import common from '../components/common'
 import Krudtools from '../components/krudtools'
 import mixins from './mixin'
@@ -76,7 +92,6 @@ export default {
         }
     },
     components: {
-        TepmForm,
         common,
         Krudtools
     },

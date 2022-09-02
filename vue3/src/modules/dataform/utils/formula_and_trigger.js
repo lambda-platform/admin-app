@@ -18,10 +18,7 @@ export function evil(fn) {
 }
 
 export function doFormula(formulas, model, model_, schema_, rule_, subFormModelName) {
-    console.log("doing formula:")
-    console.log(formulas)
-    console.log(model)
-    console.log(model_)
+
     //formula
     if (formulas.length >= 1) {
         let formula_index = formulas.findIndex(formula => formula.model == model)
@@ -158,14 +155,16 @@ function callFieldTrigger(trigger_url, model_, schema_, refs, Message, editMode)
                 }
                 if (data['message']) {
                     if (data['message']['type'] == 'success') {
-                        Message.success({
+                        Message["success"]({
                             duration: 3,
-                            desc:data['message']['message']
+                            message:data['message']['message'],
+                            description:data['message']['message']
                         });
                     } else {
-                        Message.error({
+                        Message["error"]({
                             duration: 3,
-                            desc:data['message']['message']
+                            message:data['message']['message'],
+                            description:data['message']['message']
                         });
                     }
                 }

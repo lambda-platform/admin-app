@@ -1,7 +1,7 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <i-switch v-model="model.form[model.component]"></i-switch>
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

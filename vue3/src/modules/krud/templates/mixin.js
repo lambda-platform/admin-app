@@ -127,20 +127,30 @@ export default {
         save() {
             this.$refs.grid.saveGridData();
         },
+        onReady(formOption) {
 
+            if((window.innerWidth - 100) >= parseInt(formOption.width)){
+                this.form_width = formOption.width
+            } else {
+                this.form_width = window.innerWidth;
+            }
+
+        },
         //Form functions
         onSuccess(val) {
-            // console.log("this.mode");
-            // console.log(this.mode);
-            if (typeof this.mode !== 'undefined' && this.mode && this.mode == 'refresh') {
-                this.$refs.grid.refresh();
-            } else {
-                if (this.editMode) {
-                    this.$refs.grid.update(val);
+
+            if(this.$refs.grid){
+                if (typeof this.mode !== 'undefined' && this.mode && this.mode === 'refresh') {
+                    this.$refs.grid.refresh();
                 } else {
-                    this.$refs.grid.append(val);
+                    if (this.editMode) {
+                        this.$refs.grid.update(val);
+                    } else {
+                        this.$refs.grid.append(val);
+                    }
                 }
             }
+
             this.editMode = false;
 
             //From template

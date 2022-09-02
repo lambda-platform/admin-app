@@ -1,7 +1,7 @@
 <template>
-    <FormItem :prop=rule>
+    <a-form-item :rules=rule>
         <div class="multi-upload" v-if="meta.file && meta.file.isMultiple == true">
-            <label>{{ label }}</label>
+            <label>{{ label }} </label>
 
             <div class="multi-upload-list">
                 <div class="upload-list" v-for="item in uploadList" :key="item.index">
@@ -43,7 +43,7 @@
             :action="`${url ? url : ''}/lambda/krud/upload`"
             :on-success="success"
             :disabled="meta && meta.disabled ? meta.disabled : false">
-            <Button type="dashed">
+            <a-button type="dashed" class="upload-btn">
                 <img class="preview-img" v-if="this.model.form[this.model.component] != null"
 
                      :src="`${url ? url : ''}${model.form[model.component]}`"
@@ -52,7 +52,7 @@
                     <i class="ti ti-camera"></i>
                     {{ label }}
                 </div>
-            </Button>
+            </a-button>
         </Upload>
 
         <Modal :title="lang.viewPhotos" v-model="showImage" width="1000px">
@@ -61,7 +61,7 @@
                  :src="`${url ? url : ''}${showImageUrl}`"
                  v-if="showImage" style="width: 100%">
         </Modal>
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <div class="ivu-input-wrapper ivu-input-type form-item-register">
             <multiselect
                 v-model="registerChar1"
@@ -33,7 +33,7 @@
                    v-model="registerNumber"/>
         </div>
         <div :id="`register_${model.component}`" class="ivu-form-item-error-tip"></div>
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

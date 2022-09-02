@@ -1,5 +1,5 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <numeric
                 currency="₮"
                 currencySymbolPosition="suffix"
@@ -8,7 +8,7 @@
                 v-model="model.form[model.component]"
                 :disabled="meta && meta.disabled ? meta.disabled : false"
         ></numeric>
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

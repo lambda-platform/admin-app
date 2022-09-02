@@ -1,11 +1,11 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <RadioGroup v-model="model.form[model.component]" type="button" class="radio-with-thumb">
             <Radio :label="item.value" v-for="item in options" :key=item.index :disabled="meta && meta.disabled ? meta.disabled : false">
                 <img :src="item.thumb" alt="">
             </Radio>
         </RadioGroup>
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 <template>
     <div class="lambda-map-wrapper">
-        <FormItem :label=label :prop=rule>
+        <a-form-item :label=label :rules=rule>
             <div class="lambda-lat-lng">
                 <Input v-model="center.lat" :placeholder="lang.latitude" @on-blur="updateLat" />
                 <Input v-model="center.lng" :placeholder="lang.longitude" />
@@ -8,7 +8,7 @@
             </div>
             <span>{{lang.fromCityCenter}}: {{fromCityCenter}} км</span>
             <div class="lambda-map"></div>
-        </FormItem>
+        </a-form-item>
     </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-    <FormItem :label=label :prop=rule>
+    <a-form-item :label=label :rules=rule>
         <div id="menu-tree-creator">
             <Button type="success" shape="circle" icon="md-add" @click="addItem"></Button>
             <div id="sort-container">
@@ -24,7 +24,7 @@
             <option v-for="item in $crudList" :key=item.index :data-value="item.value" :value="item.label"/>
         </datalist>
         <IconSelector @setIcon="setIcon" :iconSelector="iconSelector"></IconSelector>
-    </FormItem>
+    </a-form-item>
 </template>
 
 <script>

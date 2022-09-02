@@ -1,7 +1,7 @@
 <template>
     <div class="card drawer-wrappper">
-        <common :parent="parent" :title="title" :addAction="openSide"></common>
-        <portal to="header-right" >
+        <common :parent="parent" :title="title" :addAction="openSide" :hide-action="openSlidePanel"></common>
+        <portal to="header-right" v-if="!openSlidePanel">
             <Krudtools :search="search"
                        :refresh="refresh"
                        :exportExcel="exportExcel"
@@ -31,7 +31,23 @@
                                     </div>
                                 </div>
                                 <div class="ant-drawer-body">
-                                    <TepmForm />
+                                    <dataform
+                                        ref="form"
+                                        :hideTitle="true"
+                                        :schemaID="form"
+                                        :title="title"
+                                        :url="url"
+                                        :editMode="editMode"
+                                        :onSuccess="onSuccess"
+                                        :onReady="onReady"
+                                        :do_render="openSlidePanel"
+                                        :permissions="permissions"
+                                        :page_id="page_id"
+                                        :user_condition="user_condition ? user_condition.formCondition : null"
+                                        :onError="onError"
+                                        :close="hideSide"
+                                    >
+                                    </dataform>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +80,6 @@
     </div>
 </template>
 <script>
-import TepmForm from './TepmForm'
 import common from '../components/common'
 import Krudtools from '../components/krudtools'
 import mixins from './mixin'
@@ -81,22 +96,18 @@ export default {
         }
     },
     components: {
-        TepmForm,
         common,
         Krudtools
     },
     methods: {
         hideSide () {
             this.openSlidePanel = false
-            // this.$refs.panel.style.width = '0px'
-            // this.$refs.panel.style.flex = `0 0 0px`
+            this.$router.push({query: { }})
         },
         openSide () {
-            this.openSlidePanel = true
-            // let unit = (window.innerWidth - 300) / 100
-            // let w = parseInt(unit * 40)
-            // this.$refs.panel.style.width = w + 'px'
-            // this.$refs.panel.style.flex = `0 0 ${w + 'px'}`
+            this.openSlidePanel = true;
+            this.$router.push({query: { add: 'true' }
+        })
         },
 
         templateEdit () {
@@ -106,8 +117,11 @@ export default {
             this.hideSide()
         },
     },
-    mounted () {
-
+    beforeMount () {
+       let add = this.$route.query.add;
+       if(add === 'true' || add === true){
+           this.openSlidePanel = true;
+       }
     },
 }
 </script>
