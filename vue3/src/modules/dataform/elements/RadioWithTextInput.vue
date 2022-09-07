@@ -1,24 +1,22 @@
 <template>
-    <a-form-item :label=label :rules=rule>
-        <RadioGroup v-model="model.form[model.component]">
-            <Radio :label="item.value" v-for="item in options" :key=item.index
-                   :disabled="meta && meta.disabled ? meta.disabled : false">
+    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
+        <a-radio-group v-model:value="model.form[model.component]">
+            <a-radio :value="item.value" v-for="item in options" :key=item.index :disabled="disabled">
                 <span>{{item.label}}</span>
-            </Radio>
-            <Radio :label="other">
+            </a-radio>
+            <a-radio :value="other">
                 <span>{{lang.other}}:
-                    <Input type="text" v-model="other"
+                    <a-input type="text" v-model:value="other"
                            :placeholder="lang.pleaseWriting"/>
                 </span>
-            </Radio>
-        </RadioGroup>
-    </a-form-item>
+            </a-radio>
+        </a-radio-group>
+    </lambda-form-item>
 </template>
-
 <script>
-
-    export default {
-        props: ["model", "label", "rule", "meta"],
+import mixin from "./_mixin"
+export default {
+    mixins:[mixin],
         methods: {
         },
         data() {
@@ -29,10 +27,9 @@
 
         computed: {
             lang() {
-                const labels = ['pleaseWriting', 'other'
-                ];
+                const labels = ['pleaseWriting', 'other'];
                 return labels.reduce((obj, key, i) => {
-                    obj[key] = this.$t('dataGrid.' + labels[i]);
+                    obj[key] = this.$t('dataForm.' + labels[i]);
                     return obj;
                 }, {});
             },

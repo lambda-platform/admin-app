@@ -1,6 +1,6 @@
 <template>
     <div class="lambda-map-wrapper">
-        <a-form-item :rules=rule :label=label  :name="model.component">
+        <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
             <div class="lambda-lat-lng">
                 <a-input v-model:value="center.lat" :placeholder="lang.latitude" @on-blur="updateLat" />
                 <Input v-model:value="center.lng" :placeholder="lang.longitude" />
@@ -8,14 +8,14 @@
             </div>
             <span>{{lang.fromCityCenter}}: {{fromCityCenter}} км</span>
             <div class="lambda-map"></div>
-        </a-form-item>
+        </lambda-form-item>
     </div>
 </template>
 
 <script>
-
+import mixin from "./_mixin"
 export default {
-  props: ["model", "rule", "label", "meta"],
+    mixins:[mixin],
   data() {
     return {
       map: null,

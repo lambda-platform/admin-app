@@ -1,16 +1,16 @@
 <template>
-    <a-form-item :label=label :rules=rule>
-        <RadioGroup v-model="model.form[model.component]">
-            <Radio :label="item.value" v-for="item in options" :key=item.index :disabled="meta && meta.disabled ? meta.disabled : false">
+    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
+        <a-radio-group v-model:value="model.form[model.component]">
+            <a-radio :value="item.value" v-for="item in options" :key=item.index  :disabled="disabled">
                 <span>{{item.label}}</span>
-            </Radio>
-        </RadioGroup>
-    </a-form-item>
+            </a-radio>
+        </a-radio-group>
+    </lambda-form-item>
 </template>
-
 <script>
-    export default {
-        props: ["model", "label", "rule", "meta", "relation_data"],
+import mixin from "./_mixin"
+export default {
+    mixins:[mixin],
         computed: {
             options() {
                 if (this.meta.options.length >= 1) {

@@ -1,11 +1,14 @@
 <template>
-    <a-form-item :rules=rule :label=label  :name="model.component">
-        <input type="color"  :name="model.component" v-model="model.form[model.component]">
-    </a-form-item>
+    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
+        <input type="color"  :name="model.component" v-model="model.form[model.component]"
+               :disabled="disabled"
+        >
+    </lambda-form-item>
 </template>
 
 <script>
+import mixin from "./_mixin"
 export default {
-    props: ["model", "label", "rule", "meta"],
+    mixins:[mixin],
 };
 </script>

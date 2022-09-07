@@ -1,5 +1,5 @@
 <template>
-    <a-form-item :rules=rule :label=label  :name="model.component">
+    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
         <div class="qgis-map">
             <Spin fix v-if="isLoading"></Spin>
             <Spin fix v-if="isLoadingLayer"></Spin>
@@ -21,13 +21,13 @@
                 </a>
             </div>
         </div>
-    </a-form-item>
+    </lambda-form-item>
 </template>
 <script>
 import * as wkx from "wkx";
-
+import mixin from "./_mixin"
 export default {
-    props: ["model", "rule", "label", "meta", "do_render", "editMode", "is_show"],
+    mixins:[mixin],
     components: {},
 
     mounted() {

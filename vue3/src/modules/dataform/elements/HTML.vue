@@ -1,11 +1,11 @@
 <template>
-    <a-form-item :label=label :rules=rule>
+    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
         <div class="html-prev" v-html="model.form[model.component]" ></div>
-    </a-form-item>
+    </lambda-form-item>
 </template>
-
 <script>
+import mixin from "./_mixin"
 export default {
-    props: ["model", "rule", "label", "meta"]
+    mixins:[mixin],
 };
 </script>

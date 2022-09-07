@@ -1,12 +1,12 @@
 <template>
-    <a-form-item :rules=rule :label=label  :name="model.component">
-        <a-switch v-model:checked="model.form[model.component]"  />
-    </a-form-item>
+    <LambdaFormItem :rule="rule" :label=label  :name="model.component" :meta="meta">
+        <a-switch v-model:checked="model.form[model.component]"  :disabled="disabled" />
+    </LambdaFormItem>
 </template>
 
 <script>
+import mixin from "./_mixin"
 export default {
-    props: ["model", "label", "rule", "meta"],
-
+    mixins:[mixin],
 };
 </script>

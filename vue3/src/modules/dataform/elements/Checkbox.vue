@@ -1,18 +1,17 @@
 <template>
-    <a-form-item :rules=rule :label=label  :name="model.component">
+    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
         <a-checkbox
             :checked="model.form[model.component] === 1"
-            :disabled="meta && meta.disabled ? meta.disabled : false"
-            :true-value="1"
+            :disabled="disabled"
             @change="change"
-            :false-value="0">{{ label }}
+          >{{ placeholder }}
         </a-checkbox>
-    </a-form-item>
+    </lambda-form-item>
 </template>
-
 <script>
+import mixin from "./_mixin"
 export default {
-    props: ["model", "label", "rule", "meta"],
+    mixins:[mixin],
     data(){
         return {
             value:false

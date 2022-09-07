@@ -1,17 +1,17 @@
 <template>
-    <a-form-item :rules=rule :label=label  :name="model.component">
+    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
         <a-date-picker
-            v-model:value="model.form[this.model.component]"
+            v-model:value="model.form[model.component]"
             show-time
-            :placeholder="meta && meta.placeHolder !== null ? meta.placeHolder : label"
+            :placeholder="placeholder"
+            :disabled="disabled"
             valueFormat="YYYY-MM-DD HH:mm:ss"
-            :disabled="meta && meta.disabled ? meta.disabled : false"></a-date-picker>
-    </a-form-item>
+            ></a-date-picker>
+    </lambda-form-item>
 </template>
-
 <script>
+import mixin from "./_mixin"
 export default {
-    props: ["model", "rule", "label", "meta"],
-
+    mixins:[mixin],
 };
 </script>

@@ -1,15 +1,18 @@
 <template>
-    <a-form-item :rules=rule :label=label  :name="model.component">
+    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
         <a-input-number
             v-model:value="model.form[model.component]"
             :formatter="value => `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
             :parser="value => value.replace(/\₮\s?|(,*)/g, '')"
-            :disabled="meta && meta.disabled ? meta.disabled : false"  />
-    </a-form-item>
+            :placeholder="placeholder"
+            :disabled="disabled"
+        />
+    </lambda-form-item>
 </template>
 <script>
+import mixin from "./_mixin"
 export default {
-    props: ["model", "label", "rule", "meta"],
+    mixins:[mixin],
 
 };
 </script>

@@ -1,6 +1,9 @@
 <template>
-    <a-form-item :rules=rule :label=label  :name="model.component">
-        <a-input-password v-model:value="model.form[model.component]" password :placeholder="meta && meta.placeHolder !== null ? meta.placeHolder : label">
+    <lambda-form-item :rule="rule" :label=label :name="model.component" :meta="meta">
+        <a-input-password v-model:value="model.form[model.component]" password
+                          :placeholder="placeholder"
+                          :disabled="disabled"
+        >
             <template #addonAfter>
                 <a-tooltip slot="append">
                     <template #title>{{ lang.Create_a_password }}</template>
@@ -12,13 +15,12 @@
                 </a-tooltip>
             </template>
         </a-input-password>
-    </a-form-item>
+    </lambda-form-item>
 </template>
 <script>
-
-
+import mixin from "./_mixin"
 export default {
-    props: ['model', 'label', 'rule', 'meta'],
+    mixins:[mixin],
     computed: {
         lang () {
             const labels = ['Create_a_password',

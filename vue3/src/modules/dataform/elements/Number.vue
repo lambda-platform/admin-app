@@ -1,21 +1,26 @@
 <template>
-    <a-form-item :rules=rule :label=label  :name="model.component">
+    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
         <a-input-number type="number"
                         v-if="meta.no_format"
                v-model:value="model.form[model.component]"
-               :disabled="meta && meta.disabled ? meta.disabled : false" :number="true" />
+                        :placeholder="placeholder"
+                        :disabled="disabled"
+
+                        :number="true" />
         <a-input-number
                         v-else
                v-model:value="model.form[model.component]"
                         :formatter="value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
                         :parser="value => value.replace(/\$\s?|(,*)/g, '')"
-                        :disabled="meta && meta.disabled ? meta.disabled : false" />
-    </a-form-item>
+                        :placeholder="placeholder"
+                        :disabled="disabled"
+        />
+    </lambda-form-item>
 </template>
 <script>
-
-    export default {
-        props: ["model", "label", "rule", "meta"],
+import mixin from "./_mixin"
+export default {
+    mixins:[mixin],
 
     };
 </script>

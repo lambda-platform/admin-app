@@ -1,5 +1,5 @@
 <template>
-    <a-form-item :rules=rule :label=label  :name="model.component">
+    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
         <div class="multi-upload">
             <label>{{ label }}</label>
 
@@ -12,12 +12,12 @@
                 </div>
             </div>
         </div>
-    </a-form-item>
+    </lambda-form-item>
 </template>
-
 <script>
-    export default {
-        props: ["model", "label", "rule", "meta", "do_render"],
+import mixin from "./_mixin"
+export default {
+    mixins:[mixin],
         computed: {
             lang() {
                 const labels = ['download', ];

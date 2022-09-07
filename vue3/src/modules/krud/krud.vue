@@ -5,7 +5,7 @@
 import { defineComponent, defineAsyncComponent } from 'vue'
 
 const templates = {
-    'canvas': defineAsyncComponent(() => import('./templates/canvas.vue')),
+    'canvas': defineAsyncComponent(() => import('./templates/window.vue')),
     'drawer': defineAsyncComponent(() => import('./templates/drawer.vue')),
     'window': defineAsyncComponent(() => import('./templates/window.vue')),
     'popup': defineAsyncComponent(() => import('./templates/popup.vue')),

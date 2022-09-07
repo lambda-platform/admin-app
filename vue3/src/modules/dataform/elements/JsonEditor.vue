@@ -1,13 +1,14 @@
 <template>
-    <a-form-item :rules=rule :label=label  :name="model.component">
-        <Vue3JsonEditor v-model="json" :show-btns="false"  @json-change="onJsonChange"></Vue3JsonEditor>
-    </a-form-item>
+    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
+        <Vue3JsonEditor v-model="json" :show-btns="false"  :disabled="disabled"  @json-change="onJsonChange"></Vue3JsonEditor>
+    </lambda-form-item>
 </template>
 
 <script>
 import { Vue3JsonEditor } from 'vue3-json-editor'
+import mixin from "./_mixin"
 export default {
-    props: ["model", "rule", "label", "meta"],
+    mixins:[mixin],
     components: {
         Vue3JsonEditor
     },

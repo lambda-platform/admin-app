@@ -1,15 +1,14 @@
 <template>
-    <a-form-item :rules=rule :label=label  :name="model.component">
+    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
         <a-input v-model:value="model.form[model.component]"
-               :placeholder="meta && meta.placeHolder !== null ? meta.placeHolder : label"
-               :disabled="meta && meta.disabled ? meta.disabled : false"
+               :placeholder="placeholder"
+               :disabled="disabled"
         />
-    </a-form-item>
+    </lambda-form-item>
 </template>
-
 <script>
+import mixin from "./_mixin"
 export default {
-    props: ["model", "rule", "label", "meta"],
-
+    mixins:[mixin]
 };
 </script>

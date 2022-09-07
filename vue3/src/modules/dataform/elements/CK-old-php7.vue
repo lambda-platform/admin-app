@@ -1,17 +1,21 @@
 <template>
-    <a-form-item :rules=rule :label=label  :name="model.component">
-        <ckeditor ref="ckeditor" :editor="editor" :disabled="editorDisabled" v-model="model.form[model.component]"
-                  :config="editorConfig" :key="meta.editorType" placeholder=""
+    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
+        <ckeditor ref="ckeditor" :editor="editor" v-model="model.form[model.component]"
+                  :config="editorConfig" :key="meta.editorType"
+
+                  :placeholder="placeholder"
+                  :disabled="disabled"
                   @ready="onReady" @blur="onBlur($event)" @focus="onFocus($event)"></ckeditor>
-    </a-form-item>
+    </lambda-form-item>
 </template>
 
 <script>
 import CKEditor from '@ckeditor/ckeditor5-vue';
 import Editor from 'ckeditor5-custom-build/build/ckeditor';
 
+import mixin from "./_mixin"
 export default {
-    props: ["label", "model", "rule", "meta"],
+    mixins:[mixin],
     components: {
         ckeditor: CKEditor.component
     },
@@ -28,7 +32,6 @@ export default {
                 },
                 placeholder:'',
             },
-            editorDisabled: this.meta && this.meta.disabled ? this.meta.disabled : false,
         };
     },
     created() {

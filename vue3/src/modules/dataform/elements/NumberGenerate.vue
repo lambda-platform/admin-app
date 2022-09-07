@@ -1,8 +1,9 @@
 <template>
-
-    <a-form-item :rules=rule :label=label  :name="model.component">
+    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
         <a-input-number type="number" v-model:value="model.form[model.component]"
-               :placeholder="meta && meta.placeHolder !== null ? meta.placeHolder : label">
+                        :placeholder="placeholder"
+                        :disabled="disabled"
+        >
             <template #addonAfter>
                 <a-tooltip slot="append">
                     <template #title>{{ lang.createNumber }}</template>
@@ -14,13 +15,12 @@
                 </a-tooltip>
             </template>
         </a-input-number>
-    </a-form-item>
-
+    </lambda-form-item>
 </template>
-
 <script>
-    export default {
-        props: ["model", "label", "rule", "meta"],
+import mixin from "./_mixin"
+export default {
+    mixins:[mixin],
         computed: {
             lang() {
                 const labels = ['createNumber',
