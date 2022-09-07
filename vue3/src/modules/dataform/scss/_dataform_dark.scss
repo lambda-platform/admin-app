@@ -1,0 +1,28 @@
+.dark{
+    .dataform {
+
+        &-body {
+
+            .fieldset {
+
+                legend {
+                    width: auto !important;
+                    background: #00152a;
+                    font-size: 12px;
+                    padding: 0 10px;
+                    display: table;
+                    font-weight: 600;
+                    margin-bottom: 10px;
+                }
+            }
+
+        }
+
+        .ant-form-item-with-help .ant-form-item-explain {
+            height: auto;
+            min-height: 24px;
+            opacity: 1;
+        }
+    }
+
+}
