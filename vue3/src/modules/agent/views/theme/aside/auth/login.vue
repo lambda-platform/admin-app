@@ -73,11 +73,12 @@ export default {
             if (!this.loading) {
                 this.loading = true;
                 axios.post('/auth/login', this.credentials).then(({data}) => {
-                    this.loading = false;
+
                     if (data.status) {
                         this.onSuccess(data)
                     } else {
                         this.isError = true;
+                        this.loading = false;
                     }
                 }).catch(e => {
                     this.loading = false;

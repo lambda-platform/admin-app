@@ -60,7 +60,7 @@ export default {
               } else {
                 this.$router.replace(path)
               }
-              this.loading = false;
+
 
             }
           })

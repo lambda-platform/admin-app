@@ -1,103 +1,69 @@
 <template>
-    <a-form-item :label=label :rules=rule >
-        <multiselect v-if="!meta.relation.multiple"
-                     v-model="value"
-                     :disabled="meta.disabled"
-                     :options="options"
-                     @search-change="searchChange"
-                     track-by="value"
-                     :searchable="true"
-                     :allow-empty="true"
-                     :placeholder="meta && meta.placeHolder !== null ? meta.placeHolder : label ? label : ''"
-                     :class="meta.info_url ? 'with-info-caller' : ''"
-                     label="label">
-            <template slot="singleLabel" slot-scope="{ option }">
-                {{ option.label }}
-            </template>
+    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
+        <a-select
+                  v-model:value="selectValue"
+                  :disabled="disabled"
+                  allowClear
+                  showSearch
+                  :options="options"
+                  optionFilterProp="label"
+                  optionLabelProp="label"
+                  :mode="meta.relation.multiple ? 'multiple' : undefined"
+                  @change="changeValue"
+                  :placeholder="placeholder"
+                  :class="meta.info_url ? 'with-info-caller' : ''"
+                 >
+<!--            <a-select-option :value="option.value" v-for="option in options" :key="option.key">{{ option.label }}</a-select-option>-->
 
-            <template slot="caret"
-                      slot-scope="{ toggle }"
-                      @mousedown.prevent.stop="toggle">
-                <div class="caret-container">
-                    <div :class="addAble ? 'multiselect__select addable-caret' : 'multiselect__select'">
-                    </div>
-                    <Button v-if="addAble" @click="showAddModal" type="success"
-                            shape="circle" size="small"
-                            icon="md-add"></Button>
-                </div>
-            </template>
-            <template slot="clear" slot-scope="{ search }"
-                      @mousedown.prevent.stop="toggle">
-                <div class="clear-container">
-                    <Button v-if="clearAble" @click="clearState"
-                            shape="circle" size="small"
-                            icon="md-close"></Button>
-                </div>
-            </template>
-        </multiselect>
-        <multiselect v-else
-                     :multiple="true"
-                     v-model="value"
-                     :disabled="meta.disabled"
-                     track-by="value"
-                     :searchable="true"
-                     @search-change="searchChange"
-                     :placeholder="meta && meta.placeHolder !== null ? meta.placeHolder : label ? label : ''"
-                     label="label"
-                     :options="options"
-                     :class="meta.info_url ? 'with-info-caller' : ''"
-        >
-            <template slot="caret"
-                      slot-scope="{ toggle }"
-                      @mousedown.prevent.stop="toggle">
-                <div class="caret-container">
-                    <div :class="addAble ? 'multiselect__select addable-caret' : 'multiselect__select'">
-                    </div>
-                    <Button v-if="addAble" @click="showAddModal" type="success"
-                            shape="circle" size="small"
-                            icon="md-add"></Button>
-                </div>
-            </template>
-        </multiselect>
+<!--            <template slot="caret"-->
+<!--                      slot-scope="{ toggle }"-->
+<!--                      @mousedown.prevent.stop="toggle">-->
+<!--                <div class="caret-container">-->
+<!--                    <div :class="addAble ? 'multiselect__select addable-caret' : 'multiselect__select'">-->
+<!--                    </div>-->
+<!--                    <Button v-if="addAble" @click="showAddModal" type="success"-->
+<!--                            shape="circle" size="small"-->
+<!--                            icon="md-add"></Button>-->
+<!--                </div>-->
+<!--            </template>-->
 
-        <div v-if="meta.info_url" class="info-caller">
-            <Button shape="circle" type="primary"  icon="ios-help-circle" size="small" @click="showInfoModal"></Button>
-        </div>
+        </a-select>
 
-        <Modal
-            :min-width="200"
-            :min-height="100"
-            :draggable="true"
-            :footer-hide="true"
-            :title="label"
-            width="800"
-            height="70%"
-            v-model="modal_show"
-            v-if="addAble"
-        >
-            <section class="add-modal" v-if="modal_show">
+<!--        <div v-if="meta.info_url" class="info-caller">-->
+<!--            <Button shape="circle" type="primary"  icon="ios-help-circle" size="small" @click="showInfoModal"></Button>-->
+<!--        </div>-->
+
+<!--        <Modal-->
+<!--            :min-width="200"-->
+<!--            :min-height="100"-->
+<!--            :draggable="true"-->
+<!--            :footer-hide="true"-->
+<!--            :title="label"-->
+<!--            width="800"-->
+<!--            height="70%"-->
+<!--            v-model="modal_show"-->
+<!--            v-if="addAble"-->
+<!--        >-->
+<!--            <section class="add-modal" v-if="modal_show">-->
 
 
-                <div class="add-body">
-                    <dataform ref="form" :schemaID="meta.relation.addFrom"
-                              :editMode="false"
-                              :onSuccess="onSuccess"
-                              :url="addFromUrl()"
-                              :do_render="modal_show"
-                              :onError="onError"></dataform>
-                </div>
-            </section>
-        </Modal>
-    </a-form-item>
-
+<!--                <div class="add-body">-->
+<!--                    <dataform ref="form" :schemaID="meta.relation.addFrom"-->
+<!--                              :editMode="false"-->
+<!--                              :onSuccess="onSuccess"-->
+<!--                              :url="addFromUrl()"-->
+<!--                              :do_render="modal_show"-->
+<!--                              :onError="onError"></dataform>-->
+<!--                </div>-->
+<!--            </section>-->
+<!--        </Modal>-->
+    </lambda-form-item>
 </template>
 
 <script>
-
-    import {isValid} from "../utils/methods"
-
+import mixin from "./_mixin"
     export default {
-        props: ["model", "rule", "label", "meta", "disabled", "relation_data", "do_render", "showInformationModal"],
+        mixins:[mixin],
         computed: {
                 lang() {
                     const labels = ['dataNotFound', ];
@@ -107,68 +73,32 @@
                         return obj;
                     }, {});
                 },
-            options() {
-                if (isValid(this.meta) && isValid(this.meta.options) && this.meta.options.length >= 1) {
-                    if(this.searchval)
-                    return this.filterOption(this.meta.options).filter(entry => entry.label.toLowerCase().includes(this.searchval.toLowerCase()));
-                    return this.filterOption(this.meta.options)
-                } else {
-                    if(this.searchval)
-                    return this.filterOption(this.relation_data).filter(entry => entry.label.toLowerCase().includes(this.searchval.toLowerCase()));
-                    return this.filterOption(this.relation_data);
-                }
-            },
+
         },
         data() {
             return {
-                value: null,
-                ignoreChange: false,
+                selectValue: null,
                 addAble: false,
-                clearAble:false,
                 modal_show: false,
-                searchval:null
             }
         },
         methods: {
-            isValid: isValid,
-            filterOption(options) {
-                if (options) {
-                    if (this.$props.meta.relation.parentFieldOfForm) {
-                        if (this.$props.model.form[this.$props.meta.relation.parentFieldOfForm]) {
-                            let filteredOptions = options.filter(option => option.parent_value == this.$props.model.form[this.$props.meta.relation.parentFieldOfForm]);
-                            this.initialValue(filteredOptions);
-                            return filteredOptions;
-                        } else {
-                            return options ? options : [];
-                        }
+            changeValue(val) {
+                // console.log(val)
+                if (val !== undefined && val !== null )  {
+                    if (this.meta.relation.multiple === true) {
+                        this.model.form[this.model.component] =  val.join(',')
                     } else {
-                        this.initialValue(options);
-                        return options ? options : [];
-                    }
-                }
-                return [];
-            },
-            searchChange (val) {
-                this.searchval = val;
-            },
-            initialValue(options) {
-                if (!this.ignoreChange) {
-                    if (this.model.form[this.model.component]) {
-                        //If multiple
-                        if (this.meta.relation.multiple == true) {
-                            let selectedData = this.model.form[this.model.component].toString().split(',');
-                            let filtered = options.filter(item => selectedData.includes(item.value.toString()));
-                            if(filtered.length >= 1)
-                            this.value = filtered
-
+                        if (val === "") {
+                            this.model.form[this.model.component] = null;
+                        } else  if(!isNaN(val)) {
+                            this.model.form[this.model.component] = val*1;
                         } else {
-                            let filtered = options.filter(item => item.value == this.model.form[this.model.component]);
-                            this.value = filtered.length >= 1 ? filtered[0] : null;
+                            this.model.form[this.model.component] = val;
                         }
-                    } else {
-                        //trigger ajillah uyd umnuh ugugdluu tseverleh
-                        this.value = null;
                     }
+                } else {
+                    this.model.form[this.model.component] = null;
                 }
             },
             addFromUrl(){
@@ -187,17 +117,10 @@
             },
             showAddModal() {
                 this.modal_show = true;
-               // this.$modal.show(`add-modal-${this.model.component}`);
             },
-            clearState()
-            {
-                this.value=null;
-                this.clearAble=false;
-                Vue.set(this.model.form, this.model.component, null);
-            },
+
             closeModal() {
                 this.modal_show = false;
-              //  this.$modal.hide(`add-modal-${this.model.component}`);
             },
             //Form functions
             onSuccess(val) {
@@ -225,6 +148,47 @@
                 } else {
                     this.$Message.success(this.lang.dataNotFound);
                 }
+            },
+            search(v){
+                console.log(v)
+            },
+            initialValue (options) {
+                if (this.model.form[this.model.component]) {
+
+                    if (this.model.form[this.meta.relation.parentFieldOfForm]) {
+                        let foundIndex = options.findIndex(option => option.value === this.model.form[this.model.component])
+                        if (foundIndex >= 0) {
+                            this.setSelectValue()
+                        } else {
+                            this.setNull()
+                        }
+                    } else {
+                        this.setSelectValue()
+                    }
+                } else {
+                    this.setNull()
+                }
+            },
+            setSelectValue () {
+                if (this.meta.relation.multiple === true && this.model.form[this.model.component] !== '') {
+                    this.selectValue = this.model.form[this.model.component].split(',').map(v => {
+                        if (!isNaN(v)) {
+                            return v * 1
+                        } else {
+                            return v
+                        }
+                    })
+                } else {
+
+                    this.selectValue = this.model.form[this.model.component]
+                }
+            },
+            setNull () {
+                if (this.meta.relation.multiple === true) {
+                    this.selectValue = []
+                } else {
+                    this.selectValue = null
+                }
             }
         },
         watch: {
@@ -233,42 +197,12 @@
                     this.value = null;
                     this.clearAble=false;
                     this.ignoreChange = false;
-                    Vue.set(this.model.form, this.model.component, this.meta.default ? this.meta.default : undefined);
+                    // Vue.set(this.model.form, this.model.component, this.meta.default ? this.meta.default : undefined);
                 } else {
-                    if (this.model.form[this.model.component]) {
-                        let value = this.model.form[this.model.component];
-                        //If multiple
-                        if (this.meta.relation.multiple == true) {
-                            let selectedData = value.toString().split(',');
-                            this.value = this.options.filter(item => selectedData.includes(item.value.toString()));
-                        } else {
-                            let filtered = this.options.filter(item => item.value == value);
-                            this.value = filtered.length >= 1 ? filtered[0] : null;
-                        }
-                        this.clearAble=true;
-                    }
-                }
-            },
-            value(val) {
-                if (val) {
-                    //trigger ajillah uyd ugugdluu solihgui haav
-                    //this.ignoreChange = true;
-                    if (this.meta.relation.multiple == true) {
-                        Vue.set(this.model.form, this.model.component, val.map(vv => vv['value']).join(','));
-                    } else {
-                        if (val['value'] == "" || val['value'] === null) {
-                            Vue.set(this.model.form, this.model.component, null);
-                        } else  if(!isNaN(val['value'])) {
-                            Vue.set(this.model.form, this.model.component, val['value']*1);
-                        } else {
-                            Vue.set(this.model.form, this.model.component, val['value']);
-                        }
-                    }
-                    this.clearAble=true;
+
                 }
             },
         },
-
         created() {
             if (this.meta.relation.addAble && this.meta.relation.addFrom) {
                 this.addAble = true;

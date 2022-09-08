@@ -11,14 +11,6 @@
 import mixin from "./_mixin"
 export default {
     mixins:[mixin],
-        computed: {
-            options() {
-                if (this.meta.options.length >= 1) {
-                    return this.meta.options;
-                } else {
-                    return this.relation_data;
-                }
-            }
-        }
+
     };
 </script>

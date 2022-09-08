@@ -465,11 +465,12 @@ export default {
                     this.$data.model[name] = [];
                     break
                 case 'Select':
-                    if (value == '' || value === null) {
+                    if (value === '' || value === null) {
                         this.$data.model[name] = null;
                     } else if (!isNaN(value)) {
                         this.$data.model[name] = value * 1;
                     } else {
+
                         this.$data.model[name] = value;
                     }
                     break
