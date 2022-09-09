@@ -1,5 +1,5 @@
 <template>
-    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
+    <lambda-form-item  :label=label  :name="model.component" :meta="meta">
         <Vue3JsonEditor v-model="json" :show-btns="false"  :disabled="disabled"  @json-change="onJsonChange"></Vue3JsonEditor>
     </lambda-form-item>
 </template>

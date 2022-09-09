@@ -1,5 +1,5 @@
 <template>
-    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
+    <lambda-form-item  :label=label  :name="model.component" :meta="meta">
         <a-input-number type="number"
                         v-if="meta.no_format"
                v-model:value="model.form[model.component]"

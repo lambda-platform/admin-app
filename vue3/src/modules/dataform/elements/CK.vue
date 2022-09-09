@@ -1,5 +1,5 @@
 <template>
-    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
+    <lambda-form-item  :label=label  :name="model.component" :meta="meta">
         <ckeditor ref="ckeditor" :editor="editor" v-model="model.form[model.component]"
                   :config="editorConfig" :key="meta.editorType"
 

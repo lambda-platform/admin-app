@@ -1,5 +1,5 @@
 <template>
-    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
+    <lambda-form-item  :label=label  :name="model.component" :meta="meta">
         <div class="qgis-map">
             <Spin fix v-if="isLoading"></Spin>
             <Spin fix v-if="isLoadingLayer"></Spin>

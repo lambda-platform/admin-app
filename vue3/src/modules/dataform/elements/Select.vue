@@ -1,5 +1,5 @@
 <template>
-    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
+    <lambda-form-item  :label=label  :name="model.component" :meta="meta">
         <a-select
                   v-model:value="selectValue"
                   :disabled="disabled"

@@ -30,7 +30,9 @@ export default {
   data() {
     return {
       en_US,
-      mn_MN,
+      mn_MN:{...mn_MN, Image:{
+          preview:"Харах"
+        }},
       loading:true
     };
   },

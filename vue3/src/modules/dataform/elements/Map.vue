@@ -1,6 +1,6 @@
 <template>
     <div class="lambda-map-wrapper">
-        <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
+        <lambda-form-item  :label=label  :name="model.component" :meta="meta">
             <div class="lambda-lat-lng">
                 <a-input v-model:value="center.lat" :placeholder="lang.latitude" @on-blur="updateLat" />
                 <Input v-model:value="center.lng" :placeholder="lang.longitude" />

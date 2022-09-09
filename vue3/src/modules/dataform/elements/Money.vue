@@ -1,5 +1,5 @@
 <template>
-    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
+    <lambda-form-item  :label=label  :name="model.component" :meta="meta">
         <a-input-number
             v-model:value="model.form[model.component]"
             :formatter="value => `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')"

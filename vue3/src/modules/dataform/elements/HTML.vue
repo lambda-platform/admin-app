@@ -1,5 +1,5 @@
 <template>
-    <lambda-form-item :rule="rule" :label=label  :name="model.component" :meta="meta">
+    <lambda-form-item  :label=label  :name="model.component" :meta="meta">
         <div class="html-prev" v-html="model.form[model.component]" ></div>
     </lambda-form-item>
 </template>

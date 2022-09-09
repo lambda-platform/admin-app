@@ -1,5 +1,5 @@
 <template>
-    <a-form-item :rules=rule :label=label :name="name">
+    <a-form-item :label=label :name="name">
         <slot  :disabled="meta && meta.disabled ? meta.disabled : false"></slot>
         <template #help v-if="meta.warn !== '' && meta.warn !== undefined">
             {{meta.warn}}
@@ -9,6 +9,6 @@
 
 <script>
 export default {
-    props: ["rule", "label", "name", "meta"],
+    props: ["label", "name", "meta"],
 };
 </script>

@@ -1,176 +1,181 @@
 <template>
-    <a-form-item :rules=rule>
-        <div class="multi-upload" v-if="meta.file && meta.file.isMultiple == true">
-            <label>{{ label }} </label>
+    <lambda-form-item :label=label :name="model.component" :meta="meta">
 
-            <div class="multi-upload-list">
-                <div class="upload-list" v-for="item in uploadList" :key="item.index">
-                    <template v-if="item.status == 'finished'">
-                        <img v-if="item.response" :src="`${url ? url : ''}${item.response}`" @click="handleView(item.response)">
-                        <div class="upload-control" @click="handleRemove(item)"
-                             v-show="meta && meta.disabled ? false : true">{{ lang._delete }}
-                        </div>
-                    </template>
-
-                    <template v-else>
-                        <Progress v-if="item.showProgress" :percent="item.percentage" hide-info></Progress>
-                    </template>
-                </div>
-
-                <Upload
-                    ref="upload"
-                    multiple
-                    :with-credentials="true"
-                    :action="`${url ? url : ''}/lambda/krud/upload`"
-                    :show-upload-list="false"
-                    :default-file-list="defaultList"
-                    :on-success="success"
-                    :before-upload="beforeUpload"
-                    :disabled="meta && meta.disabled ? meta.disabled : false"
-                >
-                    <div class="upload-handler">
-                        <i class="ti ti-camera"></i>
-                    </div>
-                </Upload>
-            </div>
-        </div>
-
-        <Upload
-            ref="upload"
-            v-else
-            :with-credentials="true"
-            v-model="model.form[model.component]"
+        <a-upload
+            v-model:file-list="uploadList"
+            :multiple="this.meta.file.isMultiple"
+            name="file"
+            list-type="picture-card"
             :action="`${url ? url : ''}/lambda/krud/upload`"
-            :on-success="success"
-            :disabled="meta && meta.disabled ? meta.disabled : false">
-            <a-button type="dashed" class="upload-btn">
-                <img class="preview-img" v-if="this.model.form[this.model.component] != null"
+            @preview="handleView"
+            @change="handleChange"
+            @remove="handleRemove"
+        >
+            <div>
+                <loading-outlined v-if="loading"></loading-outlined>
+                <i class="ti ti-camera" v-else></i>
+                <div class="ant-upload-text">{{ label }}</div>
+            </div>
+        </a-upload>
+        <a-image
+            :width="200"
+            :style="{ display: 'none' }"
+            :preview="{
+                visible:showImage,
+                onVisibleChange:onVisibleChange
+            }"
+            :src="showImageUrl"
+        />
 
-                     :src="`${url ? url : ''}${model.form[model.component]}`"
-                     alt="image">
-                <div>
-                    <i class="ti ti-camera"></i>
-                    {{ label }}
-                </div>
-            </a-button>
-        </Upload>
-
-        <Modal :title="lang.viewPhotos" v-model="showImage" width="1000px">
-            <img
-
-                 :src="`${url ? url : ''}${showImageUrl}`"
-                 v-if="showImage" style="width: 100%">
-        </Modal>
-    </a-form-item>
+    </lambda-form-item>
 </template>
 
 <script>
+import mixin from './_mixin'
+import { message } from 'ant-design-vue'
+import { PlusOutlined, LoadingOutlined } from '@ant-design/icons-vue'
 
 export default {
-    props: ["model", "label", "rule", "meta", "do_render", "url"],
+    mixins: [mixin],
+    components: {
+        LoadingOutlined,
+        PlusOutlined,
+    },
     computed: {
-        lang() {
+        lang () {
             const labels = ['viewPhotos', '_delete'
-            ];
+            ]
             return labels.reduce((obj, key, i) => {
-                obj[key] = this.$t('dataForm.' + labels[i]);
-                return obj;
-            }, {});
+                obj[key] = this.$t('dataForm.' + labels[i])
+                return obj
+            }, {})
         },
     },
-    mounted() {
-        this.uploadList = typeof this.$refs.upload.fileList != 'undefined' ? this.$refs.upload.fileList : [];
+    mounted () {
+
+        this.init()
     },
-    data() {
+    data () {
         return {
             defaultList: [],
             uploadList: [],
             showImage: false,
-            showImageUrl: ''
+            showImageUrl: '',
+            loading: false
         }
     },
 
     watch: {
-        'model.form'(val) {
 
-            let itemModel = val[this.model.component];
-            if (typeof this.meta.file.isMultiple !== 'undefined' && this.meta.file.isMultiple) {
-                if (typeof itemModel == 'string' && typeof itemModel != 'undefined' && itemModel != null) {
-
-                    let list = JSON.parse(this.model.form[this.model.component]);
-
-                    if (Array.isArray(list)) {
-                        this.defaultList = list.map(item => {
-                            return {
-                                status: 'finished',
-                                response: item.response,
-                                name: item.name
-                            }
-                        });
-
-                        this.$nextTick(() => {
-                            this.uploadList = this.$refs.upload.fileList;
-                        })
-                    }
-                } else {
-                    this.$refs.upload.fileList = [];
-                    this.uploadList = [];
-                    this.model.form[this.model.component] = null;
+        itemValue (value, oldValue) {
+            if ((oldValue && !value) || (value && !oldValue)) {
+                if (value) {
+                    this.init()
                 }
-            }
-        },
-        do_render(value) {
-            if (!value) {
-
-                this.$refs.upload.fileList = [];
             }
         }
 
     },
 
     methods: {
+        init () {
 
-        handleView(imageUrl) {
-            this.showImage = true;
-            this.showImageUrl = imageUrl;
+            if (this.model.form[this.model.component]) {
+                if (typeof this.meta.file.isMultiple !== 'undefined' && this.meta.file.isMultiple) {
+                    if (JSON.stringify(this.uploadList !== this.model.form[this.model.component])) {
+                        let list = JSON.parse(this.model.form[this.model.component])
+                        if (Array.isArray(list)) {
+                            this.uploadList = list
+                        }
+                    }
+                } else {
+                    if (this.uploadList.length >= 1) {
+                        if (this.uploadList[0].response !== this.model.form[this.model.component]) {
+                            this.uploadList = [{
+                                status: 'done',
+                                thumbUrl: this.model.form[this.model.component],
+                                response: this.model.form[this.model.component],
+                            }]
+                        }
+                    } else {
+                        this.uploadList = [{
+                            status: 'done',
+                            thumbUrl: this.model.form[this.model.component],
+                            response: this.model.form[this.model.component],
+                        }]
+                    }
+                }
+            }
+
+        },
+        onVisibleChange (v) {
+            this.showImage = v
+        },
+        handleView (file) {
+            this.showImage = true
+            this.showImageUrl = file.response
+        },
+        handleChange (info) {
+
+            if (info.file.status === 'uploading') {
+                this.loading = true
+
+                return
+            }
+            if (info.file.status === 'done') {
+
+                if (!this.meta.file.isMultiple) {
+                    this.model.form[this.model.component] = info.file.response
+                    this.uploadList = [{
+                        status: 'done',
+                        thumbUrl: this.model.form[this.model.component],
+                        response: this.model.form[this.model.component],
+                        name: info.file.name
+                    }]
+                } else {
+                    this.uploadList = this.uploadList.map(u => {
+                        return {
+                            status: 'done',
+                            thumbUrl: u.response,
+                            response: u.response,
+                            name: u.name
+                        }
+                    })
+                    this.model.form[this.model.component] = JSON.stringify(this.uploadList)
+                }
+                this.loading = false
+            }
+            if (info.file.status === 'error') {
+                this.loading = false
+                message.error('upload error')
+            }
         },
 
-        success(val) {
+        success (val) {
 
             if (this.meta.file.isMultiple) {
-                this.uploadList = this.$refs.upload.fileList;
+                this.uploadList = this.$refs.upload.fileList
                 this.model.form[this.model.component] = JSON.stringify(this.uploadList.map(item => {
                     return {
                         name: item.name,
                         response: item.response
                     }
-                }));
+                }))
             } else {
-                this.model.form[this.model.component] = val;
+                this.model.form[this.model.component] = val
             }
         },
 
-        handleRemove(file) {
-            const fileList = this.$refs.upload.fileList;
-            this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
-            this.uploadList = this.$refs.upload.fileList;
-            this.model.form[this.model.component] = this.uploadList.map(item => {
-                return {
-                    name: item.name,
-                    response: item.response
-                }
-            })
+        handleRemove (e) {
+
+            if (this.meta.file.isMultiple) {
+                this.model.form[this.model.component] = JSON.stringify(this.uploadList.filter(u=>u.response !== e.response))
+            } else {
+                this.model.form[this.model.component] = null
+            }
+
         },
 
-        beforeUpload() {
-            // const check = this.uploadList.length < 5;
-            // if (!check) {
-            //     this.$Notice.warning({
-            //         title: 'Up to five pictures can be uploaded.'
-            //     });
-            // }
-            // return check;
-        }
     }
-};
+}
 </script>

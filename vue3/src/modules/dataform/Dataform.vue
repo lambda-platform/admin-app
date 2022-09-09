@@ -2,6 +2,7 @@
     <div :class="viewMode ? 'dataform view-mode' : 'dataform'">
         <a-form :ref="meta.model +'-'+ schemaID" :model='model' :label-position=meta.option.labelPosition
               :layout="meta.option.labelPosition === 'top' ? 'vertical' : 'horizontal'"
+                :rules="rule"
                 @finish="handleSubmit"
         >
             <div class='dataform-header' v-if="!hideTitle">
@@ -46,7 +47,6 @@
                                             :model='{form: model, component: item.model}'
                                             :disabled='item.disabled ? item.disabled : false'
                                             :label='item.label ? item.label : `[${item.model}]`'
-                                            :rule='rule[item.model]'
                                             :meta='setMeta(item)'
                                             :identity='identity'
                                             :url='url'
@@ -93,7 +93,6 @@
                                             :url='url'
                                             :disabled='item.disabled ? item.disabled : false'
                                             :label='item.label ? item.label : `[${item.model}]`'
-                                            :rule='rule[item.model]'
                                             :meta='setMeta(item)'
                                             :identity='identity'
                                             :getSchemaByModel='getSchemaByModel'
