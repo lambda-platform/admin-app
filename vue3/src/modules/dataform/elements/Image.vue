@@ -146,8 +146,9 @@ export default {
                 this.loading = false
             }
             if (info.file.status === 'error') {
-                this.loading = false
-                message.error('upload error')
+                this.uploadList = this.uploadList.filter(u=>u.status === 'done');
+                this.loading = false;
+                message.error(this.$t("alertMessage.errorMsg"))
             }
         },
 
