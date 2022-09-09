@@ -1,47 +1,180 @@
 <template>
-    <a-form-item :label="label" :rules=rule>
+    <lambda-form-item :label=label :name="model.component" :meta="meta">
+
         <div class="file-uploader">
-            <Upload    :action="`${url ? url : ''}/lambda/krud/upload`"
-                    v-model="model.form[model.component]"
-                    :on-success="success"
-                    :disabled="meta && meta.disabled ? meta.disabled : false"
+            <a-upload
+                v-model:file-list="uploadList"
+                :multiple="this.meta.file.isMultiple"
+                name="file"
+                list-type="picture-card"
+                :action="`${url ? url : ''}/lambda/krud/upload`"
+                @preview="handleView"
+                @change="handleChange"
+                @remove="handleRemove"
             >
-                <div class="file-upload-handler">
-                    <i class="ti-camera"></i> <span>{{lang.pleaseSelectFile}}</span>
+                <div>
+                    <loading-outlined v-if="loading"></loading-outlined>
+                    <i class="ti ti-file" v-else></i>
+                    <div class="ant-upload-text">{{ lang.pleaseSelectFile }}</div>
                 </div>
-            </Upload>
-            <div v-if="model.form[model.component] != null && model.form[model.component] != ''" class="file-control">
-                <a :href="model.form[model.component]" target="_blank" download> <i class="ti-download"></i>{{lang.download}}</a>
-                <a :href="model.form[model.component]" target="_blank"> <i class="ti-eye"></i>{{lang.view}}</a>
-            </div>
+            </a-upload>
+
         </div>
-    </a-form-item>
+
+    </lambda-form-item>
 </template>
 
 <script>
+import mixin from './_mixin'
+import { message } from 'ant-design-vue'
+import { PlusOutlined, LoadingOutlined } from '@ant-design/icons-vue'
 
-    export default {
-        props: ["model", "label", "rule", "meta", "url"],
+export default {
+    mixins: [mixin],
+    components: {
+        LoadingOutlined,
+        PlusOutlined,
+    },
+    computed: {
+        lang () {
+            const labels = ['viewPhotos', '_delete', 'pleaseSelectFile'
+            ]
+            return labels.reduce((obj, key, i) => {
+                obj[key] = this.$t('dataForm.' + labels[i])
+                return obj
+            }, {})
+        },
+    },
+    mounted () {
 
-        computed: {
-            lang() {
-                const labels = ['pleaseSelectFile', 'download', 'view', ''
-                ];
-                return labels.reduce((obj, key, i) => {
-                    obj[key] = this.$t('dataForm.' + labels[i]);
-                    return obj;
-                }, {});
-            },
+        this.init()
+    },
+    data () {
+        return {
+            defaultList: [],
+            uploadList: [],
+            showImage: false,
+            showImageUrl: '',
+            loading: false
+        }
+    },
+
+    watch: {
+
+        itemValue (value, oldValue) {
+            if ((oldValue && !value) || (value && !oldValue)) {
+                if (value) {
+                    this.init()
+                }
+            }
+        }
+
+    },
+
+    methods: {
+        init () {
+
+            if (this.model.form[this.model.component]) {
+                if (typeof this.meta.file.isMultiple !== 'undefined' && this.meta.file.isMultiple) {
+                    if (JSON.stringify(this.uploadList !== this.model.form[this.model.component])) {
+                        let list = JSON.parse(this.model.form[this.model.component])
+                        if (Array.isArray(list)) {
+                            this.uploadList = list
+                        }
+                    }
+                } else {
+                    if (this.uploadList.length >= 1) {
+                        if (this.uploadList[0].response !== this.model.form[this.model.component]) {
+                            this.uploadList = [{
+                                status: 'done',
+                                thumbUrl: this.model.form[this.model.component],
+                                response: this.model.form[this.model.component],
+                            }]
+                        }
+                    } else {
+                        this.uploadList = [{
+                            status: 'done',
+                            thumbUrl: this.model.form[this.model.component],
+                            response: this.model.form[this.model.component],
+                        }]
+                    }
+                }
+            }
+
+        },
+        onVisibleChange (v) {
+            this.showImage = v
+        },
+        handleView (file) {
+
+            this.showImageUrl = file.response
+
+            const a = document.createElement('a')
+            a.href = file.response;
+            a.click()
+        },
+        handleChange (info) {
+
+            if (info.file.status === 'uploading') {
+                this.loading = true
+
+                return
+            }
+            if (info.file.status === 'done') {
+
+                if (!this.meta.file.isMultiple) {
+                    this.model.form[this.model.component] = info.file.response
+                    this.uploadList = [{
+                        status: 'done',
+                        thumbUrl: this.model.form[this.model.component],
+                        response: this.model.form[this.model.component],
+                        name: info.file.name
+                    }]
+                } else {
+                    this.uploadList = this.uploadList.map(u => {
+                        return {
+                            status: 'done',
+                            thumbUrl: u.response,
+                            response: u.response,
+                            name: u.name
+                        }
+                    })
+                    this.model.form[this.model.component] = JSON.stringify(this.uploadList)
+                }
+                this.loading = false
+            }
+            if (info.file.status === 'error') {
+                this.uploadList = this.uploadList.filter(u=>u.status === 'done');
+                this.loading = false;
+                message.error(this.$t("alertMessage.errorMsg"))
+            }
         },
 
+        success (val) {
 
+            if (this.meta.file.isMultiple) {
+                this.uploadList = this.$refs.upload.fileList
+                this.model.form[this.model.component] = JSON.stringify(this.uploadList.map(item => {
+                    return {
+                        name: item.name,
+                        response: item.response
+                    }
+                }))
+            } else {
+                this.model.form[this.model.component] = val
+            }
+        },
 
-        methods: {
-            success(val) {
-                this.model.form[this.model.component] = val;
-            },
-        }
-    };
+        handleRemove (e) {
+
+            if (this.meta.file.isMultiple) {
+                this.model.form[this.model.component] = JSON.stringify(this.uploadList.filter(u=>u.response !== e.response))
+            } else {
+                this.model.form[this.model.component] = null
+            }
+
+        },
+
+    }
+}
 </script>
-
-
