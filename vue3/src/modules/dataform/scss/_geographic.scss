@@ -4,6 +4,7 @@
   width: 100%;
   position: relative;
   overflow: hidden;
+    border: 1px solid #eee;
     #geographic{
         z-index: 1;
     }
@@ -123,9 +124,7 @@
   height: 450px;
 
   position: relative;
-  &.open-side{
-    width: calc(100% - 320px);
-  }
+
 
   #base-maps{
     z-index: 4;

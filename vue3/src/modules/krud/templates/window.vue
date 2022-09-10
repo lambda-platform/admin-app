@@ -145,6 +145,7 @@ export default {
         .crud-page-body {
             height: 100%;
             margin: 0 !important;
+            overflow-y: auto;
 
             .dg-flex {
                 flex: 1;

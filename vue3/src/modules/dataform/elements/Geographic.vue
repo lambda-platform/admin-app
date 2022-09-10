@@ -1,7 +1,7 @@
 <template>
-    <a-form-item :rules=rule :label=label  :name="model.component">
+    <lambda-form-item :label=label :name="model.component" :meta="meta">
         <div class="geographic">
-            <div id="geographic" :class="openSide ? 'open-side' : ''" style="height: 100%; width: 100%">
+            <div id="geographic"  style="height: 100%; width: 100%">
 
 
                 <div id="base-maps">
@@ -16,28 +16,30 @@
                 </div>
             </div>
             <div id="side_bar" :class="openSide ? 'open' : ''">
-                <Button @click="openSide = !openSide" :icon="openSide ? 'ios-arrow-forward' : 'ios-arrow-back'"
-                        :class="openSide ? 'side-toggle show' : 'side-toggle'"></Button>
+                <a-button @click="openSide = !openSide"
+                        :class="openSide ? 'side-toggle show' : 'side-toggle'">
+                    <template #icon>
+                        <RightSquareOutlined v-if="openSide" />
+                        <LeftSquareOutlined v-else />
+                    </template>
+                </a-button>
 
 
                 <h3>{{lang.graphicsManagement}}</h3>
                 <hr>
 
 
-                <RadioGroup v-model="geometryType" class="geometry_type" v-if="allowMultiGeometryTypes">
-                    <Radio label="point" :disabled="current !== null">
-
+                <a-radio-group v-model:value="geometryType" class="geometry_type" v-if="allowMultiGeometryTypes">
+                    <a-radio value="point" :disabled="current !== null">
                         <span>{{lang.point}}</span>
-                    </Radio>
-                    <Radio label="line" :disabled="current !== null">
-
+                    </a-radio>
+                    <a-radio value="line" :disabled="current !== null">
                         <span>Line</span>
-                    </Radio>
-                    <Radio label="polygon" :disabled="current !== null">
-
+                    </a-radio>
+                    <a-radio value="polygon" :disabled="current !== null">
                         <span>{{lang.polygon}}</span>
-                    </Radio>
-                </RadioGroup>
+                    </a-radio>
+                </a-radio-group>
 
                 <hr>
 
@@ -69,8 +71,8 @@
                     </tbody>
                 </table>
 
-                <Button type="success" @click="saveGraphic" v-if="points.length >= 1">{{lang.save}}</Button>
-                <Button type="warning" @click="cancelGraphic" v-if="points.length >= 1">{{lang.cancel}}</Button>
+                <a-button type="success" @click="saveGraphic" v-if="points.length >= 1">{{lang.save}}</a-button>
+                <a-button type="warning" @click="cancelGraphic" v-if="points.length >= 1">{{lang.cancel}}</a-button>
 
 
                 <!--<Button type="success" @click="getData">Get data</Button>-->
@@ -102,19 +104,35 @@
 
             <!--</div>-->
         </div>
-    </a-form-item>
+    </lambda-form-item>
 </template>
 <script>
 
-import leaflet from "leaflet"
-window.leaflet = leaflet
-
+import { LeftSquareOutlined, RightSquareOutlined } from '@ant-design/icons-vue';
+import "leaflet";
+import shadowUrl from  "leaflet/dist/images/marker-shadow.png";
+import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
+import iconUrl from "leaflet/dist/images/marker-icon.png";
 import "esri-leaflet";
 import "leaflet-draw";
-import * as turf from 'turf'
 
+
+const iconDefault = L.icon({
+    iconRetinaUrl,
+    iconUrl,
+    shadowUrl,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28],
+    shadowSize: [41, 41]
+});
+
+import * as turf from 'turf'
+import mixin from './_mixin'
 export default {
-    props: ["model", "rule", "label", "meta", "do_render", "editMode", "is_show"],
+    mixins: [mixin],
+
     computed: {
         lang() {
             const labels = ['save', 'cancel', 'longitude', 'latitude', 'graphicsManagement', 'polygon', 'point', 'noSiteFound',  'theSiteHasNotBeenSelected',
@@ -124,9 +142,6 @@ export default {
                 obj[key] = this.$t('dataForm.' + labels[i]);
                 return obj;
             }, {});
-        },
-        geo_data() {
-            return this.model.form[this.model.component];
         },
         options() {
             return this.meta.options;
@@ -140,7 +155,10 @@ export default {
                 return undefined;
         }
     },
-    components: {},
+    components: {
+        LeftSquareOutlined,
+        RightSquareOutlined
+    },
     mounted() {
         if (this.meta.GeographicOption) {
             this.zoom = this.meta.GeographicOption.zoom;
@@ -524,6 +542,12 @@ export default {
         },
         initMap() {
             console.log("MAP INITING")
+            L.Marker.prototype.options.icon = iconDefault;
+
+
+            L.Draw.Marker.prototype.options.icon = iconDefault;
+
+
             var container = L.DomUtil.get('geographic');
             if(container != null){
                 container._leaflet_id = null;
@@ -532,7 +556,7 @@ export default {
 
             this.map.addLayer(this.baseMaps[this.currentBaseMap].baseMap);
 
-            if (!this.geo_data) {
+            if (!this.itemValue) {
 
                 this.layer.eachLayer((layer) => {
 
@@ -544,16 +568,16 @@ export default {
 
             this.draw = new L.Control.Draw({
                 draw: {
-                    polygon: !this.allowMultiGeometryTypes ? this.geometryType == 'polygon' ? true : false : true,
-                    rectangle: !this.allowMultiGeometryTypes ? this.geometryType == 'polygon' ? true : false : true,
-                    marker: !this.allowMultiGeometryTypes ? this.geometryType == 'point' ? true : false : true,
-                    polyline: !this.allowMultiGeometryTypes ? this.geometryType == 'line' ? true : false : true,
+                    polygon: !this.allowMultiGeometryTypes ? this.geometryType === 'polygon' : true,
+                    rectangle: !this.allowMultiGeometryTypes ? this.geometryType === 'polygon' : true,
+                    marker: !this.allowMultiGeometryTypes ? this.geometryType === 'point' : true,
+                    polyline: !this.allowMultiGeometryTypes ? this.geometryType === 'line' : true,
                     circle: false,
                     circlemarker: false,
                 },
                 edit: {
                     featureGroup: this.layer, //REQUIRED!!
-                    remove: this.meta && this.meta.disabled ? false : true
+                    remove: !(this.meta && this.meta.disabled)
                 },
 
 
@@ -613,7 +637,7 @@ export default {
 
                 let geoJson = JSON.parse(this.model.form[this.model.component]);
 
-                if (this.geometryType == 'point') {
+                if (this.geometryType === 'point') {
                     geoJson = {
                         type: "FeatureCollection",
                         features: [
@@ -633,7 +657,7 @@ export default {
 
                     this.layer.addLayer(this.setLayerOptions(l));
                 });
-                this.map.fitBounds(this.layer.getBounds());
+                // this.map.fitBounds(this.layer.getBounds());
 
             }
             this.map.addLayer(this.layer);
@@ -832,7 +856,7 @@ export default {
             }
 
         },
-        geo_data(value, oldValue) {
+        itemValue(value, oldValue) {
 
 
             if(value && !oldValue){
@@ -850,7 +874,7 @@ export default {
                 if (!this.editMode) {
                     this.initMap();
                 } else{
-                    if(this.geo_data === null){
+                    if(this.itemValue === null){
                         this.initMap();
                     }
                 }
@@ -873,3 +897,8 @@ export default {
 
 };
 </script>
+<style lang="scss">
+@import "leaflet/dist/leaflet.css";
+
+
+</style>

@@ -31,6 +31,9 @@ export default defineNuxtConfig({
   css: [
     '~/assets/styles/components/loading.css',
     '@/assets/styles/tailwind.css',
+
+    "leaflet-draw/dist/leaflet.draw.css",
+
     // '~/assets/styles/theme/ant.less',
     // '~/assets/styles/theme/ant_light.less',
     // '~/assets/styles/theme/ant_dark.less',
