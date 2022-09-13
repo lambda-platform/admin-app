@@ -177,6 +177,7 @@
     margin: 0;
     line-height: 1;
     vertical-align: top;
+    margin-top: 4px;
     svg{
       height: 18px;
       width: 18px;
@@ -195,5 +196,10 @@
         fill:  $primary-color;
       }
     }
+  }
+}
+.ant-btn-sm{
+  .svg-icon{
+    margin-top: 2px;
   }
 }

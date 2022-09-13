@@ -3,14 +3,23 @@
         <h3 style="display: none">{{rowLength}}</h3>
         <div class="subform-header" v-if="!form.min_height && !form.disableCreate">
             {{ form.name }}
-            <Button shape="circle" type="success" size="small" @click="add" icon="md-add"
-                    class="sub-form-add-btn"></Button>
+            <a-button shape="circle" type="success" size="small" @click="add"
+                    class="sub-form-add-btn">
+                <template #icon>
+                     <span class="svg-icon ">
+                                 <inline-svg
+                                     src="/assets/icons/duotune/general/gen041.svg"
+                                 />
+                        </span>
+                </template>
+            </a-button>
+
         </div>
         <table border="1" >
             <thead>
             <tr>
                 <th class="row-number" v-if="form.showRowNumber">ДД</th>
-                <th @click="sort(item)" v-for="item in form.schema" v-if="item.label != '' && !item.hidden"
+                <th @click="sort(item)" v-for="item in form.schema.filter(i=>i.label !== '' && !i.hidden)"
                     :key="item.index">
                     <div class="th-title">
                     {{ item.label }}<i class="ti-exchange-vertical"/></div>
@@ -25,14 +34,19 @@
                        :model="item.model"
                        :editMode="editMode"
                        :relations="relations"
+                       :url='url'
                        :schema="form.schema"
                        :formula="formula">
-                <template slot="action" v-if="!form.disableDelete">
-                    <a href="javascript:void(0);" @click="remove(index)">
-                        <Icon type="ios-trash"/>
+                <template #action v-if="!form.disableDelete">
+                    <a href="javascript:void(0);" class="btn btn-icon" @click="remove(index)">
+                        <span class="svg-icon ">
+                                  <inline-svg
+                                      src="/assets/icons/duotone/General/Trash.svg"
+                                  />
+                        </span>
                     </a>
                 </template>
-                <template slot="rowNumber" v-if="form.showRowNumber">
+                <template #rowNumber v-if="form.showRowNumber">
                     <span>{{index+1}}</span>
                 </template>
             </grid-form>
@@ -50,13 +64,19 @@
             </tfoot>
         </table>
         <a class="sub-grid-add" href="javascript:void(0)" @click="add" v-if="form.min_height && !form.disableCreate">
-            <Icon type="plus"></Icon>
+             <span class="svg-icon ">
+                                 <inline-svg
+                                     src="/assets/icons/duotune/general/gen041.svg"
+                                 />
+                        </span>
             {{lang.add}}
         </a>
 
-        <paper-modal
+        <a-modal
             :name="`grid-modal-${form.sourceGridID}`"
+            v-model:visible="modal_grid_show"
             class="form-modal"
+            title="form.sourceGridModalTitle "
             :min-width="200"
             :min-height="100"
             :pivot-y="0.5"
@@ -68,21 +88,13 @@
             width="85%"
             height="50%"
         >
-            <section class="form-modal source-grid">
-                <div class="form-tool ">
+            <section class="form-modal source-grid" style="height: calc(100vh - 300px)">
 
-                    <h4>{{ form.sourceGridModalTitle }}</h4>
-                    <div class="form-tool-actions">
-                        <a href="javascript:void(0)" @click="closeSourceModal">
-                            <i class="ti-close"></i>
-                        </a>
-                    </div>
-                </div>
 
-                <div class="form-body" v-if="modal_grid_show">
+                <div class="form-body" v-if="modal_grid_show" >
 
-                  <div v-if="form.sourceGridTitle && form.sourceGridDescription" class="source-grid-description">
-                        <h3>
+                  <div v-if="form.sourceGridTitle || form.sourceGridDescription" class="source-grid-description">
+                        <h3 v-if="form.sourceGridTitle">
                             {{form.sourceGridTitle}}
                         </h3>
                       <p v-html="form.sourceGridDescription">
@@ -104,13 +116,24 @@
                           d:false,
                       }"
                   />
-                    <div class="add-from-pre-source">
-                        <Button shape="circle" type="success" size="small" @click="addFromPreSource" :disabled="preSource.length == 0" icon="md-add"
-                                class="sub-form-add-btn">Сонгох</Button>
-                    </div>
+
                 </div>
             </section>
-        </paper-modal>
+            <template #footer>
+                <div class="add-from-pre-source">
+                    <a-button  type="success" size="small" @click="addFromPreSource" :disabled="preSource.length === 0"
+                              class="sub-form-add-btn">
+                        <template #icon>
+                     <span class="svg-icon ">
+                                 <inline-svg
+                                     src="/assets/icons/duotune/general/gen041.svg"
+                                 />
+                        </span>
+                        </template>
+                        Сонгох</a-button>
+                </div>
+            </template>
+        </a-modal>
     </div>
 </template>
 
@@ -120,12 +143,16 @@
     import subFormMix from "./subFormMix";
 
     export default {
-        props: ["form", "model", "editMode", "relations", "formula"],
+        props: ["form", "model", "editMode", "relations", "formula", "url"],
         mixins: [subFormMix],
         components: {
             "grid-form": GridForm
         },
+        beforeMount () {
+            console.log(this.form)
+        },
         mounted() {
+
             this.equationRenderer();
         },
         computed: {
@@ -141,12 +168,12 @@
                 if (this.form.min_height) {
                     return {
                         minHeight: this.form.min_height + 'px',
-                        background: '#f3f4f5'
+
                     }
                 } else {
                     return {
                         minHeight: '30px',
-                        background: '#f3f4f5'
+
                     }
                 }
             },
@@ -275,7 +302,7 @@
                         return;
                     }
 
-                    Vue.set(clonedFormModel, item.model, item.default);
+                    clonedFormModel[item.model] = item.default;
                 });
 
                 let listItem = {

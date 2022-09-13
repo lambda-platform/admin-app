@@ -4,13 +4,17 @@
     width: 100% !important;
 }
 
-.v-select .selected-tag {
-    width: 100%;
+.ant-select, .ant-select-single  {
+    width: 100% !important;
 }
-
+.addable-select{
+    width: calc(100% - 32px) !important;
+}
 .with-info-caller{
-    width: calc(100% - 27px);
-    float: left;
+    width: calc(100% - 32px) !important;
+}
+.addable-select.with-info-caller{
+    width: calc(100% - 64px) !important;
 }
 .info-caller{
     width: 24px;

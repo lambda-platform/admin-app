@@ -6,7 +6,7 @@
 
     background: transparent;
 
-    .ivu-form-item-label{
+    .ant-form-item-label{
         display: none !important;
     }
     .subform-header {
@@ -68,100 +68,11 @@
                     font-size: 13px;
                     text-align: center;
                     vertical-align: middle;
-                    //overflow-y: hidden;
-                    /*.v-select {
-                        height: 20px;
-                        .dropdown-toggle {
-                            height: 20px;
-                            border: 0;
-                            line-height: 20px;
-                            &:hover, &:active, &:focus {
-                                border: 0 !important;
-                                outline: none !important;
-                            }
-                            .vs__selected-options {
-                                height: 20px;
-                            }
-                            input {
-                                max-height: 20px;
-                            }
-                        }
-                        .vs__actions {
-                            height: 20px !important;
-                        }
-                    }*/
-                    .multiselect {
-                        min-height: 22px;
-                        height: 22px;
 
-                        .multiselect__tags {
-                            min-height: 22px;
-                            border: none;
-                            margin: 0 2px;
-                            padding: 0 20px 0 6px;
-                            position: relative;
-                        }
-
-                        .multiselect__input, .multiselect__single {
-                            height: 22px;
-                        }
-
-                        .multiselect__placeholder {
-                            height: 22px;
-                        }
-
-                        .multiselect__select {
-                            padding: 0;
-                            height: 22px;
-
-                        }
-
-                        .multiselect__single {
-                            position: absolute;
-                            max-width: calc(100% - 26px);
-                        }
-
-                        .caret-container {
-                            z-index: 20;
-
-                            .addable-caret {
-                                right: 28px;
-                            }
-
-                            button {
-                                width: 20px;
-                                height: 20px;
-                                top: 2px;
-                                z-index: 21;
-                            }
-                        }
-
-                        .clear-container {
-                            display: none;
-                        }
-
-                        .multiselect__content-wrapper {
-                            margin-top: 4px;
-                            border-radius: 0 !important;
-                        }
-
-                        .multiselect__option {
-                            min-height: 22px;
-                            line-height: 22px;
-
-                            &:after {
-                                line-height: 22px;
-                            }
-                        }
-
-                        .multiselect__input {
-                            position: absolute;
-                            top: 2px;
-                            left: 2px;
-                        }
+                    .ant-form-item-control-input{
+                        min-height: 24px;
                     }
-
-                    .ivu-form-item-content {
+                    .ant-form-item {
                         line-height: 24px;
 
                         .ivu-upload {
@@ -180,10 +91,10 @@
                         }
                     }
 
-                    .ivu-form-item {
+                    .ant-form-item {
                         margin-bottom: 0 !important;
 
-                        .ivu-input {
+                        .ant-input, .ant-select-selector, .ant-input-number-input, .ant-input-number {
                             height: 24px;
                             margin: 0;
                             border: 0;
@@ -199,35 +110,20 @@
                             }
                         }
 
-                        .ivu-select {
-                            &-selection {
+                        .ant-select-selection-search-input{
                                 height: 24px;
                                 border: 0;
-                            }
 
-                            &-input {
-                                border: 0;
                                 max-height: 24px;
-                            }
+
                         }
 
                         .ivu-form-item-content {
                             height: 24px;
                         }
 
-                        .ivu-checkbox-wrapper {
-                            margin: auto 0;
-                            height: 24px;
-                            padding-top: 4px;
-                        }
 
-                        .ivu-btn {
-                            border: none !important;
 
-                            i {
-                                font-size: 14px;
-                            }
-                        }
 
                         .ivu-upload {
                             img {
@@ -257,17 +153,11 @@
                         align-items: center;
                         border: 0;
 
-                        a {
-                            padding: 0 5px;
-                            color: #777777;
 
-                            i {
-                                font-size: 12px;
-                            }
 
-                            &:hover {
-                                color: #e74c3c;
-                            }
+                        .btn-icon {
+                            height: 24px;
+                            width: 24px;
                         }
 
                         .sub-edit {

@@ -1,31 +1,25 @@
 <template>
     <lambda-form-item :label=label :name="model.component" :meta="meta">
 
-        <a-upload
-            v-model:file-list="uploadList"
-            :multiple="this.meta.file.isMultiple"
-            name="file"
-            list-type="picture-card"
-            :action="`${url ? url : ''}/lambda/krud/upload`"
-            @preview="handleView"
-            @change="handleChange"
-            @remove="handleRemove"
-        >
-            <div>
-                <loading-outlined v-if="loading"></loading-outlined>
-                <i class="ti ti-camera" v-else></i>
-                <div class="ant-upload-text">{{ label }}</div>
-            </div>
-        </a-upload>
-        <a-image
-            :width="200"
-            :style="{ display: 'none' }"
-            :preview="{
-                visible:showImage,
-                onVisibleChange:onVisibleChange
-            }"
-            :src="showImageUrl"
-        />
+       <div class="sub-form-image">
+           <a-upload
+               v-model:file-list="uploadList"
+
+               name="file"
+
+               :action="`${url ? url : ''}/lambda/krud/upload`"
+
+               @change="handleChange"
+               @remove="handleRemove"
+           >
+               <span v-if="this.model.form[this.model.component]" style="max-width: 120px; overflow: hidden; display: block; height: 24px">{{fileName}}</span>
+               <div v-else>
+                   <loading-outlined v-if="loading"></loading-outlined>
+                   <i class="ti ti-file" v-else></i>
+                   <div class="ant-upload-text">{{ label }}</div>
+               </div>
+           </a-upload>
+       </div>
 
     </lambda-form-item>
 </template>
@@ -50,6 +44,18 @@ export default {
                 return obj
             }, {})
         },
+        fileName(){
+            if(this.model.form[this.model.component]){
+                let file = this.model.form[this.model.component].split("/")
+
+                if(file.length >= 1){
+                    return file[file.length - 1]
+                } else {
+                    return this.model.form[this.model.component]
+
+                }
+            }
+        }
     },
     mounted () {
 
@@ -78,32 +84,24 @@ export default {
     },
 
     methods: {
+
         init () {
 
             if (this.model.form[this.model.component]) {
-                if (typeof this.meta.file.isMultiple !== 'undefined' && this.meta.file.isMultiple) {
-                    if (JSON.stringify(this.uploadList !== this.model.form[this.model.component])) {
-                        let list = JSON.parse(this.model.form[this.model.component])
-                        if (Array.isArray(list)) {
-                            this.uploadList = list
-                        }
-                    }
-                } else {
-                    if (this.uploadList.length >= 1) {
-                        if (this.uploadList[0].response !== this.model.form[this.model.component]) {
-                            this.uploadList = [{
-                                status: 'done',
-                                thumbUrl:this.url+ this.model.form[this.model.component],
-                                response: this.model.form[this.model.component],
-                            }]
-                        }
-                    } else {
+                if (this.uploadList.length >= 1) {
+                    if (this.uploadList[0].response !== this.model.form[this.model.component]) {
                         this.uploadList = [{
                             status: 'done',
                             thumbUrl: this.url+this.model.form[this.model.component],
                             response: this.model.form[this.model.component],
                         }]
                     }
+                } else {
+                    this.uploadList = [{
+                        status: 'done',
+                        thumbUrl: this.url+this.model.form[this.model.component],
+                        response: this.model.form[this.model.component],
+                    }]
                 }
             }
 
@@ -113,7 +111,7 @@ export default {
         },
         handleView (file) {
             this.showImage = true
-            this.showImageUrl = this.url+file.response
+            this.showImageUrl = file.response
         },
         handleChange (info) {
 
@@ -124,25 +122,13 @@ export default {
             }
             if (info.file.status === 'done') {
 
-                if (!this.meta.file.isMultiple) {
-                    this.model.form[this.model.component] = info.file.response
-                    this.uploadList = [{
-                        status: 'done',
-                        thumbUrl: this.url+this.model.form[this.model.component],
-                        response: this.model.form[this.model.component],
-                        name: info.file.name
-                    }]
-                } else {
-                    this.uploadList = this.uploadList.map(u => {
-                        return {
-                            status: 'done',
-                            thumbUrl: this.url+u.response,
-                            response: u.response,
-                            name: u.name
-                        }
-                    })
-                    this.model.form[this.model.component] = JSON.stringify(this.uploadList)
-                }
+                this.model.form[this.model.component] = info.file.response
+                this.uploadList = [{
+                    status: 'done',
+                    thumbUrl: this.url+this.model.form[this.model.component],
+                    response: this.model.form[this.model.component],
+                    name: info.file.name
+                }]
                 this.loading = false
             }
             if (info.file.status === 'error') {

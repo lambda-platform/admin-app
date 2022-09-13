@@ -93,14 +93,14 @@ export default {
                         if (this.uploadList[0].response !== this.model.form[this.model.component]) {
                             this.uploadList = [{
                                 status: 'done',
-                                thumbUrl: this.model.form[this.model.component],
+                                thumbUrl: this.url+this.model.form[this.model.component],
                                 response: this.model.form[this.model.component],
                             }]
                         }
                     } else {
                         this.uploadList = [{
                             status: 'done',
-                            thumbUrl: this.model.form[this.model.component],
+                            thumbUrl: this.url+this.model.form[this.model.component],
                             response: this.model.form[this.model.component],
                         }]
                     }
@@ -113,7 +113,7 @@ export default {
         },
         handleView (file) {
             this.showImage = true
-            this.showImageUrl = file.response
+            this.showImageUrl = this.url+file.response
         },
         handleChange (info) {
 
@@ -128,7 +128,7 @@ export default {
                     this.model.form[this.model.component] = info.file.response
                     this.uploadList = [{
                         status: 'done',
-                        thumbUrl: this.model.form[this.model.component],
+                        thumbUrl: this.url+this.model.form[this.model.component],
                         response: this.model.form[this.model.component],
                         name: info.file.name
                     }]
@@ -136,7 +136,7 @@ export default {
                     this.uploadList = this.uploadList.map(u => {
                         return {
                             status: 'done',
-                            thumbUrl: u.response,
+                            thumbUrl: this.url+u.response,
                             response: u.response,
                             name: u.name
                         }

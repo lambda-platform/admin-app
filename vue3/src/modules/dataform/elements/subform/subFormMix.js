@@ -44,11 +44,11 @@ export default {
         },
         showAddSourceModalReal() {
             this.modal_grid_show = true;
-            this.$modal.show(`grid-modal-${this.form.sourceGridID}`);
+            // this.$modal.show(`grid-modal-${this.form.sourceGridID}`);
         },
         closeSourceModal() {
             this.modal_grid_show = false;
-            this.$modal.hide(`grid-modal-${this.form.sourceGridID}`);
+            // this.$modal.hide(`grid-modal-${this.form.sourceGridID}`);
         },
         addFromPreSource() {
             if (this.preSource && this.form.sourceGridTargetColumns) {
@@ -85,7 +85,7 @@ export default {
 
             this.form.sourceGridTargetColumns.forEach(source => {
 
-                Vue.set(clonedFormModel, source.selfColumn, row[source.sourceColumn]);
+                clonedFormModel[source.selfColumn] = row[source.sourceColumn];
             });
 
             let listItem = {
@@ -115,16 +115,20 @@ export default {
         },
         sourceGridUrl() {
 
-            if (window.init.microserviceSettings) {
-                let si = window.init.microserviceSettings.findIndex(set => set.project_id == this.form.sourceMicroserviceID);
+            if(window.init){
+                if (window.init.microserviceSettings) {
+                    let si = window.init.microserviceSettings.findIndex(set => set.project_id == this.meta.GSOption.sourceMicroserviceID)
 
-                if (si >= 0) {
-                    return window.init.microserviceSettings[si].production_url;
+                    if (si >= 0) {
+                        return window.init.microserviceSettings[si].production_url
+                    } else {
+                        return this.url;
+                    }
                 } else {
-                    return ""
+                    return this.url;
                 }
             } else {
-                return ""
+                return this.url;
             }
         },
 

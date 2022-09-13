@@ -783,9 +783,11 @@ export default {
 
         subFormFillData(subModel) {
             if (this.$refs[`sf${subModel}`]) {
+
                 if (this.$refs[`sf${subModel}`].length >= 1) {
                     this.$refs[`sf${subModel}`][0].fillData()
                 } else {
+
                     setTimeout(() => {
                         this.subFormFillData(subModel)
                     }, 100)
@@ -990,6 +992,7 @@ export default {
              return visible_item_found;
          }*/
         showInformationModal(url, title) {
+            console.log(url, title)
             this.infoTitle = title
             this.infoUrl = url
             this.showInfo = true
@@ -1025,7 +1028,9 @@ export default {
                 }
 
             } else {
-                this.$refs[name].validate(valid => {
+
+                this.$refs[name].validate().then(valid => {
+
                     if (valid) {
                         if (this.subFormValidations.length >= 1) {
                             this.validateWithSubForm()

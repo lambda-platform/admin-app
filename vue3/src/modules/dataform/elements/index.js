@@ -42,12 +42,12 @@ export const elementList = [
         component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-Image" */'./Image.vue')),
     },
     {
-        element: 'HTML',
-        component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-HTML" */'./HTML.vue')),
-    },
-    {
         element: 'ImageSubform',
         component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-ImageSubform" */'./ImageSubform.vue')),
+    },
+    {
+        element: 'HTML',
+        component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-HTML" */'./HTML.vue')),
     },
     {
         element: 'ImageDrag',
@@ -60,6 +60,22 @@ export const elementList = [
     {
         element: 'CK',
         component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-CK" */'./CK.vue')),
+    },
+    {
+        element: 'File',
+        component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-File" */'./File.vue')),
+    },
+    {
+        element: 'FileSubform',
+        component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-ImageSubform" */'./FileSubform.vue')),
+    },
+    {
+        element: 'Download',
+        component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-Download" */'./Download.vue')),
+    },
+    {
+        element: 'Geographic',
+        component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-Geographic" */'./Geographic.vue')),
     },
     {
         element: "CkOld",
@@ -76,18 +92,6 @@ export const elementList = [
     {
         element: "Email",
         component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-text" */'./Text.vue')),
-    },
-    {
-        element: 'File',
-        component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-File" */'./File.vue')),
-    },
-    {
-        element: 'Download',
-        component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-Download" */'./Download.vue')),
-    },
-    {
-        element: 'Geographic',
-        component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-Geographic" */'./Geographic.vue')),
     },
     {
         element: 'Hidden',
@@ -180,23 +184,11 @@ const CustomElement = () => import(/* webpackChunkName: "form-field-CustomElemen
 
 const requireCustomElement = (type) => {
 
-    if (window.init.data_form_custom_elements) {
-        let custom = window.init.data_form_custom_elements.find(custom_element => custom_element.element == type)
-        if (custom) {
-
-            try {
-                return require(`dataform_custom/${type}.vue`).default
-            } catch (exception_var) {
-                console.log(exception_var)
-                return CustomElement
-            }
-        } else {
-            // throw `${type} element not fount`
-            return Notfount
-        }
-
-    } else {
-        return Notfount
+    try {
+        return defineAsyncComponent(() => import(`../../../../../src/dataform_custom/${type}.vue`))
+    } catch (exception_var) {
+        console.log(exception_var)
+        return CustomElement
     }
 }
 
@@ -210,5 +202,5 @@ export const element = (type) => {
         }
     }
 
-    // return requireCustomElement(type);
+    return requireCustomElement(type);
 }

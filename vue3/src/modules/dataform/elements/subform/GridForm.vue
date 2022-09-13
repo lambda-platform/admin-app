@@ -3,20 +3,21 @@
         <td class="row-number" v-if="f.showRowNumber">
             <slot name="rowNumber"></slot>
         </td>
-        <td v-for="item in f.schema"
-            v-if="typeof item.formType !== 'undefined' && item.formType !== null
-            && item.model && isShowAble(item.model) && item.model!=f.identity
-            && item.model!=f.parent && item.model!='updated_at'
-            && item.model!='created_at' && !item.hidden"
+        <td v-for="item in f.schema.filter(i=>typeof i.formType !== 'undefined' && i.formType !== null
+            && i.model && isShowAble(i.model) && i.model!==f.identity
+            && i.model!==f.parent && i.model!=='updated_at'
+            && i.model!=='created_at' && !i.hidden)"
+
             :key="item.index">
             <component :is="element(item.formType)"
                        :model="{form: model, component: item.model}"
                        v-if="model"
+                       :url="url"
                        size="small"
-                       :label="item.label ? item.label : `[${item.model}]`"
+                       :label="item.label !== '' ? item.label : `[${item.model}]`"
                        :meta="setMeta(item)"
                        :getSchemaRelationByModel="getSchemaRelationByModel"
-                       :relation_data="getRelation(item)">
+                       :relation_data="getRelation">
             </component>
         </td>
         <td class="action" >
@@ -27,12 +28,11 @@
 
 <script>
     import {element} from "../index";
-    import {getRule} from "../../rule";
     import {doFormula, doTrigger} from "../../utils/formula_and_trigger.js";
     import {getRelationData} from "../../utils/helpers";
 
     export default {
-        props: ["f", "model", "editMode", "relations", "formula", "schema"],
+        props: ["f", "model", "editMode", "relations", "formula", "schema", "url"],
         created() {
 
             this.f.data = {};
@@ -106,15 +106,7 @@
                 delete item["label"];
                 delete item["span"];
                 delete item["default"];
-                // item.schemaId = this.$route.params.id;
-                // if (this.$route.params.form) {
-                //     console.log(this.$route.params.form)
-                //     item.schemaID = this.$route.params.form;
-                // }
-                // else {
-                //     console.log(this.$route.params.id)
-                //     item.schemaID = this.$route.params.id;
-                // }
+
                 return item;
             },
 

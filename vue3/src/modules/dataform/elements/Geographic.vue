@@ -1,7 +1,7 @@
 <template>
     <lambda-form-item :label=label :name="model.component" :meta="meta">
         <div class="geographic">
-            <div id="geographic"  style="height: 100%; width: 100%">
+            <div class="geographic-mapx"  :id="`geographic_${model.component}`" style="height: 100%; width: 100%">
 
 
                 <div id="base-maps">
@@ -548,11 +548,11 @@ export default {
             L.Draw.Marker.prototype.options.icon = iconDefault;
 
 
-            var container = L.DomUtil.get('geographic');
+            var container = L.DomUtil.get(`geographic_${this.model.component}`);
             if(container != null){
                 container._leaflet_id = null;
             }
-            this.map = L.map('geographic').setView([this.center.lat, this.center.lng], this.zoom);
+            this.map = L.map(`geographic_${this.model.component}`).setView([this.center.lat, this.center.lng], this.zoom);
 
             this.map.addLayer(this.baseMaps[this.currentBaseMap].baseMap);
 

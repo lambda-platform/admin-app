@@ -19,6 +19,7 @@ const pathResolve = (pathStr: string) => {
 export default defineNuxtConfig({
   alias: {
     public: resolve(__dirname, "./public/"),
+    // dataform_custom: resolve(__dirname, "./src/dataform_custom"),
     '@lambda-platform/lambda-vue' :resolve(__dirname, './vue3')
   },
   target: 'static',
@@ -111,6 +112,11 @@ export default defineNuxtConfig({
           find: '@',
           replacement: pathResolve('src') + '/',
         },
+        {
+          find: 'dataform_custom',
+          replacement: pathResolve('src') + '/dataform_custom/',
+        },
+
         {
           find: '@lambda-platform/lambda-vue',
           replacement: pathResolve('vue3') + '/' ,

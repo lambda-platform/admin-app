@@ -2,14 +2,22 @@
     <div class="subform-grid sub-modal-form" :style="subStyle">
         <div class="subform-header" v-if="!form.min_height && !form.disableCreate">
             {{ form.name }}
-            <Button shape="circle" type="success" size="small" @click="add" icon="md-add"
-                    class="sub-form-add-btn"></Button>
+            <a-button shape="circle" type="success" size="small" @click="add"
+                      class="sub-form-add-btn">
+                <template #icon>
+                     <span class="svg-icon ">
+                                 <inline-svg
+                                     src="/assets/icons/duotune/general/gen041.svg"
+                                 />
+                        </span>
+                </template>
+            </a-button>
         </div>
         <table class="sub-form-grid" border="1" v-if="form.min_height ? true: this.listData.length >= 1">
             <thead>
             <tr>
                 <th class="row-number" v-if="form.showRowNumber">ДД</th>
-                <th @click="sort(item)" v-for="item in form.schema" v-if="item.label != '' && !item.hidden"
+                <th @click="sort(item)" v-for="item in form.schema.filter(i=>i.label !== '' && !i.hidden)"
                     :key="item.index">
                     <div class="th-title">
                         {{ item.label }} <i class="ti-exchange-vertical"/></div>
@@ -29,16 +37,25 @@
                        :formula="formula"
                        :schema="form.schema"
             >
-                <template slot="action">
-                    <a href="javscript:void(0)" @click="()=>edit(index)" class="sub-edit" v-if="!form.disableEdit">
-                        <Icon type="md-create"/>
+                <template #action v-if="!form.disableDelete">
+                    <a href="javascript:void(0);" class="btn btn-icon sub-edit" @click="edit(index)"   v-if="!form.disableEdit">
+                        <span class="svg-icon ">
+                                  <inline-svg
+                                      src="/assets/icons/duotone/Design/Edit.svg"
+                                  />
+                        </span>
                     </a>
-                    <a href="javscript:void(0)" @click="()=>remove(index)" v-if="!form.disableDelete">
-                        <Icon type="ios-trash"/>
+                    <a href="javascript:void(0);" class="btn btn-icon" @click="remove(index)"  v-if="!form.disableDelete">
+                        <span class="svg-icon ">
+                                  <inline-svg
+                                      src="/assets/icons/duotone/General/Trash.svg"
+                                  />
+                        </span>
                     </a>
                 </template>
-                <template slot="rowNumber" v-if="form.showRowNumber">
-                    <span>{{ index + 1 }}</span>
+
+                <template #rowNumber v-if="form.showRowNumber">
+                    <span>{{index+1}}</span>
                 </template>
             </grid-form>
             </tbody>
@@ -55,66 +72,46 @@
             </tfoot>
         </table>
         <a class="sub-grid-add" href="javascript:void(0)" @click="add" v-if="form.min_height">
-            <Icon type="plus"></Icon>
+             <span class="svg-icon ">
+                                 <inline-svg
+                                     src="/assets/icons/duotune/general/gen041.svg"
+                                 />
+                        </span>
             {{ lang.save }}
         </a>
 
-<!--        <paper-modal-->
-<!--            :name="`form-modal-${form.formId}`"-->
-<!--            class="form-modal"-->
-<!--            :min-width="200"-->
-<!--            :min-height="100"-->
-<!--            :pivot-y="0.5"-->
-<!--            :adaptive="true"-->
-<!--            :reset="true"-->
-<!--            :draggable="true"-->
-<!--            :resizable="true"-->
-<!--            draggable=".form-tool"-->
-<!--            width="800"-->
-<!--            height="70%"-->
-<!--        >-->
-        <Modal
+
+        <a-modal
             :min-width="200"
             :min-height="100"
-
-
             :draggable="true"
-
             :footer-hide="true"
             :title="form.name"
             width="85%"
             height="85%"
-            v-model="modal_show"
-
+            v-model:visible="modal_show"
         >
             <section class="form-modal">
-<!--                <div class="form-tool">-->
 
-<!--                    <h4>{{ form.name }}</h4>-->
-<!--                    <div class="form-tool-actions">-->
-<!--                        <a href="javascript:void(0)" @click="closeModal">-->
-<!--                            <i class="ti-close"></i>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </div>-->
 
                 <div class="form-body">
-
-                    <dataform ref="form" v-if="modal_show" :schemaID="form.formId"
+                    <dataform ref="form" :schemaID="form.formId"
                               :do_render="modal_show"
-                              :editMode="editIndex >= 0 ? true : false"
+                              :editMode="editIndex >= 0"
                               :isSubForm="true"
                               :onSuccess="onSuccess"
                               :url="url"
                               :onReady="formReady"
                               :onError="onError"></dataform>
+
                 </div>
             </section>
-        </Modal>
-<!--        </paper-modal>-->
+            <template #footer></template>
+        </a-modal>
 
-        <paper-modal
+        <a-modal
             :name="`grid-modal-${form.sourceGridID}`"
+            v-model:visible="modal_grid_show"
             class="form-modal"
             :min-width="200"
             :min-height="100"
@@ -163,14 +160,16 @@
                       }"
                     />
                     <div class="add-from-pre-source">
-                        <Button shape="circle" type="primary" size="small" @click="addByFrom" :disabled="preSource.length >= 1" icon="md-add"
-                                class="sub-form-add-btn">Шинээр бүртгэх</Button>
-                        <Button shape="circle" type="success" size="small" @click="addFromPreSource" :disabled="preSource.length == 0" icon="md-add"
-                                class="sub-form-add-btn">Сонгох</Button>
+                        <a-button shape="circle" type="primary" size="small" @click="addByFrom" :disabled="preSource.length >= 1" icon="md-add"
+                                class="sub-form-add-btn">Шинээр бүртгэх</a-button>
+                        <a-button shape="circle" type="success" size="small" @click="addFromPreSource" :disabled="preSource.length == 0" icon="md-add"
+                                class="sub-form-add-btn">Сонгох</a-button>
                     </div>
                 </div>
             </section>
-        </paper-modal>
+            <template #footer>
+            </template>
+        </a-modal>
     </div>
 </template>
 
@@ -178,13 +177,13 @@
 import {element} from "../index";
 import GridForm from "./GridForm";
 import subFormMix from "./subFormMix";
-const DataForm = () => import(/* webpackChunkName: "Dataform-el" */'../../Dataform');
+
 export default {
     props: ["form", "model", "editMode", "relations", "formula", "url"],
     mixins: [subFormMix],
     components: {
         "grid-form": GridForm,
-        "dataform": DataForm
+
     },
     mounted() {
         this.equationRenderer();
@@ -333,7 +332,7 @@ export default {
                         return;
                     }
 
-                    Vue.set(this.listData[this.editIndex].model, itemKey, data[itemKey]);
+                    this.listData[this.editIndex].model[itemKey] = data[itemKey];
 
                 });
 
@@ -358,7 +357,7 @@ export default {
                         }
                     }
 
-                    Vue.set(clonedFormModel, key, data[key]);
+                    clonedFormModel[key]  = data[key];
                 });
 
                 let listItem = {
@@ -372,7 +371,7 @@ export default {
                     subItems = [];
                 }
                 subItems.push(clonedFormModel);
-                Vue.set(this.model.form, this.model.component, subItems);
+                this.model.form[this.model.component] = subItems;
 
                 this.listData.push(listItem);
             }
@@ -427,7 +426,7 @@ export default {
                     return;
                 }
 
-                Vue.set(clonedFormModel, item.model, item.default);
+                clonedFormModel[item.model] = item.default;
             });
 
             let listItem = {
