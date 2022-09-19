@@ -883,7 +883,9 @@ export default {
         "original_preparation": "Эх бэлтгэл",
         "dataProcessing": "Өгөгдөл боловсруулах",
         "graphics_generator": "График үүсгэгч",
-        "point": "Цэг"
+        "point": "Цэг",
+        "profile": "Хувийн мэдээлэл",
+        "changePassword": "Нууц үг солих"
     },
     "moqup": {
         "elements": "Элемэнтүүд",
@@ -951,8 +953,10 @@ export default {
         "lightStyle": "Гэрэлтэй горим",
         "theme": "Өнгө",
         "navigationMode": "Цэсний тохиргоо",
-        "sidebarNavigater": "Цэс зүүн талд",
+        "sidebarNavigater": "Задардаг",
         "topNavigater": "Цэс дээр",
+        "twoLevelNavigater":"Шаталсан",
+        "slimMenu":"Нарийн",
         "onlyValid": "This setting is only valid for [top bar navigation]",
         "contentWidth": "Өргөн",
         "fixHeader": "Тогтмол толгой",
@@ -967,7 +971,8 @@ export default {
         "copySettings": "Copy Settings",
         "testFun": "Test function",
         "darkMode": "Харанхуй горим",
-        "contentArea": "Content area"
+        "contentArea": "Content area",
+        "reset": "Дахин тохируулах",
     },
     "userMenu": {
         "test": "Test",

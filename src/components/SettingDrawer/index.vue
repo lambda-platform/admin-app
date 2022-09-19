@@ -20,6 +20,19 @@
         <OtherSettings />
       </div>
 
+      <div>
+        <a-button block @click="resetSettings">
+          <template #icon>
+                      <span class="svg-icon">
+                        <inline-svg
+                          src="/assets/icons/duotone/General/Update.svg"
+                        />
+                      </span>
+          </template>
+          {{ $t('settingDrawer.reset') }}
+        </a-button>
+      </div>
+
       <template #handle>
         <div class="setting-drawer-index-handle" v-if="state.app.showSettings" @click="onClose">
           <CloseOutlined style="color: #fff" />
@@ -58,10 +71,15 @@ export default defineComponent({
     const onClose = () => {
       commit(SET_SETTING_DRAWER, false)
     }
+    const resetSettings = () =>{
+      localStorage.removeItem("SITE_SETTINGS");
+      window.location.reload();
+    }
 
     return {
       state,
       onClose,
+      resetSettings,
       isDev,
       isMobile
     }

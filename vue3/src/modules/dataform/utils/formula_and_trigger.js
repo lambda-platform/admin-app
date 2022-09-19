@@ -1,5 +1,7 @@
+import axios from "axios"
 var templateRe = /\{ *([\w_-]+) *\}/g;
 var fieldTimeout = null;
+
 
 export function dataFromTemplate(str, data) {
     return str.replace(templateRe, function (str, key) {
@@ -69,8 +71,8 @@ function doFormula2(formula, model, model_, schema_, rule_, subFormModelName) {
                                 }
                             }
                         }
-                        // schema_[schema_index][target.prop] = calculated;
-                        Vue.set(schema_[schema_index], target.prop, calculated)
+                        schema_[schema_index][target.prop] = calculated;
+
                     }
                 }
             })
@@ -112,8 +114,8 @@ function setValueProps(field, model_, schema_, refs, is_sub) {
         let schema_index = getSchemaIndex(schema_, field.field);
         if (schema_index >= 0) {
             if ('value' in field) {
-                //model_[field.field] = field.value;
-                Vue.set(model_, field.field, field.value);
+                model_[field.field] = field.value;
+
                 let current_schema = schema_[schema_index];
                 if (current_schema.formType == "SubForm") {
                     refs[`sf${field.field}`][0].fillData();
@@ -121,8 +123,8 @@ function setValueProps(field, model_, schema_, refs, is_sub) {
             }
             if (field.props) {
                 Object.keys(field.props).forEach(prop => {
-                    // schema_[schema_index][prop] = field.props[prop];
-                    Vue.set(schema_[schema_index], prop, field.props[prop]);
+                    schema_[schema_index][prop] = field.props[prop];
+
                 });
             }
         }

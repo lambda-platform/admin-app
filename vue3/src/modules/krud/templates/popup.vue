@@ -50,6 +50,7 @@
             class="create"
             :maskClosable="false"
             :title="title"
+            :width="this.form_width"
             placement="right"
         >
             <dataform

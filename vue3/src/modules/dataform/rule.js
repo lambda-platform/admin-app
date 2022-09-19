@@ -2,6 +2,7 @@ let ruleModel = null;
 let identityColumn = null;
 let identity = null;
 
+import axios from "axios"
 const isValid = (val) => {
     if (typeof val !== undefined && val != null && val != "") {
         return true;

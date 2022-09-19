@@ -6,9 +6,9 @@
                 <a-button shape="circle"  type="text" size="small" @click="params.methods.quickEdit(params.value)">
                     <template #icon>
                         <span class="svg-icon ">
-                                  <inline-svg
+                            <inline-svg
                                       src="/assets/icons/duotone/Design/Edit.svg"
-                                  />
+                            />
                         </span>
                     </template>
                 </a-button>
@@ -19,7 +19,11 @@
                 <a-button shape="circle"  type="text" size="small"
                         @click="params.methods.clone(params.value)">
                     <template #icon>
-                        <CopyTwoTone />
+                       <span class="svg-icon ">
+                            <inline-svg
+                                      src="/assets/icons/duotune/general/gen028.svg"
+                            />
+                        </span>
                     </template>
                 </a-button>
             </a-tooltip>
@@ -29,7 +33,11 @@
                 <template #title>{{ lang.view }}</template>
                 <a-button shape="circle"  type="text" size="small" @click="params.methods.view(params.value)">
                     <template #icon>
-                        <EyeTwoTone />
+                         <span class="svg-icon ">
+                            <inline-svg
+                                src="/assets/icons/duotone/General/Visible.svg"
+                            />
+                        </span>
                     </template>
                 </a-button>
             </a-tooltip>
@@ -97,12 +105,10 @@
 </template>
 <script>
 import {isCan} from "./utils/permission"
-import {  DeleteTwoTone, EyeTwoTone, CopyTwoTone } from '@ant-design/icons-vue';
+
 export default{
     components:{
-        EyeTwoTone,
-        CopyTwoTone,
-        DeleteTwoTone
+
     },
     computed: {
         lang() {

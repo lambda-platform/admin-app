@@ -1,5 +1,5 @@
 
-import { replaceStyleVariables } from 'vite-plugin-theme/es/client';
+// import { replaceStyleVariables } from 'vite-plugin-theme/es/client';
 import { getThemeColors, generateColors } from '~/utils/themeUtil'
 import { mixLighten, mixDarken, tinycolor } from 'vite-plugin-theme/es/colorUtils';
 
@@ -17,9 +17,9 @@ export async function updateTheme(color: string) {
   // });
 
   console.log(color)
-
-  return await replaceStyleVariables({
-    colorVariables: [...getThemeColors(color), ...colors],
-    // colorVariables: [...getThemeColors(color)],
-  });
+  //
+  // return await replaceStyleVariables({
+  //   colorVariables: [...getThemeColors(color), ...colors],
+  //   // colorVariables: [...getThemeColors(color)],
+  // });
 }

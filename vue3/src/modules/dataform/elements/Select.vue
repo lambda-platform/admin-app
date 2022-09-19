@@ -226,7 +226,6 @@ export default {
                 this.value = null
                 this.clearAble = false
                 this.ignoreChange = false
-                // Vue.set(this.model.form, this.model.component, this.meta.default ? this.meta.default : undefined);
             } else {
 
             }

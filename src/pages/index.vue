@@ -1,9 +1,13 @@
 <template>
-<h1>testtest</h1>
+
 </template>
 
 <script>
 export default {
-  name: 'index'
+  name: 'index.vue'
 }
 </script>
+
+<style scoped>
+
+</style>

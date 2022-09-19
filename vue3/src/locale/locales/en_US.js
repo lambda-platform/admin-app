@@ -883,7 +883,9 @@ export default {
         "original_preparation": "Original preparation",
         "dataProcessing": "Data processing",
         "graphics_generator": "Graphics generator",
-        "point": "Point"
+        "point": "Point",
+        "profile": "Profile",
+        "changePassword": "Change Password"
     },
     "moqup": {
         "elements": "elements",
@@ -953,6 +955,8 @@ export default {
         "navigationMode": "Navigation mode",
         "sidebarNavigater": "Sidebar navigater",
         "topNavigater": "Top navigater",
+        "twoLevelNavigater": "Two Level navigater",
+        "slimMenu":"Slim",
         "onlyValid": "This setting is only valid for [top bar navigation]",
         "contentWidth": "Content area width",
         "fixHeader": "Fixed Header",
@@ -967,7 +971,8 @@ export default {
         "copySettings": "Copy Settings",
         "testFun": "Test function",
         "darkMode": "Dark mode",
-        "contentArea": "Content area"
+        "contentArea": "Content area",
+        "reset": "Reset",
     },
     "userMenu": {
         "test": "Test",

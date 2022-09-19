@@ -8,11 +8,7 @@
                     <div class="" >
                         <div class="ant-drawer-content">
                             <div class="ant-drawer-wrapper-body">
-                                <div class="ant-drawer-header">
-                                    <div class="ant-drawer-header-title">
-                                        <div class="ant-drawer-title">{{ title }}</div>
-                                    </div>
-                                </div>
+
                                 <div class="ant-drawer-body">
                                     <dataform
                                         ref="form"
@@ -22,13 +18,13 @@
                                         :url="url"
                                         :editMode="editMode"
                                         :onSuccess="onSuccess"
-                                        :onReady="onReady"
-                                        :do_render="openSlidePanel"
+                                        :onReady="onReadyEdit"
+                                        :do_render="true"
                                         :permissions="permissions"
                                         :page_id="page_id"
                                         :user_condition="user_condition ? user_condition.formCondition : null"
                                         :onError="onError"
-                                        :close="hideSide"
+
                                     >
                                     </dataform>
                                 </div>
@@ -66,12 +62,17 @@ export default {
     },
     methods: {
 
-        templateEdit () {
-            this.openSide()
-        },
+
         templateOnSuccess () {
-            this.hideSide()
+            this.editMode = true;
+            this.$refs.form.editModel(this.actions);
         },
+        onReadyEdit(){
+            if(this.actions){
+                this.editMode = true;
+                this.$refs.form.editModel(this.actions);
+            }
+        }
     },
     mounted () {
 
@@ -90,7 +91,7 @@ export default {
         .crud-page-body {
             height: 100%;
             margin: 0 !important;
-
+            overflow-y: auto;
             .dg-flex {
                 flex: 1;
                 width: 100%;

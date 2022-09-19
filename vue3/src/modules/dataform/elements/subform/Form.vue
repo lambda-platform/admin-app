@@ -299,7 +299,7 @@ export default {
         },
         formReady(formData, subSchema) {
 
-            let parentFieldIndex = subSchema.findIndex(field => field.model == this.form.parent);
+            let parentFieldIndex = subSchema.findIndex(field => field.model === this.form.parent);
 
             if (parentFieldIndex > 0) {
                 subSchema[parentFieldIndex].hidden = true;

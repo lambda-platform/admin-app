@@ -2,7 +2,6 @@
     <lambda-form-item  :label=label  :name="model.component" :meta="meta">
         <ckeditor ref="ckeditor" :editor="editor" v-model="model.form[model.component]"
                   :config="editorConfig" :key="meta.editorType"
-
                   :placeholder="placeholder"
                   :disabled="disabled"
                   @ready="onReady" @blur="onBlur($event)" @focus="onFocus($event)"></ckeditor>

@@ -78,7 +78,7 @@ export default {
         lang() {
             const labels = ['save', 'pleaseWait', 'fillInTheNewOne', 'close', 'pleaseEnterPasswordYouUCurrentlyUsing', 'pleaseReEnterYourPassword',
                 'passwordConfirmError', 'informationIsIncomplete', 'trRMandatoryFieldsFillInformationLookFormAFillRequiredFieldsWithRedBorder',
-                'successfullySaved', 'errorSaving'
+                'successfullySaved', 'errorSaving', 'error'
             ]
             return labels.reduce((obj, key, i) => {
                 obj[key] = this.$t('dataForm.' + labels[i])
@@ -119,11 +119,13 @@ export default {
             }
         },
 
-        ui(val) {
-            if (val && this.dataID) {
-                this.editModel(this.dataID)
-            }
-        }
+        // ui(val, old) {
+        //
+        //     if (val && this.dataID) {
+        //
+        //         this.editModel(this.dataID)
+        //     }
+        // }
     },
 
     methods: {
@@ -771,7 +773,17 @@ export default {
                             this.setUserConditionValues(false)
                             this.setCustomData()
                         }
-                    })
+                    }).catch(e=>{
+                      if(e.response.data){
+                          if(e.response.data.error){
+
+                              notification["error"]({
+                                  message:this.lang.error,
+                                  description: e.response.data.error,
+                              });
+                          }
+                      }
+                })
             }
         },
 

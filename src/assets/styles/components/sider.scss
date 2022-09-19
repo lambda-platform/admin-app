@@ -5,11 +5,9 @@
   min-height: 100vh;
 
   .ant-layout-sider-children {
-    overflow-y: hidden;
+    overflow: hidden;
 
-    &:hover {
-      overflow-y: auto;
-    }
+
   }
 
   &.ant-fixed-sidemenu {
@@ -20,7 +18,8 @@
   .logo {
     position: relative;
     height: 64px;
-    padding-left: 24px;
+    //padding-left: 24px;
+    text-align: center;
     overflow: hidden;
     line-height: 64px;
     //background: #002140;
@@ -36,7 +35,7 @@
     img,
     svg {
 
-      width: 33px;
+      height: 44px;
     }
 
     h1 {
@@ -51,7 +50,8 @@
 
   &.light {
     background-color: #fff;
-    box-shadow: 2px 0px 8px 0px rgba(29, 35, 41, 0.05);
+    //box-shadow: 2px 0px 8px 0px rgba(29, 35, 41, 0.05);
+    box-shadow: none;
 
     .logo {
       background: #fff;
@@ -68,6 +68,9 @@
   }
   .ant-menu{
     box-shadow:none !important;
-    transition: background 0s !important;
+    .ant-menu-submenu .ant-menu-sub {
+      cursor: initial;
+      transition: background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
   }
 }

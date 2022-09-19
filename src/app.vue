@@ -5,11 +5,11 @@
     </NuxtLayout>
   </a-config-provider>
   <div class="first-loading-wrp" v-else>
-    <h1 style="text-align: center;">Lambda</h1>
+    <h1 style="text-align: center;">{{ title }}</h1>
     <div class="loading-wrp">
       <span class="dot dot-spin"><i></i><i></i><i></i><i></i></span>
     </div>
-    <div style="display: flex; justify-content: center; align-items: center;">Lambda Platform</div>
+    <div style="display: flex; justify-content: center; align-items: center;">{{ subTitle }}</div>
   </div>
   <LockScreen />
 </template>
@@ -25,6 +25,7 @@ import ls from '~/utils/Storage';
 import { getLambdaConfig } from './service/service'
 import { clearUserInfo } from './utils/util'
 import { createList } from '~/utils/menu'
+import { title, subTitle } from '~/consts/const'
 export default {
   components: { LockScreen },
   data() {
@@ -33,7 +34,9 @@ export default {
       mn_MN:{...mn_MN, Image:{
           preview:"Харах"
         }},
-      loading:true
+      loading:true,
+      title,
+      subTitle
     };
   },
   beforeCreate () {
@@ -44,7 +47,10 @@ export default {
     redirectToLogin(){
       clearUserInfo()
       this.loading = false;
-      this.$router.replace("/auth/login");
+      if(this.$route.path !== "/auth/login"){
+        window.location.replace("/auth/login");
+      }
+
     }
   },
   mounted () {

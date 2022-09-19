@@ -46,20 +46,25 @@
 
       <!-- layout content -->
       <a-layout-content>
-        <div class="bg-slate-50 dark:bg-slate-800"
-             :style="`height: 100%; padding: ${fixedHeader ? '87px' : '20px'} 24px 20px;`"
+        <div class="bg-slate-60 dark:bg-slate-800"
+             :style="`height: 100%; padding: ${fixedHeader ? layoutMode === 'levelmenu' ? '20px' : '87px' : '20px'} 24px 20px;`"
         >
           <multi-tab v-if="multiTab"></multi-tab>
           <transition name="page-transition">
-            <section>
-              <portal-target name="mobile-page-title" v-if="isMobile || layoutMode !== 'sidemenu'"></portal-target>
-              <NuxtPage :key="$route.fullPath"/>
+            <section >
+              <portal-target name="mobile-page-title" v-if="isMobile || layoutMode === 'topmenu'"></portal-target>
+              <div class="flex">
+                <portal-target name="level-menu">
+                </portal-target>
+                <NuxtPage :key="$route.fullPath"/>
+              </div>
+
             </section>
           </transition>
         </div>
       </a-layout-content>
 
-      <!-- layout footer -->
+<!--       layout footer-->
       <a-layout-footer class="">
         <global-footer/>
       </a-layout-footer>
@@ -140,8 +145,9 @@ export default defineComponent({
       if (sidebarOpened.value) {
         return '256px'
       }
-      return '80px'
+      return '70px'
     })
+
 
     watch(
       () => sidebarOpened.value,
@@ -196,6 +202,9 @@ export default defineComponent({
           }, 16)
         })
       }
+      if(!sidebarOpened.value){
+        collapsed.value = true;
+      }
     })
 
     const toggle = () => {
@@ -206,9 +215,9 @@ export default defineComponent({
     const paddingCalc = () => {
       let left = ''
       if (sidebarOpened.value) {
-        left = isDesktop.value ? '256px' : '80px'
+        left = isDesktop.value ? '256px' : '70px'
       } else {
-        left = (isMobile.value && '0') || (fixSidebar.value && '80px') || '0'
+        left = (isMobile.value && '0') || (fixSidebar.value && '70px') || '0'
       }
       return left
     }
@@ -223,6 +232,7 @@ export default defineComponent({
     //   showRouter.value = false
     //   nextTick(() => (showRouter.value = true))
     // }
+
     return {
       collapsed,
 

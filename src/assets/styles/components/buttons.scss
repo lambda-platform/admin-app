@@ -203,3 +203,18 @@
     margin-top: 2px;
   }
 }
+.ant-input-group-addon{
+  [fill]:not([fill="none"])  {
+    fill:  #A1A5B7;
+  }
+
+  &:hover, &:active{
+    color:$primary-color;
+
+    .svg-icon{
+      [fill]:not([fill="none"])  {
+        fill:  $primary-color;
+      }
+    }
+  }
+}

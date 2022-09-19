@@ -1,6 +1,6 @@
 <template>
   <div class="logo">
-    <nuxt-link to="/">
+    <nuxt-link to="/admin">
       <img :src="`${base_url}${logo_dark}`" v-if="darkMode" class="logo-light" :alt="title">
       <img :src="`${base_url}${logo}`"   v-if="!darkMode" class="logo-dark" :alt="title">
       <h1 v-if="showTitle">{{ title }}</h1>

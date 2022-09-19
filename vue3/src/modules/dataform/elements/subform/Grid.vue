@@ -148,9 +148,7 @@
         components: {
             "grid-form": GridForm
         },
-        beforeMount () {
-            console.log(this.form)
-        },
+
         mounted() {
 
             this.equationRenderer();

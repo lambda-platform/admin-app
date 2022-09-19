@@ -11,11 +11,45 @@
                       />
             </span>
           </span>
-          <span class="nickname text-gray-700 dark:text-gray-200" v-if="!isMobile">&nbsp;&nbsp;{{ nickname }}</span>
+          <span class="nickname text-gray-700 dark:text-gray-200" v-if="!isMobile && layoutMode !== 'topmenu'">&nbsp;&nbsp;{{
+              nickname
+            }}</span>
         </span>
     <template #overlay>
       <a-menu class="user-dropdown-menu-wrapper">
         <a-menu-item key="1"
+        >
+          <router-link
+            class="link link-icon "
+            to="/admin/profile"
+
+          >
+                <span class="svg-icon">
+
+                      <inline-svg
+                        src="/assets/icons/duotone/Interface/User.svg"
+                      />
+                </span>&nbsp;&nbsp;
+            <span>{{ $t('appAdmin.profile') }}</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="2"
+        >
+          <router-link
+            class="link link-icon "
+            to="/admin/change-password"
+
+          >
+                <span class="svg-icon">
+
+                      <inline-svg
+                        src="/assets/icons/duotone/Home/Key.svg"
+                      />
+                </span>&nbsp;&nbsp;
+            <span>{{ $t('appAdmin.changePassword') }}</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="3"
         >
           <a
             class="link link-icon "
@@ -28,10 +62,10 @@
                         src="/assets/icons/duotone/Home/Book.svg"
                       />
                 </span>&nbsp;&nbsp;
-            <span>{{$t('appAdmin.manual')}}</span>
+            <span>{{ $t('appAdmin.manual') }}</span>
           </a>
         </a-menu-item>
-        <a-menu-item key="2" @click="showSystemSetting">
+        <a-menu-item key="4" @click="showSystemSetting">
           <a class="link link-icon ">
                  <span class="svg-icon ">
                       <inline-svg
@@ -41,7 +75,7 @@
             <span>{{ $t('userMenu.systemConfig') }}</span>
           </a>
         </a-menu-item>
-        <a-menu-item key="3" @click="onLockScreen">
+        <a-menu-item key="5" @click="onLockScreen">
           <a class="link link-icon ">
                  <span class="svg-icon ">
                       <inline-svg
@@ -52,7 +86,7 @@
           </a>
         </a-menu-item>
         <a-menu-divider/>
-        <a-menu-item key="4">
+        <a-menu-item key="6">
           <Logout/>
         </a-menu-item>
       </a-menu>
@@ -60,7 +94,7 @@
   </a-dropdown>
   <SelectLang :class="theme" class="action"/>
   <div class="action" v-if="!isMobile">
-         <span class="link link-icon " @click="showSystemSetting" >
+         <span class="link link-icon " @click="showSystemSetting">
             <span class="svg-icon ">
                       <inline-svg
                         src="/assets/icons/duotune/general/gen019.svg"
@@ -101,6 +135,7 @@ import { useStore } from 'vuex'
 import ls from '~/utils/Storage'
 
 import { isMobile } from '~/utils/device'
+import { layoutMode } from '~/store/useSiteSettings'
 
 import Logout from '~/components/tools/Logout.vue'
 
@@ -116,6 +151,7 @@ export default defineComponent({
     LogoutOutlined,
     SelectLang,
     LockOutlined,
+    layoutMode,
     Logout
   },
   setup (props) {
@@ -138,6 +174,7 @@ export default defineComponent({
       showSystemSetting,
       onLockScreen,
       isMobile,
+      layoutMode
     }
   }
 })

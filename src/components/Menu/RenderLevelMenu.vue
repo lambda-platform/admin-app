@@ -1,61 +1,82 @@
 <template>
-  <a-menu-item v-if="can(item) && !hasItems(item)" :key="getPath(item)" >
-    <template #icon>
-      <i v-if="item.icon" :class="item.icon"></i>
-      <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
-    </template>
+  <li v-if="can(item) && !hasItems(item)">
+
     <a
-      v-if="item.link_to == 'link'"
+      v-if="item.link_to === 'link'"
       :href="item.url"
       target="_blank"
     >
-      <span>{{getTitle(item)}}</span>
-    </a>
-    <router-link :to="item.url" v-else-if="item.link_to == 'router-link'">
-      <span>{{getTitle(item)}}</span>
-    </router-link>
-    <router-link :to="`/admin/p/${item.id}`" v-else>
-      <span>{{getTitle(item)}}</span>
-    </router-link>
-  </a-menu-item>
-  <a-sub-menu
-    v-if="can(item) && hasItems(item)"
-    :key="getPath(item)"
-    popupClassName="popupSubMenu">
-    <template #icon>
       <i v-if="item.icon" :class="item.icon"></i>
       <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
-    </template>
-    <template #title><span>{{getTitle(item)}}</span></template>
-    <template v-for="subItem in item.children" :key="subItem.id">
-      <RenderSubMenu :item="subItem" :cruds="cruds" :permissions="permissions" />
-    </template>
-  </a-sub-menu>
+      <span>{{ getTitle(item) }}</span>
+    </a>
+    <router-link :to="item.url" v-else-if="item.link_to === 'router-link'">
+      <i v-if="item.icon" :class="item.icon"></i>
+      <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
+      <span>{{ getTitle(item) }}</span>
+    </router-link>
+    <router-link :to="`/admin/p/${item.id}`" v-else>
+      <i v-if="item.icon" :class="item.icon"></i>
+      <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
+      <span>{{ getTitle(item) }}</span>
+    </router-link>
+  </li>
+  <li
+    v-if="can(item) && hasItems(item)"
+
+  >
+    <a href="javascript:;" @click="selectMain(item, getTitle(item))" :class="selectedMenu === item.id ? 'active' :''">
+      <i v-if="item.icon" :class="item.icon"></i>
+      <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
+      <span>{{ getTitle(item) }}</span>
+    </a>
+  </li>
 
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
 import SvgIcon from '~/components/SvgIcon/index.vue'
 import {
-  QuestionCircleOutlined,
+
   SettingOutlined,
-  LogoutOutlined,
-  LockOutlined
+
 } from '@ant-design/icons-vue'
-import {getItemPath} from "~/utils/menu"
+import { getItemPath } from '~/utils/menu'
 
 export default defineComponent({
-  name: 'RenderSubMenu',
-  props: ['item', 'cruds', 'permissions'],
+
+  props: ['item', 'cruds', 'permissions', 'selectMain', 'selectedMenu'],
   components: {
     SvgIcon,
-    SettingOutlined
-  },
-  mounted(){
+    SettingOutlined,
 
   },
+  data () {
+    return {
+
+    }
+  },
+  mounted () {
+     this.setActive();
+  },
   methods: {
-    getPath(item){
+
+    setActive () {
+      if(this.hasItems(this.item)){
+        let childIndex = this.item.children.findIndex(c=>c.id === this.$route.params.menu_id);
+        if(childIndex >= 0){
+          this.selectMain(this.item, this.getTitle(this.item))
+        } else {
+          this.item.children.forEach(ci=>{
+            let childIndex = ci.children.findIndex(c=>c.id === this.$route.params.menu_id);
+            if(childIndex >= 0) {
+              this.selectMain(this.item, this.getTitle(this.item))
+            }
+          });
+        }
+      }
+    },
+    getPath (item) {
       return getItemPath(item)
     },
     findActiveMenu (menus, prefix, parentID) {

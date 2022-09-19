@@ -6,7 +6,7 @@
         :class="[fixedHeader ? 'ant-header-fixedHeader' : '', !isMobile ? sidebarOpened ? 'ant-header-side-opened' :  'ant-header-side-closed' : '', ]"
         :style="{ padding: '0' }"
       >
-        <div v-if="mode === 'sidemenu'" class="header md:pl-8 ">
+        <div v-if="mode === 'sidemenu' || mode === 'levelmenu'" :class="mode === 'levelmenu' ? 'header md:pl-6' : 'header md:pl-8'">
           <span v-if="isMobile" class="float-left">
               <span class="trigger   btn btn-icon shadow-none" @click="toggle">
                 <span class="svg-icon">
@@ -39,7 +39,6 @@
             <div class="header-index-left">
               <logo class="top-nav-header" :show-title="device !== 'mobile'" :style="`${!isMobile ? 'margin-left:25px' : ''}`"/>
               <s-menu v-if="device !== 'mobile'" mode="horizontal" :theme="theme"/>
-
             </div>
             <user-menu class="header-index-right" :theme="theme"></user-menu>
           </div>
@@ -133,7 +132,6 @@ export default defineComponent({
     const refreshPage = () => {
       emit('refresh')
     }
-
     return {
       visible,
       fixedHeader,

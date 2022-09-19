@@ -1,7 +1,7 @@
 import { isValid } from '~~/vue3/src/modules/dataform/utils/methods'
 
 export default {
-    props: ['model', 'label', 'meta', 'do_render', 'editMode', 'is_show', 'relation_data', 'showInformationModal', 'url'],
+    props: ['model', 'label', 'meta', 'do_render', 'editMode', 'is_show', 'relation_data', 'showInformationModal', 'url', 'setSchemaByModel', 'getSchemaByModel', 'isBuilder'],
     computed: {
         placeholder () {
             return this.meta && this.meta.placeHolder !== null && this.meta.placeHolder !== '' && this.meta.placeHolder !== undefined ? this.meta.placeHolder : this.label

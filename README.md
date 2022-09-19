@@ -1,5 +1,7 @@
 yarn dev
 
+npx nuxi analyze
+
 npx nuxi info
 
 npx nuxi upgrade

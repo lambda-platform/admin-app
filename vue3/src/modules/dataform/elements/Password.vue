@@ -1,11 +1,11 @@
 <template>
     <div>
-        <a-form-item :label="lang.currentPassword" prop="current_password" v-if="meta.passwordOption.edit_with_old_password">
+        <a-form-item :label="lang.currentPassword" name="current_password" v-if="meta.passwordOption.edit_with_old_password">
             <a-input-password v-model:value="model.form['current_password']" password
                               :placeholder="lang.currentPassword"
             />
         </a-form-item>
-        <lambda-form-item :rule="rule" :label=label :name="model.component" :meta="meta">
+        <lambda-form-item  :label=label :name="model.component" :meta="meta">
             <a-input-password v-model:value="model.form[model.component]" password
                 :placeholder="placeholder"
                 :disabled="disabled">
@@ -23,7 +23,7 @@
             </a-input-password>
 
         </lambda-form-item>
-        <a-form-item :label="lang.confirmPassword" prop="password_confirm"
+        <a-form-item :label="lang.confirmPassword" name="password_confirm"
                      v-if="meta.passwordOption.confirm">
             <a-input-password :type="passwordGenerated ? 'text': 'password'"
                               v-model:value="model.form['password_confirm']"

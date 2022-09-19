@@ -21,7 +21,7 @@
         <section class="offcanvas-template">
             <div class="crud-page">
                 <div class="crud-page-body">
-                    <div class="" v-show="openSlidePanel">
+                    <div class="" v-if="openSlidePanel">
                         <div class="ant-drawer-content">
                             <div class="ant-drawer-wrapper-body">
                                 <div class="ant-drawer-header">
@@ -38,7 +38,7 @@
                                         :title="title"
                                         :url="url"
                                         :editMode="editMode"
-                                        :onSuccess="onSuccess"
+                                        :onSuccess="templateOnSuccess"
                                         :onReady="onReady"
                                         :do_render="openSlidePanel"
                                         :permissions="permissions"
@@ -52,14 +52,14 @@
                             </div>
                         </div>
                     </div>
-                    <div  v-show="!openSlidePanel" id="drawer-container">
+                    <div  v-if="!openSlidePanel" id="drawer-container">
                         <div :class="openSlidePanel ? 'dg-flex open-drawer' : 'dg-flex'">
                             <datagrid v-if="permissions ? permissions.r : false" ref="grid"
                                       :url="url"
                                       :schemaID="grid"
                                       :paginate="50"
                                       :fnClone="clone"
-                                      :fnEdit="edit"
+                                      :fnEdit="templateEdit"
                                       :fnQuickEdit="quickEdit"
                                       :fnView="view"
                                       :actions="$props.actions"
@@ -111,9 +111,13 @@ export default {
         },
 
         templateEdit (id) {
-
-            this.$router.push({query: { edit: 'true', id:id } });
-            this.openSlidePanel = true;
+            if(this.$route.params.id && this.$route.query.edit){
+                if(this.$route.params.id.toString() !== id.toString()){
+                    this.$router.push({query: { edit: 'true', id:id } });
+                }
+            } else {
+                this.$router.push({query: { edit: 'true', id:id } });
+            }
         },
         templateOnSuccess () {
             this.hideSide()

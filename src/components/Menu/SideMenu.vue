@@ -1,20 +1,22 @@
 <template>
   <a-layout-sider
     :class="['sider', isDesktop ? null : 'shadow', theme, fixSiderbar ? 'ant-fixed-sidemenu' : null ]"
-    width="256px"
+    :width="layoutMode === 'sidemenu' || !isDesktop ? '256px' :'120px'"
     :collapsible="collapsible"
+    :collapsed-width="70"
     v-model:collapsed="collapsed"
     :trigger="null"
   >
-    <logo/>
-    <div class="btn btn-icon inline side-toggle rounded-sm shadow" @click="toggle">
+    <logo :showTitle="layoutMode === 'sidemenu' || !isDesktop"/>
+    <div class="btn btn-icon inline side-toggle rounded-sm shadow-sm" @click="toggle" v-if="layoutMode === 'sidemenu'">
       <span class="svg-icon">
          <inline-svg v-if="collapsed" src="/assets/icons/duotune/arrows/arr080.svg"/>
          <inline-svg v-else           src="/assets/icons/duotune/arrows/arr079.svg"/>
       </span>
     </div>
-    <Menu :collapsed="collapsed" :theme="theme" :mode="mode"></Menu>
-    <Logout class="logout-btn-side" v-if="isDesktop" :show-title="!collapsed"/>
+    <Menu :collapsed="collapsed" :theme="theme" :mode="mode" v-if="layoutMode === 'sidemenu' || !isDesktop"></Menu>
+    <LevelMenu :collapsed="collapsed" :theme="theme" :mode="mode" v-if="layoutMode === 'levelmenu' && isDesktop"></LevelMenu>
+    <Logout class="logout-btn-side bg-white dark:bg-slate-900" v-if="isDesktop" :show-title="!collapsed"/>
   </a-layout-sider>
 </template>
 
@@ -24,12 +26,13 @@ import { defineComponent } from 'vue'
 import Logo from '~/components/tools/Logo.vue'
 import Logout from '~/components/tools/Logout.vue'
 import Menu from './Menu.vue'
+import LevelMenu from './LevelMenu.vue'
 import { isDesktop } from '~/utils/device'
-import { fixSiderbar } from '~/store/useSiteSettings'
+import { fixSiderbar, layoutMode } from '~/store/useSiteSettings'
 
 export default defineComponent({
   name: 'SideMenu',
-  components: { Logo, Menu, Logout },
+  components: { Logo, Menu, Logout, LevelMenu },
   props: {
     mode: {
       type: String,
@@ -66,6 +69,7 @@ export default defineComponent({
     return {
       isDesktop,
       toggle,
+      layoutMode,
       fixSiderbar,
     }
   }

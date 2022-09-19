@@ -6,6 +6,9 @@
 }
 .ant-menu-submenu-title{
   padding-left: 24px !important;
+  .svg-icon{
+    display: inline-block;
+  }
 }
 .ant-menu-submenu{
   .ant-menu-item-icon, .ant-menu-submenu-arrow, .ant-menu-submenu-expand-icon {
@@ -31,7 +34,14 @@
 }
 .ant-menu-item{
   //padding-left: 30px !important;
+  color: $gray-color ;
+  .svg-icon{
+    [fill]:not([fill="none"])  {
+      fill:  $gray-color;
+    }
+  }
   &:hover{
+    color: $primary-color ;
     .svg-icon{
       [fill]:not([fill="none"])  {
         fill:  $primary-color;
@@ -60,6 +70,9 @@
   .svg-icon {
     width: 18px;
     height: 18px;
+  }
+  .ant-menu-item-icon{
+    font-size: 18px !important;
   }
 
   background: transparent !important;

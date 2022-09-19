@@ -1,38 +1,17 @@
 
-#app {
+body {
   height: 100%;
-
+  scrollbar-width: thin;
   &.userLayout {
     overflow: auto;
   }
 
 
   .SysMenu {
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    overflow-x: hidden;
 
-    .ant-menu-item-icon {
-      width: 14px;
-      height: 14px;
-    }
-
-
-    &.ant-menu-dark {
-      .ant-menu-item-icon {
-        color: $dark-deactive-font-color  !important;
-      }
-
-      .ant-menu-submenu-selected {
-        .ant-menu-item-icon {
-          color: #fff !important;
-        }
-      }
-
-      .ant-menu-item-active,
-      .ant-menu-item-selected {
-        .ant-menu-item-icon {
-          color: #fff !important;
-        }
-      }
-    }
 
   }
 }
@@ -67,7 +46,6 @@
 
     .topmenu {
 
-      /* 必须为 topmenu  才能启用流式布局 */
       &.content-width-Fluid {
         .header-index-wide {
           margin-left: 0;
@@ -165,7 +143,7 @@
       }
 
       &.ant-header-side-closed {
-        width: calc(100% - 80px);
+        width: calc(100% - 70px);
       }
     }
   }
@@ -174,7 +152,8 @@
     height: 64px;
     padding-right: 12px;
     background: #fff;
-    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+    //box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+    box-shadow:none;
     position: relative;
   }
 
@@ -329,7 +308,7 @@
             display: inline-block;
             vertical-align: middle;
             height: 32px;
-            width: 32px;
+
           }
 
           h1 {
