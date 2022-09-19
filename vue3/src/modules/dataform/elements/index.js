@@ -175,7 +175,7 @@ export const elementList = [
     },
     {
         element: 'subform/Form',
-        component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-sub-form" */'./subform/Form.vue')),
+        component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-sub-form" */'./subform/FormSub.vue')),
     },
 ]
 

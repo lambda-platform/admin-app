@@ -102,9 +102,12 @@
 <script>
 
 import mixin from './_mixin'
-
+import { Modal } from 'ant-design-vue'
 export default {
     mixins: [mixin],
+    components:{
+        "a-modal": Modal,
+    },
     data () {
         return {
             preSource: [],

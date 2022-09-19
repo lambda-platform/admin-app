@@ -226,7 +226,7 @@ export default {
                     {
                         title: 'Google Сансрын',
                         thumb: '/webgis/images/baseMaps/googleSatellite.jpg',
-                        baseMap: L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+                        baseMap: L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
                             name: 'googleil',
                             maxZoom: 20,
                             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
@@ -236,7 +236,7 @@ export default {
                     {
                         title: 'Google Гудамж',
                         thumb: '/webgis/images/baseMaps/googleStreets.jpg',
-                        baseMap: L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+                        baseMap: L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
                             name: 'googlei',
                             maxZoom: 20,
                             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
@@ -245,7 +245,7 @@ export default {
                     },
                     {
                         title: 'Open Street Map',
-                        baseMap: L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        baseMap: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                             name: 'osm',
                             maxZoom: 19,
                             subdomains: ['a', 'b', 'c']
@@ -528,13 +528,13 @@ export default {
                 this.map.remove();
 
                 this.map = null;
-                var node = document.getElementById("geographic");
+                var node = document.getElementById(`geographic_${this.model.component}`);
 
                 var parent = node.parentNode;
                 parent.removeChild(node);
 
                 var div = document.createElement("div");
-                div.setAttribute("id", "geographic");
+                div.setAttribute("id", `geographic_${this.model.component}`);
 
                 parent.appendChild(div);
 

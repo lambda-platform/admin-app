@@ -177,12 +177,14 @@
 import {element} from "../index";
 import GridForm from "./GridForm";
 import subFormMix from "./subFormMix";
-
+import { Modal } from 'ant-design-vue'
 export default {
     props: ["form", "model", "editMode", "relations", "formula", "url"],
     mixins: [subFormMix],
     components: {
         "grid-form": GridForm,
+        "a-modal": Modal,
+
 
     },
     mounted() {

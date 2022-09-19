@@ -1,9 +1,10 @@
 <template>
     <lambda-form-item :label=label :name="model.component" :meta="meta">
-        <a-input-group compact>
+        <a-input-group compact >
             <a-select
                 v-model:value="selectValue"
                 :disabled="disabled"
+                autocomplete="off"
                 allowClear
                 showSearch
                 :options="options"
@@ -67,9 +68,12 @@
 
 <script>
 import mixin from './_mixin'
-
+import { Modal } from 'ant-design-vue'
 export default {
     mixins: [mixin],
+    components:{
+        "a-modal": Modal,
+    },
     computed: {
         lang () {
             const labels = ['dataNotFound',]

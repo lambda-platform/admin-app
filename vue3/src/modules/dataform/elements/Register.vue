@@ -5,7 +5,7 @@
         <a-input-number
             :disabled="disabled"
             @change="registerChanged"
-
+            class="register-field"
             v-model:value="registerNumber"
         >
             <template #addonBefore>
@@ -16,7 +16,7 @@
                     :options="characters"
                     @change="registerChanged"
                     show-search
-                    style="width: 60px"
+
                 >
                 </a-select>
                 <div style="width: 20px; display: inline-block"></div>
@@ -26,7 +26,7 @@
                     :options="characters"
                     @change="registerChanged"
                     show-search
-                    style="width: 60px"
+
                 >
                 </a-select>
 

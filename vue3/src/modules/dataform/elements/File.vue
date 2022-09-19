@@ -44,6 +44,17 @@ export default {
                 return obj
             }, {})
         },
+        isMultiple(){
+            if(this.meta.file) {
+                if (typeof this.meta.file.isMultiple !== 'undefined' && this.meta.file.isMultiple) {
+                    return true
+                } else {
+                    return false
+                }
+            } else {
+                return false
+            }
+        }
     },
     mounted () {
 
@@ -75,7 +86,7 @@ export default {
         init () {
 
             if (this.model.form[this.model.component]) {
-                if (typeof this.meta.file.isMultiple !== 'undefined' && this.meta.file.isMultiple) {
+                if (this.isMultiple) {
                     if (JSON.stringify(this.uploadList !== this.model.form[this.model.component])) {
                         let list = JSON.parse(this.model.form[this.model.component])
                         if (Array.isArray(list)) {
@@ -122,7 +133,7 @@ export default {
             }
             if (info.file.status === 'done') {
 
-                if (!this.meta.file.isMultiple) {
+                if (this.isMultiple) {
                     this.model.form[this.model.component] = info.file.response
                     this.uploadList = [{
                         status: 'done',
@@ -152,26 +163,35 @@ export default {
 
         success (val) {
 
-            if (this.meta.file.isMultiple) {
-                this.uploadList = this.$refs.upload.fileList
-                this.model.form[this.model.component] = JSON.stringify(this.uploadList.map(item => {
-                    return {
-                        name: item.name,
-                        response: item.response
-                    }
-                }))
+            if(this.meta.file) {
+                if (this.isMultiple) {
+                    this.uploadList = this.$refs.upload.fileList
+                    this.model.form[this.model.component] = JSON.stringify(this.uploadList.map(item => {
+                        return {
+                            name: item.name,
+                            response: item.response
+                        }
+                    }))
+                } else {
+                    this.model.form[this.model.component] = val
+                }
             } else {
                 this.model.form[this.model.component] = val
             }
+
         },
 
         handleRemove (e) {
 
-            if (this.meta.file.isMultiple) {
-                this.model.form[this.model.component] = JSON.stringify(this.uploadList.filter(u=>u.response !== e.response))
-            } else {
-                this.model.form[this.model.component] = null
-            }
+
+                if (this.isMultiple) {
+                    this.model.form[this.model.component] = JSON.stringify(this.uploadList.filter(u=>u.response !== e.response))
+                } else {
+                    this.model.form[this.model.component] = null
+                }
+
+
+
 
         },
 

@@ -56,7 +56,7 @@ function doFormula2(formula, model, model_, schema_, rule_, subFormModelName) {
 
         if (pre_formula) {
             let calculated = evil(pre_formula);
-            console.log("calculated:",calculated)
+
             formula.targets.map(target => {
                 let schema_index = getSchemaIndex(schema_, target.field);
                 if (schema_index >= 0) {

@@ -7,6 +7,11 @@
 .ant-select, .ant-select-single  {
     width: 100% !important;
 }
+.register-field{
+    .ant-select-single  {
+        width: 60px !important;
+    }
+}
 .addable-select{
     width: calc(100% - 32px) !important;
 }

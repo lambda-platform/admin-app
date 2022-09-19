@@ -59,7 +59,7 @@ export default defineNuxtPlugin(async ({ vueApp: app }) => {
   if (!i18n.global.availableLocales.includes(locale)) {
     await loadLocaleMessages(i18n, locale)
   }
-
+  app.use(Antd);
   app.use(i18n);
 
   //
@@ -73,7 +73,7 @@ export default defineNuxtPlugin(async ({ vueApp: app }) => {
   installDataGrid(app)
   //
   //
-  app.use(Antd);
+
   app.use(store);
 
   app.use(apolloProvider);
