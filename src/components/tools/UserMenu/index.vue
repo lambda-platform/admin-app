@@ -1,5 +1,5 @@
 <template>
-  <SearchBar class="action"/>
+  <SearchBar class="action" v-if="!isMobile"/>
   <notice-icon class="action"/>
   <DarkLightMode class="action" v-if="!isMobile"/>
   <a-dropdown>
@@ -92,7 +92,7 @@
       </a-menu>
     </template>
   </a-dropdown>
-  <SelectLang :class="theme" class="action"/>
+<!--  <SelectLang :class="theme" class="action"/>-->
   <div class="action" v-if="!isMobile">
          <span class="link link-icon " @click="showSystemSetting">
             <span class="svg-icon ">
@@ -120,7 +120,7 @@ import { defineComponent } from 'vue'
 import NoticeIcon from '~/components/NoticeIcon/index.vue'
 import SearchBar from '~/components/SearchBar/index.vue'
 import DarkLightMode from '~/components/tools/DarkLightMode.vue'
-import SelectLang from '~/components/SelectLang/index.vue'
+// import SelectLang from '~/components/SelectLang/index.vue'
 import { USER_INFO } from '~/store/mutation-types'
 
 import {
@@ -149,7 +149,7 @@ export default defineComponent({
     QuestionCircleOutlined,
     SettingOutlined,
     LogoutOutlined,
-    SelectLang,
+    // SelectLang,
     LockOutlined,
     layoutMode,
     Logout

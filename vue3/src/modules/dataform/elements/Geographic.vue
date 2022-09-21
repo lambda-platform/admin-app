@@ -4,16 +4,17 @@
             <div class="geographic-mapx"  :id="`geographic_${model.component}`" style="height: 100%; width: 100%">
 
 
-                <div id="base-maps">
-                    <ul>
-                        <li v-for="(baseMap, index) in baseMaps" :key="index">
-                            <a href="javascript:;" @click="changeBaseMap(index)"
-                               :class="index == currentBaseMap ? 'active' : ''">
-                                {{baseMap.title}}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+
+            </div>
+            <div id="base-maps">
+                <ul>
+                    <li v-for="(baseMap, index) in baseMaps" :key="index">
+                        <a href="javascript:;" @click="changeBaseMap(index)"
+                           :class="index == currentBaseMap ? 'active' : ''">
+                            {{baseMap.title}}
+                        </a>
+                    </li>
+                </ul>
             </div>
             <div id="side_bar" :class="openSide ? 'open' : ''">
                 <a-button @click="openSide = !openSide"
@@ -517,6 +518,7 @@ export default {
 
             if (this.map !== null) {
 
+
                 this.layer.eachLayer((layer) => {
 
                     this.map.removeLayer(layer);
@@ -531,17 +533,20 @@ export default {
                 var node = document.getElementById(`geographic_${this.model.component}`);
 
                 var parent = node.parentNode;
+
                 parent.removeChild(node);
 
                 var div = document.createElement("div");
                 div.setAttribute("id", `geographic_${this.model.component}`);
+                div.setAttribute("class", `geographic-mapx`);
 
                 parent.appendChild(div);
+
 
             }
         },
         initMap() {
-            console.log("MAP INITING")
+
             L.Marker.prototype.options.icon = iconDefault;
 
 
