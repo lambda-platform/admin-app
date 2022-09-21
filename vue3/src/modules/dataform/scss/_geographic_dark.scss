@@ -1,0 +1,19 @@
+.geographic {
+    #side_bar, .side-toggle, table, th, td{
+        background: #2d3d57 !important;
+    }
+    table {
+        td, th {
+            color: rgba(255, 255, 255, 0.85) !important;
+        }
+    }
+    #base-maps {
+        ul {
+            li {
+                a {
+                    background: #2d3d57 !important;
+                }
+            }
+        }
+    }
+}

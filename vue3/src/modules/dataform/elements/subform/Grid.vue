@@ -344,7 +344,6 @@ export default {
 
                 let listData = [];
                 data.forEach(item => {
-                    console.log(item)
 
                     listData.push({
                         form: _.cloneDeep(this.form),
