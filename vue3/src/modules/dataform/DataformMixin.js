@@ -766,6 +766,7 @@ export default {
                 axios.post(this.page_id ? `${this.baseUrl}/lambda/krud/${this.$props.schemaID}/edit/${id}?page_id=${this.page_id}` : `${this.baseUrl}/lambda/krud/${this.$props.schemaID}/edit/${id}`)
                     .then(({ data }) => {
                         if (data.status) {
+
                             this.model = { ...this.model, ...data.data }
                             if (this.ui && this.ui.hasOwnProperty('schema')) {
                                 this.setEditModel(this.ui.schema)
@@ -794,21 +795,26 @@ export default {
         },
 
         subFormFillData(subModel) {
-            if (this.$refs[`sf${subModel}`]) {
 
-                if (this.$refs[`sf${subModel}`].length >= 1) {
-                    this.$refs[`sf${subModel}`][0].fillData()
+            this.$nextTick(() => {
+
+                if (this.$refs[`sf${subModel}`]) {
+
+                    if (this.$refs[`sf${subModel}`].length >= 1) {
+
+                        this.$refs[`sf${subModel}`][0].fillData(this.model[subModel])
+                    } else {
+
+                        setTimeout(() => {
+                            this.subFormFillData(subModel)
+                        }, 100)
+                    }
                 } else {
-
                     setTimeout(() => {
                         this.subFormFillData(subModel)
                     }, 100)
                 }
-            } else {
-                setTimeout(() => {
-                    this.subFormFillData(subModel)
-                }, 100)
-            }
+            });
         },
 
         setEditModel(items) {
@@ -910,7 +916,6 @@ export default {
                     if (item.relation.filter == '' || typeof item.relation.filter === 'undefined') {
                         item.relation.filter = userConditions
 
-                        console.log(item.relation)
 
                         this.setSchemaByModel(item.model, 'relation', item.relation)
 
@@ -1004,7 +1009,7 @@ export default {
              return visible_item_found;
          }*/
         showInformationModal(url, title) {
-            console.log(url, title)
+
             this.infoTitle = title
             this.infoUrl = url
             this.showInfo = true

@@ -13,7 +13,8 @@
                 </template>
             </a-button>
         </div>
-        <table class="sub-form-grid" border="1" v-if="form.min_height ? true: this.listData.length >= 1">
+
+        <table class="sub-form-grid" border="1" v-if="form.min_height ? true : this.listData.length >= 1">
             <thead>
             <tr>
                 <th class="row-number" v-if="form.showRowNumber">ДД</th>
@@ -184,15 +185,12 @@ export default {
     components: {
         "grid-form": GridForm,
         "a-modal": Modal,
-
-
     },
     mounted() {
         this.equationRenderer();
         this.form.schema.forEach(field => {
             field.disabled = true;
-        })
-
+        });
     },
     computed: {
             lang() {
@@ -224,6 +222,7 @@ export default {
     watch: {
         listData: {
             handler: function (curr, old) {
+
                 if (this.hasEq) {
                     this.equationData.map(eq => {
                         if (eq.hasEquation) {
@@ -285,6 +284,7 @@ export default {
             currentSortDir: 'asc',
             hasEq: false,
             modal_show: false,
+            filled: false,
             editIndex: -1,
 
         };
@@ -456,22 +456,23 @@ export default {
             this.editIndex = -1;
             this.showAddModal()
         },
-        fillData() {
-            this.listData = [];
+        fillData(data) {
+            this.$nextTick(() => {
 
-            setTimeout(() => {
+            let listData = [];
+            data.forEach(item => {
+                listData.push({
+                    form: _.cloneDeep(this.form),
+                    model: item
+                })
+            });
 
-                this.model.form[this.model.component].forEach(item => {
-                    let listItem = {
-                        form: _.cloneDeep(this.form),
-                        model: item
-                    };
-                    this.listData.push(listItem);
-                });
 
-                // console.log(this.model.form[this.model.component]);
+            this.listData = listData;
 
-            }, 100);
+
+
+            });
         },
         equationRenderer() {
             this.equationData = [];
