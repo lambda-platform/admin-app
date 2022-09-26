@@ -3,6 +3,9 @@
 </template>
 
 <script>
+definePageMeta({
+  layout: 'home',
+})
 export default {
   name: 'index.vue'
 }

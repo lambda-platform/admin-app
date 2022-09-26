@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { Modal } from 'ant-design-vue'
+import Modal from "ant-design-vue/lib/modal"
 
 import { defineComponent } from 'vue'
 import { userLogout } from '~/service/service'
