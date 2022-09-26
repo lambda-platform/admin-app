@@ -12,15 +12,15 @@
 
 <script lang="ts">
 import { defineComponent, reactive, watch, onMounted, toRefs } from 'vue'
-import { useRouter } from 'vue-router'
+
 
 export default defineComponent({
   setup(props) {
-    const router = useRouter()
+    const route = useRoute()
     const state = reactive<any>({ name: '', breadList: [] })
 
     const getBreadcrumb = () => {
-      const route = router.currentRoute.value
+
       state.breadList = []
       // this.breadList.push({name: 'index', path: '/dashboard/', meta: {title: '首页'}})
 
@@ -32,7 +32,7 @@ export default defineComponent({
     }
 
     watch(
-      () => router.currentRoute.value,
+      () => route,
       (newVal) => {
         getBreadcrumb()
       }

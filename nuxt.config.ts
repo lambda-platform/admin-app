@@ -7,7 +7,6 @@ import {
   themePreprocessorPlugin,
   themePreprocessorHmrPlugin,
 } from "@zougt/vite-plugin-theme-preprocessor";
-
 import path from 'path';
 
 const pathResolve = (pathStr: string) => {
@@ -139,12 +138,6 @@ export default defineNuxtConfig({
         },
       },
     },
-    build: {
-      commonjsOptions: {
-        include: ["@ckeditor/ckeditor5-build-classic"]
-      }
-    }
-
   },
   build: {
     postcss: {

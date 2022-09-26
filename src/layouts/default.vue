@@ -134,7 +134,7 @@ export default defineComponent({
     SettingDrawer
   },
   setup () {
-    const router = useRouter()
+
     const collapsed = ref(false)
     const menus = ref([])
     const store = useStore()

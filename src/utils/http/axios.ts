@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 import { message } from 'ant-design-vue'
 import { ACCESS_TOKEN, USER_INFO } from '~/store/mutation-types'
-import { baseURL } from '~/utils/util'
+
 import ls from '~/utils/Storage'
 import { useRouter } from 'vue-router'
 import { globalLoading } from '~/store/reactiveState'
@@ -12,7 +12,7 @@ const ContentType = {
   formData: 'multipart/form-data'
 }
 
-// 创建 axios 实例   withCredentials: true,
+
 const baseService = axios.create({
   // baseURL,
   timeout: 60000,
@@ -47,13 +47,13 @@ baseService.interceptors.response.use(
     if (res.status === 200) {
       return res.data
     } else if (res.status === 401 || res.status === 403) {
-      message.error('登录过期或权限不足, 请重新登陆!')
+      message.error('!')
       return false
     } else if (res.status === 500) {
-      message.error('请求数据失败, 请重试!')
+      message.error('!')
       return false
     } else if (res.status === 406) {
-      message.error('登陆超时请重新登录!')
+      message.error('!')
       const router = useRouter()
       router.push({ name: 'login' })
       return false
@@ -77,14 +77,14 @@ baseService.interceptors.response.use(
       message.error(data.msg || data.enMsg || data.message)
     } else if (msg) {
       if (msg === 'Network Error') {
-        message.error('网络错误,请检查网络!')
+        message.error('')
       } else {
         message.error(msg)
       }
     } else if (error.__CANCEL__) {
       // ignore message error
     } else {
-      message.error('未知错误,请重试!')
+      message.error('')
     }
     return false
   }
