@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import mixin from '../../vue3/src/modules/dataform/elements/_mixin'
+import mixin from '@lambda-platform/lambda-vue/src/modules/dataform/elements/_mixin'
 import axios from 'axios'
 
 

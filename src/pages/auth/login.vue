@@ -70,7 +70,7 @@ export default {
       }
     },
     renderTheme(){
-      return defineAsyncComponent(() => import(`../../../vue3/src/modules/agent/views/theme/${this.lambda.theme}/auth/login.vue`))
+      return defineAsyncComponent(() => import(`../../../node_modules/@lambda-platform/lambda-vue/src/modules/agent/views/theme/${this.lambda.theme}/auth/login.vue`))
     }
 
   }

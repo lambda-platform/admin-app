@@ -12,13 +12,13 @@ import path from 'path';
 const pathResolve = (pathStr: string) => {
   return path.resolve(__dirname, pathStr);
 };
-
+let lambdaRoot = '../../vue3'
 // @ts-ignore
 export default defineNuxtConfig({
 
   alias: {
     public: resolve(__dirname, "./public/"),
-  //  '@lambda-platform/lambda-vue' :resolve(__dirname, '../../vue3')
+   '@lambda-platform/lambda-vue' :resolve(__dirname, lambdaRoot)
   },
   target: 'static',
   srcDir: "src/",
@@ -116,7 +116,7 @@ export default defineNuxtConfig({
         },
         {
           find: '@lambda-platform/lambda-vue',
-          replacement: pathResolve('vue3') + '/' ,
+          replacement: pathResolve(lambdaRoot) + '/' ,
         },
 
       ],
