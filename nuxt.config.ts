@@ -12,14 +12,32 @@ import path from 'path';
 const pathResolve = (pathStr: string) => {
   return path.resolve(__dirname, pathStr);
 };
-let lambdaRoot = '../../vue3'
+
 // @ts-ignore
+
+let nuxtAlies = {
+  public: resolve(__dirname, "./public/"),
+
+}
+let viteAlies = [
+  {
+    find: '@',
+    replacement: pathResolve('src') + '/',
+  },
+
+
+]
+if(process.env.LAMBDA_ROOT !== "@lambda-platform/lambda-vue" && process.env.LAMBDA_ROOT != ""){
+  nuxtAlies['@lambda-platform/lambda-vue'] = resolve(__dirname, process.env.LAMBDA_ROOT),
+
+  viteAlies.push({
+    find: '@lambda-platform/lambda-vue',
+    replacement: pathResolve(process.env.LAMBDA_ROOT) + '/' ,
+  })
+}
 export default defineNuxtConfig({
 
-  alias: {
-    public: resolve(__dirname, "./public/"),
-   '@lambda-platform/lambda-vue' :resolve(__dirname, lambdaRoot)
-  },
+  alias: nuxtAlies,
   target: 'static',
   srcDir: "src/",
   app:{
@@ -109,17 +127,7 @@ export default defineNuxtConfig({
       // themePreprocessorHmrPlugin(),
     ],
     resolve: {
-      alias: [
-        {
-          find: '@',
-          replacement: pathResolve('src') + '/',
-        },
-        {
-          find: '@lambda-platform/lambda-vue',
-          replacement: pathResolve(lambdaRoot) + '/' ,
-        },
-
-      ],
+      alias: viteAlies,
       dedupe: [
         'vue'
       ]
