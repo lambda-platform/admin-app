@@ -7,6 +7,7 @@ import {
   themePreprocessorPlugin,
   themePreprocessorHmrPlugin,
 } from "@zougt/vite-plugin-theme-preprocessor";
+
 import path from 'path';
 
 const pathResolve = (pathStr: string) => {
@@ -23,12 +24,10 @@ let viteAlies = [
   {
     find: '@',
     replacement: pathResolve('src') + '/',
-  },
-
-
+  }
 ]
 if(process.env.LAMBDA_ROOT !== "@lambda-platform/lambda-vue" && process.env.LAMBDA_ROOT != ""){
-  nuxtAlies['@lambda-platform/lambda-vue'] = resolve(__dirname, process.env.LAMBDA_ROOT),
+  nuxtAlies['@lambda-platform/lambda-vue'] = resolve(__dirname, process.env.LAMBDA_ROOT)
 
   viteAlies.push({
     find: '@lambda-platform/lambda-vue',
@@ -69,6 +68,7 @@ export default defineNuxtConfig({
         iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
         symbolId: 'icon-[dir]-[name]',
       }),
+
       // viteThemePlugin({
       //   colorVariables: [...getThemeColors()],
       // }),
@@ -139,6 +139,7 @@ export default defineNuxtConfig({
         },
       },
     },
+
   },
   build: {
     postcss: {

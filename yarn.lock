@@ -1451,10 +1451,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@lambda-platform/lambda-vue@3.0.6":
-  version "3.0.6"
-  resolved "https://registry.npmjs.org/@lambda-platform/lambda-vue/-/lambda-vue-3.0.6.tgz#f9dd93f62455dbaf8a619d52f868e1e7b4d2073c"
-  integrity sha512-BjR1kmH0nxYje1K540Zub+Z5ivn/077dD85BSaIyadnvKaSbrcL80+57CKEtvI3gcQBsWckjc8fDvfN3Tfy6Rg==
+"@lambda-platform/lambda-vue@3.0.10":
+  version "3.0.10"
+  resolved "https://registry.npmjs.org/@lambda-platform/lambda-vue/-/lambda-vue-3.0.10.tgz#2116780821ef1d97aa53e506e79cb2a66a7ffdc7"
+  integrity sha512-Q+CVD0OrA7RZj+J9Go3XqXANK4yUgD9kMvKkCKjv7mx6gXnCwp1r1OhdY0UV42Lter7KD5cdbW8F5AnO/rd5gQ==
   dependencies:
     "@ckeditor/ckeditor5-vue" "^4.0.1"
     "@esri/calcite-colors" "^6.0.1"
