@@ -139,6 +139,11 @@ export default defineNuxtConfig({
         },
       },
     },
+    build: {
+      commonjsOptions: {
+        include: ["@ckeditor/ckeditor5-build-classic"]
+      }
+    }
 
   },
   build: {

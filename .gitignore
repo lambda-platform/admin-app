@@ -110,3 +110,4 @@ nuxt.d.ts
 .idea
 .vscode
 .env
+src/dataform_custom/project_custom

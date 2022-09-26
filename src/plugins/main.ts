@@ -1,11 +1,11 @@
 import { reactive } from "vue";
+import { customElementList } from '~/dataform_custom/index.js'
 /*
 * Plugins
 * */
 
 import VueGtag from 'vue-gtag-next'
 import PortalVue from 'portal-vue'
-
 // import {i18n} from '~@lambda-platform/lambda-vue/src/locale';
 
 import {installDataGrid} from '@lambda-platform/lambda-vue/src/modules/datagrid';
@@ -47,7 +47,6 @@ import '~/assets/styles/theme/ant_dark.less';
 // import  '~/assets/styles/app.scss';
 //
 
-
 export default defineNuxtPlugin(async ({ vueApp: app }) => {
 
   // app.use(VueGtag, {
@@ -61,7 +60,7 @@ export default defineNuxtPlugin(async ({ vueApp: app }) => {
   }
   app.use(Antd);
   app.use(i18n);
-
+  app.config.globalProperties.$customElementList = customElementList
   //
   initAxios();
   initInlineSvg(app);

@@ -1,5 +1,9 @@
 import { defineAsyncComponent } from 'vue'
-export const elementList = [
+export const customElementList = [
+  {
+    element: 'CK',
+    component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-CK" */'./CK.vue')),
+  },
   {
     element: 'arcGISLayer',
     component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-text" */'./arcGISLayer.vue')),
@@ -13,14 +17,3 @@ export const elementList = [
     component: defineAsyncComponent(() => import(/* webpackChunkName: "form-field-Select" */'./arcGISLayerAttributeConnectorLayer.vue')),
   }
 ]
-export const renderCustom = (type, notFoundElement)=>{
-  if (type !== null && typeof type !== 'undefined') {
-    const elIndex = elementList.findIndex(el => el.element === type)
-
-    if (elIndex >= 0) {
-      return elementList[elIndex].component
-    }
-  } else {
-    return notFoundElement
-  }
-}
