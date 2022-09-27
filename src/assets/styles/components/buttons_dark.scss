@@ -2,13 +2,10 @@
 // Icons
 .btn {
 
-
-  &:hover, &:active {
-
-    background-color: rgba(0, 0, 0, 0.2);
-
-  }
   &.btn-icon {
+    background-color: transparent;
+  }
+  &:hover, &:active {
     background-color: rgba(30, 41, 60, 1);
   }
 }
