@@ -109,5 +109,6 @@ nuxt.d.ts
 .DS_Store
 .idea
 .vscode
+yarn.lock
 .env
 src/dataform_custom/project_custom
