@@ -1,5 +1,8 @@
 <template>
   <div class="grid grow grid-nogutter module-page container pb-16 px-4 mx-auto">
+    <Head>
+      <Title>{{title}}</Title>
+    </Head>
     <div>
       <img :src="`${base_url}${logoDark}`" v-if="darkMode" class="logo-light" :alt="title">
       <img :src="`${base_url}${logo}`"   v-if="!darkMode" class="logo-dark" :alt="title">
