@@ -7,6 +7,7 @@
       :wrapClassName="`drawer-sider ${navTheme}`"
       :closable="false"
       :visible="collapsed"
+      width="275"
       @close="drawerClose"
     >
       <side-menu
@@ -64,7 +65,7 @@
         </div>
       </a-layout-content>
 
-<!--       layout footer-->
+      <!--       layout footer-->
       <a-layout-footer class="">
         <global-footer/>
       </a-layout-footer>
