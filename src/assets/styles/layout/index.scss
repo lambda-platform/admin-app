@@ -146,6 +146,11 @@ body {
         width: calc(100% - 70px);
       }
     }
+    .module-page{
+      .ant-layout-header{
+        width: 100% !important;
+      }
+    }
   }
 
   .header {

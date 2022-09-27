@@ -2,7 +2,7 @@
     <aside class="level-menu">
         <nav>
             <ul>
-              <RenderLevelMenu v-for="m in menu" :key="getPath(m)"  :item="m" :cruds="kruds" :permissions="permissions.permissions" :selectMain="selectMain" :selectedMenu="selectedMenu" />
+              <RenderLevelMenu v-for="m in menu" :key="m.index"  :item="m" :cruds="kruds" :permissions="permissions.permissions" :selectMain="selectMain" :selectedMenu="selectedMenu" />
             </ul>
         </nav>
 

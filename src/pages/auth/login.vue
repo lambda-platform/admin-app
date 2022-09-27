@@ -56,9 +56,11 @@ export default {
 
                 let menu_id = paths[paths.length - 1]
 
-                this.$router.replace('/admin/p/' + menu_id)
+                // this.$router.replace('/admin/p/' + menu_id)
+                this.$router.replace('/admin')
               } else {
-                this.$router.replace(path)
+                // this.$router.replace(path)
+                this.$router.replace('/admin')
               }
 
 

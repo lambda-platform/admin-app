@@ -7,14 +7,14 @@
         :style="{ padding: '0' }"
       >
         <div v-if="mode === 'sidemenu' || mode === 'levelmenu'" :class="mode === 'levelmenu' ? 'header md:pl-6' : 'header md:pl-8'">
-          <span v-if="isMobile" class="float-left">
+          <span v-if="isMobile && !moduleHeader" class="float-left">
               <span class="trigger   btn btn-icon shadow-none" @click="toggle">
                 <span class="svg-icon">
                    <inline-svg src="/assets/icons/duotone/Text/Menu.svg" />
                 </span>
               </span>
           </span>
-          <logo v-if="isMobile" :showTitle="false"/>
+          <logo v-if="isMobile && !moduleHeader" :showTitle="false"/>
           <portal-target name="header-left" v-if="!isMobile">
           </portal-target>
           <portal-target name="header-mobile" v-if="isMobile">
@@ -28,14 +28,14 @@
           </div>
         </div>
         <div v-else :class="['top-nav-header-index', theme]">
-           <span v-if="isMobile" class="float-left">
+           <span v-if="isMobile && !moduleHeader" class="float-left">
               <span class="trigger btn btn-icon shadow-none" @click="toggle">
                 <span class="svg-icon">
                    <inline-svg src="/assets/icons/duotone/Text/Menu.svg" />
                 </span>
               </span>
           </span>
-          <div class="header-index-wide">
+          <div class="header-index-wide" >
             <div class="header-index-left">
               <logo class="top-nav-header" :show-title="device !== 'mobile'" :style="`${!isMobile ? 'margin-left:25px' : ''}`"/>
               <s-menu v-if="device !== 'mobile'" mode="horizontal" :theme="theme"/>
@@ -80,6 +80,11 @@ export default defineComponent({
       default: 'dark'
     },
     collapsed: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    moduleHeader: {
       type: Boolean,
       required: false,
       default: false
