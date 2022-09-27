@@ -134,7 +134,7 @@ export default defineComponent({
     SettingDrawer
   },
   setup () {
-
+    const route = useRoute();
     const collapsed = ref(false)
     const menus = ref([])
     const store = useStore()
@@ -153,6 +153,15 @@ export default defineComponent({
       () => sidebarOpened.value,
       (val) => {
         collapsed.value = !val
+      }
+    )
+    watch(
+      () => route.fullPath,
+      (val) => {
+
+        if(isMobile.value) {
+          drawerClose()
+        }
       }
     )
     // const kruds = ls.get(KRUDS)
@@ -202,9 +211,10 @@ export default defineComponent({
           }, 16)
         })
       }
-      if(!sidebarOpened.value){
-        collapsed.value = true;
-      }
+      // if(!sidebarOpened.value){
+      //
+      // }
+
     })
 
     const toggle = () => {
@@ -249,6 +259,7 @@ export default defineComponent({
       navTheme,
       isMobile,
       isSideMenu,
+
       // showRouter,
       // onRefresh
     }
