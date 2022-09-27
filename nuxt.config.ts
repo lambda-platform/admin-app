@@ -158,7 +158,7 @@ export default defineNuxtConfig({
     meta: [
       { "http-equiv": "X-UA-Compatible", content: "IE=edge" },
       { name: "charset", content: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1, shrink-to-fit=no" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, shrink-to-fit=yes" },
       { name: "description", content: process.env.LAMBDA_DESCRIPTION  },
       { name: "og:url", content: process.env.LAMBDA_FAVICON },
       { name: "og:type", content: "article" },
