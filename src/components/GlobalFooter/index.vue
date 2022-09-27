@@ -2,22 +2,19 @@
   <div class="footer ">
 <!--    <div :class="['links',isMobile?'lessMargin':'']">-->
 <!--      <a-->
-<!--        href="https://github.com/bailihuiyue/ant-design-pro-vue3/blob/main/README.md"-->
+<!--        href="https://lambda-platform.github.io/"-->
 <!--        target="_blank"-->
-<!--      >Pro 首页</a>-->
+<!--      >Lambda</a>-->
 <!--      <a-->
-<!--        href="https://github.com/bailihuiyue/ant-design-pro-vue3/blob/main/README.md"-->
+<!--        href="https://github.com/lambda-platform/"-->
 <!--        target="_blank"-->
 <!--      >-->
 <!--        <GithubOutlined />-->
 <!--      </a>-->
-<!--      <a href="https://ant.design/">Ant Design</a>-->
-<!--      <a href="https://2x.antdv.com/">Vue Antd</a>-->
+<!--     -->
 <!--    </div>-->
     <div class="copyright">
-
-
-      <span class="text-gray-400">© Lambda - 2022</span>
+      <span class="text-gray-400">{{ copyright }}</span>
     </div>
   </div>
 </template>
@@ -26,7 +23,8 @@
 import { CopyrightOutlined, GithubOutlined } from '@ant-design/icons-vue'
 import { defineComponent } from 'vue'
 import { isMobile } from '~/utils/device'
-
+import { LAMBDA_CONFIG } from '~/store/mutation-types'
+import ls from "~/utils/Storage";
 export default defineComponent({
   name: 'GlobalFooter',
   components: {
@@ -34,7 +32,12 @@ export default defineComponent({
     GithubOutlined
   },
   setup() {
-    return { isMobile }
+
+    const LambdaConfig = ls.get(LAMBDA_CONFIG)
+    return {
+      isMobile,
+      copyright: LambdaConfig.copyright,
+    }
   }
 })
 </script>

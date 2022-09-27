@@ -7,7 +7,8 @@
     v-model:collapsed="collapsed"
     :trigger="null"
   >
-    <logo :showTitle="layoutMode === 'sidemenu' || !isDesktop"/>
+
+    <logo :showTitle="!isDesktop ? false : layoutMode === 'sidemenu' && layoutMode !== 'levelmenu' && !collapsed"/>
     <div class="btn btn-icon inline side-toggle rounded-sm shadow-sm" @click="toggle" v-if="layoutMode === 'sidemenu'">
       <span class="svg-icon">
          <inline-svg v-if="collapsed" src="/assets/icons/duotune/arrows/arr080.svg"/>

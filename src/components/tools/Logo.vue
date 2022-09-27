@@ -1,8 +1,10 @@
 <template>
   <div class="logo">
     <nuxt-link to="/admin">
-      <img :src="`${base_url}${logo_dark}`" v-if="darkMode" class="logo-light" :alt="title">
-      <img :src="`${base_url}${logo}`"   v-if="!darkMode" class="logo-dark" :alt="title">
+      <img :src="`${base_url}${logoDark}`" v-if="darkMode && showTitle" class="logo-light" :alt="title">
+      <img :src="`${base_url}${logo}`"   v-if="!darkMode && showTitle" class="logo-dark" :alt="title">
+      <img :src="`${base_url}${logoSquireDark}`" v-if="darkMode && !showTitle" class="logo-light" :alt="title">
+      <img :src="`${base_url}${logoSquire}`"   v-if="!darkMode && !showTitle" class="logo-dark" :alt="title">
       <h1 v-if="showTitle">{{ title }}</h1>
     </nuxt-link>
   </div>
@@ -33,7 +35,9 @@ export default defineComponent({
     return {
       title: LambdaConfig.title,
       logo: LambdaConfig.logo,
-      logo_dark: LambdaConfig.logo_dark,
+      logoDark: LambdaConfig.logo_dark,
+      logoSquire: LambdaConfig.logo_squire,
+      logoSquireDark: LambdaConfig.logo_squire_dark,
       base_url:base_url,
       darkMode
 

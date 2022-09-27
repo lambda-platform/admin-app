@@ -59,9 +59,7 @@ export default defineNuxtConfig({
   ],
   vite:{
     envPrefix:"LAMBDA_",
-    server: {
-      host: '0.0.0.0'
-    },
+
     plugins: [
       createSvgIconsPlugin({
         iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
