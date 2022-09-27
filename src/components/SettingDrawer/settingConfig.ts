@@ -1,7 +1,7 @@
 import config from '~/config/defaultSettings'
 const colorList = [
   {
-    key: 'Цэнхэр',
+    key: 'Үндсэн өнгө',
     color: config.primaryColor
   },
   {

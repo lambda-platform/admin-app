@@ -55,7 +55,7 @@ export default defineNuxtConfig({
     '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_material.scss',
     '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_light.scss',
     '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_dark.scss',
-    '~/assets/styles/app.scss',
+
   ],
   vite:{
     envPrefix:"LAMBDA_",
@@ -132,7 +132,17 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         less: {
+          modifyVars: {
+            'primary-color': process.env.LAMBDA_PRIMARY_COLOR,
+            'primary-color-dark-theme': process.env.LAMBDA_PRIMARY_COLOR },
           javascriptEnabled: true,
+        },
+        scss: {
+          modifyVars: { 'primary-color': process.env.LAMBDA_PRIMARY_COLOR, 'primary-color-dark-theme': process.env.LAMBDA_PRIMARY_COLOR },
+          additionalData: `
+          $primary-color: ${process.env.LAMBDA_PRIMARY_COLOR};
+          $ag-primary-color: ${process.env.LAMBDA_PRIMARY_COLOR};
+          `,
         },
       },
     },

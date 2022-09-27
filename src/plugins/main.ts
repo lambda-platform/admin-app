@@ -35,6 +35,7 @@ import Antd from 'ant-design-vue';
 
 import '~/assets/styles/theme/ant_light.less';
 import '~/assets/styles/theme/ant_dark.less';
+import '~/assets/styles/app.scss';
 // import '~/assets/styles/components/loading.css';
 // import   '@/assets/styles/tailwind.css'
 //   // '~/assets/styles/theme/ant.less',
