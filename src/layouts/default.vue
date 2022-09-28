@@ -57,7 +57,7 @@
               <div class="flex">
                 <portal-target name="level-menu">
                 </portal-target>
-                <NuxtPage :key="$route.fullPath"/>
+                <NuxtPage :key="$route.path"/>
               </div>
 
             </section>
