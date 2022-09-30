@@ -1,10 +1,12 @@
 <template>
     <lambda-form-item  :label=label  :name="model.component" :meta="meta">
+      <h1>{{meta.editorType}}</h1>
+      <h1>{{model.form[model.component]}} ?? {{model.component}}</h1>
         <ckeditor ref="ckeditor" :editor="editor" v-model="model.form[model.component]"
                   :config="editorConfig" :key="meta.editorType"
                   :placeholder="placeholder"
                   :disabled="disabled"
-                  @ready="onReady" @blur="onBlur($event)" @focus="onFocus($event)"></ckeditor>
+                  @ready="onReady" @blur="onBlur" @focus="onFocus"></ckeditor>
     </lambda-form-item>
 </template>
 
@@ -34,6 +36,8 @@ export default {
         };
     },
     created() {
+
+
         if (this.meta.editorType == "article") {
             this.editorConfig = {
                 toolbar: {
@@ -86,10 +90,7 @@ export default {
         onFocus(editor) {
         },
         onReady(event) {
-            if(!this.model.form[this.model.component])
-            {
-                this.model.form[this.model.component]='123';
-            }
+
         }
     }
 };
