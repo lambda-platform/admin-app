@@ -156,7 +156,8 @@ export default defineComponent({
   },
   setup (props) {
 
-    const UserInfo = ls.get(USER_INFO)
+    const UserInfo = ls.get(USER_INFO);
+
     const store = useStore()
 
     const showSystemSetting = () => {
@@ -166,6 +167,7 @@ export default defineComponent({
     const onLockScreen = () => {
       store.commit('SET_LOCK_SCREEN', true)
     }
+
 
     return {
       avatar: '/images/avatar.png',

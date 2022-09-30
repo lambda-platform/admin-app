@@ -18,7 +18,7 @@
 import en_US from 'ant-design-vue/lib/locale-provider/en_US';
 import mn_MN from 'ant-design-vue/lib/locale-provider/mn_MN';
 import axios from 'axios'
-import { LAMBDA_CONFIG, ACCESS_TOKEN, PERMISSIONS, MENU, KRUDS, MENU_LIST } from '~/store/mutation-types';
+import { LAMBDA_CONFIG, ACCESS_TOKEN, PERMISSIONS, MENU, KRUDS, MENU_LIST, USER_INFO } from '~/store/mutation-types';
 import { setDeviceType } from '~/utils/device'
 import LockScreen from '~/components/LockScreen/index.vue'
 import ls from '~/utils/Storage';
@@ -26,6 +26,7 @@ import { getLambdaConfig } from './service/service'
 import { clearUserInfo } from './utils/util'
 import { createList } from '~/utils/menu'
 import { title, subTitle } from '~/consts/const'
+
 export default {
   components: { LockScreen },
   data() {
@@ -62,13 +63,16 @@ export default {
 
           if (data.status) {
 
-
-
             ls.set(PERMISSIONS, data.permission.permissions)
             ls.set(MENU, data.permission.menu)
             ls.set(KRUDS, data.permission.kruds)
             let menuList = createList(data.permission.menu, null, data.permission.kruds)
             ls.set(MENU_LIST,menuList);
+
+            window.init = {
+              user: ls.get(USER_INFO),
+              microserviceSettings:[]
+            }
             this.loading = false;
           } else {
             this.redirectToLogin();
