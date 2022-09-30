@@ -25,6 +25,8 @@ import { initInlineSvg } from "./core/inline-svg";
 import { initFilters } from "./core/filters";
 import { initAxios } from "./core/axios";
 
+import '@ckeditor/ckeditor5-build-classic';
+
 declare interface AppState {
   theme?: string;
   darkTheme?: boolean;
@@ -50,6 +52,7 @@ import '~/assets/styles/app.scss';
 
 export default defineNuxtPlugin(async ({ vueApp: app }) => {
 
+
   // app.use(VueGtag, {
   //   property: {
   //     id: 'G-NNSL6DKF5X'
@@ -69,6 +72,7 @@ export default defineNuxtPlugin(async ({ vueApp: app }) => {
 
   /* LAMBDA */
   installKrud(app)
+  app.provide('customElementList', customElementList)
   installDataForm(app)
   installDataGrid(app)
   //
