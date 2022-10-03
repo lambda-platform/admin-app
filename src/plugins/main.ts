@@ -25,7 +25,6 @@ import { initInlineSvg } from "./core/inline-svg";
 import { initFilters } from "./core/filters";
 import { initAxios } from "./core/axios";
 
-import '@ckeditor/ckeditor5-build-classic';
 
 declare interface AppState {
   theme?: string;

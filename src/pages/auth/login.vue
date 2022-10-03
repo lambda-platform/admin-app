@@ -34,6 +34,10 @@ export default {
           ...data.data,
           jwt: undefined
         })
+        window.init = {
+          user:data.data,
+          microserviceSettings:[]
+        }
         ls.set(ACCESS_TOKEN, data.token, 7 * 24 * 60 * 60 * 1000)
         setToken(data.token)
         if (data.data.role === 1) {
@@ -55,6 +59,7 @@ export default {
                 let paths = path.split('/')
 
                 let menu_id = paths[paths.length - 1]
+
 
                 // this.$router.replace('/admin/p/' + menu_id)
                 this.$router.replace('/admin')
