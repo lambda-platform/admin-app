@@ -37,7 +37,6 @@
 
 <script lang="ts">
 import { defineComponent, reactive, computed, onMounted, watch, ref, ComputedRef } from 'vue'
-import { useRouter } from 'vue-router'
 import { KRUDS, MENU, MENU_LIST, PERMISSIONS } from '~/store/mutation-types'
 import ls from '~/utils/Storage'
 import RenderLevelMenu from './RenderLevelMenu.vue'
@@ -74,8 +73,8 @@ export default defineComponent({
     const menu = ls.get(MENU)
     const menu_list = ls.get(MENU_LIST)
 
-    const router = useRouter()
-    const route = router.currentRoute
+
+    const route = useRoute();
     const openKeys = reactive<any>({ value: [] })
     const selectedKeys = ref<any>([])
     const  subMenus = ref<any>([])
@@ -160,10 +159,10 @@ export default defineComponent({
     const updateMenu = () => {
 
       if(menu_list){
-        selectedKeys.value = [router.currentRoute.value.path];
+        selectedKeys.value = [route.path];
         let parentKeys = [];
         if (props.mode !== 'horizontal') {
-          parentKeys = getMenu(menu_list, router.currentRoute.value.path);
+          parentKeys = getMenu(menu_list, route.path);
         }
 
         props.collapsed ? (cachedOpenKeys.value = parentKeys) : (openKeys.value = parentKeys);
