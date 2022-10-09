@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white dark:bg-slate-900 rounded-md grid grow grid-nogutter">
+  <div class="rounded-md grid grow grid-nogutter">
     <Head>
       <Title>{{property.title}}</Title>
     </Head>
