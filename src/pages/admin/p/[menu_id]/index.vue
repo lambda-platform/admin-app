@@ -3,9 +3,12 @@
     <Head>
       <Title>{{property.title}}</Title>
     </Head>
+
     <krud v-if="pageType === 'crud' && property.page_id != null" :template="property.template" :property="property"
           class="material"
+
           :base_url="property.base_url"
+
     ></krud>
     <div class="iframe-page" v-if="pageType === 'iframe'">
       <iframe :src="iframeUrl"></iframe>
@@ -14,6 +17,7 @@
 </template>
 <script>
 import { PERMISSIONS, KRUDS, MENU, MENU_LIST } from '~/store/mutation-types'
+
 import ls from '~/utils/Storage'
 import { base_url } from '~/consts/const'
 
@@ -27,6 +31,9 @@ export default {
       } else {
         return undefined
       }
+    },
+    isMobile(){
+      return isMobile
     }
   },
   data () {
@@ -73,7 +80,8 @@ export default {
       permissions: permissions.permissions,
       pageTitle: '',
       subMenuId: '0',
-      showNestedMenu: false
+      showNestedMenu: false,
+
     }
   },
   methods: {

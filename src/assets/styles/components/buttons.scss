@@ -171,6 +171,14 @@
     }
 
 }
+.ant-btn-outline{
+  .ant-btn-svg-icon {
+    [fill]:not([fill="none"]) {
+      fill: $primary-color !important;
+    }
+
+  }
+}
 .ant-btn{
   .svg-icon {
     padding: 0;

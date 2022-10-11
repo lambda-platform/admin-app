@@ -48,7 +48,7 @@ export default {
     redirectToLogin(){
       clearUserInfo()
       this.loading = false;
-      if(this.$route.path !== "/auth/login"){
+      if(this.$route.path !== "/auth/login" && this.$route.path !== "/auth/forgot" && this.$route.path !== "/auth/password-reset"){
         window.location.replace("/auth/login");
       }
 
