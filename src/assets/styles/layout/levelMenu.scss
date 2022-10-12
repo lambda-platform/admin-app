@@ -6,7 +6,7 @@ $anchor-height: 52px;
   background: transparent;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
 
   max-height: calc(100vh - 90px);
   overflow-y: auto;
@@ -525,7 +525,7 @@ $anchor-height: 52px;
     justify-items: center;
     height: 57px;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     border-bottom: 1px solid var(--ag-border-color, #e2e2e2);
     span{

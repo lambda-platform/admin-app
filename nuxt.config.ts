@@ -36,7 +36,7 @@ export default defineNuxtConfig({
   target: 'static',
   srcDir: "src/",
   app:{
-    buildAssetsDir:"lambda_admin",
+    buildAssetsDir:"lambda_admin/",
   },
   dir: {
     public: resolve(__dirname, "./public/"),
@@ -56,7 +56,6 @@ export default defineNuxtConfig({
   ],
   vite:{
     envPrefix:"LAMBDA_",
-
     plugins: [
       createSvgIconsPlugin({
         iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
