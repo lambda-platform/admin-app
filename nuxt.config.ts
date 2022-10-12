@@ -3,7 +3,8 @@ import { defineNuxtConfig } from "nuxt";
 // import { viteThemePlugin } from 'vite-plugin-theme';
 // import { getThemeColors } from './src/utils/themeUtil'
 import { createSvgIconsPlugin }from 'vite-plugin-svg-icons';
-
+// import Components from 'unplugin-vue-components/vite';
+// import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 import path from 'path';
 
 const pathResolve = (pathStr: string) => {
@@ -57,6 +58,7 @@ export default defineNuxtConfig({
   vite:{
     envPrefix:"LAMBDA_",
     plugins: [
+      // splitVendorChunkPlugin(),
       createSvgIconsPlugin({
         iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
         symbolId: 'icon-[dir]-[name]',
@@ -65,7 +67,12 @@ export default defineNuxtConfig({
       // viteThemePlugin({
       //   colorVariables: [...getThemeColors(process.env.LAMBDA_PRIMARY_COLOR)],
       // }),
-
+      // Components({
+      //   resolvers: [
+      //     AntDesignVueResolver(),
+      //   ],
+      //
+      // }),
     ],
     resolve: {
       alias: viteAlies,
@@ -94,11 +101,41 @@ export default defineNuxtConfig({
       'process.env.POLYGON_CLIPPING_MAX_QUEUE_SIZE': '1000000',
       'process.env.POLYGON_CLIPPING_MAX_SWEEPLINE_SEGMENTS': '1000000',
     },
+    build: {
+      sourcemap: false,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            // Split external library from transpiled code.
+            vue: ['vuex', 'portal-vue'],
+            ag: ['ag-grid-community', 'ag-grid-enterprise', 'ag-grid-vue3'],
+            ant: ['ant-design-vue'],
+            leaflet: ['leaflet', 'leaflet-draw', '@turf/turf'],
+            common: ['axios', 'jquery'],
+            lodash: ['lodash'],
+            ck: ['@ckeditor/ckeditor5-vue', '@ckeditor/ckeditor5-build-classic'],
+            other: ['swiper', 'vue-awesome-swiper'],
+          }
+        }
+        // make sure to externalize deps that shouldn't be bundled
+        // into your library
+        // external: ['vue', 'lodash', 'ag-grid-community', 'ag-grid-enterprise', 'axios', 'jquery', 'leaflet', 'ant-design-vue'],
+        // output: {
+        //   // Provide global variables to use in the UMD build
+        //   // for externalized deps
+        //   globals: {
+        //     vue: 'Vue',
+        //     _: 'lodash',
+        //   }
+        // }
+      }
+    }
   },
   build: {
     postcss: {
       postcssOptions: require("./postcss.config.js"),
     },
+
   },
 
 
