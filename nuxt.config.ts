@@ -115,6 +115,10 @@ export default defineNuxtConfig({
             lodash: ['lodash'],
             ck: ['@ckeditor/ckeditor5-vue', '@ckeditor/ckeditor5-build-classic'],
             other: ['swiper', 'vue-awesome-swiper'],
+            moment: ['moment'],
+            cryptoJs: ['crypto-js'],
+            numeral: ['numeral'],
+            jsonLogic: ['json-logic-js']
           }
         }
         // make sure to externalize deps that shouldn't be bundled
