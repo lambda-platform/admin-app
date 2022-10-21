@@ -8,7 +8,7 @@
     <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
     <span>{{ getTitle(item) }}</span>
     <p v-if="children" class="module-menus">
-      <span v-for="child in children" :key="child.index">{{getTitle(child, true)}}</span>
+      <span v-for="(child, index) in children" :key="child.index"><span v-if="index >= 1">, </span>{{getTitle(child, true)}}</span>
     </p>
   </a>
   <router-link :to="item.url" v-else-if="can(item) && !hasItems(item) && item.link_to === 'router-link'" class="card p-4 sm:p-5 shadow-md bg-white dark:bg-slate-900 bg-white dark:bg-slate-900 ">
@@ -16,7 +16,7 @@
     <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
     <span>{{ getTitle(item) }}</span>
     <p v-if="children" class="module-menus">
-      <span v-for="child in children" :key="child.index">{{getTitle(child, true)}}</span>
+      <span v-for="(child, index) in children" :key="child.index"><span v-if="index >= 1">, </span>{{getTitle(child, true)}}</span>
     </p>
   </router-link>
   <router-link :to="`/admin/p/${item.id}`" class="card p-4 sm:p-5 shadow-md bg-white dark:bg-slate-900 bg-white dark:bg-slate-900 " v-else-if="can(item) && !hasItems(item)">
@@ -27,7 +27,7 @@
       <span v-for="(child, index) in children" :key="index"><span v-if="index >= 1">, </span>{{getTitle(child, true)}}</span>
     </p>
   </router-link>
-  <HomeMenuRender v-if="can(item) && hasItems(item)" :title="getTitle(item)" :children="item.children" :item="{...item.children[0],  svg:item.svg, icon:item.icon }" :cruds="cruds" :permissions="permissions"   />
+  <HomeMenuRender v-if="can(item) && hasItems(item)" :title="getTitle(item)" :children="item.children" :item="findActivehild(item)" :cruds="cruds" :permissions="permissions"   />
 
 </template>
 <script lang="ts">
@@ -54,12 +54,19 @@ export default defineComponent({
     }
   },
   mounted () {
-     this.setActive();
+    this.setActive();
   },
   methods: {
     getModuleItem(item){
       if(item.children)
-      return item
+        return item
+    },
+    findActivehild(item){
+      let index = 0;
+      while (!this.can(item.children[index])) {
+        index++
+      }
+      return  {...item.children[index],  svg:item.svg, icon:item.icon }
     },
     setActive () {
       if(this.hasItems(this.item)){
