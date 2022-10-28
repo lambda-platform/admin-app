@@ -99,7 +99,7 @@ import {
   isSideMenu
 } from '~/store/useSiteSettings'
 import { useStore } from 'vuex'
-
+import ls from '~/utils/Storage'
 const can = (menuItem, permissions) => {
   if (permissions[menuItem.id]) {
     if (permissions[menuItem.id].show) {
@@ -139,16 +139,26 @@ export default defineComponent({
     const collapsed = ref(false)
     const menus = ref([])
     const store = useStore()
+
     const contentPaddingLeft = computed(() => {
       if (!fixSidebar.value || isMobile.value) {
         return '0'
       }
-      if (sidebarOpened.value) {
-        return '256px'
-      }
-      return '70px'
-    })
 
+      if (sidebarOpened.value) {
+
+        return '256px'
+      } else {
+
+        return '70px'
+      }
+
+    })
+    if(sidebarOpened.value){
+      collapsed.value = false
+    } else {
+      collapsed.value = true;
+    }
 
     watch(
       () => sidebarOpened.value,
@@ -212,15 +222,16 @@ export default defineComponent({
           }, 16)
         })
       }
-      // if(!sidebarOpened.value){
-      //
-      // }
+
+
 
     })
 
     const toggle = () => {
       collapsed.value = !collapsed.value
       store.commit(SET_SIDEBAR_TYPE, !collapsed.value)
+
+
       triggerWindowResizeEvent()
     }
     const paddingCalc = () => {
