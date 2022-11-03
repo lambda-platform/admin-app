@@ -42,7 +42,7 @@
     "@headlessui/vue": "^1.6.7",
     "@heroicons/vue": "^1.0.6",
     "@intlify/nuxt3": "^0.2.3",
-    "@lambda-platform/lambda-vue": "3.0.63",
+    "@lambda-platform/lambda-vue": "3.0.66",
     "@nuxt/postcss8": "^1.1.3",
     "@turf/turf": "^6.5.0",
     "@vue/apollo-option": "^4.0.0-alpha.17",

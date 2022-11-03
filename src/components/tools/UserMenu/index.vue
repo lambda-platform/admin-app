@@ -1,6 +1,6 @@
 <template>
   <SearchBar class="action" v-if="!isMobile"/>
-  <notice-icon class="action"/>
+<!--  <notice-icon class="action"/>-->
   <DarkLightMode class="action" v-if="!isMobile"/>
   <a-dropdown>
         <span class="action ant-dropdown-link user-dropdown-menu">
