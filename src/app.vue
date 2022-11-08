@@ -71,6 +71,7 @@ export default {
 
             window.init = {
               user: ls.get(USER_INFO),
+              firebase_config: res.notify.firebaseConfig,
               microserviceSettings:[]
             }
             this.loading = false;

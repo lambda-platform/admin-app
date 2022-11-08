@@ -1,6 +1,7 @@
 <template>
   <SearchBar class="action" v-if="!isMobile"/>
 <!--  <notice-icon class="action"/>-->
+  <notif-widget :userID="userID" class="action" :isMobile="isMobile"/>
   <DarkLightMode class="action" v-if="!isMobile"/>
   <a-dropdown>
         <span class="action ant-dropdown-link user-dropdown-menu">
@@ -171,6 +172,7 @@ export default defineComponent({
 
     return {
       avatar: '/images/avatar.png',
+      userID: UserInfo ? UserInfo.id : 0,
       nickname: UserInfo ? UserInfo.first_name : '',
 
       showSystemSetting,

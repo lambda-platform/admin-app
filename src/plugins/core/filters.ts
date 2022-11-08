@@ -8,15 +8,15 @@ import {getDate} from '~/utils/date'
  */
 export function initFilters(app: App<Element>) {
 
-  app.config.globalProperties.$filters = {
-    currencyMNT(value) {
-      return getMoney(value)
-    },
-    number(value) {
-      return getNumber(value)
-    },
-    date(value) {
-      return getDate(value)
-    },
+  app.config.globalProperties.$date = (value)=> {
+    return getDate(value)
   }
+  app.config.globalProperties.$currencyMNT = (value)=> {
+    return getMoney(value)
+  }
+  app.config.globalProperties.$number = (value)=> {
+    return getNumber(value)
+  }
+
+
 }

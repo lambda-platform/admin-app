@@ -10,6 +10,7 @@ import PortalVue from 'portal-vue'
 
 import {installDataGrid} from '@lambda-platform/lambda-vue/src/modules/datagrid';
 import {installDataForm} from '@lambda-platform/lambda-vue/src/modules/dataform';
+import {installNotification} from '@lambda-platform/lambda-vue/src/modules/notify';
 import {installKrud} from '@lambda-platform/lambda-vue/src/modules/krud';
 import { loadLocaleMessages } from '@lambda-platform/lambda-vue/src/locale'
 
@@ -74,6 +75,7 @@ export default defineNuxtPlugin(async ({ vueApp: app }) => {
   app.provide('customElementList', customElementList)
   installDataForm(app)
   installDataGrid(app)
+  installNotification(app)
   //
   //
 

@@ -36,6 +36,7 @@ export default {
         })
         window.init = {
           user:data.data,
+          firebase_config: this.lambda.notify.firebaseConfig,
           microserviceSettings:[]
         }
         ls.set(ACCESS_TOKEN, data.token, 7 * 24 * 60 * 60 * 1000)
