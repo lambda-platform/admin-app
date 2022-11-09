@@ -54,6 +54,7 @@ export default defineNuxtConfig({
     '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_dark.scss',
     '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_material.scss',
     '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_balham.scss',
+    '@lambda-platform/lambda-vue/src/modules/krud/scss/style.scss',
 
 
   ],

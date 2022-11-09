@@ -20,6 +20,7 @@ import { PERMISSIONS, KRUDS, MENU, MENU_LIST } from '~/store/mutation-types'
 
 import ls from '~/utils/Storage'
 import { base_url } from '~/consts/const'
+import { LAMBDA_CONFIG } from '../../../../store/mutation-types'
 
 export default {
   computed: {
@@ -41,6 +42,7 @@ export default {
     const permissions = ls.get(PERMISSIONS)
     const menu = ls.get(MENU)
     const menu_list = ls.get(MENU_LIST)
+    const LambdaConfig = ls.get(LAMBDA_CONFIG)
     return {
       options: {
         height: '1000px'
@@ -49,7 +51,7 @@ export default {
 
       property: {
         base_url: base_url,
-        withCrudLog: false,
+        withCrudLog: LambdaConfig.withCrudLog,
         withoutHeader: false,
         page_id: null,
         template: 'drawer',
