@@ -19,7 +19,7 @@
     "@zougt/vite-plugin-theme-preprocessor": "^1.4.5",
     "apite": "^1.4.1",
     "color": "^4.2.3",
-    "nuxt": "3.0.0-rc.11",
+    "nuxt": "^3.0.0-rc.13",
     "patch-vue-directive-ssr": "0.0.1",
     "sass": "1.45.1",
     "sass-loader": "12.4.0",
@@ -71,7 +71,6 @@
     "numeral": "^2.0.6",
     "portal-vue": "^3.0.0-beta.0",
     "postcss": "^8.4.14",
-
     "swiper": "^8.1.5",
     "tailwindcss": "^3.1.7",
     "vue-awesome-swiper": "^5.0.1",

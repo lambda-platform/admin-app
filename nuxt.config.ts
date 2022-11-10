@@ -5,17 +5,14 @@ import { defineNuxtConfig } from "nuxt";
 import { createSvgIconsPlugin }from 'vite-plugin-svg-icons';
 // import Components from 'unplugin-vue-components/vite';
 // import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
-import path from 'path';
+
 
 const pathResolve = (pathStr: string) => {
-  return path.resolve(__dirname, pathStr);
+  return resolve(__dirname, pathStr);
 };
-
-// @ts-ignore
 
 let nuxtAlies = {
   public: resolve(__dirname, "./public/"),
-
 }
 let viteAlies = [
   {
@@ -24,7 +21,10 @@ let viteAlies = [
   }
 ]
 if(process.env.LAMBDA_ROOT !== "@lambda-platform/lambda-vue" && process.env.LAMBDA_ROOT != ""){
-  nuxtAlies['@lambda-platform/lambda-vue'] = resolve(__dirname, process.env.LAMBDA_ROOT)
+  nuxtAlies = {
+    ...nuxtAlies,
+    "@lambda-platform/lambda-vue": resolve(__dirname, "./public/"),
+  }
 
   viteAlies.push({
     find: '@lambda-platform/lambda-vue',
@@ -34,10 +34,27 @@ if(process.env.LAMBDA_ROOT !== "@lambda-platform/lambda-vue" && process.env.LAMB
 export default defineNuxtConfig({
 
   alias: nuxtAlies,
-  target: 'static',
+
   srcDir: "src/",
   app:{
     buildAssetsDir:"lambda_admin/",
+    head: {
+      meta: [
+        { name: "charset", content: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1" },
+        { name: "description", content: process.env.LAMBDA_DESCRIPTION  },
+        { name: "og:url", content: process.env.LAMBDA_FAVICON },
+        { name: "og:type", content: "article" },
+        { name: "og:title", content: process.env.LAMBDA_TITLE },
+        { name: "og:description", content: process.env.LAMBDA_DESCRIPTION },
+        { name: "og:image", content: process.env.LAMBDA_FAVICON},
+      ],
+      link: [
+        { rel: "icon", href: process.env.LAMBDA_FAVICON },
+        { rel: 'stylesheet', href: '/assets/lambda/fonts/flaticons/flaticons.css' },
+        { rel: 'stylesheet', href: '/assets/lambda/fonts/themify/themify-icons.css' },
+      ],
+    },
   },
   dir: {
     public: resolve(__dirname, "./public/"),
@@ -63,7 +80,7 @@ export default defineNuxtConfig({
     plugins: [
       // splitVendorChunkPlugin(),
       createSvgIconsPlugin({
-        iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
+        iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
         symbolId: 'icon-[dir]-[name]',
       }),
 
@@ -138,35 +155,17 @@ export default defineNuxtConfig({
       }
     }
   },
-  build: {
-    postcss: {
-      postcssOptions: require("./postcss.config.js"),
-    },
-
+  postcss: {
+    config:true,
+    plugins:{
+      tailwindcss: {},
+      autoprefixer: {},
+    }
   },
 
 
-  meta: {
-    meta: [
-      { "http-equiv": "X-UA-Compatible", content: "IE=edge" },
-      { name: "charset", content: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1" },
-      { name: "description", content: process.env.LAMBDA_DESCRIPTION  },
-      { name: "og:url", content: process.env.LAMBDA_FAVICON },
-      { name: "og:type", content: "article" },
-      { name: "og:title", content: process.env.LAMBDA_TITLE },
-      { name: "og:description", content: process.env.LAMBDA_DESCRIPTION },
-      { name: "og:image", content: process.env.LAMBDA_FAVICON},
-    ],
-    link: [
-      { rel: "icon", href: process.env.LAMBDA_FAVICON },
-      { rel: 'stylesheet', href: '/assets/lambda/fonts/flaticons/flaticons.css' },
-      { rel: 'stylesheet', href: '/assets/lambda/fonts/themify/themify-icons.css' },
-    ],
-  },
   generate: {
     routes: ["/"],
-    subFolders: true,
   },
   ssr: false,
 });
