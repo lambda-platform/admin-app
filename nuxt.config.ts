@@ -11,6 +11,7 @@ const pathResolve = (pathStr: string) => {
   return resolve(__dirname, pathStr);
 };
 
+
 let nuxtAlies = {
   public: resolve(__dirname, "./public/"),
 }
@@ -154,7 +155,7 @@ export default defineNuxtConfig({
     server: {
       fs: {
 
-        allow: ['/Users/munkh-altai/Workspace/LAMBDA/vue3/', '../../../vue3'],
+        allow: [pathResolve(process.env.LAMBDA_ROOT) + '/'],
       },
     },
   },
