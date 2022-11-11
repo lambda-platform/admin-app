@@ -13,7 +13,7 @@ const pathResolve = (pathStr: string) => {
 
 
 let nuxtAlies = {
-  public: resolve(__dirname, "./public/"),
+
 }
 let viteAlies = [
   {
