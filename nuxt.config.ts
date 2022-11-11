@@ -21,10 +21,7 @@ let viteAlies = [
   }
 ]
 if(process.env.LAMBDA_ROOT !== "@lambda-platform/lambda-vue" && process.env.LAMBDA_ROOT != ""){
-  nuxtAlies = {
-    ...nuxtAlies,
-    "@lambda-platform/lambda-vue": resolve(__dirname, "./public/"),
-  }
+  nuxtAlies['@lambda-platform/lambda-vue'] = resolve(__dirname, process.env.LAMBDA_ROOT)
 
   viteAlies.push({
     find: '@lambda-platform/lambda-vue',
