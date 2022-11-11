@@ -31,9 +31,9 @@ if(process.env.LAMBDA_ROOT !== "@lambda-platform/lambda-vue" && process.env.LAMB
 export default defineNuxtConfig({
 
   alias: nuxtAlies,
-
   srcDir: "src/",
   app:{
+
     buildAssetsDir:"lambda_admin/",
     head: {
       meta: [
@@ -150,7 +150,13 @@ export default defineNuxtConfig({
         //   }
         // }
       }
-    }
+    },
+    server: {
+      fs: {
+
+        allow: ['/Users/munkh-altai/Workspace/LAMBDA/vue3/', '../../../vue3'],
+      },
+    },
   },
   postcss: {
     config:true,
