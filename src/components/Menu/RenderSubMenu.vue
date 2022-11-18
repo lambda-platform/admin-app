@@ -9,13 +9,13 @@
       :href="item.url"
       target="_blank"
     >
-      <span>{{getTitle(item)}}</span>
+      <span>{{getMenuTitle(item)}}</span>
     </a>
     <router-link :to="item.url" v-else-if="item.link_to == 'router-link'">
-      <span>{{getTitle(item)}}</span>
+      <span>{{getMenuTitle(item)}}</span>
     </router-link>
     <router-link :to="`/admin/p/${item.id}`" v-else>
-      <span>{{getTitle(item)}}</span>
+      <span>{{getMenuTitle(item)}}</span>
     </router-link>
   </a-menu-item>
   <a-sub-menu
@@ -26,7 +26,7 @@
       <i v-if="item.icon" :class="item.icon"></i>
       <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
     </template>
-    <template #title><span>{{getTitle(item)}}</span></template>
+    <template #title><span>{{getMenuTitle(item)}}</span></template>
     <template v-for="subItem in item.children" :key="subItem.id">
       <RenderSubMenu :item="subItem" :cruds="cruds" :permissions="permissions" />
     </template>
@@ -42,7 +42,7 @@ import {
   LogoutOutlined,
   LockOutlined
 } from '@ant-design/icons-vue'
-import {getItemPath} from "~/utils/menu"
+import {getItemPath, getTitle} from "~/utils/menu"
 
 export default defineComponent({
   name: 'RenderSubMenu',
@@ -87,17 +87,8 @@ export default defineComponent({
         return false
       }
     },
-    getTitle (item) {
-      if (item.link_to == 'crud') {
-        let crudIndex = this.cruds.findIndex(crud => crud.id == item.url)
-        if (crudIndex >= 0) {
-          return this.cruds[crudIndex].title
-        } else {
-          return ''
-        }
-      } else {
-        return item.title
-      }
+    getMenuTitle (item) {
+      return getTitle(item, this.cruds)
     },
     hasItems (item) {
       return item && item.children !== undefined ? item.children.length > 0 : false

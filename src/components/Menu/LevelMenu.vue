@@ -89,10 +89,10 @@ export default defineComponent({
     });
 
 
-    const getPath = (item) => {
+    const getPath = (item: any) => {
       return getItemPath(item);
     }
-    const selectMain = (item, title) =>{
+    const selectMain = (item: { id: string; children: any }, title: string) =>{
 
       if(selectedMenu.value === item.id){
         selectedMenu.value = item.id
@@ -136,7 +136,7 @@ export default defineComponent({
     )
 
 
-    const onOpenChange = (openKeysParams) => {
+    const onOpenChange = (openKeysParams: any[]) => {
 
       if (props.mode === 'horizontal') {
         openKeys.value = openKeysParams

@@ -8,27 +8,27 @@
     >
       <i v-if="item.icon" :class="item.icon"></i>
       <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
-      <span>{{ getTitle(item) }}</span>
+      <span>{{ getMenuTitle(item) }}</span>
     </a>
     <router-link :to="item.url" v-else-if="item.link_to === 'router-link'">
       <i v-if="item.icon" :class="item.icon"></i>
       <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
-      <span>{{ getTitle(item) }}</span>
+      <span>{{ getMenuTitle(item) }}</span>
     </router-link>
     <router-link :to="`/admin/p/${item.id}`" v-else>
       <i v-if="item.icon" :class="item.icon"></i>
       <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
-      <span>{{ getTitle(item) }}</span>
+      <span>{{ getMenuTitle(item) }}</span>
     </router-link>
   </li>
   <li
     v-if="can(item) && hasItems(item)"
 
   >
-    <a href="javascript:;" @click="selectMain(item, getTitle(item))" :class="selectedMenu === item.id ? 'active' :''">
+    <a href="javascript:;" @click="selectMain(item, getMenuTitle(item))" :class="selectedMenu === item.id ? 'active' :''">
       <i v-if="item.icon" :class="item.icon"></i>
       <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
-      <span>{{ getTitle(item) }}</span>
+      <span>{{ getMenuTitle(item) }}</span>
     </a>
   </li>
 
@@ -41,7 +41,7 @@ import {
   SettingOutlined,
 
 } from '@ant-design/icons-vue'
-import { getItemPath } from '~/utils/menu'
+import { getItemPath, getTitle } from '~/utils/menu'
 
 export default defineComponent({
 
@@ -65,12 +65,12 @@ export default defineComponent({
       if(this.hasItems(this.item)){
         let childIndex = this.item.children.findIndex(c=>c.id === this.$route.params.menu_id);
         if(childIndex >= 0){
-          this.selectMain(this.item, this.getTitle(this.item))
+          this.selectMain(this.item, this.getMenuTitle(this.item))
         } else {
           this.item.children.forEach(ci=>{
             let childIndex = ci.children.findIndex(c=>c.id === this.$route.params.menu_id);
             if(childIndex >= 0) {
-              this.selectMain(this.item, this.getTitle(this.item))
+              this.selectMain(this.item, this.getMenuTitle(this.item))
             }
           });
         }
@@ -108,17 +108,8 @@ export default defineComponent({
         return false
       }
     },
-    getTitle (item) {
-      if (item.link_to == 'crud') {
-        let crudIndex = this.cruds.findIndex(crud => crud.id == item.url)
-        if (crudIndex >= 0) {
-          return this.cruds[crudIndex].title
-        } else {
-          return ''
-        }
-      } else {
-        return item.title
-      }
+    getMenuTitle (item) {
+      return getTitle(item, this.cruds)
     },
     hasItems (item) {
       return item && item.children !== undefined ? item.children.length > 0 : false

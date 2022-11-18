@@ -89,7 +89,7 @@ export default defineComponent({
 
 
     watch(
-      () => route,
+      () => route.fullPath,
       (val) => {
         updateMenu()
       }

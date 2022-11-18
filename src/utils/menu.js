@@ -5,14 +5,14 @@ export const getItemPath = (item)=>{
    if(item.children.length >= 1){
      return item.id;
    } else {
-     if(item.link_to == "noAction" || item.link_to == "divider"){
+     if(item.link_to === "noAction" || item.link_to === "divider"){
        return item.id;
      } else {
        return getRouterLink(item);
      }
    }
   } else {
-    if(item.link_to == "noAction" || item.link_to == "divider"){
+    if(item.link_to === "noAction" || item.link_to === "divider"){
       return item.id;
     } else {
       return getRouterLink(item);
@@ -22,12 +22,12 @@ export const getItemPath = (item)=>{
 }
 
 export const getRouterLink = (item)=>{
-  return item.link_to == 'link' || item.link_to == 'router-link' ? item.url : `/admin/p/${item.id}`;
+  return item.link_to === 'link' || item.link_to === 'router-link' ? item.url : `/admin/p/${item.id}`;
 }
 
 export const getMenu = (menu_list, routerPath) =>{
 
-  let index = menu_list.findIndex(m=>getItemPath(m) == routerPath);
+  let index = menu_list.findIndex(m=>getItemPath(m) === routerPath);
   let parentKeys = [];
   if(index >= 1){
     if(menu_list[index].hasOwnProperty("parent")){
@@ -39,8 +39,9 @@ export const getMenu = (menu_list, routerPath) =>{
   return parentKeys;
 }
 export const getTitle = (item, cruds)=> {
-  if (item.link_to == 'crud') {
-    let crudIndex = cruds.findIndex(crud => crud.id == item.url);
+
+  if (item.link_to === 'crud') {
+    let crudIndex = cruds.findIndex(crud => crud.id === item.url);
     if (crudIndex >= 0)
       return cruds[crudIndex].title;
     else

@@ -37,12 +37,7 @@ export default {
     const kruds = ls.get(KRUDS)
     const permissions = ls.get(PERMISSIONS)
     const LambdaConfig = ls.get(LAMBDA_CONFIG)
-
-
     const menu = ls.get(MENU)
-
-
-
 
     return {
       isMobile,
