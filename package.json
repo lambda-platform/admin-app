@@ -19,7 +19,7 @@
     "@zougt/vite-plugin-theme-preprocessor": "^1.4.5",
     "apite": "^1.4.1",
     "color": "^4.2.3",
-    "nuxt": "^3.0.0-rc.13",
+    "nuxt": "^3.0.0-rc.14",
     "patch-vue-directive-ssr": "0.0.1",
     "sass": "1.45.1",
     "sass-loader": "12.4.0",

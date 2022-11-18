@@ -1,5 +1,5 @@
 import { resolve } from "path";
-import { defineNuxtConfig } from "nuxt";
+import { defineNuxtConfig } from "nuxt/config";
 // import { viteThemePlugin } from 'vite-plugin-theme';
 // import { getThemeColors } from './src/utils/themeUtil'
 import { createSvgIconsPlugin }from 'vite-plugin-svg-icons';
