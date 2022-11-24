@@ -1,5 +1,6 @@
 import { reactive } from "vue";
 import { customElementList } from '~/dataform_custom/index.js'
+import { gridCustomElementList } from '~/datagrid_custom/index.js'
 /*
 * Plugins
 * */
@@ -65,6 +66,7 @@ export default defineNuxtPlugin(async ({ vueApp: app }) => {
   app.use(Antd);
   app.use(i18n);
   app.config.globalProperties.$customElementList = customElementList
+  app.config.globalProperties.$gridCustomElementList = gridCustomElementList
   //
   initAxios();
   initInlineSvg(app);
