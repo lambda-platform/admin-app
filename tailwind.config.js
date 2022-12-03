@@ -22,8 +22,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'logo-dark': "url('/assets/images/light.svg')",
-        'logo-light': "url('/assets/images/dark.svg')",
+        // 'logo-dark': "url('/assets/images/light.svg')",
+        // 'logo-light': "url('/assets/images/dark.svg')",
       },
     },
   },

@@ -5,7 +5,7 @@
       <img :src="`${base_url}${logo}`"   v-if="!darkMode && showTitle" class="logo-dark" :alt="title">
       <img :src="`${base_url}${logoSquireDark}`" v-if="darkMode && !showTitle" class="logo-light" :alt="title">
       <img :src="`${base_url}${logoSquire}`"   v-if="!darkMode && !showTitle" class="logo-dark" :alt="title">
-      <h1 v-if="showTitle">{{ title }}</h1>
+      <h1 v-if="showTitle">{{title}}</h1>
     </nuxt-link>
   </div>
 </template>
