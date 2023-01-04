@@ -1,3 +1,4 @@
+export NODE_OPTIONS=--max-old-space-size=8192
 npx nuxi generate
 rm -R ../back-end/public/admin
 rm -R ../back-end/public/auth
