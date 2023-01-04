@@ -5,18 +5,18 @@
       <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
     </template>
     <a
-      v-if="item.link_to == 'link'"
+      v-if="item.link_to === 'link'"
       :href="item.url"
       target="_blank"
     >
       <span>{{getMenuTitle(item)}}</span>
     </a>
-    <router-link :to="item.url" v-else-if="item.link_to == 'router-link'">
+    <NuxtLink :to="item.url" v-else-if="item.link_to === 'router-link'">
       <span>{{getMenuTitle(item)}}</span>
-    </router-link>
-    <router-link :to="`/admin/p/${item.id}`" v-else>
+    </NuxtLink>
+    <NuxtLink :to="`/admin/p/${item.id}`" v-else>
       <span>{{getMenuTitle(item)}}</span>
-    </router-link>
+    </NuxtLink>
   </a-menu-item>
   <a-sub-menu
     v-if="can(item) && hasItems(item)"
@@ -36,20 +36,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import SvgIcon from '~/components/SvgIcon/index.vue'
-import {
-  QuestionCircleOutlined,
-  SettingOutlined,
-  LogoutOutlined,
-  LockOutlined
-} from '@ant-design/icons-vue'
 import {getItemPath, getTitle} from "~/utils/menu"
 
 export default defineComponent({
   name: 'RenderSubMenu',
   props: ['item', 'cruds', 'permissions'],
   components: {
-    SvgIcon,
-    SettingOutlined
+    SvgIcon
   },
   mounted(){
 

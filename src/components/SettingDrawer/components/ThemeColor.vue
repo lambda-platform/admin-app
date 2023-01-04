@@ -1,6 +1,7 @@
 <template>
   <SettingItem :title="$t('settingDrawer.theme')">
     <div style="height: 20px">
+      {{primaryColor}}
       <a-tooltip
         class="setting-drawer-theme-color-colorBlock"
         v-for="(item, index) in colorList"

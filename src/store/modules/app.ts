@@ -93,6 +93,7 @@ const app = {
     },
     [TOGGLE_COLOR]: (state, color) => {
       cache({ [TOGGLE_COLOR]: color })
+      console.log(color)
       state.color = color
 
       // menuIconColorPatch(color)

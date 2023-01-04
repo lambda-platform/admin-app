@@ -10,16 +10,16 @@
       <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
       <span>{{ getMenuTitle(item) }}</span>
     </a>
-    <router-link :to="item.url" v-else-if="item.link_to === 'router-link'">
+    <NuxtLink :to="item.url" v-else-if="item.link_to === 'router-link'">
       <i v-if="item.icon" :class="item.icon"></i>
       <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
       <span>{{ getMenuTitle(item) }}</span>
-    </router-link>
-    <router-link :to="`/admin/p/${item.id}`" v-else>
+    </NuxtLink>
+    <NuxtLink :to="`/admin/p/${item.id}`" v-else>
       <i v-if="item.icon" :class="item.icon"></i>
       <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
       <span>{{ getMenuTitle(item) }}</span>
-    </router-link>
+    </NuxtLink>
   </li>
   <li
     v-if="can(item) && hasItems(item)"

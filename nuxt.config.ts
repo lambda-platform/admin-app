@@ -1,7 +1,7 @@
 import { resolve } from "path";
 import { defineNuxtConfig } from "nuxt/config";
-// import { viteThemePlugin } from 'vite-plugin-theme';
-// import { getThemeColors } from './src/utils/themeUtil'
+import { viteThemePlugin } from 'vite-plugin-theme';
+import { getThemeColors } from './src/utils/themeUtil'
 import { createSvgIconsPlugin }from 'vite-plugin-svg-icons';
 // import Components from 'unplugin-vue-components/vite';
 // import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
@@ -82,9 +82,9 @@ export default defineNuxtConfig({
         symbolId: 'icon-[dir]-[name]',
       }),
 
-      // viteThemePlugin({
-      //   colorVariables: [...getThemeColors(process.env.LAMBDA_PRIMARY_COLOR)],
-      // }),
+      viteThemePlugin({
+        colorVariables: [...getThemeColors()],
+      }),
       // Components({
       //   resolvers: [
       //     AntDesignVueResolver(),
@@ -118,6 +118,9 @@ export default defineNuxtConfig({
     define: {
       'process.env.POLYGON_CLIPPING_MAX_QUEUE_SIZE': '1000000',
       'process.env.POLYGON_CLIPPING_MAX_SWEEPLINE_SEGMENTS': '1000000',
+      __COLOR_PLUGIN_OUTPUT_FILE_NAME__: undefined,
+      __PROD__: true,
+      __COLOR_PLUGIN_OPTIONS__: {},
     },
     build: {
       sourcemap: false,

@@ -3,7 +3,7 @@ import config from '../config/defaultSettings'
 
 export const primaryColor = config.primaryColor;
 
-// export const darkMode = false;
+// export const darkMode = 'light';
 
 type Fn = (...arg: any) => any;
 
