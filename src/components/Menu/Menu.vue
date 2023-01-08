@@ -9,7 +9,7 @@
     class="SysMenu"
   >
     <template v-for="m in menu" :key="getPath(m)" >
-      <RenderSubMenu :item="m" :cruds="kruds" :permissions="permissions.permissions"  />
+      <RenderSubMenu :item="m" :cruds="kruds" :permissions="permissions.permissions"  :mode="mode" :collapsed="collapsed"  />
     </template>
   </a-menu>
 </template>

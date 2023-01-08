@@ -18,7 +18,7 @@
 import en_US from 'ant-design-vue/lib/locale-provider/en_US';
 import mn_MN from 'ant-design-vue/lib/locale-provider/mn_MN';
 import axios from 'axios'
-import { LAMBDA_CONFIG, ACCESS_TOKEN, PERMISSIONS, MENU, KRUDS, MENU_LIST, USER_INFO } from '~/store/mutation-types';
+import { LAMBDA_CONFIG, ACCESS_TOKEN, PERMISSIONS, MENU, KRUDS, MENU_LIST, USER_INFO, MICROSERVICE_SETTINGS } from '~/store/mutation-types';
 import { setDeviceType } from '~/utils/device'
 import LockScreen from '~/components/LockScreen/index.vue'
 import ls from '~/utils/Storage';
@@ -58,6 +58,9 @@ export default {
     getLambdaConfig().then((res) => {
       ls.set(LAMBDA_CONFIG, res);
 
+      if(res.microservice_dev){
+        window.microservice_dev = true
+      }
       if (ls.get(ACCESS_TOKEN)) {
         axios.get('/get-permissions').then(({ data }) => {
 
@@ -66,13 +69,18 @@ export default {
             ls.set(PERMISSIONS, data.permission.permissions)
             ls.set(MENU, data.permission.menu)
             ls.set(KRUDS, data.permission.kruds)
+
+            if(data.permission.microserviceSettings){
+              ls.set(MICROSERVICE_SETTINGS, data.permission.microserviceSettings)
+            }
             let menuList = createList(data.permission.menu, null, data.permission.kruds)
             ls.set(MENU_LIST,menuList);
 
             window.init = {
               user: ls.get(USER_INFO),
               firebase_config: res.notify.firebaseConfig,
-              microserviceSettings:[]
+              microserviceSettings: data.permission.microserviceSettings ? data.permission.microserviceSettings : [],
+
             }
             this.loading = false;
           } else {

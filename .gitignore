@@ -102,6 +102,7 @@ nuxt.d.ts
 
 # DynamoDB Local files
 .dynamodb/
+public/tatatonga
 
 # TernJS port file
 .tern-port

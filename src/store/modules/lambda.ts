@@ -20,6 +20,7 @@ export const lambda ={
       "logoText": "",
       "super_url": "/lambda/puzzle",
       "app_url": "/admin",
+      "microservice_dev": false,
       "has_language": false,
       "withCrudLog": false,
       "krud_public": false,

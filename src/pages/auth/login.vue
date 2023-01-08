@@ -9,7 +9,7 @@ definePageMeta({
   layout: 'agent',
 })
 import axios from 'axios'
-import { ACCESS_TOKEN, PERMISSIONS, USER_INFO, LAMBDA_CONFIG, MENU, KRUDS, MENU_LIST } from '~/store/mutation-types'
+import { ACCESS_TOKEN, PERMISSIONS, USER_INFO, LAMBDA_CONFIG, MENU, KRUDS, MENU_LIST, MICROSERVICE_SETTINGS } from '~/store/mutation-types'
 import ls from '~/utils/Storage'
 import { createList } from '~/utils/menu'
 import { setToken } from '~/plugins/core/axios'
@@ -37,7 +37,8 @@ export default {
         window.init = {
           user:data.data,
           firebase_config: this.lambda.notify.firebaseConfig,
-          microserviceSettings:[]
+          microserviceSettings:[],
+
         }
         ls.set(ACCESS_TOKEN, data.token, 7 * 24 * 60 * 60 * 1000)
         setToken(data.token)
@@ -54,6 +55,15 @@ export default {
               ls.set(KRUDS, res.data.permission.kruds)
               let menuList = createList(res.data.permission.menu, null, res.data.permission.kruds)
               ls.set(MENU_LIST, menuList)
+
+              if(res.data.permission.microserviceSettings){
+                ls.set(MICROSERVICE_SETTINGS, res.data.permission.microserviceSettings)
+
+                window.init["microserviceSettings"] = res.data.permission.microserviceSettings
+
+              }
+
+
 
               let path = data.path.replaceAll('#', '')
               if (path.includes('/p/')) {

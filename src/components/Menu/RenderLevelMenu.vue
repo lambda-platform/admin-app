@@ -1,5 +1,5 @@
 <template>
-  <li v-if="can(item) && !hasItems(item)">
+  <li v-if="can(item) && !hasItems(item) && item.link_to !== 'divider'">
 
     <a
       v-if="item.link_to === 'link'"
@@ -21,6 +21,7 @@
       <span>{{ getMenuTitle(item) }}</span>
     </NuxtLink>
   </li>
+  <li v-else-if="can(item) && !hasItems(item) && item.link_to === 'divider'" class="text-center"><span class="text-slate-500">{{getMenuTitle(item)}}</span></li>
   <li
     v-if="can(item) && hasItems(item)"
 

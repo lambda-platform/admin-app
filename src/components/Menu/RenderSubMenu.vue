@@ -1,5 +1,5 @@
 <template>
-  <a-menu-item v-if="can(item) && !hasItems(item)" :key="getPath(item)" >
+  <a-menu-item v-if="can(item) && !hasItems(item) && item.link_to !== 'divider'" :key="getPath(item)" >
     <template #icon>
       <i v-if="item.icon" :class="item.icon"></i>
       <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
@@ -18,6 +18,7 @@
       <span>{{getMenuTitle(item)}}</span>
     </NuxtLink>
   </a-menu-item>
+  <div v-else-if="can(item) && !hasItems(item) && item.link_to === 'divider' && mode === 'inline'" class="p-4 text-slate-500">{{collapsed ? strLimit(getMenuTitle(item), 4) : getMenuTitle(item)}}</div>
   <a-sub-menu
     v-if="can(item) && hasItems(item)"
     :key="getPath(item)"
@@ -40,7 +41,7 @@ import {getItemPath, getTitle} from "~/utils/menu"
 
 export default defineComponent({
   name: 'RenderSubMenu',
-  props: ['item', 'cruds', 'permissions'],
+  props: ['item', 'cruds', 'permissions', 'mode', 'collapsed'],
   components: {
     SvgIcon
   },
@@ -48,6 +49,16 @@ export default defineComponent({
 
   },
   methods: {
+    strLimit: (value, size) => {
+
+      if (!value) return '';
+      value = value.toString();
+
+      if (value.length <= size) {
+        return value;
+      }
+      return value.substr(0, size) + '...';
+    },
     getPath(item){
       return getItemPath(item)
     },

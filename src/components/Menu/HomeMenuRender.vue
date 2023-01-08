@@ -19,7 +19,7 @@
       <span v-for="(child, index) in children" :key="child.index"><span v-if="index >= 1">, </span>{{getTitleHome(child, true)}}</span>
     </p>
   </NuxtLink>
-  <NuxtLink :to="`/admin/p/${item.id}`" class="card p-4 sm:p-5 shadow-md bg-white dark:bg-slate-900 bg-white dark:bg-slate-900 " v-else-if="can(item) && !hasItems(item)">
+  <NuxtLink :to="`/admin/p/${item.id}`" class="card p-4 sm:p-5 shadow-md bg-white dark:bg-slate-900 bg-white dark:bg-slate-900 " v-else-if="can(item) && !hasItems(item) && item.link_to !== 'divider'">
     <i v-if="item.icon" :class="item.icon"></i>
     <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
     <span>{{ getTitleHome(item) }}</span>
