@@ -1,7 +1,7 @@
 import { generate } from '@ant-design/colors';
 import config from '../config/defaultSettings'
 
-export const primaryColor = config.primaryColor;
+export const primaryColorSelected = config.primaryColor;
 
 // export const darkMode = 'light';
 
@@ -23,7 +23,7 @@ export function generateAntColors(color: string, theme: GenerateTheme = 'default
 }
 
 export function getThemeColors(color?: string) {
-  const tc = color || primaryColor;
+  const tc = color || primaryColorSelected;
   const lightColors = generateAntColors(tc);
   const primary = lightColors[5];
   const modeColors = generateAntColors(primary, 'dark');
@@ -31,7 +31,7 @@ export function getThemeColors(color?: string) {
 }
 
 export function generateColors({
-  color = primaryColor,
+  color = primaryColorSelected,
   mixLighten,
   mixDarken,
   tinycolor,

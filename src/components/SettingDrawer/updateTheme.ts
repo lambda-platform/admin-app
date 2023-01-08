@@ -16,7 +16,7 @@ export async function updateTheme(color: string) {
   //   // colorVariables: [...getThemeColors(color)],
   // });
 
-  console.log(color)
+  console.log([...getThemeColors(color), ...colors])
 
   return await replaceStyleVariables({
     colorVariables: [...getThemeColors(color), ...colors],
