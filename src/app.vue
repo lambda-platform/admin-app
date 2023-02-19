@@ -1,6 +1,6 @@
 <template>
   <a-config-provider :locale="mn_MN" v-if="!loading">
-    <NuxtLayout>
+    <NuxtLayout >
       <NuxtPage/>
     </NuxtLayout>
   </a-config-provider>
@@ -92,7 +92,12 @@ export default {
       } else {
         this.redirectToLogin();
       }
-    })
+    });
+
+    if (navigator.platform.indexOf("Win") != -1) {
+      document.querySelector("body").classList.add("slim-scroll");
+    }
+
   }
 };
 </script>
