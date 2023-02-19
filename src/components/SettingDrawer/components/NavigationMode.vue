@@ -10,9 +10,6 @@
           </div>
         </div>
       </a-tooltip>
-
-
-
       <a-tooltip>
         <template #title>{{ $t('settingDrawer.topNavigater') }}</template>
         <div class="setting-drawer-index-item nav-img" @click="handleLayout('topmenu')">

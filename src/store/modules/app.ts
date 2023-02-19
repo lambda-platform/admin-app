@@ -1,4 +1,5 @@
 import ls from '~/utils/Storage'
+import { menuLayout } from '~/consts/const'
 import { updateDarkMode } from '~/components/SettingDrawer/settingConfig'
 import {
   SITE_SETTINGS,
@@ -25,10 +26,10 @@ const app = {
     sidebar: true,
     device: 'desktop',
     theme: 'light',
-    layout: 'sidemenu', //sidemenu topmenu
+    layout: menuLayout, //sidemenu topmenu
     contentWidth: 'Fluid',  //Fixed Fluid
     fixedHeader: true,
-    fixSiderbar: true,
+    fixSiderbar: menuLayout === "sidemenu",
     autoHideHeader: false,
     color: null,
     weak: false,
