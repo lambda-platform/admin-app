@@ -94,8 +94,11 @@ export default {
       }
     });
 
-    if (navigator.platform.indexOf("Win") != -1) {
-      document.querySelector("body").classList.add("slim-scroll");
+    if (navigator.platform.indexOf("Win") !== -1) {
+      var header = document.querySelector("header");
+      var style = document.createElement("style");
+      style.innerHTML = '::-webkit-scrollbar-track{background-color:#f1f1f1}::-webkit-scrollbar-thumb{background-color:#888}::-moz-scrollbar-track{background-color:#f1f1f1}::-moz-scrollbar-thumb{background-color:#888}::-ms-scrollbar-track{background-color:#f1f1f1}::-ms-scrollbar-thumb{background-color:#888}::-webkit-scrollbar{width:6px;height:6px}::-moz-scrollbar{width:6px;height:6px}::-ms-scrollbar{width:6px;height:6px}';
+      header.appendChild(style);
     }
 
   }
