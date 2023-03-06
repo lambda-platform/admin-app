@@ -16,7 +16,6 @@
     "@vueuse/components": "7.4.3",
     "@vueuse/nuxt": "7.4.3",
     "@zougt/some-loader-utils": "^1.4.3",
-    "@zougt/vite-plugin-theme-preprocessor": "^1.4.5",
     "apite": "^1.4.1",
     "color": "^4.2.3",
     "nuxt": "^3.0.0",
@@ -27,7 +26,6 @@
     "unplugin-vue-components": "^0.22.8",
     "vite-plugin-legacy": "^2.1.0",
     "vite-plugin-svg-icons": "^2.0.1",
-    "vite-plugin-theme": "^0.8.6",
     "vue-gtag-next": "^1.14.0"
   },
   "dependencies": {
@@ -72,6 +70,7 @@
     "postcss": "^8.4.14",
     "swiper": "^8.1.5",
     "tailwindcss": "^3.1.7",
+    "tinycolor2": "^1.6.0",
     "vue-awesome-swiper": "^5.0.1",
     "vue-axios": "^3.4.1",
     "vue-i18n": "^9.2.2",

@@ -1,5 +1,5 @@
 <template>
-  <a-config-provider :locale="mn_MN" v-if="!loading">
+  <a-config-provider :locale="mn_MN" v-if="!loading" theme="dark">
     <NuxtLayout >
       <NuxtPage/>
     </NuxtLayout>
@@ -55,6 +55,7 @@ export default {
     }
   },
   mounted () {
+
     getLambdaConfig().then((res) => {
       ls.set(LAMBDA_CONFIG, res);
 

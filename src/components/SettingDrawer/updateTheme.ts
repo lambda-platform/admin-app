@@ -1,25 +1,15 @@
-
-import { replaceStyleVariables } from 'vite-plugin-theme/es/client';
-import { getThemeColors, generateColors } from '~/utils/themeUtil'
-import { mixLighten, mixDarken, tinycolor } from 'vite-plugin-theme/es/colorUtils';
+import { ConfigProvider } from 'ant-design-vue'
 
 export async function updateTheme(color: string) {
-  const colors = generateColors({
-    mixDarken,
-    mixLighten,
-    tinycolor,
-    color,
-  });
 
-  // var result = await replaceStyleVariables({
-  //   colorVariables: [...getThemeColors(color), ...colors],
-  //   // colorVariables: [...getThemeColors(color)],
-  // });
-
-  console.log([...getThemeColors(color), ...colors])
-
-  return await replaceStyleVariables({
-    colorVariables: [...getThemeColors(color), ...colors],
-    // colorVariables: [...getThemeColors(color)],
+  const colorState = {
+    primaryColor: color,
+    // errorColor: '#ff4d4f',
+    // warningColor: '#faad14',
+    // successColor: '#52c41a',
+    // infoColor: '#1890ff',
+  };
+  ConfigProvider.config({
+    theme: colorState,
   });
 }

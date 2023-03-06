@@ -44,7 +44,11 @@ export default defineComponent({
     const { state, commit } = useStore()
 
     const changeColor = (color) => {
+
+
       commit(TOGGLE_COLOR, color)
+
+
       updateTheme(color)
     }
 

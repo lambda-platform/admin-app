@@ -1,7 +1,7 @@
 import { resolve } from "path";
 import { defineNuxtConfig } from "nuxt/config";
-import { viteThemePlugin } from 'vite-plugin-theme';
-import { getThemeColors } from './src/utils/themeUtil'
+// import { viteThemePlugin } from 'vite-plugin-theme';
+// import { getThemeColors } from './src/utils/themeUtil'
 import { createSvgIconsPlugin }from 'vite-plugin-svg-icons';
 // import Components from 'unplugin-vue-components/vite';
 // import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
@@ -81,10 +81,10 @@ export default defineNuxtConfig({
         iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
         symbolId: 'icon-[dir]-[name]',
       }),
-
-      viteThemePlugin({
-        colorVariables: [...getThemeColors()],
-      }),
+      //
+      // viteThemePlugin({
+      //   colorVariables: [...getThemeColors()],
+      // }),
       // Components({
       //   resolvers: [
       //     AntDesignVueResolver(),
@@ -101,18 +101,18 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         less: {
-          modifyVars: {
-            'primary-color': process.env.LAMBDA_PRIMARY_COLOR,
-            'primary-color-dark-theme': process.env.LAMBDA_PRIMARY_COLOR },
+          // modifyVars: {
+          //   'primary-color': process.env.LAMBDA_PRIMARY_COLOR,
+          //   'primary-color-dark-theme': process.env.LAMBDA_PRIMARY_COLOR },
           javascriptEnabled: true,
         },
-        scss: {
-          modifyVars: { 'primary-color': process.env.LAMBDA_PRIMARY_COLOR, 'primary-color-dark-theme': process.env.LAMBDA_PRIMARY_COLOR },
-          additionalData: `
-          $primary-color: ${process.env.LAMBDA_PRIMARY_COLOR};
-          $ag-primary-color: ${process.env.LAMBDA_PRIMARY_COLOR};
-          `,
-        },
+        // scss: {
+        //   modifyVars: { 'primary-color': process.env.LAMBDA_PRIMARY_COLOR, 'primary-color-dark-theme': process.env.LAMBDA_PRIMARY_COLOR },
+        //   additionalData: `
+        //   $primary-color: ${process.env.LAMBDA_PRIMARY_COLOR};
+        //   $ag-primary-color: ${process.env.LAMBDA_PRIMARY_COLOR};
+        //   `,
+        // },
       },
     },
     define: {

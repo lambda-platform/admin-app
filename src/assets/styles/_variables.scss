@@ -7,8 +7,14 @@ $maskBg:rgba(0, 0, 0, 0.4);
 //background-colors
 $body-background: #FBFDFF;
 
+:root {
+  --primary-color:#3471f6;
+  --ant-primary-color:#3471f6;
+}
+
 //colors
-$primary-color: #3471f6;
+$primary-color: var(--ant-primary-color);
+$ag-primary-color: var(--ant-primary-color);
 $second-color: #F44B87;
 $black-color: #151617;
 $black-second-color: #343943;
