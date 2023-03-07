@@ -6,5 +6,18 @@
   //.ant-layout-sider {
   //  position: fixed !important;
   //}
+
 }
 
+.dark.ant-layout-sider .ant-menu-item-selected:after {
+  border-right: 3px solid transparent !important;
+  width: calc(100% - 60px);
+  background: rgba(255, 255, 255, 0.1) !important;
+  margin-left: 40px;
+  margin-right: 20px;
+  border-radius: 10px;
+  z-index: 0;
+}
+.dark.ant-layout-sider .logout-btn-side {
+  color: rgba(255, 255, 255, 0.65);
+}

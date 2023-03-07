@@ -94,7 +94,7 @@
     </template>
   </a-dropdown>
 <!--  <SelectLang :class="theme" class="action"/>-->
-  <div class="action" v-if="!isMobile">
+  <span class="action" v-if="!isMobile">
          <span class="link link-icon " @click="showSystemSetting">
             <span class="svg-icon ">
                       <inline-svg
@@ -102,7 +102,7 @@
                       />
             </span>
           </span>
-  </div>
+  </span>
   <div class="fixed bottom-0 right-2" v-if="isMobile">
     <a-button type="primary" shape="circle" @click="showSystemSetting" size="large">
       <template #icon>

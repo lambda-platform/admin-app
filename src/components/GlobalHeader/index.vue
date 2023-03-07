@@ -40,7 +40,11 @@
               <logo class="top-nav-header" :show-title="device !== 'mobile'" :style="`${!isMobile ? 'margin-left:25px' : ''}`"/>
               <s-menu v-if="device !== 'mobile'" mode="horizontal" :theme="theme"/>
             </div>
-            <user-menu class="header-index-right" :theme="theme"></user-menu>
+
+            <div class="header-index-right">
+              <user-menu :theme="theme"></user-menu>
+            </div>
+
           </div>
         </div>
       </a-layout-header>

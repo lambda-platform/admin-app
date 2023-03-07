@@ -66,9 +66,9 @@ export default defineNuxtConfig({
     '@lambda-platform/lambda-vue/src/modules/dataform/scss/style.scss',
     '@lambda-platform/lambda-vue/src/modules/dataform/scss/_dataform_dark.scss',
     '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_light.scss',
-    '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_dark.scss',
     '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_material.scss',
     '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_balham.scss',
+    '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_dark.scss',
     '@lambda-platform/lambda-vue/src/modules/krud/scss/style.scss',
 
 

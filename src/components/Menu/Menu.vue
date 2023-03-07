@@ -6,7 +6,7 @@
     :selectedKeys="selectedKeys"
     @openChange="onOpenChange"
     @select="onSelect"
-    class="SysMenu"
+    :class="mode !== 'horizontal' ? 'SysMenu' : ''"
   >
     <template v-for="m in menu" :key="getPath(m)" >
       <RenderSubMenu :item="m" :cruds="kruds" :permissions="permissions.permissions"  :mode="mode" :collapsed="collapsed"  />
