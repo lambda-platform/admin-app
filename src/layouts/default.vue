@@ -58,7 +58,7 @@
               <div class="flex">
                 <portal-target name="level-menu">
                 </portal-target>
-                <div class="rounded-md grid grow grid-nogutte">
+                <div class="w-full">
                   <portal-target name="sub-top-menu">
                   </portal-target>
                   <NuxtPage :key="$route.path"/>
