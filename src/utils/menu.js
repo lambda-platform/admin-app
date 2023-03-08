@@ -1,7 +1,7 @@
-export const getItemPath = (item) => {
+export const getItemPath = (item, isLevelMenu) => {
   if (item.hasOwnProperty('children')) {
     if (item.children.length >= 1) {
-      if (item.link_to === "noActionSubTop") {
+      if (item.link_to === "noActionSubTop" || isLevelMenu) {
         return getItemPath(item.children[0]);
       } else {
         return item.id;

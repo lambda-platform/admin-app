@@ -54,12 +54,15 @@
           <transition name="page-transition">
             <section >
               <portal-target name="mobile-page-title" v-if="isMobile || layoutMode === 'topmenu'"></portal-target>
-              <portal-target name="sub-top-menu">
-              </portal-target>
+
               <div class="flex">
                 <portal-target name="level-menu">
                 </portal-target>
-                <NuxtPage :key="$route.path"/>
+                <div class="rounded-md grid grow grid-nogutte">
+                  <portal-target name="sub-top-menu">
+                  </portal-target>
+                  <NuxtPage :key="$route.path"/>
+                </div>
               </div>
 
             </section>

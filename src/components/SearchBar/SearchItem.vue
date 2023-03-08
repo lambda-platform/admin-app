@@ -54,8 +54,6 @@ export default defineComponent({
     isFounded(){
 
       if(this.searchValue !== undefined && this.searchValue !== ""){
-
-
         if(this.menuTitle.toLowerCase().includes(this.searchValue.toLowerCase())){
           return true
         } else
