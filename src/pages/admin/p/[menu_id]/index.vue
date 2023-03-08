@@ -5,15 +5,11 @@
     </Head>
 
     <portal to="sub-top-menu" v-if="subTopMenus.length">
-      <SubTopMenu  :menu="subTopMenus" :collapsed="false" mode="horizontal"/>
+      <SubTopMenu :menu="subTopMenus" :collapsed="false" mode="horizontal"/>
     </portal>
     <div :class="`${subTopMenus.length ? 'with-top-menu': ''}`">
       <krud v-if="pageType === 'crud' && property.page_id != null" :template="property.template" :property="property"
-
-
-            :base_url="property.base_url"
-
-      ></krud>
+            :base_url="property.base_url"/>
     </div>
 
     <div class="iframe-page" v-if="pageType === 'iframe'">
@@ -22,21 +18,21 @@
   </div>
 </template>
 <script>
-import { PERMISSIONS, KRUDS, MENU, MENU_LIST } from '~/store/mutation-types'
+import {PERMISSIONS, KRUDS, MENU, MENU_LIST} from '~/store/mutation-types'
 
 import ls from '~/utils/Storage'
 import {findMenuItemById} from '~/utils/menu'
-import { base_url } from '~/consts/const'
-import { LAMBDA_CONFIG } from '../../../../store/mutation-types'
+import {base_url} from '~/consts/const'
+import {LAMBDA_CONFIG} from '../../../../store/mutation-types'
 
 import SubTopMenu from '../../../../components/Menu/SubTopMenu.vue'
 
 export default {
-  components:{
+  components: {
     SubTopMenu
   },
   computed: {
-    menuMode () {
+    menuMode() {
       let menuModeSaved = localStorage.getItem('menuMode')
       if (menuModeSaved) {
         return menuModeSaved
@@ -44,14 +40,14 @@ export default {
         return undefined
       }
     },
-    isMobile(){
+    isMobile() {
       return isMobile
     },
-    path(){
+    path() {
       return this.$route.fullPath
     }
   },
-  data () {
+  data() {
     const kruds = ls.get(KRUDS)
     const permissions = ls.get(PERMISSIONS)
     const menu = ls.get(MENU)
@@ -97,13 +93,13 @@ export default {
       pageTitle: '',
       subMenuId: '0',
       showNestedMenu: false,
-      subTopMenus:[],
+      subTopMenus: [],
 
     }
   },
   methods: {
 
-    getShowAbleChild (children) {
+    getShowAbleChild(children) {
       let showIndex = children.findIndex(child => this.can(child))
 
       if (showIndex >= 0) {
@@ -113,7 +109,7 @@ export default {
       }
     },
 
-    can (menu) {
+    can(menu) {
       if (this.permissions[menu.id]) {
         if (this.permissions[menu.id].show) {
           return true
@@ -125,7 +121,7 @@ export default {
       }
     },
 
-    getTitle (item) {
+    getTitle(item) {
       if (item.link_to == 'crud') {
         let crudIndex = this.cruds.findIndex(crud => crud.id == item.url)
         if (crudIndex >= 0) {
@@ -142,7 +138,7 @@ export default {
     //     let parentIndex =  menus.findIndex(menu => menu.id === id);
     // },
 
-    getPage () {
+    getPage() {
 
       if (this.menu_list) {
         let page_index = this.menu_list.findIndex(m => m.id === this.$route.params.menu_id)
@@ -216,8 +212,8 @@ export default {
 
             // If the parent exists, find its children and set them as the subTopMenus
             if (pIndex >= 0) {
-              const { children } = findMenuItemById(this.menu, page.parent[pIndex].id);
-console.log(children)
+              const {children} = findMenuItemById(this.menu, page.parent[pIndex].id);
+
               if (children?.length) {
                 this.subTopMenus = children;
               }
@@ -228,7 +224,7 @@ console.log(children)
 
     }
   },
-  beforeMount () {
+  beforeMount() {
 
     this.getPage()
   },

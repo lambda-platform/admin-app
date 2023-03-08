@@ -25,7 +25,7 @@
             @select="onSelect"
             class="SysMenu"
           >
-            <template v-for="m in menu" :key="getPath(m)"  >
+            <template v-for="m in menu.filter(mItem=>permissions.permissions[mItem.id].show === true)" :key="getPath(m)"  >
               <SearchItem :item="m" :cruds="kruds"  :searchValue="searchValue" :permissions="permissions.permissions" />
             </template>
           </a-menu>
