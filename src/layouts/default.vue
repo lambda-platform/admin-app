@@ -54,6 +54,8 @@
           <transition name="page-transition">
             <section >
               <portal-target name="mobile-page-title" v-if="isMobile || layoutMode === 'topmenu'"></portal-target>
+              <portal-target name="sub-top-menu">
+              </portal-target>
               <div class="flex">
                 <portal-target name="level-menu">
                 </portal-target>

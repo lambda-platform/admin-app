@@ -107,7 +107,7 @@ export const lambda ={
       menu_id: 3,
       permissions:{}
     },
-    saved_tabs:[]
+    saved_tabs:[],
   },
   mutations: {
     [LAMBDA_CONFIG]: (state, config) => {

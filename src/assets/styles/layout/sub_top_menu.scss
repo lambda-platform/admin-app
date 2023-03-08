@@ -1,0 +1,9 @@
+.sub-top-menu{
+  margin-bottom: 15px;
+  //border-radius: 0.375rem;
+}
+.with-top-menu {
+  .offcanvas-template .crud-page {
+    height: calc(100vh - 170px) !important;
+  }
+}

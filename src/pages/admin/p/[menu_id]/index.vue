@@ -4,12 +4,18 @@
       <Title>{{property.title}}</Title>
     </Head>
 
-    <krud v-if="pageType === 'crud' && property.page_id != null" :template="property.template" :property="property"
-          class="material"
+    <portal to="sub-top-menu" v-if="subTopMenus.length">
+      <SubTopMenu  :menu="subTopMenus" :collapsed="false" mode="horizontal"/>
+    </portal>
+    <div :class="`${subTopMenus.length ? 'with-top-menu': ''}`">
+      <krud v-if="pageType === 'crud' && property.page_id != null" :template="property.template" :property="property"
 
-          :base_url="property.base_url"
 
-    ></krud>
+            :base_url="property.base_url"
+
+      ></krud>
+    </div>
+
     <div class="iframe-page" v-if="pageType === 'iframe'">
       <iframe :src="iframeUrl"></iframe>
     </div>
@@ -19,14 +25,19 @@
 import { PERMISSIONS, KRUDS, MENU, MENU_LIST } from '~/store/mutation-types'
 
 import ls from '~/utils/Storage'
+import {findMenuItemById} from '~/utils/menu'
 import { base_url } from '~/consts/const'
 import { LAMBDA_CONFIG } from '../../../../store/mutation-types'
 
+import SubTopMenu from '../../../../components/Menu/SubTopMenu.vue'
+
 export default {
+  components:{
+    SubTopMenu
+  },
   computed: {
     menuMode () {
       let menuModeSaved = localStorage.getItem('menuMode')
-
       if (menuModeSaved) {
         return menuModeSaved
       } else {
@@ -35,6 +46,9 @@ export default {
     },
     isMobile(){
       return isMobile
+    },
+    path(){
+      return this.$route.fullPath
     }
   },
   data () {
@@ -83,6 +97,7 @@ export default {
       pageTitle: '',
       subMenuId: '0',
       showNestedMenu: false,
+      subTopMenus:[],
 
     }
   },
@@ -133,7 +148,7 @@ export default {
         let page_index = this.menu_list.findIndex(m => m.id === this.$route.params.menu_id)
 
         if (page_index >= 0) {
-          let page = this.menu_list[page_index]
+          const page = this.menu_list[page_index]
 
           this.pageType = page.link_to
           switch (this.pageType) {
@@ -193,6 +208,21 @@ export default {
             default:
               break
           }
+
+          // Check if the page has a parent
+          if (page.parent?.length >= 1) {
+            // Find the index of the parent with link_to = "noActionSubTop"
+            const pIndex = page.parent.findIndex(p => p.link_to === "noActionSubTop");
+
+            // If the parent exists, find its children and set them as the subTopMenus
+            if (pIndex >= 0) {
+              const { children } = findMenuItemById(this.menu, page.parent[pIndex].id);
+console.log(children)
+              if (children?.length) {
+                this.subTopMenus = children;
+              }
+            }
+          }
         }
       }
 
@@ -201,6 +231,7 @@ export default {
   beforeMount () {
 
     this.getPage()
-  }
+  },
+
 }
 </script>

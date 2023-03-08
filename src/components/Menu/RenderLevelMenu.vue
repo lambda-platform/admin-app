@@ -24,7 +24,6 @@
   <li v-else-if="can(item) && !hasItems(item) && item.link_to === 'divider'" class="text-center"><span class="text-slate-500">{{getMenuTitle(item)}}</span></li>
   <li
     v-if="can(item) && hasItems(item)"
-
   >
     <a href="javascript:;" @click="selectMain(item, getMenuTitle(item))" :class="selectedMenu === item.id ? 'active' :''">
       <i v-if="item.icon" :class="item.icon"></i>

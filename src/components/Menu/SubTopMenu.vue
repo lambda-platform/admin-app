@@ -1,26 +1,25 @@
 <template>
   <a-menu
     :mode="mode"
-    :theme="theme"
     :openKeys="openKeys.value"
     :selectedKeys="selectedKeys"
     @openChange="onOpenChange"
     @select="onSelect"
     :inlineIndent="21"
-    :class="mode !== 'horizontal' ? 'SysMenu' : ''"
+    class="sub-top-menu rounded-md"
   >
     <template v-for="m in menu.filter(mItem=>permissions.permissions[mItem.id].show === true)" :key="getPath(m)" >
-      <RenderSubMenu :item="m" :cruds="kruds" :permissions="permissions.permissions"  :mode="mode" :collapsed="collapsed"  />
+      <RenderSubMenu :item="m" :cruds="kruds" :permissions="permissions.permissions"  :mode="mode" :collapsed="collapsed" />
     </template>
   </a-menu>
 </template>
 <script lang="ts">
 import { defineComponent, reactive, computed, onMounted, watch, ref, ComputedRef } from 'vue'
 
-import { KRUDS, MENU, MENU_LIST, PERMISSIONS } from '~/store/mutation-types'
+import { KRUDS, MENU_LIST, PERMISSIONS } from '~/store/mutation-types'
 import ls from '~/utils/Storage'
 import RenderSubMenu from './RenderSubMenu.vue'
-import {getItemPath, getMenu, findMenuItemById} from "~/utils/menu"
+import {getItemPath, getMenu} from "~/utils/menu"
 import {
   layoutMode,
 } from '~/store/useSiteSettings'
@@ -28,15 +27,15 @@ import {
 export default defineComponent({
   name: 'Menu',
   props: {
-    theme: {
-      type: String,
+    menu: {
+      type: Array,
       required: false,
-      default: 'dark'
+      default: []
     },
     mode: {
       type: String,
       required: false,
-      default: 'inline'
+      default: 'horizontal'
     },
     collapsed: {
       type: Boolean,
@@ -49,7 +48,6 @@ export default defineComponent({
 
     const kruds = ls.get(KRUDS)
     const permissions = ls.get(PERMISSIONS)
-    const menu = ls.get(MENU)
     const menu_list = ls.get(MENU_LIST)
 
     const route = useRoute();
@@ -60,7 +58,7 @@ export default defineComponent({
     const cachedOpenKeys = reactive<any>({ value: [] })
     const rootSubmenuKeys: ComputedRef<string[]> = computed(() => {
       const keys: string[] = []
-      menu.forEach((item: any) => keys.push(getItemPath(item)))
+        props.menu.forEach((item: any) => keys.push(getItemPath(item)))
 
       return keys
     });
@@ -117,35 +115,12 @@ export default defineComponent({
       selectedKeys.value = selectedKeysParams
       emit('select', { item, key, selectedKeys })
     }
-    const addSelectKeysForSubTop = () => {
-      let page_index = menu_list.findIndex((m => m.id === route.params.menu_id));
-      if (page_index >= 0) {
-        const page = menu_list[page_index]
-        // Check if the page has a parent
-        if (page.parent?.length >= 1) {
-          // Find the index of the parent with link_to = "noActionSubTop"
-          const pIndex = page.parent.findIndex(p => p.link_to === "noActionSubTop");
-
-          // If the parent exists, find its children and set them as the subTopMenus
-          if (pIndex >= 0) {
-            const { children } = findMenuItemById(menu, page.parent[pIndex].id);
-            if (children?.length) {
-              selectedKeys.value = [route.path, "/admin/p/"+children[0].id];
-            }
-          }
-        }
-      }
-    }
     const updateMenu = () => {
 
       if(menu_list){
         selectedKeys.value = [route.path];
         let parentKeys = [];
         if (props.mode !== 'horizontal') {
-
-
-          addSelectKeysForSubTop();
-
           parentKeys = getMenu(menu_list, route.path);
         }
 
@@ -159,7 +134,6 @@ export default defineComponent({
       selectedKeys,
       onOpenChange,
       onSelect,
-      menu,
       permissions,
       kruds,
       getPath,
