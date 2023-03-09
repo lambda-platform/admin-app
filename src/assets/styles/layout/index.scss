@@ -8,10 +8,10 @@ body {
 
 
   .SysMenu {
-    max-height: calc(100vh - 90px);
+    height: calc(100vh - 110px);
     overflow-y: auto;
     overflow-x: hidden;
-    padding-bottom: 30px;
+    padding-bottom: 0px;
   }
 }
 
@@ -178,10 +178,35 @@ body {
 
 
         .avatar {
-          margin: 20px 8px 20px 0;
+          margin: 12px 0 12px 0;
           color: $primary-color;
-          background: hsla(0, 0%, 100%, 0.85);
+          background: $gray-color;
           vertical-align: middle;
+          width: 38px;
+          height: 38px;
+          border-radius: 25px;
+          display: block;
+
+          .anticon{
+            height: 18px;
+            width: 18px;
+            display: inline-block;
+            vertical-align: top;
+            margin: 10px;
+            svg{
+              height: 18px;
+              width: 18px;
+            }
+          }
+          img{
+            border-radius: 25px;
+            width: 38px;
+            height: 38px;
+          }
+
+          [fill]:not([fill="none"])  {
+            fill:  $white;
+          }
         }
 
         .icon {

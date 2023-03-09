@@ -5,16 +5,16 @@
   <DarkLightMode class="action" v-if="!isMobile"/>
   <a-dropdown>
         <span class="action ant-dropdown-link user-dropdown-menu">
-          <span class="link link-icon ">
-            <span class="svg-icon ">
-                      <inline-svg
-                        src="/assets/icons/duotone/Interface/User.svg"
-                      />
-            </span>
-          </span>
-          <span class="nickname text-gray-700 dark:text-gray-200" v-if="!isMobile && layoutMode !== 'topmenu'">&nbsp;&nbsp;{{
-              nickname
-            }}</span>
+          <div class="avatar">
+<!--              <inline-svg-->
+<!--                src="/assets/icons/duotone/Interface/User.svg"-->
+<!--              />-->
+              <img :src="base_url+avatar" alt="avatar" v-if="avatar">
+              <UserOutlined style="color:white" v-else />
+          </div>
+<!--          <span class="nickname text-gray-700 dark:text-gray-200" v-if="!isMobile && layoutMode !== 'topmenu'">&nbsp;&nbsp;{{-->
+<!--              nickname-->
+<!--            }}</span>-->
         </span>
     <template #overlay>
       <a-menu class="user-dropdown-menu-wrapper">
@@ -128,7 +128,8 @@ import {
   QuestionCircleOutlined,
   SettingOutlined,
   LogoutOutlined,
-  LockOutlined
+  LockOutlined,
+  UserOutlined
 } from '@ant-design/icons-vue'
 
 import { useStore } from 'vuex'
@@ -139,7 +140,7 @@ import { isMobile } from '~/utils/device'
 import { layoutMode } from '~/store/useSiteSettings'
 
 import Logout from '~/components/tools/Logout.vue'
-
+import { base_url } from '~/consts/const'
 export default defineComponent({
   name: 'UserMenu',
   props: ['theme'],
@@ -153,7 +154,8 @@ export default defineComponent({
     // SelectLang,
     LockOutlined,
     layoutMode,
-    Logout
+    Logout,
+    UserOutlined
   },
   setup (props) {
 
@@ -171,10 +173,10 @@ export default defineComponent({
 
 
     return {
-      avatar: '/images/avatar.png',
+      avatar: UserInfo ? UserInfo.avatar : null,
       userID: UserInfo ? UserInfo.id : 0,
       nickname: UserInfo ? UserInfo.first_name : '',
-
+      base_url,
       showSystemSetting,
       onLockScreen,
       isMobile,
