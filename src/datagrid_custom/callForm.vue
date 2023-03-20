@@ -10,7 +10,7 @@
     <dataform
       v-if="showForm"
       ref="form"
-      schemaID="1"
+      schemaID="0"
       :editMode="editMode"
       :hideTitle="true"
       :onSuccess="onSuccess"
