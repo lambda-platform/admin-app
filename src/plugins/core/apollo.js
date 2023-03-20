@@ -3,7 +3,7 @@ import { createApolloProvider } from '@vue/apollo-option'
 
 import { base_url } from '~/consts/const'
 const httpLink = new HttpLink({
-  uri: base_url,
+  uri: base_url+"/query",
 });
 
 // Cache implementation
