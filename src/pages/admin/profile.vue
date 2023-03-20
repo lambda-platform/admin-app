@@ -23,7 +23,7 @@
                     ref="form"
                     :url="base_url"
                     :hideTitle="true"
-                    schemaID="user_profile" :editMode="editMode" :do_render="editMode" :onReady="editUser"
+                    schemaID="user_profile_user" :editMode="editMode" :do_render="editMode" :onReady="editUser"
                     :onSuccess="onSuccess"
                   >
                   </dataform>
