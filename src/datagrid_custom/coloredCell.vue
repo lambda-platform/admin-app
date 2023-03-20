@@ -1,30 +1,22 @@
 <template>
-    <span style="color: red"> {{ params.value }}</span>
+    <span>{{ params.value }}</span>
 </template>
-
 <script>
-
 export default {
-  mounted () {
-    console.log(this.params)
-    if(this.params.value === 60) {
-      // this.params.eGridCell.classList.add("cell-red")
-      //this.params.eGridCell.offsetParent.classList.add("cell-red")
+  mounted() {
+    if(this.params.value >= 1) {
+      this.params.eGridCell.classList.add("cell-green");
     } else {
-      // this.params.eGridCell.classList.add("cell-green")
+      this.params.eGridCell.classList.add("cell-red");
     }
-
-
-
   }
 };
 </script>
-<style>
+<style >
 .cell-red{
-  background-color: red !important;
-
+  background-color: #f54f4f;
 }
 .cell-green{
-  background-color: green;
+  background-color: rgba(0, 128, 0, 0.85);
 }
 </style>
