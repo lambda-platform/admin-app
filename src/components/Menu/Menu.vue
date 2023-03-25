@@ -121,6 +121,7 @@ export default defineComponent({
       let page_index = menu_list.findIndex((m => m.id === route.params.menu_id));
       if (page_index >= 0) {
         const page = menu_list[page_index]
+
         // Check if the page has a parent
         if (page.parent?.length >= 1) {
           // Find the index of the parent with link_to = "noActionSubTop"
@@ -130,7 +131,7 @@ export default defineComponent({
           if (pIndex >= 0) {
             const { children } = findMenuItemById(menu, page.parent[pIndex].id);
             if (children?.length) {
-              selectedKeys.value = [route.path, "/admin/p/"+children[0].id];
+              selectedKeys.value = [route.path, getPath(children[0])];
             }
           }
         }

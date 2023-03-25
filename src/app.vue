@@ -81,9 +81,10 @@ export default {
               user: ls.get(USER_INFO),
               firebase_config: res.notify.firebaseConfig,
               microserviceSettings: data.permission.microserviceSettings ? data.permission.microserviceSettings : [],
-
             }
             this.loading = false;
+
+
           } else {
             this.redirectToLogin();
           }

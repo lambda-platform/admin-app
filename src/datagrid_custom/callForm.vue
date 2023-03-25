@@ -16,7 +16,6 @@
       :onSuccess="onSuccess"
       :onError="onError"
       :do_render="showForm"
-      :force_render="true"
       :onReady="formReady"
       :permissions="{
         c: false,

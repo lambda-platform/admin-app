@@ -1,6 +1,7 @@
 import ls from '~/utils/Storage'
 import { menuLayout } from '~/consts/const'
 import { updateDarkMode } from '~/components/SettingDrawer/settingConfig'
+import defaultSettings from '~/config/defaultSettings'
 import {
   SITE_SETTINGS,
   SET_SIDEBAR_TYPE,
@@ -31,7 +32,7 @@ const app = {
     fixedHeader: true,
     fixSiderbar: menuLayout === "sidemenu",
     autoHideHeader: false,
-    color: null,
+    color: defaultSettings.primaryColor,
     weak: false,
     gray: false,
     multiTab: false,

@@ -31,6 +31,10 @@ const colorList = [
   {
     key: 'Ягаан',
     color: '#722ED1'
+  },
+  {
+    key: 'Ягаан',
+    color: '#d946ef'
   }
 ]
 

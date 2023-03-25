@@ -1,24 +1,22 @@
 <template>
   <SettingItem :title="$t('settingDrawer.theme')">
-    <div style="height: 20px">
+    <div >
       <a-tooltip
-        class="setting-drawer-theme-color-colorBlock"
+        class=""
         v-for="(item, index) in colorList"
         :key="index"
       >
         <template #title>{{ item.key }}</template>
-        <a-tag :color="item.color" @click="changeColor(item.color)">
-          <CheckOutlined v-if="item.color === primaryColor" />
-        </a-tag>
+        <button :style="`background-color: ${item.color}`" @click="changeColor(item.color)" :class="`rounded-full h-8 w-8 m-2.5 dark:m-2.5 ${item.color === primaryColor ? 'active-main-color' : 'main-color'}`" >
+        </button>
       </a-tooltip>
 
       <a-popover title="Өнгө сонгох" overlayClassName="themeColorCustomColor" placement="bottomRight">
         <template #content>
           <ColorPicker @change="changeColor" format="hex" disableHistory disableAlpha />
         </template>
-        <a-tag :color="isCustomColor?primaryColor:''" class="setting-drawer-theme-color-colorBlock">
-          <CheckOutlined v-if="isCustomColor" />
-        </a-tag>
+        <button :style="`background-color: ${isCustomColor?primaryColor:'gray'}`"  :class="`rounded-full h-8 w-8  m-2.5 dark:m-2.5 ${isCustomColor ? 'active-main-color' : 'main-color'}`">
+        </button>
       </a-popover>
     </div>
   </SettingItem>

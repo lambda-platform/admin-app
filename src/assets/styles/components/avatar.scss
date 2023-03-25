@@ -1,0 +1,34 @@
+.avatar {
+  margin: 12px 0 12px 0;
+  color: $primary-color;
+  background: $gray-color;
+  vertical-align: middle;
+  width: 38px;
+  height: 38px;
+  border-radius: 25px;
+  display: block;
+  svg{
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+  }
+  svg{
+    height: 38px;
+    width: 38px;
+    display: unset;
+    vertical-align: unset;
+    margin: unset;
+  }
+
+  img{
+    border-radius: 25px;
+    width: 38px;
+    height: 38px;
+  }
+
+  [fill]:not([fill="none"])  {
+    fill:  $white;
+  }
+}

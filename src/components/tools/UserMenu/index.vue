@@ -6,15 +6,13 @@
   <a-dropdown>
         <span class="action ant-dropdown-link user-dropdown-menu">
           <div class="avatar">
-<!--              <inline-svg-->
-<!--                src="/assets/icons/duotone/Interface/User.svg"-->
-<!--              />-->
               <img :src="base_url+avatar" alt="avatar" v-if="avatar">
-              <UserOutlined style="color:white" v-else />
+              <span class="svg-icon-white" v-else>
+                      <inline-svg
+                        src="/assets/icons/duotune/communication/com006.svg"
+                      />
+                </span>&nbsp;
           </div>
-<!--          <span class="nickname text-gray-700 dark:text-gray-200" v-if="!isMobile && layoutMode !== 'topmenu'">&nbsp;&nbsp;{{-->
-<!--              nickname-->
-<!--            }}</span>-->
         </span>
     <template #overlay>
       <a-menu class="user-dropdown-menu-wrapper">
@@ -28,7 +26,7 @@
                 <span class="svg-icon">
 
                       <inline-svg
-                        src="/assets/icons/duotone/Interface/User.svg"
+                        src="/assets/icons/duotune/communication/com006.svg"
                       />
                 </span>&nbsp;&nbsp;
             <span>{{ $t('appAdmin.profile') }}</span>
