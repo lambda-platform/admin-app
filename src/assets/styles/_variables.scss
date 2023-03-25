@@ -10,10 +10,18 @@ $body-background: #FBFDFF;
 :root {
   --primary-color:#3471f6;
   --ant-primary-color:#3471f6;
+  --primary-color-lighten: #96b5fa;
+  --primary-color-lightest: #f7faff;
+  --primary-color-darken: #0841bc;
+  --primary-color-darkest: #020e29;
 }
 
 //colors
-$primary-color: var(--ant-primary-color);
+$primary-color: var(--primary-color);
+$primary-color-lighten: var(--primary-color-lighten);
+$primary-color-lightest: var(--primary-color-lightest);
+$primary-color-darken: var(--primary-color-darken);
+$primary-color-darkest: var(--primary-color-darkest);
 $ag-primary-color: var(--ant-primary-color);
 $second-color: #F44B87;
 $black-color: #151617;

@@ -1,13 +1,13 @@
 <template>
   <SettingItem :title="$t('settingDrawer.theme')">
-    <div >
+    <div class="ml-3">
       <a-tooltip
         class=""
         v-for="(item, index) in colorList"
         :key="index"
       >
         <template #title>{{ item.key }}</template>
-        <button :style="`background-color: ${item.color}`" @click="changeColor(item.color)" :class="`rounded-full h-8 w-8 m-2.5 dark:m-2.5 ${item.color === primaryColor ? 'active-main-color' : 'main-color'}`" >
+        <button :style="`background-color: ${item.color}`" @click="changeColor(item.color)" :class="`rounded-full h-7 w-7 m-2.5 dark:m-2.5 ${item.color === primaryColor ? 'active-main-color' : 'main-color'}`" >
         </button>
       </a-tooltip>
 
@@ -15,7 +15,7 @@
         <template #content>
           <ColorPicker @change="changeColor" format="hex" disableHistory disableAlpha />
         </template>
-        <button :style="`background-color: ${isCustomColor?primaryColor:'gray'}`"  :class="`rounded-full h-8 w-8  m-2.5 dark:m-2.5 ${isCustomColor ? 'active-main-color' : 'main-color'}`">
+        <button :style="`background-color: ${isCustomColor?primaryColor:'gray'}`"  :class="`rounded-full h-7 w-7  m-2.5 dark:m-2.5 ${isCustomColor ? 'active-main-color' : 'main-color'}`">
         </button>
       </a-popover>
     </div>
@@ -31,7 +31,7 @@ import { updateTheme } from '../updateTheme'
 import { primaryColor } from '~/store/useSiteSettings'
 import SettingItem from './SettingItem.vue'
 import ColorPicker from '~/components/ColorPicker/index.vue'
-
+import tinycolor from 'tinycolor2';
 export default defineComponent({
   components: {
     CheckOutlined,
@@ -47,6 +47,14 @@ export default defineComponent({
       commit(TOGGLE_COLOR, color)
 
 
+      document.documentElement.style.setProperty(`--primary-color`, color);
+
+
+      document.documentElement.style.setProperty(`--primary-color-lighten`,tinycolor(color).lighten(20).toString());
+      document.documentElement.style.setProperty(`--primary-color-lightest`,tinycolor(color).lighten(40).toString());
+
+      document.documentElement.style.setProperty(`--primary-color-darken`,tinycolor(color).darken(20).toString());
+      document.documentElement.style.setProperty(`--primary-color-darkest`,tinycolor(color).darken(50).toString());
       updateTheme(color)
     }
 

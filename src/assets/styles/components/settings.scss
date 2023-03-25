@@ -55,9 +55,16 @@
     font-size: 20px;
   }
 }
-.active-main-color {
-  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $primary-color, 0 1px 2px 0 black;
-}
 .main-color{
 
+}
+
+.active-main-color {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $primary-color-lighten, 0 1px 2px 0 black;
+}
+.dark{
+
+  .active-main-color {
+    box-shadow: 0 0 0 2px #001529, 0 0 0 4px $primary-color-darken, 0 1px 2px 0 black;
+  }
 }

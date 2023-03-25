@@ -6,6 +6,8 @@
   }
   .module-navigation{
     .card {
+
+
       border-radius: 0.5rem;
       color: $black-second-color;
       display: flex;
@@ -15,17 +17,13 @@
       position: relative;
       font-size: 1.1rem;
       &:hover{
-        //background: lighten(var(--ant-primary-color), 40%);
-      //background:hsl(var(--ant-primary-color), 70%, 60%);
+        background: $primary-color-lightest;
         color: $primary-color ;
-        //border-bottom: 5px solid lighten($primary-color, 30%);
         .svg-icon{
           [fill]:not([fill="none"])  {
             fill:  $primary-color;
           }
         }
-
-
       }
       .module-menus{
         color: $gray-color;
@@ -46,12 +44,8 @@
         height: 30px;
         margin-bottom: 10px;
         [fill]:not([fill="none"])  {
-          //fill:  lighten(var(--ant-primary-color), 20%);
-          fill: var(--ant-primary-color)
+          fill:  $primary-color-lighten;
         }
-      }
-      i {
-        color: $primary-color;
       }
     }
 
@@ -60,12 +54,14 @@
 }
 .dark {
   .module-page {
+
+
+
     .module-navigation {
       .card {
         color: $white;
         &:hover{
-          //background: darken(var(--ant-primary-color),50%);
-          //background: hsl(var(--ant-primary-color), 70%, 20%);
+          background: $primary-color-darkest;
           color: $primary-color ;
 
           .svg-icon{
