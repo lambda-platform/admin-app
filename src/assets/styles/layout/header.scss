@@ -44,6 +44,19 @@
       }
     }
   }
+
+  .action{
+    .avatar {
+      display: inline-block;
+    }
+  }
+  .top-nav-header-index{
+    .action {
+      .avatar {
+        margin: 0 7px;
+      }
+    }
+  }
 }
 
 .header-animat {

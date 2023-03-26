@@ -6,6 +6,7 @@
   <a-dropdown>
         <span class="action ant-dropdown-link user-dropdown-menu">
           <div class="avatar">
+
               <img :src="base_url+avatar" alt="avatar" v-if="avatar">
               <span class="svg-icon-white" v-else>
                       <inline-svg
