@@ -42,8 +42,7 @@ import { defineNuxtPlugin } from "#app";
 import { initInlineSvg } from "./core/inline-svg";
 import { initFilters } from "./core/filters";
 import { initAxios } from "./core/axios";
-
-
+import * as short from "vue3-shortkey/src/index.js"
 declare interface AppState {
   theme?: string;
   darkTheme?: boolean;
@@ -96,6 +95,7 @@ export default defineNuxtPlugin(async ({ vueApp: app }) => {
   installNotification(app)
   //
   //
+  short.install(app)
 
   app.use(store);
 
