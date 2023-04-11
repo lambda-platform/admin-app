@@ -124,36 +124,7 @@ export default defineNuxtConfig({
     },
     build: {
       sourcemap: false,
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            // Split external library from transpiled code.
-            vue: ['vuex', 'portal-vue'],
-            ag: ['ag-grid-community', 'ag-grid-enterprise', 'ag-grid-vue3'],
-            ant: ['ant-design-vue'],
-            leaflet: ['leaflet', 'leaflet-draw', '@turf/turf'],
-            common: ['axios', 'jquery'],
-            lodash: ['lodash'],
-            ck: ['@ckeditor/ckeditor5-vue', '@ckeditor/ckeditor5-build-classic'],
-            other: ['swiper', 'vue-awesome-swiper'],
-            moment: ['moment'],
-            cryptoJs: ['crypto-js'],
-            numeral: ['numeral'],
-            jsonLogic: ['json-logic-js']
-          }
-        }
-        // make sure to externalize deps that shouldn't be bundled
-        // into your library
-        // external: ['vue', 'lodash', 'ag-grid-community', 'ag-grid-enterprise', 'axios', 'jquery', 'leaflet', 'ant-design-vue'],
-        // output: {
-        //   // Provide global variables to use in the UMD build
-        //   // for externalized deps
-        //   globals: {
-        //     vue: 'Vue',
-        //     _: 'lodash',
-        //   }
-        // }
-      }
+
     },
     server: {
       fs: {
@@ -163,7 +134,6 @@ export default defineNuxtConfig({
     },
   },
   postcss: {
-    config:true,
     plugins:{
       tailwindcss: {},
       autoprefixer: {},
