@@ -26,6 +26,8 @@ import { getLambdaConfig } from './service/service'
 import { clearUserInfo } from './utils/util'
 import { createList } from '~/utils/menu'
 import { title, subTitle } from '~/consts/const'
+import {setupI18n} from "@lambda-platform/lambda-vue/src/locale";
+import {i18n, locale} from "~/locale";
 
 export default {
   components: { LockScreen },
@@ -58,6 +60,11 @@ export default {
 
     getLambdaConfig().then((res) => {
       ls.set(LAMBDA_CONFIG, res);
+
+      if(res.default_language !== "mn_MN"){
+        setupI18n(locale)
+        this.$i18n.locale = res.default_language;
+      }
 
       if(res.microservice_dev){
         window.microservice_dev = true
