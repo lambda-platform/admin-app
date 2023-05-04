@@ -89,7 +89,10 @@ export default defineComponent({
       return getTitle(item, this.cruds)
     },
     hasItems (item) {
-      return item && item.children !== undefined ? item.children.length > 0 : false
+      if(item && item.children !== undefined && item.children.length > 0){
+        return item.children.filter(mItem => this.permissions[mItem.id] && this.permissions[mItem.id].show === true).length > 0
+      }
+      return  false
     },
   },
 })

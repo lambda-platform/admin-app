@@ -9,7 +9,9 @@
     :inlineIndent="21"
     :class="mode !== 'horizontal' ? 'SysMenu' : ''"
   >
-    <template v-for="m in menu.filter(mItem=>permissions.permissions[mItem.id].show === true)" :key="getPath(m)" >
+    <template v-for="m in menu.filter(
+        (mItem) => permissions.permissions[mItem.id] && permissions.permissions[mItem.id].show === true
+      )" :key="getPath(m)" >
       <RenderSubMenu :item="m" :cruds="kruds" :permissions="permissions.permissions"  :mode="mode" :collapsed="collapsed"  />
     </template>
   </a-menu>
