@@ -11,7 +11,7 @@
       >
         <a-tab-pane
           v-for="page in pages"
-          :key="page.fullPath"
+          :key="page.path"
           :closable="pages.length > 1"
           style="height: 0"
         >
@@ -21,7 +21,7 @@
               <template #overlay>
                 <a-menu
                   @click="({ key, item, domEvent }) => {
-                this.closeMenuClick(key, page.fullPath);
+                this.closeMenuClick(key, page.path);
               }"
                 >
                   <a-menu-item key="closeSelf">{{ $t('multiTab.closeCurrent') }}</a-menu-item>
@@ -130,30 +130,30 @@ export default defineComponent({
       // #endregion
 
       if (saved_tabs.length >= 1) {
-        let fullPath = router.currentRoute.value.fullPath
-        let index = saved_tabs.findIndex(l => l.fullPath === fullPath)
+        let fullPath = router.currentRoute.value.path
+        let index = saved_tabs.findIndex(l => l.path === fullPath)
 
-        savedFullPathList.value = [...saved_tabs.map(s=>s.fullPath)]
+        savedFullPathList.value = [...saved_tabs.map(s=>s.path)]
 
         if(index >= 0){
           pages.push(...[...saved_tabs])
-          fullPathList.push(...saved_tabs.map(s=>s.fullPath))
+          fullPathList.push(...saved_tabs.map(s=>s.path))
         } else {
-          fullPathList.push(...[...saved_tabs.map(s=>s.fullPath), router.currentRoute.value.fullPath])
+          fullPathList.push(...[...saved_tabs.map(s=>s.path), router.currentRoute.value.path])
           pages.push(...[...saved_tabs, router.currentRoute.value])
         }
 
       } else {
         pages.push(router.currentRoute.value)
-        fullPathList.push(router.currentRoute.value.fullPath)
+        fullPathList.push(router.currentRoute.value.path)
       }
-      fullPath.value = router.currentRoute.value.fullPath
+      fullPath.value = router.currentRoute.value.path
 
-      let pIndex = pages.findIndex(p=>p.fullPath === router.currentRoute.value.fullPath)
+      let pIndex = pages.findIndex(p=>p.path === router.currentRoute.value.path)
       if(pIndex < 0){
         selectedLastPath()
       }else {
-        activeKey.value =router.currentRoute.value.fullPath
+        activeKey.value =router.currentRoute.value.path
       }
 
     })()
@@ -162,7 +162,7 @@ export default defineComponent({
       ctx[action](targetKey)
     }
     const remove = (targetKey) => {
-      const temp = pages.filter((page) => page.fullPath !== targetKey)
+      const temp = pages.filter((page) => page.path !== targetKey)
       pages.length = 0
       pages.push(...temp)
       fullPathList = fullPathList.filter((path) => path !== targetKey)
@@ -221,7 +221,7 @@ export default defineComponent({
 
       let savedTabs = ls.get(SAVED_TABS)
 
-      let fullPath = router.currentRoute.value.fullPath
+      let fullPath = router.currentRoute.value.path
       let index = fullPathList.findIndex(l => l === fullPath)
 
       if (index >= 0) {
@@ -230,13 +230,13 @@ export default defineComponent({
         }
 
         if (savedTabs.length >= 1) {
-          let savedIndex = savedTabs.findIndex(t=>t.fullPath === fullPathList[index]);
+          let savedIndex = savedTabs.findIndex(t=>t.path === fullPathList[index]);
           if(savedIndex >= 0){
 
 
 
 
-            const temp = savedTabs.filter((page) => page.fullPath !== fullPathList[index])
+            const temp = savedTabs.filter((page) => page.path !== fullPathList[index])
             savedTabs.length = 0
             savedTabs.push(...temp)
 
@@ -244,7 +244,7 @@ export default defineComponent({
             saved_tabs.push(...temp)
 
 
-            savedFullPathList.value = [...temp.map(l=>l.fullPath)]
+            savedFullPathList.value = [...temp.map(l=>l.path)]
 
 
 
@@ -255,7 +255,7 @@ export default defineComponent({
         }
 
         let cloned = {
-          fullPath:pages[index].fullPath,
+          fullPath:pages[index].path,
           hash:pages[index].hash,
           href:pages[index].href,
           meta:{
@@ -271,7 +271,7 @@ export default defineComponent({
           },
         }
 
-        savedFullPathList.value.push(cloned.fullPath);
+        savedFullPathList.value.push(cloned.path);
         if (savedTabs.length >= 1) {
 
           ls.set(SAVED_TABS, [...savedTabs, cloned])
@@ -288,15 +288,15 @@ export default defineComponent({
     watch(
       () => router.currentRoute.value,
       (newVal) => {
-        activeKey.value = newVal.fullPath
-        if (fullPathList.indexOf(newVal.fullPath) < 0) {
-          fullPathList.push(newVal.fullPath)
+        activeKey.value = newVal.path
+        if (fullPathList.indexOf(newVal.path) < 0) {
+          fullPathList.push(newVal.path)
 
           pages.push(newVal)
 
         }
 
-        fullPath.value = newVal.fullPath
+        fullPath.value = newVal.path
       }
     )
 
