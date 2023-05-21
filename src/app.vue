@@ -101,6 +101,8 @@ export default {
       } else {
         this.redirectToLogin();
       }
+    }).catch(()=>{
+      this.redirectToLogin();
     });
 
     if (navigator.platform.indexOf("Win") !== -1) {
