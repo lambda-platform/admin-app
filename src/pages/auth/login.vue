@@ -99,6 +99,18 @@ export default {
       return defineAsyncComponent(() => import(`../../../node_modules/@lambda-platform/lambda-vue/src/modules/agent/views/theme/${this.lambda.theme}/auth/login.vue`))
     }
 
+  },
+  mounted() {
+    if (ls.get(ACCESS_TOKEN)) {
+      axios.get('/get-permissions').then(({ data }) => {
+        if (data.status) {
+          this.$router.replace('/admin')
+        }
+      }).catch(e => {
+        console.log(e)
+      })
+    }
+
   }
 }
 </script>

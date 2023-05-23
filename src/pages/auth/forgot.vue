@@ -88,7 +88,7 @@ export default {
                             this.isSuccess = true;
                             this.successMsg = data.msg;
                             setTimeout(() => {
-                                this.$router.push('/auth/password-reset');
+                              this.$router.push('/auth/password-reset?email='+this.credentials.email);
                             }, 2100)
                         } else {
                             this.isError = true;
