@@ -110,7 +110,6 @@ export default {
         console.log(e)
       })
     }
-
   }
 }
 </script>
