@@ -6,7 +6,7 @@
         :class="[fixedHeader ? 'ant-header-fixedHeader' : '', !isMobile ? sidebarOpened ? 'ant-header-side-opened' :  'ant-header-side-closed' : '', ]"
         :style="{ padding: '0' }"
       >
-        <div v-if="mode === 'sidemenu' || mode === 'levelmenu'" :class="mode === 'levelmenu' ? 'header md:pl-6' : 'header md:pl-8'">
+        <div v-if="mode === 'sidemenu' || mode === 'levelmenu'" :class="mode === 'levelmenu' ? 'header md:pl-6 flex justify-between' : 'header md:pl-8 flex justify-between'">
           <span v-if="isMobile && !moduleHeader" class="float-left">
               <span class="trigger   btn btn-icon shadow-none" @click="toggle">
                 <span class="svg-icon">

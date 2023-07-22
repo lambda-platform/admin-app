@@ -1,4 +1,4 @@
-// TODO:使用ts重写
+
 // @ts-nocheck
 class EasyDB {
   constructor(options) {

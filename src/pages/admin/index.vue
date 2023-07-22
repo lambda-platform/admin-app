@@ -3,6 +3,9 @@
     <Head>
       <Title>{{title}}</Title>
     </Head>
+    <portal to="header-left">
+      <div class="flex-grow"></div>
+    </portal>
     <div>
       <img :src="`${base_url}${logoDark}`" v-if="darkMode" class="logo-light" :alt="title">
       <img :src="`${base_url}${logo}`"   v-if="!darkMode" class="logo-dark" :alt="title">
