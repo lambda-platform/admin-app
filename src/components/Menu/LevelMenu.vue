@@ -2,7 +2,7 @@
   <aside class="level-menu">
     <nav>
       <ul>
-        <RenderLevelMenu v-for="m in menu.filter(mItem=>permissions.permissions[mItem.id].show === true)" :key="m.index"
+        <RenderLevelMenu v-for="m in menu.filter(mItem=>permissions.permissions[mItem.id] && permissions.permissions[mItem.id].show === true)" :key="m.index"
                          :item="m" :cruds="kruds" :permissions="permissions.permissions" :selectedMenu="selectedMenu" :isActive="m.id === selectedMenu"/>
       </ul>
     </nav>
@@ -86,14 +86,14 @@ export default defineComponent({
     const cachedOpenKeys = reactive<any>({value: []})
     const rootSubmenuKeys: ComputedRef<string[]> = computed(() => {
       const keys: string[] = []
-      menu.forEach((item: any) => keys.push(getItemPath(item)))
+      menu.forEach((item: any) => keys.push(getItemPath(item, permissions.permissions)))
 
       return keys
     });
 
 
     const getPath = (item: any) => {
-      return getItemPath(item);
+      return getItemPath(item, permissions.permissions);
     }
 
 

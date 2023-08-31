@@ -53,7 +53,7 @@ export default defineComponent({
     },
     path() {
       // only for level menu, set isLevelMenu = true
-      return getItemPath(this.item, true)
+      return getItemPath(this.item, true, this.permissions)
     },
   },
   data () {

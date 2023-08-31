@@ -1,8 +1,9 @@
-export const getItemPath = (item, isLevelMenu) => {
+export const getItemPath = (item, isLevelMenu, permissions) => {
   if (item.hasOwnProperty('children')) {
-    if (item.children.length >= 1) {
+    const children = permissions ? item.children.filter(mItem=>permissions[mItem.id] && permissions[mItem.id].show === true) : item.children;
+    if (children.length >= 1) {
       if (item.link_to === "noActionSubTop" || isLevelMenu) {
-        return getItemPath(item.children[0]);
+        return getItemPath(children[0]);
       } else {
         return item.id;
       }
@@ -22,7 +23,6 @@ export const getItemPath = (item, isLevelMenu) => {
   }
 
 }
-
 export const getRouterLink = (item) => {
   return item.link_to === 'link' || item.link_to === 'router-link' ? item.url : `/admin/p/${item.id}`;
 }

@@ -62,14 +62,14 @@ export default defineComponent({
     const cachedOpenKeys = reactive<any>({ value: [] })
     const rootSubmenuKeys: ComputedRef<string[]> = computed(() => {
       const keys: string[] = []
-      menu.forEach((item: any) => keys.push(getItemPath(item)))
+      menu.forEach((item: any) => keys.push(getItemPath(item, permissions.permissions)))
 
       return keys
     });
 
 
     const getPath = (item) => {
-      return getItemPath(item);
+      return getItemPath(item, permissions.permissions);
     }
 
 

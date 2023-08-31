@@ -62,7 +62,7 @@ export default defineComponent({
       return this.item && this.item.children !== undefined ? this.item.children.length > 0 : false
     },
     path() {
-      return getItemPath(this.item)
+      return getItemPath(this.item, this.permissions)
     },
   },
   methods: {

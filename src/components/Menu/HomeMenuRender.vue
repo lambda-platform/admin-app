@@ -68,7 +68,7 @@ export default defineComponent({
     },
 
     getPath (item) {
-      return getItemPath(item)
+      return getItemPath(item, this.permissions)
     },
 
     can (menu) {
