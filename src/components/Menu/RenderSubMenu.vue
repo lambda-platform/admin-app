@@ -33,7 +33,7 @@
       <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
     </template>
     <template #title><span>{{ menuTitle }}</span></template>
-    <template v-for="subItem in item.children.filter(mItem=>permissions[mItem.id].show === true)" :key="subItem.id">
+    <template v-for="subItem in item.children.filter(mItem=>permissions[mItem.id] && permissions[mItem.id].show === true)" :key="subItem.id">
       <RenderSubMenu :item="subItem" :cruds="cruds" :permissions="permissions"/>
     </template>
   </a-sub-menu>

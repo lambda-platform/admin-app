@@ -4,5 +4,36 @@
 
 .svg-icon {
   line-height: 1;
+  [fill]:not([fill="none"]):not([fill="white"])  {
+    fill:  $primary-color;
+  }
+  [stroke]:not([stroke="none"]):not([stroke="white"])  {
+    stroke:  $primary-color;
+    opacity: 1 !important;
+    stroke-opacity: 1 !important;
+  }
+}
 
+.svg-icon-gray {
+  line-height: 1;
+  [fill]:not([fill="none"]):not([fill="white"])  {
+    fill:  $gray-color;
+  }
+  [stroke]:not([stroke="none"]):not([stroke="white"])  {
+    stroke:  $gray-color;
+    opacity: 1 !important;
+    stroke-opacity: 1 !important;
+  }
+}
+
+
+.svg-icon-white {
+  line-height: 1;
+  [fill]:not([fill="none"]):not([fill="white"])  {
+    fill:  #ffffff;
+  }
+  [stroke]:not([stroke="none"]):not([stroke="white"])  {
+    stroke:  #ffffff;
+    stroke-opacity: 1 !important;
+  }
 }
