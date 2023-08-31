@@ -28,7 +28,7 @@
         :selectedKeys="selectedKeys"
         class="SysMenu rounded-md"
       >
-        <template v-for="m in subMenus.filter(mItem=>permissions.permissions[mItem.id].show === true)"
+        <template v-for="m in subMenus.filter(mItem=>permissions.permissions[mItem.id] && permissions.permissions[mItem.id].show === true)"
                   :key="m.index">
           <RenderSubMenu :item="m" :cruds="kruds" :permissions="permissions.permissions"/>
         </template>
