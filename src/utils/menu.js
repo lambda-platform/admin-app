@@ -1,9 +1,10 @@
-export const getItemPath = (item, isLevelMenu, permissions) => {
+export const getItemPath = (item, permissions, isLevelMenu) => {
   if (item.hasOwnProperty('children')) {
     const children = permissions ? item.children.filter(mItem=>permissions[mItem.id] && permissions[mItem.id].show === true) : item.children;
+
     if (children.length >= 1) {
       if (item.link_to === "noActionSubTop" || isLevelMenu) {
-        return getItemPath(children[0]);
+        return getItemPath(children[0], permissions, isLevelMenu);
       } else {
         return item.id;
       }

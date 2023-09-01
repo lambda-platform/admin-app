@@ -18,7 +18,7 @@
       <span>{{ menuTitle }}</span>
     </NuxtLink>
     <NuxtLink :to="`/admin/p/${item.id}`" v-else>
-      <span>{{ menuTitle }}</span>
+      <span>{{ menuTitle }} </span>
     </NuxtLink>
   </a-menu-item>
   <div v-else-if="!hasItems && item.link_to === 'divider' && mode === 'inline'" class="p-4 text-slate-500">
