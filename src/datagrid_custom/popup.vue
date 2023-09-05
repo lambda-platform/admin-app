@@ -7,7 +7,7 @@
     Харах
   </span>
   <a-modal
-    v-model:visible="showInfoModal"
+    v-model:open="showInfoModal"
     title="Дэлгэрэнгүй мэдээлэл"
     :footer="null"
   >

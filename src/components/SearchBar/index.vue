@@ -3,7 +3,7 @@
     :autoAdjustOverflow="false"
   :arrowPointAtCenter="true"-->
   <a-popover
-    v-model:visible="visible"
+    v-model:open="visible"
     trigger="click"
     :placement="isMobile?'bottom':'bottomRight'"
     overlayClassName="header-search-bar-wrapper"

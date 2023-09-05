@@ -6,7 +6,7 @@
       />
     </span>
   </span>
-  <a-modal v-model:visible="showForm" title="Нэмэлт маягт" :footer="null">
+  <a-modal v-model:open="showForm" title="Нэмэлт маягт" :footer="null">
     <dataform
       v-if="showForm"
       ref="form"

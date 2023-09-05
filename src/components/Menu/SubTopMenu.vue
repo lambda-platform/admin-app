@@ -1,6 +1,7 @@
 <template>
   <a-menu
     :mode="mode"
+    :theme="navTheme"
     :openKeys="openKeys.value"
     :selectedKeys="selectedKeys"
     @openChange="onOpenChange"
@@ -22,6 +23,7 @@ import RenderSubMenu from './RenderSubMenu.vue'
 import {getItemPath, getMenu} from "~/utils/menu"
 import {
   layoutMode,
+  navTheme,
 } from '~/store/useSiteSettings'
 
 export default defineComponent({
@@ -137,7 +139,8 @@ export default defineComponent({
       permissions,
       kruds,
       getPath,
-      layoutMode
+      layoutMode,
+      navTheme
     }
   }
 })

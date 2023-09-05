@@ -85,12 +85,14 @@ export default defineNuxtConfig({
       // viteThemePlugin({
       //   colorVariables: [...getThemeColors()],
       // }),
-      // Components({
-      //   resolvers: [
-      //     AntDesignVueResolver(),
-      //   ],
-      //
-      // }),
+      //   Components({
+      //       resolvers: [
+      //           AntDesignVueResolver({
+      //               importStyle: true, // css in js
+      //           }),
+      //       ],
+      //   }),
+
     ],
     resolve: {
       alias: viteAlies,
