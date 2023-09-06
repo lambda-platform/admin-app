@@ -63,7 +63,7 @@
         width: 20px;
       }
       [fill]:not([fill="none"])  {
-        fill:  #A1A5B7;
+        fill:  $gray-color;
       }
 
     }
@@ -192,7 +192,7 @@
 
     }
     [fill]:not([fill="none"])  {
-      fill:  #A1A5B7;
+      fill:  $gray-color;
     }
 
   }
@@ -213,7 +213,7 @@
 }
 .ant-input-group-addon{
   [fill]:not([fill="none"])  {
-    fill:  #A1A5B7;
+    fill:  $gray-color;
   }
 
   &:hover, &:active{

@@ -1,4 +1,5 @@
 export const getItemPath = (item, permissions, isLevelMenu) => {
+
   if (item.hasOwnProperty('children')) {
     const children = permissions ? item.children.filter(mItem=>permissions[mItem.id] && permissions[mItem.id].show === true) : item.children;
 

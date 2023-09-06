@@ -1,5 +1,5 @@
 <template>
-  <button @click="handleLogout" class="link link-icon " >
+  <button @click="handleLogout" class="link link-icon w-full " >
                  <span class="svg-icon ">
                       <inline-svg
                         src="/assets/icons/duotone/Interface/Sign-Out.svg"

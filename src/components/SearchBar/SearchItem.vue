@@ -11,12 +11,15 @@
     >
       <span>{{menuTitle}}</span>
     </a>
-    <router-link :to="item.url" v-else-if="item.link_to == 'router-link'">
-      <span>{{menuTitle}}</span>
-    </router-link>
-    <router-link :to="`/admin/p/${item.id}`" v-else>
-      <span>{{menuTitle}}</span>
-    </router-link>
+    <NuxtLink :to="item.url" v-else-if="item.link_to === 'router-link'">
+      <span>{{ menuTitle }}</span>
+    </NuxtLink>
+    <NuxtLink :to="path" v-else-if="item.link_to === 'noActionSubTop'">
+      <span>{{ menuTitle }}</span>
+    </NuxtLink>
+    <NuxtLink :to="`/admin/p/${item.id}`" v-else>
+      <span>{{ menuTitle }} </span>
+    </NuxtLink>
   </a-menu-item>
   <a-menu-item-group
     v-if="hasItems"
@@ -46,10 +49,13 @@ export default defineComponent({
       return getTitle(this.item, this.cruds)
     },
     hasItems() {
+      if (this.item.link_to === "noActionSubTop") {
+        return false
+      }
       return this.item && this.item.children !== undefined ? this.item.children.length > 0 : false
     },
     path() {
-      return getItemPath(this.item)
+      return getItemPath(this.item, this.permissions)
     },
     isFounded(){
 

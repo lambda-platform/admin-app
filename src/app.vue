@@ -3,12 +3,12 @@
       v-if="!loading"
       :locale="mn_MN"
       :theme="{
-          algorithm: navTheme === 'dark' ? algorithm : undefined,
+          algorithm: darkMode ? algorithm : undefined,
 
           token: {
             colorPrimary: primaryColor,
- colorBgBase: navTheme === 'dark' ? '#030305' : undefined,
- colorText:navTheme !== 'dark' ? 'rgba(0,0,0,0.8)': undefined,
+ colorBgBase:darkMode ? '#030305' : undefined,
+ colorText:!darkMode ? 'rgba(0,0,0,0.8)': undefined,
 
           },
     }"
@@ -50,7 +50,7 @@ import {createList} from '~/utils/menu'
 import {title, subTitle} from '~/consts/const'
 import {setupI18n} from "@lambda-platform/lambda-vue/src/locale";
 import {i18n, locale} from "~/locale";
-import { primaryColor, navTheme } from '~/store/useSiteSettings'
+import { primaryColor, darkMode } from '~/store/useSiteSettings'
 import { theme } from 'ant-design-vue';
 
 const { darkAlgorithm, compactAlgorithm } = theme;
@@ -67,7 +67,7 @@ export default {
       loading: true,
       title,
       subTitle,
-      navTheme,
+      darkMode,
       primaryColor,
       algorithm: [darkAlgorithm, compactAlgorithm],
     };

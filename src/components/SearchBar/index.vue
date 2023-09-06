@@ -11,26 +11,28 @@
     :overlayStyle="{ width: isMobile?'250px':'300px', top: '50px' }"
   >
     <template #content>
-      <a-list>
-        <a-list-item>
-          <a-input-search
-            v-model:value="searchValue"
-            autofocus
-            :placeholder="$t('components.pleaseEnterSearchValue')"
-            allowClear
-          />
-        </a-list-item>
-        <a-list-item>
-          <a-menu
-            @select="onSelect"
-            class="SysMenu"
-          >
-            <template v-for="m in menu.filter(mItem=>permissions.permissions[mItem.id].show === true)" :key="getPath(m)"  >
-              <SearchItem :item="m" :cruds="kruds"  :searchValue="searchValue" :permissions="permissions.permissions" />
-            </template>
-          </a-menu>
-        </a-list-item>
-      </a-list>
+      <div class="max-h-96 overflow-y-auto">
+        <a-list class="border-none">
+          <a-list-item>
+            <a-input-search
+              v-model:value="searchValue"
+              autofocus
+              :placeholder="$t('components.pleaseEnterSearchValue')"
+              allowClear
+            />
+          </a-list-item>
+          <a-list-item>
+            <a-menu
+              @select="onSelect"
+              class="SysMenu border-none"
+            >
+              <template v-for="m in menu.filter(mItem=>permissions.permissions[mItem.id].show === true)" :key="getPath(m)"  >
+                <SearchItem :item="m" :cruds="kruds"  :searchValue="searchValue" :permissions="permissions.permissions" />
+              </template>
+            </a-menu>
+          </a-list-item>
+        </a-list>
+      </div>
     </template>
     <span class="header-notice" ref="searchRef" style="padding: 0 18px">
         <span class="btn btn-icon">
@@ -72,7 +74,7 @@ export default defineComponent({
       return searchRef.value!.parentElement
     }
     const getPath = (item) => {
-      return getItemPath(item);
+      return getItemPath(item, permissions.permissions);
     }
     const onSelect = () => {
       visible.value = false;
