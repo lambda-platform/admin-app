@@ -82,7 +82,7 @@ export default {
 
       await embedDashboard({
         id: id, // given by the Superset embedding UI
-        supersetDomain: "https://analytic.ub-engineering.gov.mn",
+        supersetDomain: "https://analytic.test.mn",
         mountPoint: document.getElementById("supersetContainer"), // any html element that can contain an iframe
         fetchGuestToken: () => token,
         dashboardUiConfig: { // dashboard UI config: hideTitle, hideTab, hideChartControls, filters.visible, filters.expanded (optional)
