@@ -19,6 +19,10 @@ let viteAlies = [
   {
     find: '@',
     replacement: pathResolve('src') + '/',
+  },
+  {
+    find: 'vue-i18n',
+    replacement: 'vue-i18n/dist/vue-i18n.cjs.js',
   }
 ]
 if(process.env.LAMBDA_ROOT !== "@lambda-platform/lambda-vue" && process.env.LAMBDA_ROOT != ""){
