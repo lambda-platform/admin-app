@@ -4,9 +4,7 @@
   ></component>
 </template>
 <script>
-definePageMeta({
-  layout: 'agent',
-})
+
 import axios from 'axios'
 import {
   ACCESS_TOKEN,
@@ -32,6 +30,11 @@ export default {
       lambda: LambdaConfig,
 
     }
+  },
+  beforeCreate() {
+    definePageMeta({
+      layout: 'agent',
+    })
   },
   methods: {
 

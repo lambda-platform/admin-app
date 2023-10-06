@@ -21,9 +21,7 @@
 <script lang="ts">
 import ls from "../../utils/Storage";
 
-definePageMeta({
-  layout: 'module',
-})
+
 import { LAMBDA_CONFIG } from '~/store/mutation-types'
 import { KRUDS, MENU, PERMISSIONS } from '~/store/mutation-types'
 import HomeMenuRender from '~/components/Menu/HomeMenuRender.vue'
@@ -36,6 +34,9 @@ export default {
     HomeMenuRender
   },
   setup (props, { emit }) {
+    definePageMeta({
+      layout: 'module',
+    })
 
     const kruds = ls.get(KRUDS)
     const permissions = ls.get(PERMISSIONS)
