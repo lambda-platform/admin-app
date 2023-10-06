@@ -18,7 +18,7 @@
     </NuxtLayout>
   </a-config-provider>
   <div class="first-loading-wrp" v-else>
-    <h1 style="text-align: center;">{{ title }}</h1>
+    <h3 style="text-align: center;">{{ title }}</h3>
     <div class="loading-wrp">
       <span class="dot dot-spin"><i></i><i></i><i></i><i></i></span>
     </div>
