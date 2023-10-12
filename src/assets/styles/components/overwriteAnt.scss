@@ -21,13 +21,13 @@
 
 
 }
-
 .ant-btn-primary {
-  &:active,
-  &:hover,
-  &:focus {
-    color: #fff !important;
-  }
+  background-color: var(--ant-primary-color);
+
+}
+.ant-btn-primary.ant-btn-background-ghost {
+  color: var(--ant-primary-color);
+
 }
 .ant-image-preview-img{
   display: inline-block;

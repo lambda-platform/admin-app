@@ -17,6 +17,19 @@
         </span>
     <template #overlay>
       <a-menu class="user-dropdown-menu-wrapper">
+        <div class="flex items-center space-x-3 mr-2 pt-4 border-b pb-3">
+          <div class="avatarMenu flex  items-center align-center ">
+            <img :src="base_url+avatar" alt="avatar" v-if="avatar" class="rounded-full w-8 h-8 ml-3 ">
+            <div class="avatar ml-4" v-else>
+              <span class="svg-icon-white rounded-full w-8 h-8 " ><inline-svg src="/assets/icons/duotune/communication/com006.svg"/></span>
+            </div>
+
+          </div>
+          <div class="flex flex-col align-center">
+            <span class="leading-4 dark:text-white">{{nickname}}</span>
+            <!--            <span class="text-xs font-light"></span>-->
+          </div>
+        </div>
         <a-menu-item key="1"
         >
           <router-link
