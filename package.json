@@ -51,7 +51,7 @@
     "ag-grid-community": "29.1.0",
     "ag-grid-enterprise": "29.1.0",
     "ag-grid-vue3": "29.1.0",
-    "ant-design-vue": "^4.0.3",
+    "ant-design-vue": "^4.0.4",
     "autoprefixer": "^10.4.7",
     "axios": "^0.27.2",
     "ckeditor5-build-classic-custom-es": "^22.0.3",
