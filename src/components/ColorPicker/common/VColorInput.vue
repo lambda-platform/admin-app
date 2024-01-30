@@ -94,8 +94,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref, toRaw, watch } from "vue";
-import { Color, ColorAttrs, ColorInput } from "../color";
+import { defineComponent, type PropType, ref, toRaw, watch } from "vue";
+import { Color, type ColorAttrs, type ColorInput } from "../color";
 import { ArrayUtils } from "@aesoper/normal-utils";
 
 const formatList = ["hex", "hsl", "rgb", "hsv"];

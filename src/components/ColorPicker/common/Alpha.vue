@@ -39,7 +39,7 @@ import {
   onMounted,
   nextTick
 } from "vue";
-import { DOMUtils, DragEventOptions } from "@aesoper/normal-utils";
+import { DOMUtils, type DragEventOptions } from "@aesoper/normal-utils";
 import tinycolor from "tinycolor2";
 
 export default defineComponent({

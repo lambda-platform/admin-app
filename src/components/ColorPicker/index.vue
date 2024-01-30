@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, PropType, ref, toRaw, watch } from "vue";
+import { defineComponent, onMounted, type PropType, ref, toRaw, watch } from "vue";
 import Saturation from "./common/Saturation.vue";
 import Hue from "./common/Hue.vue";
 import Alpha from "./common/Alpha.vue";
@@ -50,9 +50,9 @@ import History from "./common/History.vue";
 import VColorInput from "./common/VColorInput.vue";
 import {
   Color,
-  ColorAttrs,
-  ColorFormat,
-  ColorInput,
+  type ColorAttrs,
+  type ColorFormat,
+  type ColorInput,
   debounceFn,
   MAX_STORAGE_LENGTH,
   STORAGE_COLOR_KEY

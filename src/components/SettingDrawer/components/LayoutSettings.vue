@@ -76,7 +76,7 @@
   </SettingItem>
 </template>
 <script lang="ts">
-import { computed, ComputedRef, defineComponent, watch } from 'vue'
+import { computed, type ComputedRef, defineComponent, watch } from 'vue'
 import { useStore } from 'vuex'
 // import { i18n } from '~/locale'
 import {

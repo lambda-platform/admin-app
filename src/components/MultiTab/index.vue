@@ -69,8 +69,8 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref, reactive, watch, getCurrentInstance, ComputedRef, computed } from 'vue'
-import { useRouter, RouteLocationNormalizedLoaded } from 'vue-router'
+import { defineComponent, ref, reactive, watch, getCurrentInstance, type ComputedRef, computed } from 'vue'
+import { useRouter, type RouteLocationNormalizedLoaded } from 'vue-router'
 import events from '~/utils/eventBus'
 import { message } from 'ant-design-vue'
 import { getItemPath } from '~/utils/menu'

@@ -35,7 +35,7 @@ import {
   watch
 } from "vue";
 
-import { DOMUtils, DragEventOptions } from "@aesoper/normal-utils";
+import { DOMUtils, type DragEventOptions } from "@aesoper/normal-utils";
 
 const bg =
   "-webkit-linear-gradient(left, rgb(255, 0, 0) 0%, rgb(255, 255, 0) 16.66%, rgb(0, 255, 0) 33.33%, rgb(0, 255, 255) 50%, rgb(0, 0, 255) 66.66%, rgb(255, 0, 255) 83.33%, rgb(255, 0, 0) 100%)";
