@@ -116,7 +116,7 @@ export default defineNuxtConfig({
         plugins: [
           visualizer({
             filename: 'bundle-report.html',
-            open: true,
+            open: false,
           }),
         ],
         output: {
