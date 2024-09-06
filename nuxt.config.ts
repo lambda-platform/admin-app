@@ -1,10 +1,7 @@
 import { resolve } from "path";
 import { defineNuxtConfig } from "nuxt/config";
-// import { viteThemePlugin } from 'vite-plugin-theme';
-// import { getThemeColors } from './src/utils/themeUtil'
 import { createSvgIconsPlugin }from 'vite-plugin-svg-icons';
-// import Components from 'unplugin-vue-components/vite';
-// import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 
 const pathResolve = (pathStr: string) => {
@@ -19,10 +16,6 @@ let viteAlies = [
   {
     find: '@',
     replacement: pathResolve('src') + '/',
-  },
-  {
-    find: 'vue-i18n',
-    replacement: 'vue-i18n/dist/vue-i18n.cjs.js',
   }
 ]
 if(process.env.LAMBDA_ROOT !== "@lambda-platform/lambda-vue" && process.env.LAMBDA_ROOT != ""){
@@ -34,9 +27,9 @@ if(process.env.LAMBDA_ROOT !== "@lambda-platform/lambda-vue" && process.env.LAMB
   })
 }
 export default defineNuxtConfig({
-
   alias: nuxtAlies,
   srcDir: "src/",
+
   app:{
 
     buildAssetsDir:"lambda_admin/",
@@ -49,15 +42,19 @@ export default defineNuxtConfig({
         { name: "og:type", content: "article" },
         { name: "og:title", content: process.env.LAMBDA_TITLE },
         { name: "og:description", content: process.env.LAMBDA_DESCRIPTION },
-        { name: "og:image", content: process.env.LAMBDA_FAVICON},
+        { name: "og:image", content: process.env.LAMBDA_FAVICON}
       ],
       link: [
         { rel: "icon", href: process.env.LAMBDA_FAVICON },
         { rel: 'stylesheet', href: '/assets/lambda/fonts/flaticons/flaticons.css' },
         { rel: 'stylesheet', href: '/assets/lambda/fonts/themify/themify-icons.css' },
       ],
+      script:[
+
+      ]
     },
   },
+
   dir: {
     public: resolve(__dirname, "./public/"),
   },
@@ -66,6 +63,7 @@ export default defineNuxtConfig({
     '~/assets/styles/components/loading.css',
     '@/assets/styles/tailwind.css',
     "leaflet-draw/dist/leaflet.draw.css",
+    '@lambda-platform/lambda-vue/src/modules/chart/scss/chart.scss',
     '@lambda-platform/lambda-vue/src/modules/datagrid/scss/style.scss',
     '@lambda-platform/lambda-vue/src/modules/dataform/scss/style.scss',
     '@lambda-platform/lambda-vue/src/modules/dataform/scss/_dataform_dark.scss',
@@ -74,9 +72,8 @@ export default defineNuxtConfig({
     '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_balham.scss',
     '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_dark.scss',
     '@lambda-platform/lambda-vue/src/modules/krud/scss/style.scss',
-
-
   ],
+
   vite:{
     envPrefix:"LAMBDA_",
     plugins: [
@@ -85,18 +82,6 @@ export default defineNuxtConfig({
         iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
         symbolId: 'icon-[dir]-[name]',
       }),
-      //
-      // viteThemePlugin({
-      //   colorVariables: [...getThemeColors()],
-      // }),
-      //   Components({
-      //       resolvers: [
-      //           AntDesignVueResolver({
-      //               importStyle: true, // css in js
-      //           }),
-      //       ],
-      //   }),
-
     ],
     resolve: {
       alias: viteAlies,
@@ -107,18 +92,9 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         less: {
-          // modifyVars: {
-          //   'primary-color': process.env.LAMBDA_PRIMARY_COLOR,
-          //   'primary-color-dark-theme': process.env.LAMBDA_PRIMARY_COLOR },
           javascriptEnabled: true,
         },
-        // scss: {
-        //   modifyVars: { 'primary-color': process.env.LAMBDA_PRIMARY_COLOR, 'primary-color-dark-theme': process.env.LAMBDA_PRIMARY_COLOR },
-        //   additionalData: `
-        //   $primary-color: ${process.env.LAMBDA_PRIMARY_COLOR};
-        //   $ag-primary-color: ${process.env.LAMBDA_PRIMARY_COLOR};
-        //   `,
-        // },
+
       },
     },
     define: {
@@ -130,8 +106,57 @@ export default defineNuxtConfig({
     },
     build: {
       sourcemap: false,
-
+      cssMinify: true,
+      terserOptions: {
+        format: {
+          comments: false
+        }
+      },
+      rollupOptions: {
+        plugins: [
+          visualizer({
+            filename: 'bundle-report.html',
+            open: true,
+          }),
+        ],
+        output: {
+          manualChunks(id) {
+            if (id.includes('ag-grid-community')) {
+              return 'ag-grid-community'
+            }
+            if (id.includes('ag-grid-enterprise')) {
+              return 'ag-grid-enterprise'
+            }
+            if (id.includes('@syncfusion')) {
+              return 'syncfusion'
+            }
+            if (id.includes('@clientio/rappid')) {
+              return '@clientio/rappid'
+            }
+            if (id.includes('lodash')) {
+              return 'lodash'
+            }
+            if (id.includes('swiper')) {
+              return 'swiper'
+            }
+            if (id.includes('moment')) {
+              return 'moment'
+            }
+            if (id.includes('echarts')) {
+              return 'echarts'
+            }
+            if (id.includes('ant-design-vue')) {
+              return 'ant-design-vue'
+            }
+            if (id.includes('@lottiefiles/dotlottie-web')) {
+              return '@lottiefiles/dotlottie-web'
+            }
+            // Add other libraries here if needed
+          },
+        },
+      },
     },
+    esbuild: { legalComments: 'none' },
     server: {
       fs: {
 
@@ -139,6 +164,7 @@ export default defineNuxtConfig({
       },
     },
   },
+
   postcss: {
     plugins:{
       tailwindcss: {},
@@ -146,9 +172,10 @@ export default defineNuxtConfig({
     }
   },
 
-
   generate: {
     routes: ["/"],
   },
+
   ssr: false,
+  compatibilityDate: '2024-09-05'
 });

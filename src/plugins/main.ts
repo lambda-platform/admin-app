@@ -55,11 +55,11 @@ import '~/assets/styles/app.scss';
 export default defineNuxtPlugin(async ({ vueApp: app }) => {
 
 
-  // app.use(VueGtag, {
-  //   property: {
-  //     id: 'G-NNSL6DKF5X'
-  //   }
-  // });
+  app.use(VueGtag, {
+    property: {
+      id: 'G-NNSL6DKF5X'
+    }
+  });
 
   if (!i18n.global.availableLocales.includes(locale)) {
     await loadLocaleMessages(i18n, locale)

@@ -1,7 +1,7 @@
 <template>
   <SearchBar class="action" v-if="!isMobile"/>
 <!--  <notice-icon class="action"/>-->
-  <notif-widget :userID="userID" class="action" :isMobile="isMobile"/>
+  <notif-widget :userID="userID" :extraClass="`action`" :isMobile="isMobile"/>
   <DarkLightMode class="action" v-if="!isMobile"/>
   <a-dropdown>
         <span class="action ant-dropdown-link user-dropdown-menu">

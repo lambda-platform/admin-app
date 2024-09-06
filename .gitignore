@@ -114,3 +114,4 @@ yarn.lock
 .env
 src/dataform_custom/project_custom
 bun.lockb
+bundle-report.html

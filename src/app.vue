@@ -1,9 +1,8 @@
 <template>
   <a-config-provider
-      v-if="!loading"
-      :locale="mn_MN"
-      :theme="{
-          algorithm: darkMode ? algorithm : undefined,
+    v-if="!loading"
+    :locale="mnLocale"
+    :theme="{algorithm: darkMode ? algorithm : undefined,
 
           token: {
             colorPrimary: primaryColor,
@@ -17,131 +16,102 @@
       <NuxtPage/>
     </NuxtLayout>
   </a-config-provider>
-  <div class="first-loading-wrp" v-else>
-    <h3 style="text-align: center;">{{ title }}</h3>
-    <div class="loading-wrp">
-      <span class="dot dot-spin"><i></i><i></i><i></i><i></i></span>
-    </div>
-    <div style="display: flex; justify-content: center; align-items: center;">{{ subTitle }}</div>
+  <div v-else class="flex mx-auto h-screen items-center">
+    <loader></loader>
+    <LockScreen/>
   </div>
-  <LockScreen/>
 </template>
 
-<script>
-import en_US from 'ant-design-vue/lib/locale/en_US';
+<script setup>
+import {ref, reactive, onBeforeMount} from 'vue';
+import {useStore} from 'vuex';
+import {useI18n} from 'vue-i18n';
+
 import mn_MN from 'ant-design-vue/lib/locale/mn_MN';
-import axios from 'axios'
 import {
   LAMBDA_CONFIG,
   ACCESS_TOKEN,
-  PERMISSIONS,
-  MENU,
-  KRUDS,
-  MENU_LIST,
-  USER_INFO,
-  MICROSERVICE_SETTINGS
+  USER_INFO
 } from '~/store/mutation-types';
-import {setDeviceType} from '~/utils/device'
-import LockScreen from '~/components/LockScreen/index.vue'
+import {setDeviceType} from '~/utils/device';
+import LockScreen from '~/components/LockScreen/index.vue';
+import loader from '~/components/common/loader.vue';
 import ls from '~/utils/Storage';
-import {getLambdaConfig} from './service/service'
-import {clearUserInfo} from './utils/util'
-import {createList} from '~/utils/menu'
-import {title, subTitle} from '~/consts/const'
-import {setupI18n} from "@lambda-platform/lambda-vue/src/locale";
-import {i18n, locale} from "~/locale";
-import { primaryColor, darkMode } from '~/store/useSiteSettings'
-import { theme } from 'ant-design-vue';
+import {getLambdaConfig} from './service/service';
+import {clearUserInfo} from './utils/util';
+import {setupI18n} from '@lambda-platform/lambda-vue/src/locale';
+import {primaryColor, darkMode} from '~/store/useSiteSettings';
+import {theme} from 'ant-design-vue';
+import {setUserPermissions} from '~/authencation/auth';
 
-const { darkAlgorithm, compactAlgorithm } = theme;
-export default {
-  components: {LockScreen},
-  data() {
-    return {
-      en_US,
-      mn_MN: {
-        ...mn_MN, Image: {
-          preview: "Харах"
-        }
-      },
-      loading: true,
-      title,
-      subTitle,
-      darkMode,
-      primaryColor,
-      algorithm: [darkAlgorithm, compactAlgorithm],
-    };
-  },
-  beforeCreate() {
-    window.onresize = setDeviceType
-    setDeviceType();
-  },
-  methods: {
-    redirectToLogin() {
-      clearUserInfo()
-      this.loading = false;
-      if (this.$route.path !== "/auth/login" && this.$route.path !== "/auth/forgot" && this.$route.path !== "/auth/password-reset") {
-        window.location.replace("/auth/login");
-      }
+const {darkAlgorithm, compactAlgorithm} = theme;
 
-    }
-  },
-  mounted() {
+// Vuex store and i18n
+const store = useStore();
+const {t, locale} = useI18n();
 
-    getLambdaConfig().then((res) => {
-      ls.set(LAMBDA_CONFIG, res);
+const mnLocale = {
+  ...mn_MN,
+  Image: {
+    preview: 'Харах'
+  }
+}
 
-      if (res.default_language !== "mn_MN") {
-        setupI18n(locale)
-        this.$i18n.locale = res.default_language;
-      }
+const loading = ref(true);
 
-      if (res.microservice_dev) {
-        window.microservice_dev = true
-      }
-      if (ls.get(ACCESS_TOKEN)) {
-        axios.get('/get-permissions').then(({data}) => {
-
-          if (data.status) {
-
-            ls.set(PERMISSIONS, data.permission.permissions)
-            ls.set(MENU, data.permission.menu)
-            ls.set(KRUDS, data.permission.kruds)
-
-            if (data.permission.microserviceSettings) {
-              ls.set(MICROSERVICE_SETTINGS, data.permission.microserviceSettings)
-            }
-            let menuList = createList(data.permission.menu, null, data.permission.kruds)
-            ls.set(MENU_LIST, menuList);
-
-            window.init = {
-              user: ls.get(USER_INFO),
-              firebase_config: res.notify.firebaseConfig,
-              microserviceSettings: data.permission.microserviceSettings ? data.permission.microserviceSettings : [],
-            }
-            this.loading = false;
+const algorithm = [darkAlgorithm, compactAlgorithm]
 
 
-          } else {
-            this.redirectToLogin();
-          }
-        }).catch(() => {
-          this.redirectToLogin();
-        })
-      } else {
-        this.redirectToLogin();
-      }
-    }).catch(() => {
-      this.redirectToLogin();
-    });
+// Methods
+const redirectToLogin = () => {
+  clearUserInfo();
+  loading.value = false;
+};
 
-    if (navigator.platform.indexOf("Win") !== -1) {
-      var header = document.querySelector("head");
-      var style = document.createElement("style");
-      style.innerHTML = '::-webkit-scrollbar-track{background-color:#f1f1f1}::-webkit-scrollbar-thumb{background-color:#888}::-moz-scrollbar-track{background-color:#f1f1f1}::-moz-scrollbar-thumb{background-color:#888}::-ms-scrollbar-track{background-color:#f1f1f1}::-ms-scrollbar-thumb{background-color:#888}::-webkit-scrollbar{width:6px;height:6px}::-moz-scrollbar{width:6px;height:6px}::-ms-scrollbar{width:6px;height:6px}';
-      header.appendChild(style);
+const initialize = async () => {
+
+  try {
+    const res = await getLambdaConfig();
+    ls.set(LAMBDA_CONFIG, res);
+
+    if (res.default_language !== 'mn_MN') {
+      setupI18n(locale);
+      locale.value = res.default_language;
     }
 
+    if (res.microservice_dev) {
+      window.microservice_dev = true;
+    }
+
+    window.int = {
+      firebase_config:res.notify.firebaseConfig
+    }
+
+
+    if (ls.get(ACCESS_TOKEN)) {
+
+
+
+
+      await setUserPermissions(store, res.notify.firebaseConfig, ls.get(USER_INFO));
+
+      loading.value = false;
+
+    } else {
+      redirectToLogin();
+    }
+  } catch (error) {
+
+    console.error(error);
+    redirectToLogin();
   }
 };
+
+// Lifecycle hooks
+onBeforeMount(() => {
+  window.withTimezone = true;
+  window.onresize = setDeviceType;
+  setDeviceType();
+  initialize();
+});
 </script>

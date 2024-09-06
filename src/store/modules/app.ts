@@ -19,7 +19,8 @@ import {
   TOGGLE_LAYOUT_MODE,
   CLOSE_SIDEBAR,
   SET_DARK_MODE,
-  SET_LOCK_SCREEN
+  SET_LOCK_SCREEN,
+  USER_INFO
 } from '~/store/mutation-types'
 
 const app = {
@@ -38,9 +39,15 @@ const app = {
     multiTab: false,
     showSettings: false,
     darkMode: false,
-    lockScreen: false
+    lockScreen: false,
+    userInfo: ls.get(USER_INFO),
   },
   mutations: {
+    [USER_INFO]: (state, userInfo) => {
+      state.userInfo = userInfo
+      state.user = userInfo
+      ls.set(USER_INFO, userInfo)
+    },
     [SET_SIDEBAR_TYPE]: (state, type) => {
       state.sidebar = type
       cache({ [SET_SIDEBAR_TYPE]: type })
