@@ -15,7 +15,7 @@
   </a-menu>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, computed, onMounted, watch, ref, ComputedRef } from 'vue'
+import { defineComponent, reactive, computed, onMounted, watch, ref, type ComputedRef } from 'vue'
 
 import { KRUDS, MENU_LIST, PERMISSIONS } from '~/store/mutation-types'
 import ls from '~/utils/Storage'
