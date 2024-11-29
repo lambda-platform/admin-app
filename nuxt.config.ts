@@ -37,12 +37,18 @@ export default defineNuxtConfig({
       meta: [
         { name: "charset", content: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1" },
-        { name: "description", content: process.env.LAMBDA_DESCRIPTION  },
-        { name: "og:url", content: process.env.LAMBDA_FAVICON },
-        { name: "og:type", content: "article" },
+
+        { name: "url", content: process.env.LAMBDA_BASE_URL },
+        { name: "type", content: "website" },
+        { name: "title", content: process.env.LAMBDA_TITLE },
+        { name: "description", content: process.env.LAMBDA_DESCRIPTION },
+        { name: "image", content: process.env.LAMBDA_BASE_URL + '/assets/images/bg.png' },
+
+        { name: "og:url", content: process.env.LAMBDA_BASE_URL },
+        { name: "og:type", content: "website" },
         { name: "og:title", content: process.env.LAMBDA_TITLE },
         { name: "og:description", content: process.env.LAMBDA_DESCRIPTION },
-        { name: "og:image", content: process.env.LAMBDA_FAVICON}
+        { name: "og:image", content: process.env.LAMBDA_BASE_URL + '/assets/images/bg.png' }
       ],
       link: [
         { rel: "icon", href: process.env.LAMBDA_FAVICON },
