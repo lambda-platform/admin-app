@@ -8,4 +8,40 @@ export const customElementList = [
     element: 'inputWithIcon',
     component: defineAsyncComponent(() => import('./inputWithIcon.vue')),
   },
+  {
+    element: 'Point',
+    component: defineAsyncComponent(() => import('./GIS/Point.vue')),
+  },
+  {
+    element: 'Point3D',
+    component: defineAsyncComponent(() => import('./GIS/Point3D.vue')),
+  },
+  {
+    element: 'Polygon',
+    component: defineAsyncComponent(() => import('./GIS/Polygon.vue')),
+  },
+  {
+    element: 'MultiPolygon',
+    component: defineAsyncComponent(() => import('./GIS/MultiPolygon.vue')),
+  },
+  {
+    element: 'Line',
+    component: defineAsyncComponent(() => import('./GIS/Line.vue')),
+  },
+  {
+    element: 'MultiLine',
+    component: defineAsyncComponent(() => import('./GIS/MultiLine.vue')),
+  },
+  {
+    element: 'MapWithGeometry',
+    component: defineAsyncComponent(() => import('./GIS/MapWithGeometry.vue')),
+  },
+  {
+    element: 'workflow',
+    component: defineAsyncComponent(() => import('./workflow.vue')),
+  },
+  {
+    element: 'process_status',
+    component: defineAsyncComponent(() => import('./process_status.vue')),
+  },
 ]

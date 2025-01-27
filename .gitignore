@@ -115,3 +115,4 @@ yarn.lock
 src/dataform_custom/project_custom
 bun.lockb
 bundle-report.html
+src/modules/workflow/workflow/package/rappid

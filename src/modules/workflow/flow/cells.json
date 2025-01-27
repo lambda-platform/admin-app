@@ -1,0 +1,57 @@
+{
+  "type": "app.Message",
+  "size": {
+    "width": 368,
+    "height": 80
+  },
+  "ports": {
+    "items": [
+      {
+        "group": "in",
+        "id": "0571f7dd-d5b7-4403-9afd-d9ad2cf7f3f1"
+      },
+      {
+        "group": "out",
+        "attrs": {
+          "portLabel": {
+            "text": "Хянасан"
+          }
+        },
+        "id": "e7efcc49-968d-4c49-833f-d3f83f46f9d6"
+      },
+      {
+        "group": "out",
+        "attrs": {
+          "portLabel": {
+            "text": "Буцаасан"
+          }
+        },
+        "id": "bed9d147-dfad-40e1-bc0f-4a66b55f4d6e"
+      }
+    ]
+  },
+  "position": {
+    "x": -440,
+    "y": -272
+  },
+  "id": "01ddf21e-0926-4d38-91ba-7ea06d266109",
+  "z": 2,
+  "attrs": {
+    "body": {
+      "stroke": "#E8E8E8"
+    },
+    "label": {
+      "text": "Хянах"
+    },
+    "description": {
+      "text": "Төсөл боловсруулах, хэлтсийн даргаас санал авах"
+    },
+    "subject": {
+      "object_type": "CHECK",
+      "subject_type": "DEPARTMENT_HEAD"
+    },
+    "icon": {
+      "xlinkHref": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iYmxhY2siIHdpZHRoPSIxOHB4IiBoZWlnaHQ9IjE4cHgiPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNOSAxNi4yTDQuOCAxMmwtMS40IDEuNEw5IDE5IDIxIDdsLTEuNC0xLjRMOSAxNi4yeiIvPjwvc3ZnPg=="
+    }
+  }
+}
