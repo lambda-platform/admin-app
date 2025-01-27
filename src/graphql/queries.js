@@ -13,7 +13,7 @@ export const GET_ROLES = gql`
 
 export const GET_USERS_BY_ROLE = gql`
 query GetUsersByRole($role_id: String!){
-  view_users_workflow(filters:[{column:"role", condition:equals, value:$role_id}]){
+  view_users(filters:[{column:"role", condition:equals, value:$role_id}]){
     id
     last_name
     first_name
@@ -96,3 +96,4 @@ query lutOtorRegion{
   }
 }
 `;
+

@@ -29,15 +29,16 @@ export const stencilConfig = {
         role_id: null,
         user_id: null,
         is_read_only: false,
-        is_signature_needed: false
+        is_signature_needed: false,
+        is_subject_changeable: false
       },
     }
   },
   {
     name: 'Message',
     attrs: {
-      label: {text: 'Хэргийн иж бүрдэл бүрэн эсэх'},
-      description: {text: 'Мэдээлэл лавлагааны мэргэжилтэн цахимаар хүлээн авах'},
+      label: {text: 'Хянах'},
+      description: {text: 'Хянах шат'},
       icon: {xlinkHref: CONFIRMATION_ICON},
       ports: {
         items: [
@@ -46,21 +47,22 @@ export const stencilConfig = {
           },
           {
             group: 'out',
-            attrs: {portLabel: {text: "Бүрэн"}}
+            attrs: {portLabel: {text: "Хянасан"}}
           },
           {
             group: 'out',
-            attrs: {portLabel: {text: "Бүрэн бус"}}
+            attrs: {portLabel: {text: "Буцаасан"}}
           }
         ]
       },
       subject: {
-        object_type: "CASE",
+        object_type: "CHECK",
         subject_type: "TO_ROLE",
         role_id: null,
         user_id: null,
         is_read_only: false,
-        is_signature_needed: false
+        is_signature_needed: false,
+        is_subject_changeable: false
       },
     }
   },
@@ -93,126 +95,187 @@ export const stencilConfig = {
         role_id: null,
         user_id: null,
         is_read_only: false,
-        is_signature_needed: false
+        is_signature_needed: false,
+        is_subject_changeable: false
       },
     },
   },
-  {
-    name: 'Message',
-    attrs: {
-      label: {text: 'Шүүгчид хуваарилах'},
-      description: {text: 'Дарааллын дагуу автоматаар'},
-      icon: {xlinkHref: SEND_TO_DOC_ICON},
-      ports: {
-        items: [
-          {
-            group: 'in'
-          },
-          {
-            group: 'out',
-            attrs: {portLabel: {text: "Хуваарилсан"}}
-          }
-        ]
+    {
+      name: 'Message',
+      attrs: {
+        label: {text: 'Саналын хуудас бэлтгэх'},
+        description: {text: 'Саналын хуудас бэлтгэх, санал өгөх албан тушаалтан сонгох'},
+        icon: {xlinkHref: VOTE_ICON},
+        ports: {
+          items: [
+            {
+              group: 'in'
+            },
+            {
+              group: 'out',
+              attrs: {portLabel: {text: "Саналын хуудас бэлтгэсэн"}}
+            }
+          ]
+        },
+        subject: {
+          object_type: "PREPARE_VOTE",
+          subject_type: "CREATOR",
+          struct_id: null,
+          emp_id: null,
+          is_read_only:true,
+          is_signature_needed:false,
+          is_subject_changeable:false
+        },
+      }
+    }, {
+      name: 'Message',
+      attrs: {
+        label: {text: 'Шийдвэрлэх, цохох'},
+        description: {text: 'Шийдвэрлэх, Холбогдох хүмүүст цохох'},
+        icon: {xlinkHref: SEND_TO_DOC_ICON},
+        ports: {
+          items: [
+            {
+              group: 'in'
+            },
+            {
+              group: 'out',
+              attrs: {portLabel: {text: "Холбогдох хүмүүст цохсон"}}
+            },
+            {
+              group: 'out',
+              attrs: {portLabel: {text: "Шийдвэрлэсэн"}}
+            }
+          ]
+        },
+        subject: {
+          object_type: "TRANSFER",
+          subject_type: "CREATOR",
+          struct_id: null,
+          emp_id: null,
+          is_read_only:true,
+          is_signature_needed:false,
+          is_subject_changeable:false,
+        },
       },
-      subject: {
-        object_type: "ASSIGN",
-        subject_type: "TO_ROLE",
-        role_id: null,
-        user_id: null,
-        is_read_only: false,
-        is_signature_needed: false
+    }, {
+      name: 'Message',
+      attrs: {
+        label: {text: 'Шийдвэрлэх, цохох 2'},
+        description: {text: 'Шийдвэрлэх, Холбогдох хүмүүст цохох'},
+        icon: {xlinkHref: SEND_TO_DOC_ICON},
+        ports: {
+          items: [
+            {
+              group: 'in'
+            },
+            {
+              group: 'out',
+              attrs: {portLabel: {text: "Холбогдох хүмүүст цохсон"}}
+            },
+            {
+              group: 'out',
+              attrs: {portLabel: {text: "Шийдвэрлэсэн"}}
+            }
+          ]
+        },
+        subject: {
+          object_type: "TRANSFER",
+          subject_type: "ANY_EMP",
+          struct_id: null,
+          emp_id: null,
+          is_read_only:true,
+          is_signature_needed:false,
+          is_subject_changeable:false,
+        },
       },
+    }, {
+      name: 'Message',
+      attrs: {
+        label: {text: 'Хүлээлгэн өгөх'},
+        description: {text: 'Ажилтнуудад өгөх'},
+        icon: {xlinkHref: SEND_TO_DOC_ICON},
+        ports: {
+          items: [
+            {
+              group: 'in'
+            },
+            {
+              group: 'out',
+              attrs: {portLabel: {text: "Ажилтнуудад өгсөн"}}
+            }
+          ]
+        },
+        subject: {
+          object_type: "GIVE",
+          subject_type: "CREATOR",
+          struct_id: null,
+          emp_id: null,
+          is_read_only:true,
+          is_signature_needed:false,
+          is_subject_changeable:false,
+        },
+      },
+    }, {
+      name: 'Message',
+      attrs: {
+        label: {text: 'Хүлээн авах'},
+        description: {text: 'Хүлээн авах'},
+        icon: {xlinkHref: SEND_TO_DOC_ICON},
+        ports: {
+          items: [
+            {
+              group: 'in'
+            },
+            {
+              group: 'out',
+              attrs: {portLabel: {text: "Хүлээн авсан"}}
+            }
+          ]
+        },
+        subject: {
+          object_type: "RECEIVE",
+          subject_type: "DIRECT",
+          struct_id: null,
+          emp_id: null,
+          is_read_only:true,
+          is_signature_needed:false,
+          is_subject_changeable:false,
+        },
+      },
+    },{
+      name: 'Message',
+      attrs: {
+        label: {text: 'Санал авах'},
+        description: {text: 'Санал авах хуудасны дагуу санал авах'},
+        icon: {xlinkHref: VOTE_ICON},
+        ports: {
+          items: [
+            {
+              group: 'in'
+            },
+            {
+              group: 'out',
+              attrs: {portLabel: {text: "Зөвшөөрнө"}}
+            },
+            {
+              group: 'out',
+              attrs: {portLabel: {text: "Зөвшөөрөхгүй"}}
+            }
+          ]
+        },
+        subject: {
+          object_type: "VOTE",
+          subject_type: "VOTERS",
+          struct_id: null,
+          emp_id: null,
+          is_read_only:true,
+          is_signature_needed:true,
+          is_subject_changeable:false
+        },
+      }
     },
-  },
-  {
-    name: 'Message',
-    attrs: {
-      label: {text: 'Шүүх хуралдааны тов гаргах'},
-      description: {text: 'Шүүгчийн заавраар шүүгчийн туслах тов гаргах, хэргийн оролцогчдод /Улсын яллагч, Сэжигтэн, яллагдагчийн өмгөөлөгч/ мэдэгдэх.'},
-      icon: {xlinkHref: VOTE_ICON},
-      ports: {
-        items: [
-          {
-            group: 'in'
-          },
-          {
-            group: 'out',
-            attrs: {portLabel: {text: "Мэдэгдэх"}}
-          }
-        ]
-      },
-      subject: {
-        object_type: "DATE",
-        subject_type: "TO_ROLE",
-        role_id: null,
-        user_id: null,
-        is_read_only: false,
-        is_signature_needed: false
-      },
-    },
-  },
-  {
-    name: 'Message',
-    attrs: {
-      label: {text: 'Шүүх хуралдаан'},
-      description: {text: '24-н цагийн дотор шүүх прокурорын саналыг хянан хэлэлцэх'},
-      icon: {xlinkHref: BANK_ICON},
-      ports: {
-        items: [
-          {
-            group: 'in'
-          },
-          {
-            group: 'out',
-            attrs: {portLabel: {text: "Зөвшөөрөх"}}
-          },
-          {
-            group: 'out',
-            attrs: {portLabel: {text: "Татгалзах"}}
-          },
-          {
-            group: 'out',
-            attrs: {portLabel: {text: "Хойшлуулах"}}
-          }
-        ]
-      },
-      subject: {
-        object_type: "COURT",
-        subject_type: "TO_ROLE",
-        role_id: null,
-        user_id: null,
-        is_read_only: false,
-        is_signature_needed: false
-      },
-    },
-  },
-  {
-    name: 'Message',
-    attrs: {
-      label: {text: 'Шүүх хуралдааны тэмдэглэл баталгаажуулах'},
-      description: {text: 'ШХНБичгийн тэмдэглэлийг шүүгч баталгаажуулах'},
-      icon: {xlinkHref: SEEN_ICON},
-      ports: {
-        items: [
-          {
-            group: 'in'
-          },
-          {
-            group: 'out',
-            attrs: {portLabel: {text: "Баталгаажуулах"}}
-          }
-        ]
-      },
-      subject: {
-        object_type: "DETAIN",
-        subject_type: "TO_ROLE",
-        role_id: null,
-        user_id: null,
-        is_read_only: false,
-        is_signature_needed: false
-      },
-    },
-  },
+
   {
     name: 'FlowchartEnd',
     attrs: {
@@ -222,7 +285,8 @@ export const stencilConfig = {
         role_id: null,
         user_id: null,
         is_read_only: false,
-        is_signature_needed: false
+        is_signature_needed: false,
+        is_subject_changeable: false
       },
     }
   },
@@ -235,7 +299,8 @@ export const stencilConfig = {
         role_id: null,
         user_id: null,
         is_read_only: false,
-        is_signature_needed: false
+        is_signature_needed: false,
+        is_subject_changeable: false
       },
     }
   },
@@ -248,7 +313,8 @@ export const stencilConfig = {
         role_id: null,
         user_id: null,
         is_read_only: false,
-        is_signature_needed: false
+        is_signature_needed: false,
+        is_subject_changeable: false
       },
     }
   }]

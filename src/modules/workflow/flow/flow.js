@@ -9,6 +9,7 @@ export class Flow {
     this.cells = [];
     this.ports = [];
     this.withVote = false;
+    this.withEndVote = false;
     this.voteIndex = -1;
     this.initialize();
 
@@ -33,14 +34,15 @@ export class Flow {
         case "app.FlowchartCancel":
           this.cancels.push(cell);
           break;
-        case "app.FlowchartPostpone":
-          this.cancels.push(cell);
-          break;
         case "app.Message":
           this.steps.push(cell);
           if (cell.attrs.subject.object_type === "VOTE") {
             this.withVote = true;
             this.voteIndex = index;
+          }
+          if (cell.attrs.subject.object_type === "END_VOTE") {
+            this.withEndVote = true;
+
           }
           break;
         case "app.Link":

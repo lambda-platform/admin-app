@@ -65,7 +65,7 @@ export const lambda ={
           "loginSuccess": "Амжилттай нэвтэрлээ. Түр хүлээнэ үү!",
           "loginError": "Уучлаарай, нэвтрэх үед алдаа гарлаа!!",
           "emailRequired": "И-мэйл хаяг аа оруулна уу",
-          "forgotDescription": "И-мэйл хаягаа оруулаад нууц үг шинэчлэнэ үү",
+          "forgotdescription": "И-мэйл хаягаа оруулаад нууц үг шинэчлэнэ үү",
           "sendPasswordResetCode": "Нууц үг солих код и-мэйлээр авах",
           "passwordConfirm": "Нууц үг баталгаажуулах",
           "userNotFound": "Хэрэгэлч олдсонгүй !!!",

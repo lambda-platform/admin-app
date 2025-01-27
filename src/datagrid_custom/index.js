@@ -1,21 +1,22 @@
 import callForm from  './callForm.vue'
 import coloredCell from  './coloredCell.vue'
 import popup from  './popup.vue'
+import process_status from  './process_status.vue'
 export const gridCustomElementList = [
   {
     element: 'coloredCell',
-    component: import('./coloredCell.vue'),
+    component: coloredCell,
   },
   {
     element: 'popup',
-    component: import('./popup.vue'),
+    component:popup,
   },
   {
     element: 'callForm',
-    component: import('./callForm.vue'),
+    component: callForm,
   },
   {
     element: 'process_status',
-    component: import('./process_status.vue'),
+    component: process_status,
   },
 ]

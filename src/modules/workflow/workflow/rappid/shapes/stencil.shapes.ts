@@ -51,7 +51,7 @@ const FlowchartStart = dia.Element.define(ShapeTypesEnum.FLOWCHART_START, {
       transform: 'translate(calc(0.5 * w), calc(0.5 * h))'
     },
     label: {
-      text: 'Прокурорын санал',
+      text: 'Боловсруулах',
       x: `calc(w + ${PADDING_L})`,
       y: 'calc(0.5 * h)',
       textAnchor: 'start',
@@ -91,7 +91,7 @@ const FlowchartEnd = dia.Element.define(ShapeTypesEnum.FLOWCHART_END, {
       transform: 'translate(calc(0.5 * w), calc(0.5 * h))'
     },
     label: {
-      text: 'ЦХТСАХ авах',
+      text: 'Төсөл албажсан',
       x: `calc(w + ${PADDING_L})`,
       y: 'calc(0.5 * h)',
       textAnchor: 'start',
@@ -131,7 +131,7 @@ const FlowchartCancel = dia.Element.define(ShapeTypesEnum.FLOWCHART_CANCEL, {
       transform: 'translate(calc(0.5 * w), calc(0.5 * h))'
     },
     label: {
-      text: 'Сэжигтнийг суллах',
+      text: 'Цуцлах',
       x: `calc(w + ${PADDING_L})`,
       y: 'calc(0.5 * h)',
       textAnchor: 'start',
@@ -171,7 +171,7 @@ const FlowchartPostpone = dia.Element.define(ShapeTypesEnum.FLOWCHART_POSTPONE, 
       transform: 'translate(calc(0.5 * w), calc(0.5 * h))'
     },
     label: {
-      text: 'Шүүх хуралдаан хойшлуулах',
+      text: 'Хойшлуулах',
       x: `calc(w + ${PADDING_L})`,
       y: 'calc(0.5 * h)',
       textAnchor: 'start',

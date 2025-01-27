@@ -52,6 +52,9 @@ import '~/assets/styles/app.scss';
 // import  '~/assets/styles/app.scss';
 //
 
+import { EventBusService } from '~/modules/workflow/workflow/services/event-bus.service';
+import batchDirective from '~/modules/workflow/workflow/directives/batch.directive';
+
 export default defineNuxtPlugin(async ({ vueApp: app }) => {
 
 
@@ -68,6 +71,9 @@ export default defineNuxtPlugin(async ({ vueApp: app }) => {
   app.use(i18n);
   app.config.globalProperties.$customElementList = customElementList
   app.config.globalProperties.$customDataGridElementList = gridCustomElementList
+
+  app.config.globalProperties.$eventBusService = new EventBusService();
+  app.directive('batch', batchDirective);
   //
   initAxios();
   initInlineSvg(app);

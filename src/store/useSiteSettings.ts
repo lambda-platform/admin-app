@@ -17,6 +17,16 @@ export const multiTab = computed(() => state["app"].multiTab)
 export const device = computed(() => state["app"].device)
 export const darkMode = computed(() => state["app"].darkMode)
 export const lockScreen = computed(() => state["app"].lockScreen)
+export const iCanEdit = computed(() => state["processStore"].iCanEdit)
+export const isReadOnly = computed(() => state["processStore"].isReadOnly)
+export const currentStep = computed(() => state["processStore"].currentStep)
+
+export const orgTypes = computed(() => state["organization"].orgTypes)
+export const orgTypeIDS = computed(() => state["organization"].orgTypes.map((orgType: any)=>orgType.id))
+export const organizations = computed(() => state["organization"].organizations)
+export const organization = computed(() => state["organization"].organization)
+export const userExtraRole = computed(() => state["organization"].userExtraRole)
+export const userExtraRoles = computed(() => state["organization"].userExtraRoles)
 
 export const isTopMenu = () => layoutMode.value === 'topmenu'
 export const isSideMenu = () => !isTopMenu()

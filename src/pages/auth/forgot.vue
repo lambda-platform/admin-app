@@ -11,7 +11,7 @@
         </div>
 
         <div class="form-element">
-          <label style="font-size: 12px">{{ lang.forgotDescription }}</label>
+          <label style="font-size: 12px">{{ lang.forgotdescription }}</label>
         </div>
 
         <div class="form-element ">
@@ -72,7 +72,7 @@ export default {
   },
   computed: {
     lang() {
-      const labels = ['forgot', 'email', 'forgotDescription', 'sendPasswordResetCode', 'emailSendError'];
+      const labels = ['forgot', 'email', 'forgotdescription', 'sendPasswordResetCode', 'emailSendError'];
       return labels.reduce((obj, key, i) => {
         obj[key] = this.$t('user.' + labels[i]);
         return obj;

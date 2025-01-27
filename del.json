@@ -1,0 +1,266 @@
+[
+  {
+    "workflow_category_id": "16866d95-94c9-4b58-a732-95b3deaab5ba",
+    "id": null,
+    "row_id": null,
+    "role_id": null,
+    "user_id": null,
+    "status": "Төсөл албажсан",
+    "status_type": "END",
+    "is_subject_changeable": false,
+    "status_id": "8e773926-f7ee-4819-bfd2-da729de261c3",
+    "subject_type": "CURRENT",
+    "is_read_only": false,
+    "is_signature_needed": false,
+    "description": null,
+    "is_done": 0,
+    "signature": null,
+    "step_data": {
+      "type": "app.FlowchartEnd",
+      "size": {
+        "width": 48,
+        "height": 48
+      },
+      "ports": {
+        "items": [
+          {
+            "group": "in",
+            "id": "60a74772-3c38-44c3-a80e-ba5f3627d4da"
+          }
+        ]
+      },
+      "position": {
+        "x": 136,
+        "y": 520
+      },
+      "id": "8e773926-f7ee-4819-bfd2-da729de261c3",
+      "z": 5,
+      "attrs": {
+        "label": {
+          "text": "Төсөл албажсан"
+        },
+        "subject": {
+          "object_type": "END",
+          "subject_type": "CURRENT",
+          "role_id": null,
+          "user_id": null,
+          "is_read_only": false,
+          "is_subject_changeable": false,
+          "is_signature_needed": false
+        },
+        "description": {}
+      },
+      "sourcePortLabel": "Хянасан",
+      "open": false
+    },
+    "action_num": 2,
+    "open": false
+  },
+  {
+    "workflow_category_id": "16866d95-94c9-4b58-a732-95b3deaab5ba",
+    "id": null,
+    "row_id": null,
+    "role_id": null,
+    "user_id": null,
+    "status": "Төсөл албажсан",
+    "status_type": "END",
+    "is_subject_changeable": false,
+    "status_id": "8e773926-f7ee-4819-bfd2-da729de261c3",
+    "subject_type": "CURRENT",
+    "is_read_only": false,
+    "is_signature_needed": false,
+    "description": null,
+    "is_done": 0,
+    "signature": null,
+    "step_data": {
+      "type": "app.FlowchartEnd",
+      "size": {
+        "width": 48,
+        "height": 48
+      },
+      "ports": {
+        "items": [
+          {
+            "group": "in",
+            "id": "60a74772-3c38-44c3-a80e-ba5f3627d4da"
+          }
+        ]
+      },
+      "position": {
+        "x": 136,
+        "y": 520
+      },
+      "id": "8e773926-f7ee-4819-bfd2-da729de261c3",
+      "z": 5,
+      "attrs": {
+        "label": {
+          "text": "Төсөл албажсан"
+        },
+        "subject": {
+          "object_type": "END",
+          "subject_type": "CURRENT",
+          "role_id": null,
+          "user_id": null,
+          "is_read_only": false,
+          "is_subject_changeable": false,
+          "is_signature_needed": false
+        },
+        "description": {}
+      },
+      "sourcePortLabel": "Хянасан",
+      "open": false
+    },
+    "action_num": 2,
+    "open": false
+  },
+  {
+    "workflow_category_id": "16866d95-94c9-4b58-a732-95b3deaab5ba",
+    "id": null,
+    "row_id": null,
+    "role_id": null,
+    "user_id": "3a47c5d4-7024-470c-b72d-0b1d3ce4850f",
+    "status": "Дахин боловсруулах",
+    "status_type": "RE_CREATE",
+    "status_id": "7ee3276d-2321-469d-92d5-bb76ab863fc8",
+    "subject_type": "CREATOR",
+    "description": null,
+    "is_done": 0,
+    "signature": null,
+    "step_data": {
+      "type": "app.Message",
+      "size": {
+        "width": 368,
+        "height": 80
+      },
+      "ports": {
+        "items": [
+          {
+            "group": "in",
+            "id": "1963041b-118d-4094-b514-f28223727d74"
+          },
+          {
+            "group": "out",
+            "attrs": {
+              "portLabel": {
+                "text": "Цуцалсан"
+              }
+            },
+            "id": "30f0acc6-fad3-477f-92da-289e8036c6b9"
+          },
+          {
+            "group": "out",
+            "attrs": {
+              "portLabel": {
+                "text": "Дахин боловсруулсан"
+              }
+            },
+            "id": "3a11cefb-4d05-4069-9b1e-65e579112594"
+          }
+        ]
+      },
+      "position": {
+        "x": 304,
+        "y": 376
+      },
+      "id": "7ee3276d-2321-469d-92d5-bb76ab863fc8",
+      "z": 7,
+      "attrs": {
+        "body": {
+          "stroke": "#E8E8E8"
+        },
+        "label": {
+          "text": "Дахин боловсруулах"
+        },
+        "description": {
+          "text": "Дахин боловсруулах эсвэл төслийг цуцлах"
+        },
+        "subject": {
+          "object_type": "RE_CREATE",
+          "subject_type": "CREATOR"
+        },
+        "icon": {
+          "xlinkHref": "data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"512\" height=\"512\" x=\"0\" y=\"0\" viewBox=\"0 0 32 32\" style=\"enable-background:new 0 0 512 512\" xml:space=\"preserve\" class=\"\"><g><path d=\"M19.508 8.34H7.949l1.172-1.743a1.533 1.533 0 0 0-1.268-2.393H7.85a1.67 1.67 0 0 0-1.304.627L2.939 9.34a.8.8 0 0 0 0 1l3.607 4.508a1.67 1.67 0 0 0 1.304.627h.003a1.533 1.533 0 0 0 1.268-2.393L7.95 11.339h11.559a6.728 6.728 0 1 1 0 13.456h-3.272a1.5 1.5 0 0 0 0 3h3.272a9.728 9.728 0 1 0 0-19.456z\" data-name=\"Arrow Outline\" fill=\"%23000000\" opacity=\"1\" data-original=\"%23000000\"></path></g></svg>"
+        }
+      },
+      "sourcePortLabel": "Буцаасан",
+      "open": false
+    },
+    "action_num": 2,
+    "open": false
+  },
+  {
+    "workflow_category_id": "16866d95-94c9-4b58-a732-95b3deaab5ba",
+    "id": null,
+    "row_id": null,
+    "role_id": null,
+    "user_id": "3a47c5d4-7024-470c-b72d-0b1d3ce4850f",
+    "status": "Дахин боловсруулах",
+    "status_type": "RE_CREATE",
+    "status_id": "7ee3276d-2321-469d-92d5-bb76ab863fc8",
+    "subject_type": "CREATOR",
+    "description": null,
+    "is_done": 0,
+    "signature": null,
+    "step_data": {
+      "type": "app.Message",
+      "size": {
+        "width": 368,
+        "height": 80
+      },
+      "ports": {
+        "items": [
+          {
+            "group": "in",
+            "id": "1963041b-118d-4094-b514-f28223727d74"
+          },
+          {
+            "group": "out",
+            "attrs": {
+              "portLabel": {
+                "text": "Цуцалсан"
+              }
+            },
+            "id": "30f0acc6-fad3-477f-92da-289e8036c6b9"
+          },
+          {
+            "group": "out",
+            "attrs": {
+              "portLabel": {
+                "text": "Дахин боловсруулсан"
+              }
+            },
+            "id": "3a11cefb-4d05-4069-9b1e-65e579112594"
+          }
+        ]
+      },
+      "position": {
+        "x": 304,
+        "y": 376
+      },
+      "id": "7ee3276d-2321-469d-92d5-bb76ab863fc8",
+      "z": 7,
+      "attrs": {
+        "body": {
+          "stroke": "#E8E8E8"
+        },
+        "label": {
+          "text": "Дахин боловсруулах"
+        },
+        "description": {
+          "text": "Дахин боловсруулах эсвэл төслийг цуцлах"
+        },
+        "subject": {
+          "object_type": "RE_CREATE",
+          "subject_type": "CREATOR"
+        },
+        "icon": {
+          "xlinkHref": "data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"512\" height=\"512\" x=\"0\" y=\"0\" viewBox=\"0 0 32 32\" style=\"enable-background:new 0 0 512 512\" xml:space=\"preserve\" class=\"\"><g><path d=\"M19.508 8.34H7.949l1.172-1.743a1.533 1.533 0 0 0-1.268-2.393H7.85a1.67 1.67 0 0 0-1.304.627L2.939 9.34a.8.8 0 0 0 0 1l3.607 4.508a1.67 1.67 0 0 0 1.304.627h.003a1.533 1.533 0 0 0 1.268-2.393L7.95 11.339h11.559a6.728 6.728 0 1 1 0 13.456h-3.272a1.5 1.5 0 0 0 0 3h3.272a9.728 9.728 0 1 0 0-19.456z\" data-name=\"Arrow Outline\" fill=\"%23000000\" opacity=\"1\" data-original=\"%23000000\"></path></g></svg>"
+        }
+      },
+      "sourcePortLabel": "Буцаасан",
+      "open": false
+    },
+    "action_num": 2,
+    "open": false
+  }
+]

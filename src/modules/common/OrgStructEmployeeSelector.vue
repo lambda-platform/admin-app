@@ -137,7 +137,7 @@ const props = defineProps({
   disabled: Boolean,
 });
 
-import {getStructs, getStructJobs, getJobEmployees, getOrgsByRole} from "~/graphql/fetch.js"
+import {getStructs, getStructJobs, getJobEmployees, getOrgsByRole} from "~/modules/workflow/graphql/fetch.js"
 
 const org_role_id_v = ref(null);
 const org_id_v = ref(null);

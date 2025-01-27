@@ -18,6 +18,16 @@ module.exports = {
     "./src/plugins/**/*.{js,ts}",
     "./src/*.{vue,js,ts}",
     "./src/nuxt.config.{js,ts}",
+
+    "./src/modules/process/*.{vue,js}",
+    "./src/modules/process/**/*.{vue,js}",
+    "./src/modules/process/**/**/*.{vue,js}",
+    "./src/modules/process/**/**/**/*.{vue,js}",
+
+    "./src/modules/workflow/*.{vue,js}",
+    "./src/modules/workflow/**/*.{vue,js}",
+    "./src/modules/workflow/**/**/*.{vue,js}",
+    "./src/modules/workflow/**/**/**/*.{vue,js}",
   ],
   theme: {
     extend: {

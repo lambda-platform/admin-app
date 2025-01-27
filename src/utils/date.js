@@ -37,7 +37,7 @@ export function toDateTime(datetime) {
 
 export function getDateTime(date) {
   if (typeof date === 'string' || date instanceof String) {
-    return date;
+    return  Moment(date).format("YYYY-MM-DD HH:mm");
   } else {
     if ((new Date(date)).toString() !== "Invalid Date") {
       return Moment(date).format("YYYY-MM-DD HH:mm");

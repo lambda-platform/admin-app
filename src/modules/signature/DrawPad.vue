@@ -21,11 +21,11 @@ const signaturePad = ref(false)
 import { VueSignaturePad } from 'vue-signature-pad';
 
 function save(){
-  const { isEmpty, data } = signaturePad.value.saveSignature();
+  const { isEmpty, data } = signaturePad.value.savesignature();
   return data
 }
 function clear() {
-  signaturePad.value.clearSignature();
+  signaturePad.value.clearsignature();
 }
 defineExpose( { save, clear });
 </script>

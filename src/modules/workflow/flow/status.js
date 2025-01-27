@@ -3,7 +3,7 @@ export function getStatusColor(statusType) {
   switch (statusType) {
     case "START":
       return "text-[#4648dc] border-[#4648dc]"; // Ноорог - Хөх
-    case "CASE":
+    case "CHECK":
       return "text-orange-400 border-orange-400"; // Хянах - Улбар шар
     case "TRANSFER":
       return "text-blue-400 border-blue-400"; // Шилжүүлэг - Цэнхэр
@@ -31,10 +31,11 @@ export function getStatusColor(statusType) {
 }
 
 export function getStatusBgColor(statusType) {
+console.log(statusType)
   switch (statusType) {
     case "START":
       return "bg-[#4648dc] text-white"; // Ноорог - Хар
-    case "CASE":
+    case "CHECK":
       return "bg-orange-400 text-white"; // Хянах - Улбар шар
     case "TRANSFER":
       return "bg-blue-400 text-white"; // Шилжүүлэг - Цэнхэр

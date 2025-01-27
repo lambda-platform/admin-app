@@ -86,8 +86,8 @@ onMounted(() => {
 async function selectRole() {
   user_id_v.value = '';
   if (role_id_v.value) {
-    getUsersByRole(role_id_v.value.toString()).then(({view_users_workflow}) => {
-      users.value = view_users_workflow;
+    getUsersByRole(role_id_v.value.toString()).then(({view_users}) => {
+      users.value = view_users;
     })
   } else {
     users.value = [];

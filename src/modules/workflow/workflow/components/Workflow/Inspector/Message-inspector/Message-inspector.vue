@@ -16,7 +16,7 @@
         <a-radio value="ANY_EMP">Бүртгэлтэй хэрэглэгч</a-radio>
         <a-radio  value="VOTERS">Санал өгөгчид</a-radio>
         <a-radio  value="TO_ROLE">Системийн Хандах эрхээр</a-radio>
-        <a-radio  value="DIRECT">Системийн хэрэглэгч</a-radio>
+        <a-radio  value="DIRECT">Тогтмол</a-radio>
         <a-radio value="CREATOR">Боловсруулсан хэрэглэгч</a-radio>
       </a-radio-group>
     </label>
@@ -30,6 +30,9 @@
     <a-checkbox v-model:checked="is_read_only"  @change="()=>changeCellProp(cellProps.is_read_only, is_read_only)">Зөвхөн харах</a-checkbox>
     <br>
     <a-checkbox v-model:checked="is_signature_needed"  @change="()=>changeCellProp(cellProps.is_signature_needed, is_signature_needed)">Цахимаар гарын үсэг зурах</a-checkbox>
+    <br>
+    <a-checkbox v-model:checked="is_subject_changeable"  @change="()=>changeCellProp(cellProps.is_subject_changeable, is_subject_changeable)">Хариуцагч солих боломжой</a-checkbox>
+
     <div class="ports">
       <div class="out-ports-bar">
         <span>Үйлдлүүд</span>
@@ -72,6 +75,7 @@ const ports = ref([]);
 const canAddPort = ref(false);
 const is_read_only = ref(false);
 const is_signature_needed = ref(false);
+const is_subject_changeable = ref(false);
 
 const object_type = ref('');
 const subject_type = ref('');
@@ -87,6 +91,7 @@ const cellProps = {
   role_id: ['attrs', 'subject', 'role_id'],
   is_read_only: ['attrs', 'subject', 'is_read_only'],
   is_signature_needed: ['attrs', 'subject', 'is_signature_needed'],
+  is_subject_changeable: ['attrs', 'subject', 'is_subject_changeable'],
   icon: ['attrs', 'icon', 'xlinkHref'],
   portLabel: ['attrs', 'portLabel', 'text']
 };
@@ -101,6 +106,7 @@ const assignFormFields = () => {
   role_id.value = props.cell.prop(cellProps.role_id);
   is_read_only.value = props.cell.prop(cellProps.is_read_only);
   is_signature_needed.value = props.cell.prop(cellProps.is_signature_needed);
+  is_subject_changeable.value = props.cell.prop(cellProps.is_subject_changeable);
   icon.value = props.cell.prop(cellProps.icon);
   assignFormPorts();
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="e-signature">
     <!--              <a-alert-->
-    <!--                :message="`${Signature.signAction} төлөвт шилжихийн тулд та гарын үсэг шаардлагатай`"-->
+    <!--                :message="`${signature.signAction} төлөвт шилжихийн тулд та гарын үсэг шаардлагатай`"-->
     <!--                type="warning"-->
     <!--                size="small"-->
     <!--                show-icon-->
@@ -20,16 +20,16 @@
           <tbody>
             <tr>
               <td style="text-align: left; font-family: Arial; font-size: 12px; vertical-align: middle">
-                {{ Signature.signAction }}: {{ Signature.job_name }} <br>{{ Signature.struct }}
+                {{ signature.signAction }}: {{ signature.job_name }} <br>{{ signature.struct }}
               </td>
               <td
                 style="text-align: center; font-family: Arial; font-size: 12px; padding-left: 10px; vertical-align: middle">
-                <span v-if="Signature.type === 'text'">{{ Signature.signature }}<br/></span>
-                <img v-else-if="Signature.signature !== null" class="h-10 mx-auto" :src="`${Signature.type === 'draw' ? '' : ''}${Signature.signature}`" alt="">
+                <span v-if="signature.type === 'text'">{{ signature.signature }}<br/></span>
+                <img v-else-if="signature.signature !== null" class="h-10 mx-auto" :src="`${signature.type === 'draw' ? '' : ''}${signature.signature}`" alt="">
 
 
-                <span v-if="Signature.type === 'text'">Цахимаар баталгаажуулсан огноо цаг: <br>{{ $dateTime(new Date()) }}</span>
-                <span v-else> Цахимаар баталгаажуулсан: {{Signature.lastname ? Signature.lastname.charAt(0).toUpperCase() : ''}}.{{Signature.firstname}} <br/> Огноо цаг: {{ $dateTime(new Date()) }}</span>
+                <span v-if="signature.type === 'text'">Цахимаар баталгаажуулсан огноо цаг: <br>{{ $dateTime(new Date()) }}</span>
+                <span v-else> Цахимаар баталгаажуулсан: {{signature.lastname ? signature.lastname.charAt(0).toUpperCase() : ''}}.{{signature.firstname}} <br/> Огноо цаг: {{ $dateTime(new Date()) }}</span>
 
               </td>
             </tr>
@@ -116,9 +116,9 @@
         <div class="flex mb-2">
           <label class="flex items-center space-x-3 cursor-pointer" v-for="signType in signTypes"
                  @click="selectType(signType.value)" :key="signType.index">
-            <input type="radio" :value="signType.value" v-model="Signature.type" class="hidden"/>
+            <input type="radio" :value="signType.value" v-model="signature.type" class="hidden"/>
             <div class="flex items-center space-x-2"
-                 :class="{'active-signature-type': Signature.type === signType.value, '': Signature.type !== signType.value}">
+                 :class="{'active-signature-type': signature.type === signType.value, '': signature.type !== signType.value}">
               <div class="w-5 h-5">
                 <inline-svg :src="signType.image" alt="" class="w-full h-full object-cover"/>
               </div>
@@ -127,28 +127,28 @@
           </label>
         </div>
         <div style="height: 200px; width:100%; text-align: center" class="border rounded">
-          <div v-if="Signature.type === 'text'">
+          <div v-if="signature.type === 'text'">
             <h1 style="font-family: Arial; font-size: 32px; vertical-align: middle; margin-top: 70px">
-              {{ Signature.signature }}</h1>
+              {{ signature.signature }}</h1>
           </div>
-          <div style="height: 100%; width:100%" v-if="Signature.type === 'draw'">
-            <DrawPad ref="signaturePad" v-if="Signature.signature === null"/>
-            <img :src="Signature.signature" v-else alt="">
+          <div style="height: 100%; width:100%" v-if="signature.type === 'draw'">
+            <DrawPad ref="signaturePad" v-if="signature.signature === null"/>
+            <img :src="signature.signature" v-else alt="">
 
           </div>
-          <div style="height: 100%; width:100%;" v-if="Signature.type === 'imageFile'">
+          <div style="height: 100%; width:100%;" v-if="signature.type === 'imageFile'">
             <ImageUpload @success="fileUploaded" @remove="fileRemove" :imageFile="imageFile"/>
 
           </div>
 
         </div>
 
-        <div v-if="Signature.type === 'draw'">Хулганаар зурна уу</div>
+        <div v-if="signature.type === 'draw'">Хулганаар зурна уу</div>
 
         <div class="align-right mt-3">
-          <a-button @click="Signature.signature = null" class="mr-3" v-if="Signature.type === 'draw' && Signature.signature !== null">Шинээр зурах</a-button>
-          <a-button @click="clearDrawSignature" class="mr-3" v-if="Signature.type === 'draw' && Signature.signature === null">Цэвэрлэх</a-button>
-          <a-button type="primary" @click="saveDrawSignature">Хадгалах</a-button>
+          <a-button @click="signature.signature = null" class="mr-3" v-if="signature.type === 'draw' && signature.signature !== null">Шинээр зурах</a-button>
+          <a-button @click="clearDrawsignature" class="mr-3" v-if="signature.type === 'draw' && signature.signature === null">Цэвэрлэх</a-button>
+          <a-button type="primary" @click="saveDrawsignature">Хадгалах</a-button>
         </div>
       </div>
     </a-modal>
@@ -156,7 +156,7 @@
 </template>
 <script setup>
 import { notification } from 'ant-design-vue';
-import "./Signature.scss"
+import "./signature.scss"
 import DrawPad from "~/modules/signature/DrawPad.vue";
 import ImageUpload from "~/modules/signature/ImageUpload.vue";
 import  axios from "~/plugins/core/axios";
@@ -185,7 +185,7 @@ const openOTPVerify = ref(false)
 const OTPSending = ref(false)
 const OTPSent = ref(false)
 const OTP = ref("")
-const Signature = ref({
+const signature = ref({
   type: "text",
   firstname: null,
   signAction: props.action ?? null,
@@ -199,14 +199,14 @@ const Signature = ref({
 });
 
 const signTypes = ref([
-  {label: 'Тэкст', value: 'text', open: false, image: '/assets/dms/signature/textSignature.svg'},
-  {label: 'Зурах', value: 'draw', open: false, image: '/assets/dms/signature/drawSignature.svg'},
-  {label: 'Зурган файл', value: 'imageFile', open: false, image: '/assets/dms/signature/imageSignature.svg'}
+  {label: 'Тэкст', value: 'text', open: false, image: '/assets/dms/signature/textsignature.svg'},
+  {label: 'Зурах', value: 'draw', open: false, image: '/assets/dms/signature/drawsignature.svg'},
+  {label: 'Зурган файл', value: 'imageFile', open: false, image: '/assets/dms/signature/imagesignature.svg'}
 ]);
 
 function selectType(signType) {
   if (signType === 'text') {
-    Signature.value.signature = `${Signature.value.lastname.charAt(0).toUpperCase()}.${Signature.value.firstname}`
+    signature.value.signature = `${signature.value.lastname.charAt(0).toUpperCase()}.${signature.value.firstname}`
   } else if (signType === 'draw') {
 
   }
@@ -219,10 +219,10 @@ function getCurrentEmp() {
 
     getUser(user.id).then(({view_users}) => {
       if (view_users && view_users.length) {
-        Signature.value.struct = view_users[0].display_name;
-        Signature.value.job_name = view_users[0].display_name;
-        Signature.value.firstname = view_users[0].first_name;
-        Signature.value.lastname = view_users[0].last_name;
+        signature.value.struct = view_users[0].display_name;
+        signature.value.job_name = view_users[0].display_name;
+        signature.value.firstname = view_users[0].first_name;
+        signature.value.lastname = view_users[0].last_name;
 
         phoneNumber.value = vw_userstruct[0].phone;
         email.value = view_users[0].email;
@@ -230,30 +230,30 @@ function getCurrentEmp() {
         selectType("text")
       }
     })
-    getSignature();
+    getsignature();
   }
 
 
 }
 
 function setSignAction(action) {
-  Signature.value.signed = false;
+  signature.value.signed = false;
 
-  Signature.value.signAction = action;
+  signature.value.signAction = action;
 }
 
-async function saveDrawSignature() {
-  if (Signature.value.type === 'draw') {
+async function saveDrawsignature() {
+  if (signature.value.type === 'draw') {
     if (signaturePad.value) {
-      Signature.value.signature = signaturePad.value.save();
+      signature.value.signature = signaturePad.value.save();
     }
   }
 
   try {
     await axios.post('/signature/save', {
-      EMP_ID:user.id,
-      SIGNATURE_TYPE:Signature.value.type,
-      SIGNATURE:Signature.value.signature,
+      emp_id:user.id,
+      signature_TYPE:signature.value.type,
+      signature:signature.value.signature,
     });
 
     openSettings.value = false;
@@ -263,12 +263,12 @@ async function saveDrawSignature() {
 
   }
 }
-async function getSignature() {
+async function getsignature() {
   try {
     const response = await axios.get(`/signature/get/${user.id}`);
     if(response.data.ID){
-      Signature.value.type = response.data.SIGNATURE_TYPE;
-      Signature.value.signature = response.data.SIGNATURE;
+      signature.value.type = response.data.signature_TYPE;
+      signature.value.signature = response.data.signature;
     }
     // Handle response
   } catch (error) {
@@ -277,11 +277,11 @@ async function getSignature() {
     this.signatureData = null;
   }
 }
-function clearDrawSignature() {
+function clearDrawsignature() {
 
   if (signaturePad.value) {
     signaturePad.value.clear();
-    Signature.value.signature = null;
+    signature.value.signature = null;
   }
 
 }
@@ -289,15 +289,15 @@ function clearDrawSignature() {
 
 function fileUploaded(path) {
   imageFile.value = path;
-  Signature.value.signature = path;
+  signature.value.signature = path;
 
 
 }
 
 function fileRemove() {
   imageFile.value = null;
-  Signature.value.signature = null;
-  console.log(Signature.value.signature)
+  signature.value.signature = null;
+  console.log(signature.value.signature)
 
 }
 
@@ -309,7 +309,7 @@ function showSettings() {
 async function sendOTP(){
   OTPSending.value = true;
   const data = {
-    user_id:Signature.value.user_id,
+    user_id:signature.value.user_id,
     type:OTPType.value
   }
 
@@ -340,9 +340,9 @@ async function verifyOTP(){
 
   OTPSending.value = true;
   try {
-   await axios.post('/signature/verify-otp', { user_id: Signature.value.user_id, code: OTP.value });
+   await axios.post('/signature/verify-otp', { user_id: signature.value.user_id, code: OTP.value });
 
-   Signature.value.signed = true;
+   signature.value.signed = true;
     OTPSending.value = false;
 
 
@@ -353,10 +353,10 @@ async function verifyOTP(){
     });
 
 
-    emit("signed", Signature.value)
+    emit("signed", signature.value)
   } catch (error) {
     console.error(error);
-    Signature.value.signed = false;
+    signature.value.signed = false;
     OTPSending.value = false;
     notification["error"]({
       message: 'Алдаа',

@@ -44,4 +44,8 @@ export const customElementList = [
     element: 'process_status',
     component: defineAsyncComponent(() => import('./process_status.vue')),
   },
+  {
+    element: 'process_status_changer',
+    component: defineAsyncComponent(() => import('./process_status_changer.vue')),
+  },
 ]
