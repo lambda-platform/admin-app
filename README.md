@@ -19,3 +19,6 @@ npx nuxi upgrade
 npx nuxi generate
 set NODE_OPTIONS=--max_old_space_size=4096
 export NODE_OPTIONS=--max-old-space-size=8192
+
+
+use image thumb:  /uploaded/images/2025/January/thumb_art005.svg
