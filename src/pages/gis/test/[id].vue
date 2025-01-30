@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import mapMixin from "~/map/mixin"
-import LayerList from "~/components/Map/LayerList.vue";
+import mapMixin from "~/modules/map/mixin"
+import LayerList from "~/modules/map/components/LayerList.vue";
 
 definePageMeta({
   layout: 'web',
