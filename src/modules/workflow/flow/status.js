@@ -31,7 +31,6 @@ export function getStatusColor(statusType) {
 }
 
 export function getStatusBgColor(statusType) {
-console.log(statusType)
   switch (statusType) {
     case "START":
       return "bg-[#4648dc] text-white"; // Ноорог - Хар

@@ -34,6 +34,9 @@ export class Flow {
         case "app.FlowchartCancel":
           this.cancels.push(cell);
           break;
+        case "app.FlowchartPostpone":
+          this.cancels.push(cell);
+          break;
         case "app.Message":
           this.steps.push(cell);
           if (cell.attrs.subject.object_type === "VOTE") {
