@@ -59,7 +59,7 @@ l1170 -532 1170 532 c643 292 1166 535 1162 539 -4 4 -109 53 -232 108 l-223
 
 <script>
 import mixin from "./mixin";
-import LayerList from "~/components/Map/LayerList.vue";
+import LayerList from "~/modules/map/components/LayerList.vue";
 
 export default {
   mixins: [mixin],
