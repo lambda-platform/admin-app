@@ -1,7 +1,7 @@
 import {getLambdaConfig} from "~/service/service";
 import ls from "~/utils/Storage";
 import {
-  ACCESS_TOKEN,
+
   KRUDS,
   LAMBDA_CONFIG,
   MENU, MENU_LIST,
@@ -34,8 +34,7 @@ export const setUserPermissionsWithOrg = async (store, firebaseConfig, orgID, ex
 
       const { data } = await axios.get(getPermissionPath);
       if (data.status) {
-        ls.set(ACCESS_TOKEN, data.token, 7 * 24 * 60 * 60 * 1000);
-        setToken(data.token);
+
 
         const userInfo = {
           ...data.user,

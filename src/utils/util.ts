@@ -1,8 +1,8 @@
 import ls from '~/utils/Storage'
-import { ACCESS_TOKEN, PERMISSIONS, USER_INFO, MENU_NAV, MENU, KRUDS, MENU_LIST } from '~/store/mutation-types'
+import {  PERMISSIONS, USER_INFO, MENU_NAV, MENU, KRUDS, MENU_LIST } from '~/store/mutation-types'
 
 export function clearUserInfo() {
-  ls.remove(ACCESS_TOKEN)
+
   ls.remove(PERMISSIONS)
   ls.remove(MENU)
   ls.remove(KRUDS)

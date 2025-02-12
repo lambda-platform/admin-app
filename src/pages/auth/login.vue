@@ -13,8 +13,8 @@ definePageMeta({
 const store = useStore();
 import axios from 'axios'
 import {
-  ACCESS_TOKEN,
-  LAMBDA_CONFIG
+
+  LAMBDA_CONFIG, USER_INFO
 } from '~/store/mutation-types'
 import ls from '~/utils/Storage'
 import { setToken } from '~/plugins/core/axios'
@@ -31,11 +31,14 @@ async function onSuccess(data) {
   if (data.status) {
     isSuccess.value = true
 
+    if(process.dev){
+      setToken(data.token)
+      localStorage.setItem('token', data.token);
+    }
     if (data.oauth) {
       window.location.replace('/oauth2/authorize')
     } else {
-      ls.set(ACCESS_TOKEN, data.token, 7 * 24 * 60 * 60 * 1000)
-      setToken(data.token)
+
       if (data.data.role === 1) {
         window.location.replace(data.path)
       } else {
@@ -51,7 +54,7 @@ function renderTheme() {
 }
 
 onMounted(() => {
-  if (ls.get(ACCESS_TOKEN)) {
+  if (ls.get(USER_INFO)) {
     axios.get('/user-permissions')
       .then(({ data }) => {
         if (data.status) {

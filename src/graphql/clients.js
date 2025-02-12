@@ -1,7 +1,7 @@
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
 import ls from "~/utils/Storage";
-import {ACCESS_TOKEN} from "~/store/mutation-types";
+
 import {base_url} from "~/consts/const";
 
 const cache = new InMemoryCache({
@@ -33,8 +33,8 @@ export function setAuthToken(token) {
 
 
 export function  initClient() {
-  const token = ls.get(ACCESS_TOKEN)
-  if(token){
-    setAuthToken(token)
-  }
+
+  // if(token){
+  //   setAuthToken(token)
+  // }
 }

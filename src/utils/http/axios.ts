@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
 import { message } from 'ant-design-vue'
-import { ACCESS_TOKEN, USER_INFO } from '~/store/mutation-types'
+import {  USER_INFO } from '~/store/mutation-types'
 
 import ls from '~/utils/Storage'
 import { useRouter } from 'vue-router'
@@ -26,11 +26,7 @@ const baseService = axios.create({
 baseService.interceptors.request.use(
   config => {
     globalLoading.value = true
-    const token = ls.get(ACCESS_TOKEN)
 
-    if (token) {
-      config.headers['Authorization'] = "Bearer "+token
-    }
 
     config.headers['Content-Type'] = ContentType[config.data instanceof FormData ? 'formData' : 'json']
     return config

@@ -309,23 +309,25 @@ export default {
                 format: new MVT()
               };
 
-              if (layer.is_permission && layer.org_id_field && layer.org_id_field !== "") {
-                const tokenData = localStorage.getItem('ACCESS_TOKEN');
-                if (tokenData) {
-                  const tokenObject = JSON.parse(tokenData);
-                  const tokenValue = tokenObject?.value;
+              // if (layer.is_permission && layer.org_id_field && layer.org_id_field !== "") {
+              //   const tokenData = localStorage.getItem('access token form local storage not secure');
+              //   if (tokenData) {
+              //     const tokenObject = JSON.parse(tokenData);
+              //     const tokenValue = tokenObject?.value;
+              //
+              //     if (tokenValue) {
+              //       sourceConfig.url = `${base_url}/tiles/${layer.id}/{z}/{x}/{y}/${tokenValue}.pbf`;
+              //     } else {
+              //       console.error("Token value is missing");
+              //     }
+              //   } else {
+              //     console.error("Access token is not found in localStorage");
+              //   }
+              // } else {
+              //   sourceConfig.url = `${base_url}/saved-tiles/${layer.id}/{z}/{x}/{y}.pbf`
+              // }
 
-                  if (tokenValue) {
-                    sourceConfig.url = `${base_url}/tiles/${layer.id}/{z}/{x}/{y}/${tokenValue}.pbf`;
-                  } else {
-                    console.error("Token value is missing");
-                  }
-                } else {
-                  console.error("Access token is not found in localStorage");
-                }
-              } else {
-                sourceConfig.url = `${base_url}/saved-tiles/${layer.id}/{z}/{x}/{y}.pbf`
-              }
+              sourceConfig.url = `${base_url}/saved-tiles/${layer.id}/{z}/{x}/{y}.pbf`
 
               this.categories[catIndex].layers[layerIndex].layer = new VectorTileLayer({
                 declutter: false,
