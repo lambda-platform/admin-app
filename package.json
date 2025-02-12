@@ -42,6 +42,7 @@
     "@esri/calcite-colors": "^6.0.1",
     "@firebase/app": "^0.8.3",
     "@firebase/messaging": "^0.10.0",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@headlessui/vue": "^1.6.7",
     "@heroicons/vue": "^1.0.6",
     "@lambda-platform/lambda-vue": "3.2.97",
