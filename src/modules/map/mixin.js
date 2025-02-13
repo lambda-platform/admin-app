@@ -164,7 +164,7 @@ export default {
   },
 
   data() {
-    let baseKey = "iMap"
+    let baseKey = "googleLayerRoadmap"
     const savedBaseMapKey = localStorage.getItem('selectedBaseMapKey');
     if (savedBaseMapKey) {
       baseKey = savedBaseMapKey
