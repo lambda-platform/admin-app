@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{loading}}
     <Loading v-if="loading"/>
     <div
       v-if="!loading && computedStatusHistory &&computedStatusHistory.length && currentStep">
@@ -91,16 +92,16 @@ function handleSubmit(step) {
 
   if(step){
 
-    axios.post('/process/notification', {
-      ...step,
-      creator_id: creatorEmpID.value,
-      form_id: ID.value,
-      // workflow_category_id: workflowCategoryID.value,
-      votingPeople: votingPeople.value,
-      notify: true
-    }).catch(error => {
-        console.error("API call failed: ", error);
-    });
+    // axios.post('/process/notification', {
+    //   ...step,
+    //   creator_id: creatorEmpID.value,
+    //   form_id: ID.value,
+    //   // workflow_category_id: workflowCategoryID.value,
+    //   votingPeople: votingPeople.value,
+    //   notify: true
+    // }).catch(error => {
+    //     console.error("API call failed: ", error);
+    // });
   }
 
 }
@@ -139,19 +140,19 @@ async function saveAndGoToNext(step, transferEmployees, endVote)
       * */
       // loading.value = true;
 
-      if (currentStep.value.attrs.subject.object_type === 'PREPARE_VOTE') {
-        if(votingPeople.value.length <= 0){
-
-          loading.value = true ;
-          setTimeout(()=>{
-            loading.value = false;
-          }, 500)
-          message.warn("Санал өгөх албан тушаалтан сонгоно уу !!!");
-
-
-          return null
-        }
-      }
+      // if (currentStep.value.attrs.subject.object_type === 'PREPARE_VOTE') {
+      //   if(votingPeople.value.length <= 0){
+      //
+      //     loading.value = true ;
+      //     setTimeout(()=>{
+      //       loading.value = false;
+      //     }, 500)
+      //     message.warn("Санал өгөх албан тушаалтан сонгоно уу !!!");
+      //
+      //
+      //     return null
+      //   }
+      // }
 
       if (currentStep.value.attrs.subject.object_type === 'VOTE') {
 
@@ -334,35 +335,37 @@ async function saveAndGoToNext(step, transferEmployees, endVote)
             }
           }
         }
-      } else  if (currentStep.value.attrs.subject.object_type === "RECEIVE") {
-        const index = props.model.form['process_status_history'].findIndex(h => h.status_id === currentStep.value.id && h.emp_id === userInfo.value.emp_id);
-
-
-
-        if (index >= 0 ) {
-
-          props.model.form['process_status_history'][index].status_action = step.sourcePortLabel;
-          props.model.form['process_status_history'][index].is_done = 1;
-          props.model.form['process_status_history'][index].signature = step.signature ? JSON.stringify(step.signature) : null;
-          props.model.form['process_status_history'][index].description = step.currentdescription;
-
-        }
-
-        const notReceivedIndex = props.model.form['process_status_history'].findIndex(h=>h.status_type === "RECEIVE" && h.is_done === 0);
-        if(notReceivedIndex === -1) {
-          const endIndex = props.model.form['process_status_history'].findIndex(h => h.status_id === step.status_id);
-
-          if (endIndex >= 0) {
-            props.model.form['process_status_history'][endIndex].is_done = 1;
-            props.model.form['process_status_history'][endIndex].struct_id = userInfo.value.struct_id * 1;
-            props.model.form['process_status_history'][endIndex].emp_id = userInfo.value.emp_id;
-            props.model.form['process_status_history'][endIndex].status_action = step.sourcePortLabel;
-
-            setStatus(step);
-          }
-        }
-
-      } else  {
+      }
+        // else if (currentStep.value.attrs.subject.object_type === "RECEIVE") {
+        //   const index = props.model.form['process_status_history'].findIndex(h => h.status_id === currentStep.value.id && h.emp_id === userInfo.value.emp_id);
+        //
+        //
+        //
+        //   if (index >= 0 ) {
+        //
+        //     props.model.form['process_status_history'][index].status_action = step.sourcePortLabel;
+        //     props.model.form['process_status_history'][index].is_done = 1;
+        //     props.model.form['process_status_history'][index].signature = step.signature ? JSON.stringify(step.signature) : null;
+        //     props.model.form['process_status_history'][index].description = step.currentdescription;
+        //
+        //   }
+        //
+        //   const notReceivedIndex = props.model.form['process_status_history'].findIndex(h=>h.status_type === "RECEIVE" && h.is_done === 0);
+        //   if(notReceivedIndex === -1) {
+        //     const endIndex = props.model.form['process_status_history'].findIndex(h => h.status_id === step.status_id);
+        //
+        //     if (endIndex >= 0) {
+        //       props.model.form['process_status_history'][endIndex].is_done = 1;
+        //       props.model.form['process_status_history'][endIndex].struct_id = userInfo.value.struct_id * 1;
+        //       props.model.form['process_status_history'][endIndex].emp_id = userInfo.value.emp_id;
+        //       props.model.form['process_status_history'][endIndex].status_action = step.sourcePortLabel;
+        //
+        //       setStatus(step);
+        //     }
+        //   }
+        //
+      // }
+      else {
 
 
         setStatus(step);
@@ -571,7 +574,6 @@ watch(() => votingPeople, () => {
 }, {deep: true});
 
 async function getWorkFlowData() {
-
   if (workflowCategoryID.value !== null && workflowCategoryID.value !== "" && workflowCategoryID.value !== undefined) {
     if (workflowID.value !== null && workflowID.value !== "" && workflowID.value !== undefined) {
       try {
@@ -810,12 +812,12 @@ function prepareForm(currentStepPre){
 
   if (currentStepPre.attrs.subject.object_type === "RECEIVE" || currentStepPre.attrs.subject.object_type === "PRE_END" || currentStepPre.attrs.subject.object_type === "END") {
 
-      props.setSchemaByModel('DOC_DATE', 'disabled', true)
-      props.setSchemaByModel('description', 'disabled', true)
-      props.setSchemaByModel('DOC_NUMBER', 'disabled', true)
-      props.setSchemaByModel('DOC_NAME', 'disabled', true)
-      props.setSchemaByModel('ATTACHMENTS', 'disabled', true)
-    }
+    props.setSchemaByModel('DOC_DATE', 'disabled', true)
+    props.setSchemaByModel('description', 'disabled', true)
+    props.setSchemaByModel('DOC_NUMBER', 'disabled', true)
+    props.setSchemaByModel('DOC_NAME', 'disabled', true)
+    props.setSchemaByModel('ATTACHMENTS', 'disabled', true)
+  }
 
 
   // PREPARE_VOTE
@@ -834,12 +836,15 @@ function isActionSubject(statusHistories, current){
   }
 }
 const setPermission =(current, statusHistories) => {
+
   if (current) {
 
 
     if (current.attrs.subject.object_type !== 'END' && current.attrs.subject.object_type !== 'VOTE' && !current.attrs.subject.is_read_only) {
 
-      if (props.model.form['emp_id'] === userInfo.value.emp_id || props.model.form['user_id'] === userInfo.value.id) {
+
+
+      if ((props.model.form['emp_id'] && props.model.form['emp_id'] === userInfo.value.emp_id) ||  (props.model.form['user_id'] &&  props.model.form['user_id'] === userInfo.value.id)) {
 
         if (current.attrs.subject.object_type === 'START' || current.attrs.subject.object_type === 'RE_CREATE') {
           return true
@@ -847,7 +852,7 @@ const setPermission =(current, statusHistories) => {
           let cindex = statusHistories.findIndex(h => h.status_id === current.id);
 
           if(cindex >=0){
-            if(statusHistories[cindex].emp_id === userInfo.value.emp_id || statusHistories[cindex].user_id === userInfo.value.id){
+            if((statusHistories[cindex].emp_id && statusHistories[cindex].emp_id === userInfo.value.emp_id) || (statusHistories[cindex].user_id && statusHistories[cindex].user_id === userInfo.value.id)){
               return true
             }
           }
@@ -857,9 +862,21 @@ const setPermission =(current, statusHistories) => {
         let cindex = statusHistories.findIndex(h => h.status_id === current.id);
 
         if(cindex >=0){
-          if(statusHistories[cindex].emp_id === userInfo.value.emp_id || statusHistories[cindex].emp_id === userInfo.value.emp_id){
-            return true
+
+          if(current.attrs.subject.subject_type === "TO_ROLE"){
+
+            if(statusHistories[cindex].role_id === userInfo.value.role){
+              return true
+            }
+          } else if (current.attrs.subject.object_type === "DIRECT"){
+            if((statusHistories[cindex].emp_id && statusHistories[cindex].emp_id === userInfo.value.emp_id) || (statusHistories[cindex].user_id && statusHistories[cindex].user_id === userInfo.value.id)){
+              return true
+            }
           }
+
+
+        } else {
+
         }
         return false
       }
@@ -882,7 +899,7 @@ const setPermission =(current, statusHistories) => {
 
         if (current.attrs.subject.subject_type === 'CREATOR') {
 
-          if (props.model.form['emp_id'] === userInfo.value.emp_id || props.model.form['user_id'] === userInfo.value.id) {
+          if ((props.model.form['emp_id'] && props.model.form['emp_id'] === userInfo.value.emp_id) || (props.model.form['user_id'] && props.model.form['user_id'] === userInfo.value.id)) {
             return true;
           } else {
             if(current.attrs.subject.object_type === "TRANSFER" || current.attrs.subject.object_type === "RECEIVE") {
@@ -893,12 +910,12 @@ const setPermission =(current, statusHistories) => {
         } else {
 
           if(current.attrs.subject.object_type === "TRANSFER" || current.attrs.subject.object_type === "RECEIVE") {
-           return isActionSubject(statusHistories, current)
+            return isActionSubject(statusHistories, current)
           } else {
 
 
 
-            if (current.attrs.subject.emp_id === userInfo.value.emp_id || current.attrs.subject.user_id === userInfo.value.id) {
+            if ((current.attrs.subject.emp_id && current.attrs.subject.emp_id === userInfo.value.emp_id) || (current.attrs.subject.user_id && current.attrs.subject.user_id === userInfo.value.id)) {
               return true
             } else {
               return false
@@ -929,7 +946,7 @@ const iReadOnly =(current, statusHistories) => {
       if(props.model.form['emp_id'] === userInfo.value.emp_id && current.attrs.subject.object_type !== 'END'){
         if(current.attrs.subject.object_type !== 'START' && current.attrs.subject.object_type !== 'RE_CREATE'){
           if(current.attrs.subject){
-            if(current.attrs.subject.emp_id === userInfo.value.emp_id){
+            if(current.attrs.subject.emp_id && current.attrs.subject.emp_id === userInfo.value.emp_id){
 
               return false
             }
@@ -951,7 +968,7 @@ const iReadOnly =(current, statusHistories) => {
 
 onMounted(() => {
 
-    initStatus();
+  initStatus();
 
 })
 
