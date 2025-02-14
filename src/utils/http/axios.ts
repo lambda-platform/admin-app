@@ -26,7 +26,11 @@ const baseService = axios.create({
 baseService.interceptors.request.use(
   config => {
     globalLoading.value = true
+    const token =  localStorage.getItem('token')
 
+    if (token) {
+      config.headers['Authorization'] = "Bearer "+ token
+    }
 
     config.headers['Content-Type'] = ContentType[config.data instanceof FormData ? 'formData' : 'json']
     return config
