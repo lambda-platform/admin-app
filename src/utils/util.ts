@@ -1,8 +1,8 @@
 import ls from '~/utils/Storage'
 import {  PERMISSIONS, USER_INFO, MENU_NAV, MENU, KRUDS, MENU_LIST } from '~/store/mutation-types'
-
+import axios from "~/plugins/core/axios";
 export function clearUserInfo() {
-
+  axios.post("/auth/logout")
   ls.remove(PERMISSIONS)
   ls.remove(MENU)
   ls.remove(KRUDS)

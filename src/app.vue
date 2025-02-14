@@ -42,7 +42,6 @@ import {setupI18n} from '@lambda-platform/lambda-vue/src/locale';
 import {primaryColor, darkMode} from '~/store/useSiteSettings';
 import {theme} from 'ant-design-vue';
 import {setUserPermissions} from '~/authencation/auth';
-import {setToken} from "~/plugins/core/axios";
 const {darkAlgorithm, compactAlgorithm} = theme;
 
 // Vuex store and i18n
@@ -88,9 +87,6 @@ const initialize = async () => {
 
 
     if (ls.get(USER_INFO)) {
-
-
-      setToken(localStorage.getItem('token'));
 
 
       await setUserPermissions(store, res.notify.firebaseConfig, ls.get(USER_INFO));

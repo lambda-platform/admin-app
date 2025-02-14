@@ -8,6 +8,13 @@ export function initAxios() {
   axios.defaults.baseURL = base_url;
   axios.defaults.withCredentials = true;
 
+  if(process.dev) {
+
+    const token =  localStorage.getItem('token')
+    if (token) {
+      setToken(token)
+    }
+  }
 
 }
 export function setToken(token) {
