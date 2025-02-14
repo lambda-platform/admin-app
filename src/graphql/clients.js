@@ -33,8 +33,8 @@ export function setAuthToken(token) {
 
 
 export function  initClient() {
-
-  // if(token){
-  //   setAuthToken(token)
-  // }
+  const token =  localStorage.getItem('token')
+  if(token){
+    setAuthToken(token)
+  }
 }

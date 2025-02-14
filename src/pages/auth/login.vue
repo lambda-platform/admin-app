@@ -32,7 +32,8 @@ async function onSuccess(data) {
     isSuccess.value = true
 
     if(process.dev){
-      setToken(data.token)
+      setAuthToken(data.token);
+      setToken(data.token);
       localStorage.setItem('token', data.token);
     }
     if (data.oauth) {
