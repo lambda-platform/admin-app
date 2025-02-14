@@ -1,8 +1,5 @@
 import axios, { AxiosResponse } from 'axios'
 import { message } from 'ant-design-vue'
-import {  USER_INFO } from '~/store/mutation-types'
-
-import ls from '~/utils/Storage'
 import { useRouter } from 'vue-router'
 import { globalLoading } from '~/store/reactiveState'
 
