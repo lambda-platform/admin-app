@@ -18,6 +18,7 @@ import {
 } from '~/store/mutation-types'
 import ls from '~/utils/Storage'
 import { setToken } from '~/plugins/core/axios'
+import { setAuthToken } from '~/graphql/clients'
 import { setUserPermissions } from '~/authencation/auth'
 import { useRouter } from 'vue-router'
 import {useStore} from "vuex";
