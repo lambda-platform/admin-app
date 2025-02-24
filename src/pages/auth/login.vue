@@ -55,17 +55,16 @@ function renderTheme() {
   return defineAsyncComponent(() => import(`../../../node_modules/@lambda-platform/lambda-vue/src/modules/agent/views/theme/${lambda.value.theme}/auth/login.vue`))
 }
 
-onMounted(() => {
+onMounted(async () => {
   if (ls.get(USER_INFO)) {
-    axios.get('/user-permissions')
-      .then(({ data }) => {
-        if (data.status) {
-          router.replace('/admin')
-        }
-      })
-      .catch(e => {
-        console.log(e)
-      })
+    try {
+      await setUserPermissions(store, window.init ? window.init.firebase_config : {}, ls.get(USER_INFO))
+      router.replace('/admin');
+
+    } catch (error) {
+
+      console.error(error);
+    }
   }
 })
 </script>
