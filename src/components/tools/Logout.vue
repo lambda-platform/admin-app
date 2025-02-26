@@ -37,7 +37,6 @@ export default defineComponent({
         onOk: () => {
           userLogout().then((res) => {
             clearUserInfo()
-            router.push({ path: '/auth/login' })
           })
         },
         onCancel () {
