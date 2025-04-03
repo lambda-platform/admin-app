@@ -26,7 +26,14 @@ query GET_WORK_FLOW_BY_CATEGORY($filters: [filter], $limit: Int, $sorts: [sort])
     created_at
     category_id
     workflow_voting_people {
-      user_id
+      subject_type,
+      user_id,
+      role_id,
+      org_role_id,
+      org_id,
+      struct_id,
+      job_id,
+      emp_id
     }
   }
 }`
@@ -42,7 +49,14 @@ query GET_WORK_FLOW_BY_ID($filters: [filter]) {
     created_at
     category_id
     workflow_voting_people {
-      user_id
+      subject_type,
+      user_id,
+      role_id,
+      org_role_id,
+      org_id,
+      struct_id,
+      job_id,
+      emp_id
     }
   }
 }`
