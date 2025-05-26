@@ -43,6 +43,7 @@ async function onSuccess(data) {
       if (data.data.role === 1) {
         window.location.replace(data.path)
       } else {
+        // await setUserPermissionsWithOrg(store, window.init ? window.init.firebase_config : {}, null, null)
         await setUserPermissions(store, window.init ? window.init.firebase_config : {}, data.data)
         router.replace('/admin')
       }

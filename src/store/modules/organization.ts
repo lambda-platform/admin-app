@@ -7,6 +7,8 @@ export const organization ={
     organization: ls.get(ORGANIZATION) ?? {
       org_id:null,
       organization:"",
+      org_type_id:0,
+      access:"",
       org_avatar:"",
     },
     userExtraRoles: ls.get(USER_EXTRA_ROLES) ?? [],
