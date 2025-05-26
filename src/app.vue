@@ -83,8 +83,8 @@ const initialize = async () => {
     }
 
     if (ls.get(USER_INFO)) {
-      // await setUserPermissions(store, res.notify.firebaseConfig, ls.get(USER_INFO));
-      await setUserPermissionsWithOrg(store, res.notify.firebaseConfig, selectedOrg !== null ? selectedOrg.org_id : null, userExtraRole !== null ? userExtraRole.id : null);
+      await setUserPermissions(store, res.notify.firebaseConfig, ls.get(USER_INFO));
+      // await setUserPermissionsWithOrg(store, res.notify.firebaseConfig, selectedOrg !== null ? selectedOrg.org_id : null, userExtraRole !== null ? userExtraRole.id : null);
 
 
       loading.value = false;
