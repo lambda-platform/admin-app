@@ -1,7 +1,7 @@
 import ls from '~/utils/Storage'
 import {  PERMISSIONS, USER_INFO, MENU_NAV, MENU, KRUDS, MENU_LIST } from '~/store/mutation-types'
 import axios from "~/plugins/core/axios";
-export function clearUserInfo() {
+export function clearUserInfo(redirect = false) {
   axios.post("/auth/logout")
   ls.remove(PERMISSIONS)
   ls.remove(MENU)
@@ -9,7 +9,7 @@ export function clearUserInfo() {
   ls.remove(USER_INFO)
   ls.remove(MENU_NAV)
   ls.remove(MENU_LIST)
-  if (window.location.pathname !== '/auth/login') {
+  if (window.location.pathname !== '/auth/login' || redirect) {
     window.location.replace('/auth/login')
   }
 }

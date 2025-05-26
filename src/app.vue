@@ -61,7 +61,7 @@ const algorithm = [darkAlgorithm, compactAlgorithm]
 
 
 // Methods
-const redirectToLogin = () => {
+const clearAndLoadFalse = () => {
   clearUserInfo();
   loading.value = false;
 };
@@ -94,12 +94,12 @@ const initialize = async () => {
       loading.value = false;
 
     } else {
-      redirectToLogin();
+      clearAndLoadFalse();
     }
   } catch (error) {
 
     console.error(error);
-    redirectToLogin();
+    clearAndLoadFalse();
   }
 };
 

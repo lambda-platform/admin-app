@@ -11,7 +11,6 @@ definePageMeta({
 });
 
 const store = useStore();
-import axios from 'axios'
 import {
 
   LAMBDA_CONFIG, USER_INFO

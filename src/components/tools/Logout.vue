@@ -36,7 +36,7 @@ export default defineComponent({
         cancelText: proxy.$t('appAdmin.no'),
         onOk: () => {
           userLogout().then((res) => {
-            clearUserInfo()
+            clearUserInfo(true)
           })
         },
         onCancel () {
