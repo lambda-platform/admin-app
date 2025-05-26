@@ -9,9 +9,12 @@ export function clearUserInfo(redirect = false) {
   ls.remove(USER_INFO)
   ls.remove(MENU_NAV)
   ls.remove(MENU_LIST)
-  if (window.location.pathname !== '/auth/login' || redirect) {
-    window.location.replace('/auth/login')
+  if(redirect){
+    if (window.location.pathname !== '/auth/login') {
+      window.location.replace('/auth/login')
+    }
   }
+
 }
 
 export function timeFix() {
