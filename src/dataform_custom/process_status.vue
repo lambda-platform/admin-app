@@ -836,21 +836,13 @@ function isActionSubject(statusHistories, current){
   }
 }
 const setPermission =(current, statusHistories) => {
-
   if (current) {
-
-
     if (current.attrs.subject.object_type !== 'END' && current.attrs.subject.object_type !== 'VOTE' && !current.attrs.subject.is_read_only) {
-
-
-
       if ((props.model.form['emp_id'] && props.model.form['emp_id'] === userInfo.value.emp_id) ||  (props.model.form['user_id'] &&  props.model.form['user_id'] === userInfo.value.id)) {
-
         if (current.attrs.subject.object_type === 'START' || current.attrs.subject.object_type === 'RE_CREATE') {
           return true
         } else {
           let cindex = statusHistories.findIndex(h => h.status_id === current.id);
-
           if(cindex >=0){
             if((statusHistories[cindex].emp_id && statusHistories[cindex].emp_id === userInfo.value.emp_id) || (statusHistories[cindex].user_id && statusHistories[cindex].user_id === userInfo.value.id)){
               return true
@@ -860,27 +852,21 @@ const setPermission =(current, statusHistories) => {
         }
       } else {
         let cindex = statusHistories.findIndex(h => h.status_id === current.id);
-
         if(cindex >=0){
-
           if(current.attrs.subject.subject_type === "TO_ROLE"){
-
             if(statusHistories[cindex].role_id === userInfo.value.role){
               return true
             }
-          } else if (current.attrs.subject.object_type === "DIRECT"){
+          } else if (current.attrs.subject.subject_type === "DIRECT"){
             if((statusHistories[cindex].emp_id && statusHistories[cindex].emp_id === userInfo.value.emp_id) || (statusHistories[cindex].user_id && statusHistories[cindex].user_id === userInfo.value.id)){
               return true
             }
+          } else if (current.attrs.subject.subject_type === "ANY_EMP"){
+            return true
           }
-
-
-        } else {
-
         }
         return false
       }
-
     } else {
       if (current.attrs.subject.object_type === 'VOTE') {
         if(withEndVote.value){
@@ -894,11 +880,8 @@ const setPermission =(current, statusHistories) => {
         } else {
           return false
         }
-
       } else {
-
         if (current.attrs.subject.subject_type === 'CREATOR') {
-
           if ((props.model.form['emp_id'] && props.model.form['emp_id'] === userInfo.value.emp_id) || (props.model.form['user_id'] && props.model.form['user_id'] === userInfo.value.id)) {
             return true;
           } else {
@@ -908,30 +891,17 @@ const setPermission =(current, statusHistories) => {
             return false
           }
         } else {
-
           if(current.attrs.subject.object_type === "TRANSFER" || current.attrs.subject.object_type === "RECEIVE") {
             return isActionSubject(statusHistories, current)
           } else {
-
-
-
-            if ((current.attrs.subject.emp_id && current.attrs.subject.emp_id === userInfo.value.emp_id) || (current.attrs.subject.user_id && current.attrs.subject.user_id === userInfo.value.id)) {
-              return true
-            } else {
-              return false
-            }
+            return (current.attrs.subject.emp_id && current.attrs.subject.emp_id === userInfo.value.emp_id) || (current.attrs.subject.user_id && current.attrs.subject.user_id === userInfo.value.id);
           }
-
         }
-        return false
       }
-
     }
   } else {
     return false;
   }
-
-
 }
 
 const iReadOnly =(current, statusHistories) => {
