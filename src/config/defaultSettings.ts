@@ -10,7 +10,7 @@
  */
 export default {
   navTheme: 'light', // theme for nav menu
-  primaryColor:  '#0366cc',
+  primaryColor:  '#0452a3',
   layout: 'sidemenu', // nav menu position: `sidemenu` or `topmenu`
   contentWidth: 'Fluid', // layout of content: `Fluid` or `Fixed`, only works when layout is topmenu
   fixedHeader: false, // sticky header

@@ -2,7 +2,7 @@ import { resolve } from "path";
 import { defineNuxtConfig } from "nuxt/config";
 import { createSvgIconsPlugin }from 'vite-plugin-svg-icons';
 import { visualizer } from 'rollup-plugin-visualizer';
-
+import tailwindcss from '@tailwindcss/vite'
 
 const pathResolve = (pathStr: string) => {
   return resolve(__dirname, pathStr);
@@ -67,8 +67,9 @@ export default defineNuxtConfig({
 
   css: [
     '~/assets/styles/components/loading.css',
-    '@/assets/styles/tailwind.css',
     "leaflet-draw/dist/leaflet.draw.css",
+    '@/assets/styles/ant-fix.css',
+    '@/assets/styles/tailwind.css',
     "@clientio/rappid/rappid.css",
     '@lambda-platform/lambda-vue/src/modules/chart/scss/chart.scss',
     '@lambda-platform/lambda-vue/src/modules/datagrid/scss/style.scss',
@@ -79,16 +80,17 @@ export default defineNuxtConfig({
     '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_balham.scss',
     '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_dark.scss',
     '@lambda-platform/lambda-vue/src/modules/krud/scss/style.scss',
+
   ],
 
   vite:{
     envPrefix:"LAMBDA_",
     plugins: [
-      // splitVendorChunkPlugin(),
       createSvgIconsPlugin({
         iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
         symbolId: 'icon-[dir]-[name]',
       }),
+      tailwindcss(),
     ],
     resolve: {
       alias: viteAlies,
@@ -101,7 +103,6 @@ export default defineNuxtConfig({
         less: {
           javascriptEnabled: true,
         },
-
       },
     },
     define: {
@@ -174,7 +175,6 @@ export default defineNuxtConfig({
 
   postcss: {
     plugins:{
-      tailwindcss: {},
       autoprefixer: {},
     }
   },

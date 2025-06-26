@@ -9,7 +9,7 @@
 
 
       border-radius: 0.5rem;
-      color: $black-second-color;
+      color: $primary-color;
       display: flex;
       flex-direction: column;
       min-width: 1px;
@@ -47,7 +47,7 @@
         height: 30px;
         margin-bottom: 10px;
         [fill]:not([fill="none"])  {
-          fill:  $primary-color-lighten;
+          fill:  $primary-color;
         }
       }
     }
@@ -65,7 +65,7 @@
         color: $white;
         &:hover{
           background: $primary-color-darkest;
-          color: $primary-color ;
+          color: $white ;
 
           .svg-icon{
             [fill]:not([fill="none"])  {

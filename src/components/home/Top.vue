@@ -11,10 +11,10 @@
       </h1>
       <p class="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700 dark:text-slate-400">Хөгжүүлэлтээ LAMBDA-тай хамт илүү хурдан , илүү үр бүтээлтэй гүйцэтгэж, хэрэглэгчийн хэрэгцээ, шаардлагыг хугацаанд нь 100% биелүүлээрэй.</p>
       <div class="mt-10 flex justify-center gap-x-6"><a
-        class="group inline-flex items-center justify-center rounded-full py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-slate-900 text-white hover:bg-slate-700 hover:text-slate-100 active:bg-slate-800 active:text-slate-300 focus-visible:outline-slate-900"
+        class="group inline-flex items-center justify-center rounded-full py-2 px-4 text-sm font-semibold focus:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-2 bg-slate-900 text-white hover:bg-slate-700 hover:text-slate-100 active:bg-slate-800 active:text-slate-300 focus-visible:outline-slate-900"
         href="/auth/login"
       >Нэвтрэх</a><a
-        class="group inline-flex ring-1 items-center justify-center rounded-full py-2 px-4 text-sm focus:outline-none ring-slate-200 text-slate-700 hover:text-slate-900 hover:ring-slate-300 active:bg-slate-100 active:text-slate-600 focus-visible:outline-blue-600 focus-visible:ring-slate-300"
+        class="group inline-flex ring-1 items-center justify-center rounded-full py-2 px-4 text-sm focus:outline-hidden ring-slate-200 text-slate-700 hover:text-slate-900 hover:ring-slate-300 active:bg-slate-100 active:text-slate-600 focus-visible:outline-blue-600 focus-visible:ring-slate-300"
         href="https://www.youtube.com/watch?v=78WnqvXEJzI"
       >
         <svg aria-hidden="true" class="h-3 w-3 flex-none fill-blue-600 group-active:fill-current">

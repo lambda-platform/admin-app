@@ -6,8 +6,8 @@
 
           token: {
             colorPrimary: primaryColor,
- colorBgBase:darkMode ? '#030305' : undefined,
- colorText:!darkMode ? 'rgba(0,0,0,0.8)': undefined,
+             colorBgBase:darkMode ? '#030305' : undefined,
+             colorText:!darkMode ? 'rgba(0,0,0,0.8)': undefined,
 
           },
     }"

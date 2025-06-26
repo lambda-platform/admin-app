@@ -1,6 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-a {
-  color: var(--ant-primary-color);;
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: var(--primary-color); /* Example: A blue color */
+  --color-secondary: var(--secondary-color); /* Example: A green color */
+  --font-sans: 'Roboto', 'Inter', 'sans-serif', 'ui-sans-serif';
+  --font-serif: 'Roboto', 'Inter', 'sans-serif', 'ui-sans-serif';
+  --font-mono:'Roboto', 'Inter', 'sans-serif', 'ui-sans-serif';
+  --font-poppins: 'Roboto', 'Inter', 'sans-serif', 'ui-sans-serif';
 }

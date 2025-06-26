@@ -173,7 +173,6 @@ export default defineComponent({
     border: 0;
     text-align: center;
     cursor: pointer;
-    background-color: transparent;
     font-weight: 700;
     outline: none;
     margin-right: 5px;

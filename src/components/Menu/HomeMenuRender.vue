@@ -1,32 +1,34 @@
 <template>
-  <a class="card p-4 sm:p-5 shadow-md bg-white dark:bg-slate-900 bg-white dark:bg-slate-900 "
-     v-if="can(item) && !hasItems(item) && item.link_to === 'link'"
-     :href="item.url"
-     target="_blank"
-  >
-    <i v-if="item.icon" :class="item.icon"></i>
-    <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
-    <span>{{ getTitleHome(item) }}</span>
-    <p v-if="children" class="module-menus">
-      <span v-for="(child, index) in children" :key="child.index"><span v-if="index >= 1">, </span>{{getTitleHome(child, true)}}</span>
-    </p>
-  </a>
-  <NuxtLink :to="item.url" v-else-if="can(item) && !hasItems(item) && item.link_to === 'router-link'" class="card p-4 sm:p-5 shadow-md bg-white dark:bg-slate-900 bg-white dark:bg-slate-900 ">
-    <i v-if="item.icon" :class="item.icon"></i>
-    <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
-    <span>{{ getTitleHome(item) }}</span>
-    <p v-if="children" class="module-menus">
-      <span v-for="(child, index) in children" :key="child.index"><span v-if="index >= 1">, </span>{{getTitleHome(child, true)}}</span>
-    </p>
-  </NuxtLink>
-  <NuxtLink :to="`/admin/p/${item.id}`" class="card p-4 sm:p-5 shadow-md bg-white dark:bg-slate-900 bg-white dark:bg-slate-900 " v-else-if="can(item) && !hasItems(item) && item.link_to !== 'divider'">
-    <i v-if="item.icon" :class="item.icon"></i>
-    <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
-    <span>{{ getTitleHome(item) }}</span>
-    <p v-if="children" class="module-menus">
-      <span v-for="(child, index) in children" :key="index"><span v-if="index >= 1">, </span>{{getTitleHome(child, true)}}</span>
-    </p>
-  </NuxtLink>
+  <div class="shadow-md bg-white dark:bg-slate-900 card home-menu" v-if="can(item) && !hasItems(item)">
+    <a class="text-primary p-4 sm:p-5 "
+       v-if="can(item) && !hasItems(item) && item.link_to === 'link'"
+       :href="item.url"
+       target="_blank"
+    >
+      <i v-if="item.icon" :class="item.icon"></i>
+      <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
+      <span>{{ getTitleHome(item) }}</span>
+      <p v-if="children" class="module-menus">
+        <span v-for="(child, index) in children" :key="child.index"><span v-if="index >= 1">, </span>{{getTitleHome(child, true)}}</span>
+      </p>
+    </a>
+    <NuxtLink :to="item.url" v-else-if="can(item) && !hasItems(item) && item.link_to === 'router-link'" class="p-4 sm:p-5">
+      <i v-if="item.icon" :class="item.icon"></i>
+      <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
+      <span>{{ getTitleHome(item) }}</span>
+      <p v-if="children" class="module-menus">
+        <span v-for="(child, index) in children" :key="child.index"><span v-if="index >= 1">, </span>{{getTitleHome(child, true)}}</span>
+      </p>
+    </NuxtLink>
+    <NuxtLink :to="`/admin/p/${item.id}`" class="p-4 sm:p-5" v-else-if="can(item) && !hasItems(item) && item.link_to !== 'divider'">
+      <i v-if="item.icon" :class="item.icon"></i>
+      <inline-svg class="svg-icon" v-if="item.svg" :src="item.svg"/>
+      <span>{{ getTitleHome(item) }}</span>
+      <p v-if="children" class="module-menus">
+        <span v-for="(child, index) in children" :key="index"><span v-if="index >= 1">, </span>{{getTitleHome(child, true)}}</span>
+      </p>
+    </NuxtLink>
+  </div>
   <HomeMenuRender v-if="can(item) && hasItems(item)" :title="getTitleHome(item)" :children="item.children" :item="findActivehild(item)" :cruds="cruds" :permissions="permissions"   />
 
 </template>

@@ -9,7 +9,7 @@
   >
 
     <logo :showTitle="!isDesktop ? false : layoutMode === 'sidemenu' && layoutMode !== 'levelmenu' && !collapsed"/>
-    <div class="btn btn-icon inline side-toggle rounded-sm shadow-sm" @click="toggle" v-if="layoutMode === 'sidemenu'">
+    <div class="btn btn-icon inline side-toggle rounded-sm shadow-xs" @click="toggle" v-if="layoutMode === 'sidemenu'">
       <span class="svg-icon">
          <inline-svg v-if="collapsed" src="/assets/icons/duotune/arrows/arr080.svg"/>
          <inline-svg v-else           src="/assets/icons/duotune/arrows/arr079.svg"/>
