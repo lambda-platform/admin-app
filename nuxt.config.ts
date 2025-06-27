@@ -68,7 +68,6 @@ export default defineNuxtConfig({
   css: [
     '~/assets/styles/components/loading.css',
     "leaflet-draw/dist/leaflet.draw.css",
-    '@/assets/styles/ant-fix.css',
     '@/assets/styles/tailwind.css',
     "@clientio/rappid/rappid.css",
     '@lambda-platform/lambda-vue/src/modules/chart/scss/chart.scss',
