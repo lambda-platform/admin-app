@@ -23,6 +23,7 @@
 
           <div class="border rounded p-3 mt-2" style="border-color: #0b4da3" v-if="item.signature && item.signature !== 'null' && !smallsignature">
             <table style="width:100%; margin: 0; padding: 0; color: #0b4da3">
+              <tbody>
               <tr>
                 <td style="text-align: left; font-family: Arial; font-size: 12px; vertical-align: middle">
                   {{ item.signature.signAction }}: {{ item.signature.job_name }} <br>{{ item.signature.struct }}
@@ -45,10 +46,12 @@
 
                 </td>
               </tr>
+              </tbody>
             </table>
           </div>
           <div class="border rounded p-3 mt-2" style="border-color: #0b4da3" v-if="item.signature && item.signature !== 'null' && smallsignature">
             <table style="width:100%; margin: 0; padding: 0; color: #0b4da3">
+              <tbody>
               <tr>
                 <td style="text-align: left; font-family: Arial; font-size: 12px; vertical-align: middle">
                   {{ item.signature.signAction }}: {{ item.signature.job_name }} <br>{{ item.signature.struct }}
@@ -74,10 +77,12 @@
 
                 </td>
               </tr>
+              </tbody>
             </table>
           </div>
           <div class="" style="" v-else-if="item.status_type !== 'VOTE' && item.emp">
             <table style="width:100%; margin: 0; padding: 0; ">
+              <tbody>
               <tr>
                 <td style="text-align: left; font-family: Arial; font-size: 12px; vertical-align: middle"
                     class="text-gray-700">
@@ -86,6 +91,7 @@
                 </td>
 
               </tr>
+              </tbody>
             </table>
           </div>
 
@@ -97,41 +103,44 @@
               <div class="border rounded p-3 mt-2" style="border-color: #0b4da3"
                    >
                 <table style="width:100%; margin: 0; padding: 0; color: #0b4da3">
-                  <tr>
-                    <td style="text-align: left; font-family: Arial; font-size: 12px; vertical-align: middle">
-                      {{ vote.approve ? t("process.Supported") : vote.recreate ?  t("process.ToRecreate") : vote.voted === 0 ? '' :t("process.Unsupported")  }}:
-                      <br>{{vote.description}}
-                    </td>
-                    <td
-                      style="text-align: center; font-family: Arial; font-size: 12px; padding-left: 10px; vertical-align: middle">
-                      <div v-if="vote.signature_image">
-                        <span v-if="vote.signature_image.type === 'text'">{{ vote.signature_image.signature }}<br/></span>
-                        <img v-else-if="item.signature.signature !== null" class="h-10 mx-auto"
-                             :src="`${vote.signature_image.type === 'draw' ? '' : ''}${vote.signature_image.signature}`"
-                             alt="">
+                 <tbody>
+                 <tr>
+                   <td style="text-align: left; font-family: Arial; font-size: 12px; vertical-align: middle">
+                     {{ vote.approve ? t("process.Supported") : vote.recreate ?  t("process.ToRecreate") : vote.voted === 0 ? '' :t("process.Unsupported")  }}:
+                     <br>{{vote.description}}
+                   </td>
+                   <td
+                     style="text-align: center; font-family: Arial; font-size: 12px; padding-left: 10px; vertical-align: middle">
+                     <div v-if="vote.signature_image">
+                       <span v-if="vote.signature_image.type === 'text'">{{ vote.signature_image.signature }}<br/></span>
+                       <img v-else-if="item.signature.signature !== null" class="h-10 mx-auto"
+                            :src="`${vote.signature_image.type === 'draw' ? '' : ''}${vote.signature_image.signature}`"
+                            alt="">
 
-                        <span v-if="vote.signature_image.type === 'text'">{{ t("process.ESignedDate") }}: <br>{{
-                            $dateTime(vote.signature_date)
-                          }}</span>
-                        <span
-                          v-else>{{ t("process.ESigned") }}: {{ vote.signature_image.lastname.charAt(0).toUpperCase() }}.{{ vote.signature_image.firstname }} <br/>  Огноо цаг:: {{
-                            $dateTime(vote.signature_date)
-                          }}</span>
-                      </div>
+                       <span v-if="vote.signature_image.type === 'text'">{{ t("process.ESignedDate") }}: <br>{{
+                           $dateTime(vote.signature_date)
+                         }}</span>
+                       <span
+                         v-else>{{ t("process.ESigned") }}: {{ vote.signature_image.lastname.charAt(0).toUpperCase() }}.{{ vote.signature_image.firstname }} <br/>  Огноо цаг:: {{
+                           $dateTime(vote.signature_date)
+                         }}</span>
+                     </div>
 
-                      <div v-else>
+                     <div v-else>
                                 <span
                                 > {{ vote.voted === 1 ? $t("process.voted") + ':': '' }}  {{ vote.emp.LNAME.charAt(0).toUpperCase() }}.{{ vote.emp.FNAME }} <br/>  Огноо цаг:: {{
                                     $dateTime(vote.signature_date)
                                   }}</span>
-                      </div>
-                    </td>
-                  </tr>
+                     </div>
+                   </td>
+                 </tr>
+                 </tbody>
                 </table>
               </div>
               <div class="border rounded p-3 mt-2" style="border-color: #0b4da3"
                    v-if="vote.signature_image && smallsignature">
                 <table style="width:100%; margin: 0; padding: 0; color: #0b4da3">
+                  <tbody>
                   <tr>
                     <td style="text-align: left; font-family: Arial; font-size: 12px; vertical-align: middle">
                       {{ vote.signature_image.signAction }}: {{ vote.signature_image.job_name }}
@@ -158,6 +167,7 @@
 
                     </td>
                   </tr>
+                  </tbody>
                 </table>
               </div>
             </div>

@@ -10,3 +10,10 @@
   --font-mono:'Roboto', 'Inter', 'sans-serif', 'ui-sans-serif';
   --font-poppins: 'Roboto', 'Inter', 'sans-serif', 'ui-sans-serif';
 }
+
+.text-white {
+  color: var(--color-white) !important;
+}
+.bg-white {
+  background-color: var(--color-white) !important;
+}

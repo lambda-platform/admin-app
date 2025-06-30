@@ -1,10 +1,10 @@
 import { dia } from '@clientio/rappid/rappid';
 
 import RappidService from '../../services/rappid.service';
-import { Controller } from '../controller';
+
 import * as actions from '../actions';
 
-export class KeyboardController extends Controller {
+export class KeyboardController  {
 
     startListening() {
 

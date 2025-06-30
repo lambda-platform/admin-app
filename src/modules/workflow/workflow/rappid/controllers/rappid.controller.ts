@@ -1,13 +1,13 @@
 import { dia, shapes, util } from '@clientio/rappid/rappid';
 
 import RappidService from '../../services/rappid.service';
-import { Controller, SharedEvents } from '../controller';
+import {  SharedEvents } from '../controller';
 import * as actions from '../actions';
 import { ZOOM_MIN, ZOOM_MAX, ZOOM_STEP } from '../../theme';
 
 const DEBOUNCE_TIME_MS = 500;
 
-export class RappidController extends Controller {
+export class RappidController  {
 
     startListening() {
 

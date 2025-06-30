@@ -1,4 +1,3 @@
-import { ObjectDirective } from 'vue';
 import { SharedEvents } from '../rappid/controller';
 
 const BATCH_NAME = 'inspector-input';
