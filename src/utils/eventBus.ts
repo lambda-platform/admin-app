@@ -17,12 +17,6 @@ emitter.once = (name, data) => {
   emitter.on(name, data)
 }
 
-// 也可以使用class的方法重写mitt,让构造函数的prototype=mitt()然后再new构造函数
-// const mitter=function(){
-//   this.clearKey = function () { }
-//   this.once = function () { }
-// }
-// mitter.prototype=mitt();
-// mitter.prototype.constructor=mitter;
+
 
 export default emitter
