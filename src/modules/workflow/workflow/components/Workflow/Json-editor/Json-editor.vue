@@ -7,7 +7,7 @@
 import { ref, watch, onMounted } from 'vue';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { SharedEvents } from '../../../rappid/controller';
+import { SharedEvents } from '../../../rappid/shared-events';
 
 const DEBOUNCE_TIME_MS = 500;
 

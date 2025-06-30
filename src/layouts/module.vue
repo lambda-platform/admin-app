@@ -48,7 +48,7 @@
 
 import { defineComponent, ref, computed, watch, onMounted, nextTick } from 'vue'
 import { triggerWindowResizeEvent, isMobile, isDesktop } from '~/utils/device'
-import emitter from '~/utils/eventBus'
+
 import MultiTab from '~/components/MultiTab/index.vue'
 import SideMenu from '~/components/Menu/SideMenu.vue'
 import GlobalHeader from '~/components/GlobalHeader/index.vue'

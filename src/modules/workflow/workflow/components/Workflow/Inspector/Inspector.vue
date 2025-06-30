@@ -19,7 +19,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue';
 import MessageInspector from './Message-inspector/Message-inspector.vue';
 import LinkInspector from './Link-inspector/Link-inspector.vue';
 import LabelInspector from './Label-inspector/Label-inspector.vue';
-import { SharedEvents } from '../../../rappid/controller';
+import { SharedEvents } from '../../../rappid/shared-events';
 import { ShapeTypesEnum  as shapeTypesEnum } from '../../../rappid/shapes/app.shapes';
 
 const eventBusService = getCurrentInstance().appContext.config.globalProperties.$eventBusService;

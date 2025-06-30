@@ -1,4 +1,4 @@
-import { SharedEvents } from '../rappid/controller';
+import { SharedEvents } from '../rappid/shared-events';
 
 const BATCH_NAME = 'inspector-input';
 

@@ -1,7 +1,7 @@
 import { dia, ui, shapes } from '@clientio/rappid/rappid';
 
 import RappidService from '../services/rappid.service';
-import { SharedEvents } from './controller';
+import { SharedEvents } from './shared-events';
 import { addCellTools } from './tools';
 import { ZOOM_MAX, ZOOM_MIN, ZOOM_STEP } from '../theme';
 import { stencilConfig } from './config/stencil.config';

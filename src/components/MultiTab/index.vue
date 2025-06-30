@@ -71,10 +71,7 @@
 <script lang="ts">
 import { defineComponent, ref, reactive, watch, getCurrentInstance, type ComputedRef, computed } from 'vue'
 import { useRouter, type RouteLocationNormalizedLoaded } from 'vue-router'
-import events from '~/utils/eventBus'
-import { message } from 'ant-design-vue'
-import { getItemPath } from '~/utils/menu'
-import {i18n} from '~/locale'
+
 import { SAVED_TABS } from '~/store/mutation-types'
 import ls from '~/utils/Storage'
 
@@ -100,34 +97,7 @@ export default defineComponent({
     }
 
     ;(function created () {
-      // #region
-      events.once('multiTab.open', (val) => {
-        if (!val) {
-          throw new Error(`multi-tab: open tab ${val} err`)
-        }
-        activeKey.value = val
-      })
-      events.once('multiTab.close', (val) => {
-        if (!val) {
-          closeSelf(activeKey.value)
-          return
-        }
-        closeSelf(val)
-      })
-      events.once('multiTab.rename', ({
-        key,
-        name
-      }) => {
 
-        try {
-          const item = pages.find((item) => item.path === key)
-          item!.meta.customTitle = name
-          f()
-        } catch (e) {
-          console.error(e)
-        }
-      })
-      // #endregion
 
       if (saved_tabs.length >= 1) {
         let fullPath = router.currentRoute.value.path

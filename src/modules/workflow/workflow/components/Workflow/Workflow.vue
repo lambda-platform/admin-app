@@ -31,7 +31,7 @@ import {Subscription} from 'rxjs';
 import RappidService from "../../services/rappid.service";
 import JsonEditor from './Json-editor/Json-editor.vue';
 import Inspector from './Inspector/Inspector.vue';
-import {SharedEvents} from '../../rappid/controller';
+import {SharedEvents} from '../../rappid/shared-events';
 import {importGraphFromJSON, loadStencilShapes, zoomToFit} from '../../rappid/actions';
 import {STENCIL_WIDTH} from '../../theme';
 import exampleGraphJSON from '../../rappid/config/example-graph.json';

@@ -1,4 +1,4 @@
-import tinycolor, { Instance } from "tinycolor2";
+import tinycolor from "tinycolor2";
 import { isDef, isNull } from "@aesoper/normal-utils";
 import debounce from "lodash.debounce";
 
@@ -88,7 +88,7 @@ export type ColorFormat =
   | "hsv";
 
 export class Color {
-  protected instance: Instance = tinycolor("#000000");
+  protected instance = tinycolor("#000000");
 
   parseColor(data: any, oldHue?: number): ColorAttrs {
     if (isDef(data) || isNull(data)) {
