@@ -69,7 +69,6 @@ export default defineNuxtConfig({
   css: [
     "~/assets/styles/components/loading.css",
     "leaflet-draw/dist/leaflet.draw.css",
-    "@clientio/rappid/rappid.css",
     "@lambda-platform/lambda-vue/src/modules/chart/scss/chart.scss",
     "@lambda-platform/lambda-vue/src/modules/datagrid/scss/style.scss",
     "@lambda-platform/lambda-vue/src/modules/dataform/scss/style.scss",
