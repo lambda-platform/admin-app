@@ -37,15 +37,23 @@ export const customElementList = [
     component: defineAsyncComponent(() => import('./GIS/MapWithGeometry.vue')),
   },
   {
-    element: 'workflow',
-    component: defineAsyncComponent(() => import('./workflow.vue')),
+    element: "workflow",
+    component: defineAsyncComponent(() =>
+      import("../modules/workflow/form_grid_elements/form/workflow.vue")
+    ),
   },
   {
-    element: 'process_status',
-    component: defineAsyncComponent(() => import('./process_status.vue')),
+    element: "process_status",
+    component: defineAsyncComponent(() =>
+      import("~/modules/workflow/form_grid_elements/form/process_status.vue")
+    ),
   },
   {
-    element: 'process_status_changer',
-    component: defineAsyncComponent(() => import('./process_status_changer.vue')),
+    element: "process_status_changer",
+    component: defineAsyncComponent(() =>
+      import(
+        "~/modules/workflow/form_grid_elements/form/process_status_changer.vue"
+        )
+    ),
   },
 ]

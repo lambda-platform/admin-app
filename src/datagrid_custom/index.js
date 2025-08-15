@@ -1,7 +1,7 @@
 import callForm from  './callForm.vue'
 import coloredCell from  './coloredCell.vue'
 import popup from  './popup.vue'
-import process_status from  './process_status.vue'
+import process_status from '~/modules/workflow/form_grid_elements/grid/process_status.vue'
 export const gridCustomElementList = [
   {
     element: 'coloredCell',

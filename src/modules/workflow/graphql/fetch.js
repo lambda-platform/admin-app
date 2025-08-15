@@ -3,8 +3,14 @@ import {
   GET_USER,
   GET_WORK_FLOW_BY_CATEGORY,
   GET_WORK_FLOW_BY_ID,
-  GET_STRUCTURE
+  GET_JOBS_BY_STRUCT,
+  GET_STRUCTURE,
+  GET_EMPLOYERS_BY_STRUCT,
+  GET_ORGS_ROLE,
+  GET_EMPLOYERS_BY_JOB
 } from "./queries";
+
+import axios from '~/plugins/core/axios';
 
 export async function getUser(id) {
   try {
@@ -164,13 +170,14 @@ export async function getJobEmployees(job_id) {
   }
 }
 
-export async function getOrgsByRole(roleID) {
+export async function getOrgsByRole(roleID, orgID) {
   try {
     const { data, errors } = await client.query({
       query: GET_ORGS_ROLE,
       // fetchPolicy: "no-cache",
       variables:{
-        roleID
+        roleID,
+        orgID
       }
     });
 
@@ -207,3 +214,14 @@ export async function getStructs(name, org_id) {
     throw error;
   }
 }
+export const getWorkflowsByCategory = async (categoryId) => {
+  try {
+    const response = await axios.get(`/workflow/workflows/${categoryId}`);
+    return response.data.map(wf => {
+      return {...wf, value: wf.id, label: wf.flow_name};
+    });
+  } catch (error) {
+    console.error('Error fetching workflows:', error);
+    throw error;
+  }
+};

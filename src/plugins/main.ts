@@ -15,7 +15,7 @@ import {installNotification} from '@lambda-platform/lambda-vue/src/modules/notif
 import {installKrud} from '@lambda-platform/lambda-vue/src/modules/krud';
 import { loadLocaleMessages } from '@lambda-platform/lambda-vue/src/locale'
 
-
+import { initFontawesome } from "./core/fontawesome";
 
 
 /*
@@ -40,20 +40,7 @@ import Antd from 'ant-design-vue';
 import '~/assets/styles/theme/ant_light.less';
 import '~/assets/styles/theme/ant_dark.less';
 import '~/assets/styles/app.scss';
-// import '~/assets/styles/components/loading.css';
-// import   '@/assets/styles/tailwind.css'
-//   // '~/assets/styles/theme/ant.less',
-//   // '~/assets/styles/theme/ant_light.less',
-//   // '~/assets/styles/theme/ant_dark.less',
-// import   '@lambda-platform/lambda-vue/src/modules/datagrid/scss/style.scss';
-// import   '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_material.scss';
-// import   '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_light.scss';
-// import   '@lambda-platform/lambda-vue/src/modules/datagrid/scss/theme/_dark.scss';
-// import  '~/assets/styles/app.scss';
-//
 
-import { EventBusService } from '~/modules/workflow/workflow/services/event-bus.service';
-import batchDirective from '~/modules/workflow/workflow/directives/batch.directive';
 
 export default defineNuxtPlugin(async ({ vueApp: app }) => {
 
@@ -72,12 +59,12 @@ export default defineNuxtPlugin(async ({ vueApp: app }) => {
   app.config.globalProperties.$customElementList = customElementList
   app.config.globalProperties.$customDataGridElementList = gridCustomElementList
 
-  app.config.globalProperties.$eventBusService = new EventBusService();
-  app.directive('batch', batchDirective);
+
   //
   initAxios();
   initInlineSvg(app);
   initFilters(app);
+  initFontawesome(app);
 
   /* LAMBDA */
   installKrud(app)

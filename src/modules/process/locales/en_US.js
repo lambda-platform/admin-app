@@ -2,7 +2,7 @@ export default {
   process:{
     save: "Save",
     back: "Back",
-    vote: "санал илгээх",
+    vote: "Vote",
     description: "Нэмэлт тайлбар",
     date: "Огноо",
     statusHistory: "Төлөв шилжилтийн түүх",

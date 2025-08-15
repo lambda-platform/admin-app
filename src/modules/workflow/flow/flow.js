@@ -1,90 +1,99 @@
+// modules/workflow/flow/flow.js
 export class Flow {
   constructor(data) {
     this.data = data;
     this.starts = [];
     this.ends = [];
-    this.cancels = [];
-    this.steps = [];
-    this.links = [];
-    this.cells = [];
-    this.ports = [];
+    this.actions = [];
+    this.triggers = [];
+    this.edges = [];
     this.withVote = false;
     this.withEndVote = false;
     this.voteIndex = -1;
     this.initialize();
-
   }
 
   initialize() {
-    if (!this.data || !Array.isArray(this.data.cells)) {
+    if (!this.data || !this.data.nodes || !this.data.edges) {
       throw new Error("Invalid data");
     }
-    this.data.cells.forEach((cell, index) => {
 
-      if (cell.ports && cell.ports.items && cell.ports.items.length >= 1) {
-        this.ports = [...this.ports, ...cell.ports.items];
-      }
-      switch (cell.type) {
-        case "app.FlowchartStart":
-          this.starts.push(cell);
+    this.data.nodes.forEach((node, index) => {
+      switch (node.type) {
+        case "start":
+          this.starts.push(node);
           break;
-        case "app.FlowchartEnd":
-          this.ends.push(cell);
+        case "end":
+          this.ends.push(node);
           break;
-        case "app.FlowchartCancel":
-          this.cancels.push(cell);
-          break;
-        case "app.FlowchartPostpone":
-          this.cancels.push(cell);
-          break;
-        case "app.Message":
-          this.steps.push(cell);
-          if (cell.attrs.subject.object_type === "VOTE") {
+        case "action":
+          this.actions.push(node);
+          if (node.data.subject.object_type === "VOTE") {
             this.withVote = true;
             this.voteIndex = index;
           }
-          if (cell.attrs.subject.object_type === "END_VOTE") {
+          if (node.data.subject.object_type === "END_VOTE") {
             this.withEndVote = true;
-
           }
           break;
-        case "app.Link":
-          this.links.push(cell);
+        case "trigger":
+          this.triggers.push(node);
           break;
         default:
-          console.warn("Unknown type: ", cell.type);
+          console.warn("Unknown node type: ", node.type);
       }
     });
+
+    this.edges = this.data.edges;
   }
 
-
-  getCellById(id) {
-    return this.data.cells.find(cell => cell.id === id);
+  getNodeById(id) {
+    return this.data.nodes.find((node) => node.id === id);
   }
 
-  getCellIndex(id) {
-    return this.data.cells.findIndex(cell => cell.id === id);
+  getNodeIndex(id) {
+    return this.data.nodes.findIndex((node) => node.id === id);
   }
 
-  getPortById(id) {
-    return this.ports.find(port => port.id === id);
-  }
+  getNextSteps(node) {
+    // For action nodes, find trigger nodes and their outgoing edges
+    if (node.type === "action") {
+      const triggerNodes = this.triggers.filter((t) => t.parentNode === node.id);
+      const nextSteps = triggerNodes
+        .map((trigger) => {
+          const outgoingEdge = this.edges.find((edge) => edge.source === trigger.id);
+          if (outgoingEdge) {
+            const targetNode = this.getNodeById(outgoingEdge.target);
+            if (targetNode) {
+              return {
+                ...targetNode,
+                sourcePortLabel: trigger.data.label, // Trigger label as port label
+                open: false,
+              };
+            }
+          }
+          return null;
+        })
+        .filter((step) => step !== null);
+      return nextSteps;
+    }
 
-  getNextSteps(cell) {
-
-    const outgoingLinks = this.links.filter(link => link.source.id === cell.id);
-
-    const nextSteps = outgoingLinks.map(link => {
-      let sourcePortLabel = null
-      const port = this.getPortById(link.source.port);
-
-      if (port && port.attrs && port.attrs.portLabel && port.attrs.portLabel.text) {
-        sourcePortLabel = port.attrs.portLabel.text;
-      }
-      return {...this.getCellById(link.target.id), sourcePortLabel: sourcePortLabel, open: false}
-    });
+    // For start or end nodes, find direct outgoing edges
+    const outgoingEdges = this.edges.filter((edge) => edge.source === node.id);
+    const nextSteps = outgoingEdges
+      .map((edge) => {
+        const targetNode = this.getNodeById(edge.target);
+        if (targetNode) {
+          return {
+            ...targetNode,
+            sourcePortLabel: null, // No port label for non-action nodes
+            open: false,
+          };
+        }
+        return null;
+      })
+      .filter((step) => step !== null);
 
     return nextSteps;
   }
-
 }

@@ -1,0 +1,149 @@
+@import "@vue-flow/core/dist/style.css";
+//@import "@vue-flow/core/dist/theme-default.css";
+@import "./theme-default.css";
+@import "@vue-flow/controls/dist/style.css";
+@import "@vue-flow/minimap/dist/style.css";
+@import "@vue-flow/node-resizer/dist/style.css";
+
+.vue-flow__minimap {
+  transform: scale(75%);
+  transform-origin: bottom right;
+}
+
+.khan-workflow.dark {
+  background:#2d3748;
+  color:#fffffb
+}
+
+.khan-workflow.dark .node-container {
+  background: #273040;
+  color:#fffffb
+}
+
+.khan-workflow.dark .vue-flow__minimap {
+  background: #273040;
+  color:#fffffb
+}
+
+.khan-workflow.dark .vue-flow__node.selected {
+  //background:#333;
+  //box-shadow:0 0 0 2px #2563eb
+}
+
+.khan-workflow .vue-flow__controls {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center
+}
+
+.khan-workflow.dark .vue-flow__controls {
+  border:1px solid #FFFFFB
+}
+
+.khan-workflow .vue-flow__controls .vue-flow__controls-button {
+  border:none;
+  border-right:1px solid #eee
+}
+
+.khan-workflow .vue-flow__controls .vue-flow__controls-button svg {
+  height:100%;
+  width:100%
+}
+
+.khan-workflow.dark .vue-flow__controls .vue-flow__controls-button {
+  background:#333;
+  fill:#fffffb;
+  border:none
+}
+
+.khan-workflow.dark .vue-flow__controls .vue-flow__controls-button:hover {
+  background:#4d4d4d
+}
+.khan-workflow .vue-flow__handle-connecting {
+  background:#ff6060
+}
+
+.khan-workflow .vue-flow__handle-valid {
+  background:#5d9
+}
+.khan-workflow-wrapper{
+  height: calc(100vh - 190px);
+}
+.khan-workflow{
+  .trigger-label {
+    font-size: 8px;
+  }
+  .output-handle {
+    //background-color: var(--color-blue-700);
+    //border-color: var(--color-blue-700);
+    width: 8px;
+    height: 8px;
+  }
+  .node-end{
+
+  }
+  .input-handle {
+
+    //background-color: var(--color-blue-500);
+    //border-color: var(--color-blue-500);
+    height:8px;
+    width:24px;
+    border-radius:4px
+  }
+  .vertical-input-handle {
+
+    //background-color: var(--color-blue-500);
+    //border-color: var(--color-blue-500);
+    height:24px;
+    width:8px;
+    border-radius:4px;
+  }
+
+  .node-end{
+    .input-handle, .vertical-input-handle {
+      //background-color: var(--color-green-500);
+      //border-color: var(--color-green-500);
+    }
+  }
+  .node-description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%; /* Ensures it doesn't exceed the parent container */
+    font-size: 8px; /* Optional: Adjust font size for better fit */
+    padding-bottom: 3px;
+  }
+}
+/* Existing styles remain unchanged */
+.vue-flow__edge {
+  z-index: 100 !important;
+}
+.vue-flow__node {
+  z-index: 50;
+}
+.actions-enter-active, .actions-leave-active {
+  transition: transform 0.3s ease;
+}
+.actions-enter-from, .actions-leave-to {
+  transform: translateX(-100%);
+}
+//.vue-flow__node-toolbar {
+//  display: flex;
+//  gap: 0.5rem;
+//  align-items: center;
+//  background-color: #2d3748;
+//  padding: 8px;
+//  border-radius: 8px;
+//  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+//}
+//.vue-flow__node-toolbar button {
+//  background: #4a5568;
+//  color: white;
+//  border: none;
+//  padding: 0.5rem 1rem;
+//  border-radius: 8px;
+//  cursor: pointer;
+//}
+//.vue-flow__node-toolbar button:hover {
+//  background: #dc2626;
+//}

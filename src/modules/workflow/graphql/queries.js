@@ -67,7 +67,8 @@ query EmploySearch($struct_id: String!){
     id
     first_name
     last_name
-
+    avatar
+    user_id
   }
 }
   `
@@ -120,15 +121,15 @@ query StructSearch($name: String!, $org_id: String!) {
 
 
 export const GET_ORGS_ROLE= gql`
-query StructSearch($roleID: String!) {
-  view_org(
-     filters: [{column: "role_id", condition: equals, value: $roleID}]
-    sorts:[{column:"baiguullaga_ner", order:asc}]){
+query StructSearch($roleID: String!, $orgID : String!) {
+  view_organizations(
+     filters: [{column: "org_type_id", condition: equals, value: $roleID}, {column: "id", condition: equals, value: $orgID}],
+    sorts:[{column:"organization", order:asc}]){
     id
-    baiguullaga_ner
+    organization
     org_cover
-    org_avartar
-    utas_one
-    baiguullaga_register
+    org_logo
+    phone_one
+    register
   }
 }`;
