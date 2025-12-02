@@ -1,40 +1,44 @@
 import { defineAsyncComponent } from 'vue'
 export const customElementList = [
   {
-    element: 'datetimeAutoFill',
-    component: defineAsyncComponent(() => import('./datetimeAutoFill.vue')),
+    element: "datetimeAutoFill",
+    component: defineAsyncComponent(() => import("./datetimeAutoFill.vue")),
   },
   {
-    element: 'inputWithIcon',
-    component: defineAsyncComponent(() => import('./inputWithIcon.vue')),
+    element: "inputWithIcon",
+    component: defineAsyncComponent(() => import("./inputWithIcon.vue")),
   },
   {
-    element: 'Point',
-    component: defineAsyncComponent(() => import('./GIS/Point.vue')),
+    element: "Point",
+    component: defineAsyncComponent(() => import("./GIS/Point.vue")),
   },
   {
-    element: 'Point3D',
-    component: defineAsyncComponent(() => import('./GIS/Point3D.vue')),
+    element: "Point3D",
+    component: defineAsyncComponent(() => import("./GIS/Point3D.vue")),
   },
   {
-    element: 'Polygon',
-    component: defineAsyncComponent(() => import('./GIS/Polygon.vue')),
+    element: "Polygon",
+    component: defineAsyncComponent(() => import("./GIS/Polygon.vue")),
   },
   {
-    element: 'MultiPolygon',
-    component: defineAsyncComponent(() => import('./GIS/MultiPolygon.vue')),
+    element: "mapserver_layer",
+    component: defineAsyncComponent(() => import("./GIS/mapserver_layer.vue")),
   },
   {
-    element: 'Line',
-    component: defineAsyncComponent(() => import('./GIS/Line.vue')),
+    element: "MultiPolygon",
+    component: defineAsyncComponent(() => import("./GIS/MultiPolygon.vue")),
   },
   {
-    element: 'MultiLine',
-    component: defineAsyncComponent(() => import('./GIS/MultiLine.vue')),
+    element: "Line",
+    component: defineAsyncComponent(() => import("./GIS/Line.vue")),
   },
   {
-    element: 'MapWithGeometry',
-    component: defineAsyncComponent(() => import('./GIS/MapWithGeometry.vue')),
+    element: "MultiLine",
+    component: defineAsyncComponent(() => import("./GIS/MultiLine.vue")),
+  },
+  {
+    element: "MapWithGeometry",
+    component: defineAsyncComponent(() => import("./GIS/MapWithGeometry.vue")),
   },
   {
     element: "workflow",
@@ -53,7 +57,7 @@ export const customElementList = [
     component: defineAsyncComponent(() =>
       import(
         "~/modules/workflow/form_grid_elements/form/process_status_changer.vue"
-        )
+      )
     ),
   },
-]
+];
