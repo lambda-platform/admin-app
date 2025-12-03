@@ -176,11 +176,11 @@ export default {
       map: null,
       pointLayer: null,
       layerVisible: true,
-      openKeys: ['0', '0-0', '1', '1-0'],
+      openKeys: ["0", "0-0", "1", "1-0"],
       selectedKeys: [],
       searchValue: "",
       zoom: 12,
-      center: [103.8467, 46.8625],
+      center: [106.918056, 47.918036],
       bases: bases,
       baseKey,
       base: new TileLayer({
@@ -188,7 +188,8 @@ export default {
       }),
       iMapBase: new VectorTileLayer({
         source: vectorTileLayerSource,
-        style: 'https://imap.mn/06826032-4372-11ec-81d3-0242ac130003/style.json'
+        style:
+          "https://imap.mn/06826032-4372-11ec-81d3-0242ac130003/style.json",
       }),
       isGalleryVisible: false,
       ready: false,
@@ -196,7 +197,7 @@ export default {
       draw: null,
       modify: null,
       is3D: false,
-      selectedType: 'Point',
+      selectedType: "Point",
       vectorSource: source,
       started: false,
     };
@@ -327,7 +328,8 @@ export default {
               //   sourceConfig.url = `${base_url}/saved-tiles/${layer.id}/{z}/{x}/{y}.pbf`
               // }
 
-              sourceConfig.url = `${base_url}/saved-tiles/${layer.id}/{z}/{x}/{y}.pbf`
+              // sourceConfig.url = `${base_url}/saved-tiles/${layer.id}/{z}/{x}/{y}.pbf`
+              sourceConfig.url = `${base_url}/tiles/${layer.id}/{z}/{x}/{y}.pbf`
 
               this.categories[catIndex].layers[layerIndex].layer = new VectorTileLayer({
                 declutter: false,
