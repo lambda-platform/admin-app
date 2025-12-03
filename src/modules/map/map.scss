@@ -1,6 +1,10 @@
 .map-container{
-  height: calc(100vh - 60px);
+  height: 100vh;
+  #map{
+    height: 100%;
+  };
 }
+
 .web-map {
   position: relative;
   #locate{

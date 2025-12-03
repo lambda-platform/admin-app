@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full ">
     <div
       class="grid grid-cols-12 2xl:grid-cols-10 map-container h-screen border-t border-slate-100 dark:border-slate-900"
     >
@@ -55,7 +55,7 @@ export default {
   data() {
     return {
       mapID: "6b74ca1c-ea52-476e-9f32-ad57b4057bd7",
-      zoom: 11,
+      zoom: 9,
     };
   },
   methods: {},
