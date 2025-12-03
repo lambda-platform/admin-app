@@ -44,7 +44,7 @@
                       <span class="dark:text-white">{{ layer.title }}</span>
                     </div>
                     <img alt="" class="w-4 h-4"
-                         :src="layer.visible ? '/map/image/Eye.svg' : '/map/image/Eyeclose.svg'"/>
+                         :src="layer.visible ? '/map/images/Eye.svg' : '/map/images/Eyeclose.svg'"/>
                   </div>
 
                 </a-menu-item>
@@ -70,7 +70,7 @@
                         <span class="dark:text-white">{{ layer.title }}</span>
                       </div>
                       <img alt="" class="w-4 h-4 cursor-pointer"
-                           :src="layer.visible ? '/map/image/Eye.svg' : '/map/image/Eyeclose.svg'"/>
+                           :src="layer.visible ? '/map/images/Eye.svg' : '/map/images/Eyeclose.svg'"/>
                     </div>
                   </template>
                   <a-menu-item :key="`${uniqueValueInfoIndex}`"
@@ -85,7 +85,7 @@
                         <span class="dark:text-white">{{ uniqueValueInfo.label }}</span>
                       </div>
                       <img alt="" class="w-4 h-4"
-                           :src="uniqueValueInfo.visible ? '/map/image/Eye.svg' : '/map/image/Eyeclose.svg'"/>
+                           :src="uniqueValueInfo.visible ? '/map/images/Eye.svg' : '/map/images/Eyeclose.svg'"/>
                     </div>
                   </a-menu-item>
                 </a-sub-menu>

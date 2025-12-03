@@ -38,7 +38,7 @@
             <span class="dark:text-white">{{ layer.layer_title }}</span>
           </div>
           <img alt="" class="w-4 h-4"
-               :src="layer.is_visible ? '/map/image/Eye.svg' : '/map/image/Eyeclose.svg'"/>
+               :src="layer.is_visible ? '/map/images/Eye.svg' : '/map/images/Eyeclose.svg'"/>
         </div>
 
       </a-menu-item>
@@ -65,7 +65,7 @@
               <span class="dark:text-white">{{ layer.layer_title }}</span>
             </div>
             <img alt="" class="w-4 h-4 cursor-pointer"
-                 :src="layer.is_visible ? '/map/image/Eye.svg' : '/map/image/Eyeclose.svg'"/>
+                 :src="layer.is_visible ? '/map/images/Eye.svg' : '/map/images/Eyeclose.svg'"/>
           </div>
         </template>
         <a-menu-item :key="`legend-${catIndex}-${layerIndex}-${uniqueValueInfoIndex}`"
@@ -88,7 +88,7 @@
               <span class="dark:text-white">{{ legend.unique_value_label }}</span>
             </div>
             <img alt="" class="w-4 h-4"
-                 :src="legend.unique_visible ? '/map/image/Eye.svg' : '/map/image/Eyeclose.svg'"/>
+                 :src="legend.unique_visible ? '/map/images/Eye.svg' : '/map/images/Eyeclose.svg'"/>
           </div>
         </a-menu-item>
       </a-sub-menu>
